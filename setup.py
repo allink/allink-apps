@@ -1,10 +1,14 @@
 #! /usr/bin/env python
 from setuptools import setup
+from . import __version__ as version
 
-import allink_apps
+VERSION = (0, 0, 1)
+__version__ = '.'.join(map(str, VERSION))
+
+
 setup(
     name='allink_apps',
-    version=allink_apps.__version__,
+    version=version,
     description='collection of common apps',
     long_description='collection of common apps',
     author='Florian Türler, Beat Schenkel',
@@ -13,10 +17,9 @@ setup(
     license='BSD License',
     platforms=['OS Independent'],
     packages=[
-        'allink_apps',
-        'allink_apps.people',
-        'allink_apps.testimonials',
-        'allink_apps.work',
+        'people',
+        'testimonials',
+        'work',
     ],
     classifiers=[
         'Development Status :: 1 - Alpha',
