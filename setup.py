@@ -1,10 +1,10 @@
 #! /usr/bin/env python
-from setuptools import setup
-from allink_core import __version__
+from setuptools import setup, find_packages
+import allink_core
 
 setup(
     name='allink_apps',
-    version=__version__,
+    version=allink_core.__version__,
     description='collection of common apps',
     long_description='collection of common apps',
     author='Florian Türler, Beat Schenkel',
@@ -12,11 +12,7 @@ setup(
     url='http://github.com/allink/allink-core/',
     license='BSD License',
     platforms=['OS Independent'],
-    packages=[
-        'people',
-        'testimonials',
-        'work',
-    ],
+    packages=find_packages(exclude=['tests', 'tests.*']),
     classifiers=[
         'Development Status :: 1 - Alpha',
         'Environment :: Web Environment',
