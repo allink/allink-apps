@@ -2,51 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cc2a2551-622c-417e-a3d5-76ec6b835291" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/people/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/people/admin.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/people/apps.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/people/cms_plugins.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/people/cms_toolbars.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/people/managers.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/people/migrations/0001_initial.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/people/migrations/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/people/models.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/people/templates/people/detail.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/people/templates/people/plugins/grid_static/_content.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/people/templates/people/plugins/grid_static/content.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/people/templates/people/plugins/grid_static/item.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/people/urls.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/people/views.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/testimonials/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/testimonials/admin.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/testimonials/apps.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/testimonials/cms_plugins.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/testimonials/cms_toolbars.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/testimonials/managers.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/testimonials/migrations/0001_initial.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/testimonials/migrations/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/testimonials/models.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/testimonials/templates/testimonials/detail.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/testimonials/urls.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/testimonials/views.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/work/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/work/admin.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/work/apps.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/work/cms_plugins.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/work/cms_toolbars.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/work/migrations/0001_initial.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/work/migrations/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/work/models.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/work/static/scss/_work.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/work/templates/work/detail.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/work/templates/work/plugins/grid_dynamic/content.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/work/templates/work/plugins/grid_dynamic/item.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/work/templates/work/plugins/grid_static/content.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/work/templates/work/plugins/grid_static/item.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/work/urls.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/work/views.py" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/__init__.py" afterPath="$PROJECT_DIR$/__init__.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/setup.py" afterPath="$PROJECT_DIR$/setup.py" />
     </list>
     <ignored path="allink-apps.iws" />
@@ -71,11 +26,9 @@
       <file leaf-file-name="setup.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/setup.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-              <folding>
-                <element signature="e#23#51#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="135">
+              <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -233,11 +186,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/setup.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding>
-            <element signature="e#23#51#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="135">
+          <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
     </entry>
