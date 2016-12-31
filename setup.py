@@ -1,9 +1,6 @@
 #! /usr/bin/env python
 from setuptools import setup
-
-VERSION = (0, 0, 1)
-__version__ = '.'.join(map(str, VERSION))
-
+from . import __version__
 
 setup(
     name='allink_apps',
