@@ -5,7 +5,6 @@ from django.db import models
 from djangocms_text_ckeditor.fields import HTMLField
 from adminsortable.fields import SortableForeignKey
 from parler.models import TranslatableModel, TranslatedFields
-from phonenumber_field.modelfields import PhoneNumberField
 from aldryn_translation_tools.models import (
     TranslatedAutoSlugifyMixin,
     TranslationHelperMixin,
@@ -15,12 +14,12 @@ from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 from allink_core.allink_base.models.choices import GENDER_CHOICES
 from allink_core.allink_base.models import AllinkBaseModelManager
 from allink_core.allink_base.models.mixins import AllinkManualEntriesMixin
-from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin
+from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin, AllinkContactFieldsModel
 
 from .managers import AllinkPeopleManager
 
 
-class People(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, AllinkBaseModel):
+class People(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, AllinkContactFieldsModel, AllinkBaseModel):
     """
     Translations
      feel free to add app specific fields)
@@ -72,31 +71,6 @@ class People(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableMod
         choices=GENDER_CHOICES,
         null=True
     )
-    phone = PhoneNumberField(
-        _(u'Phone'),
-        blank=True,
-        null=True
-    )
-    mobile = PhoneNumberField(
-        _(u'Mobile'),
-        blank=True,
-        null=True
-    )
-    fax = PhoneNumberField(
-        _(u'Fax'),
-        blank=True,
-        null=True
-    )
-    email = models.EmailField(
-        _(u'Email'),
-        blank=True,
-        default=''
-    )
-    website = models.URLField(
-        _(u'Website'),
-        blank=True,
-        null=True
-    )
 
     objects = AllinkPeopleManager()
 
@@ -118,6 +92,10 @@ class People(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableMod
     def preview_image(self):
         if self.peopleimage_set.count() > 0:
             return self.peopleimage_set.first().image
+
+    @property
+    def images(self):
+        return self.peopleimage_set.all()
 
     @property
     def title(self):

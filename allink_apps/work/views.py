@@ -10,6 +10,5 @@ class WorkPluginLoadMore(AllinkBasePluginLoadMoreView):
 
 
 class WorkDetail(AllinkBaseDetailView):
-    template_name = 'work/detail.html'
     model = Work
 

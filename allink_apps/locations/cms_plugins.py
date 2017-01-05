@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from cms.plugin_pool import plugin_pool
 from allink_core.allink_base.admin.cms_plugins import CMSAllinkBaseAppContentPlugin
-from .models import TestimonialAppContentPlugin
+from .models import LocationsAppContentPlugin
 
 
 @plugin_pool.register_plugin
-class CMSTestimonialPlugin(CMSAllinkBaseAppContentPlugin):
+class CMSLocationsPlugin(CMSAllinkBaseAppContentPlugin):
     """
     Is only defined here because this Model is only for plugin instnances
 
@@ -22,6 +22,6 @@ class CMSTestimonialPlugin(CMSAllinkBaseAppContentPlugin):
     (can also be a parent model, so automatically all subclasses will be selected)
 
     """
-    model = TestimonialAppContentPlugin
+    model = LocationsAppContentPlugin
     name = model.data_model._meta.verbose_name_plural
-    data_model = TestimonialAppContentPlugin.data_model
+    data_model = LocationsAppContentPlugin.data_model

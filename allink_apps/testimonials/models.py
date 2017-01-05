@@ -72,6 +72,10 @@ class Testimonial(TranslationHelperMixin, TranslatedAutoSlugifyMixin, Translatab
             return self.testimonialimage_set.first().image
 
     @property
+    def images(self):
+        return self.testimonialimage_set.all()
+
+    @property
     def full_name(self):
         return u'{} {}'.format(self.lastname, self.firstname)
 

@@ -9,5 +9,4 @@ class PeoplePluginLoadMore(AllinkBasePluginLoadMoreView):
     plugin_model = PeopleAppContentPlugin
 
 class PeopleDetail(AllinkBaseDetailView):
-    template_name = 'people/detail.html'
     model = People

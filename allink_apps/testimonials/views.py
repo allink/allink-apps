@@ -10,6 +10,5 @@ class TestimonialPluginLoadMore(AllinkBasePluginLoadMoreView):
 
 
 class TestimonialDetail(AllinkBaseDetailView):
-    template_name = 'testimonials/detail.html'
     model = Testimonial
 

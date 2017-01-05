@@ -63,6 +63,11 @@ class Work(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel
         if self.workimage_set.count() > 0:
             return self.workimage_set.first().image
 
+    @property
+    def images(self):
+        return self.workimage_set.all()
+
+
 # APP CONTENT PLUGIN
 class WorkAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin):
     """
