@@ -1,0 +1,153 @@
+@media (min-width:$grid-float-breakpoint) {
+
+    .primary-nav {
+
+        /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+        Nav item containing children
+
+        */
+
+        position: absolute;
+        top: $primary-nav-position-top;
+        right: $primary-nav-position-right;
+        bottom: $primary-nav-position-bottom;
+        left: $primary-nav-position-left;
+        transition: all 300ms;
+
+        /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+        General Font Style
+
+        */
+
+        a {
+            @include nav-primary-font();
+        }
+
+
+        /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+        Level 1: Default
+
+        */
+
+        .nav {
+            margin: 0;
+            > li {
+                & + li {
+                    margin-left: $primary-nav-item-spacing-between-items;
+                }
+                > a {
+                    display: block;
+                    position: relative;
+                    padding: $primary-nav-item-padding;
+                    background-color: $primary-nav-item-bg-default;
+                    color: $primary-nav-item-text-default;
+                    text-decoration: none;
+                    white-space: nowrap;
+                    text-transform: $primary-nav-item-text-transform;
+                    &:hover,
+                    &:focus {
+                        background-color: $primary-nav-item-bg-hover;
+                        color: $primary-nav-item-text-hover;
+                    }
+                }
+                &.active {
+                    > a {
+                        color: $primary-nav-item-text-active;
+                        background-color: $primary-nav-item-bg-active;
+                    }
+                }
+            }
+        }
+
+        /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+        Level 1: With children
+
+        */
+
+        .nav-dropdown {
+            // dropdown toggle: DEFAULT states
+            &.child {
+                > a {
+                    padding: $primary-nav-item-has-dropdown-padding;
+                    &:after {
+                        @include icomoon();
+                        position: absolute;
+                        top: 50%;
+                        width: auto; // TBD: If not set, icon jumps
+                        right: $primary-nav-dropdown-icon-spacing-right;
+                        left: $primary-nav-dropdown-icon-spacing-left;
+                        font-size: $primary-nav-dropdown-icon-size;
+                        content: $primary-nav-dropdown-icon;
+                        transition: all 300ms;
+                        transform: translateY(-50%) rotate(0deg);
+                    }
+                }
+                .subnav {
+                    display: block;
+                    opacity: 0;
+                    visibility: hidden;
+                    transform: translate(0,15px);
+                    transition: all 600ms;
+                }
+                // dropdown toggle: OPEN states
+                &.opened {
+                    > a {
+                        &:after {
+                            transform: translateY(-50%) rotate(90deg);
+                        }
+                    }
+                    .subnav {
+                        opacity: 1;
+                        visibility: visible;
+                        transform: translate(0,0);
+                    }
+                }
+            }
+        }
+
+        /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+        Dropdown
+
+        */
+
+        .subnav {
+            position: absolute;
+            top: 100%;
+            padding: $primary-nav-dropdown-padding;
+            margin: 0;
+            list-style-type: none;
+            background-color: $primary-nav-dropdown-bg;
+            @if $primary-nav-dropdown-positioned-right == true {
+                right: 0;
+            }
+            > .child {
+                > a {
+                    display: block;
+                    padding: $primary-nav-dropdown-item-padding;
+                    color: $primary-nav-dropdown-item-text-default;
+                    background-color: $primary-nav-dropdown-item-bg-default;
+                    text-decoration: none;
+                    white-space: nowrap;
+                    text-transform: $primary-nav-dropdown-item-text-transform;
+                    &:hover,
+                    &:focus {
+                        color: $primary-nav-dropdown-item-text-hover;
+                        background-color: $primary-nav-dropdown-item-bg-hover;
+                    }
+                }
+                &.active {
+                    > a {
+                        color: $primary-nav-dropdown-item-text-active;
+                        background-color: $primary-nav-dropdown-item-bg-active;
+                    }
+                }
+            }
+        }
+
+    }
+}

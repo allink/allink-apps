@@ -1,0 +1,193 @@
+@charset 'utf-8';
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Functions
+
+===
+
+First thing we have to include, because we need them all over the place.
+
+Note: This import gets the allink_core_static functions, too.
+
+*/
+
+@import 'base/functions';
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Bootstrap
+
+The following import does:
+
+1. Import default Bootstrap variables
+2. Import our variables
+3. Import Bootstrap modules
+
+*/
+
+@import 'bootstrap/bootstrap';
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+NPM Packages
+
+*/
+
+// pretty select
+@import '~bootstrap-select/sass/bootstrap-select';
+
+// normalize CSS across browsers
+@import '~normalize.css/normalize.css';
+
+// datepicker
+@import '~flatpickr/dist/flatpickr.min.css';
+
+// slider
+@import '~swiper/dist/css/swiper.min.css';
+
+// modals (and softpage)
+@import '~tingle.js/dist/tingle.css';
+
+// gallery lightbox
+@import '~photoswipe/dist/photoswipe.css';
+@import '~photoswipe/dist/default-skin/default-skin.css';
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Icon Font
+
+*/
+
+@import '../../static/icomoon/style.css';
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+allink Core (mixins)
+
+===
+
+Note: This import gets the allink_core_static mixins, too.
+
+*/
+
+@import 'mixins/base';
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Home-made
+
+*/
+
+@import 'elements/base';
+@import 'form/base';
+@import 'layout/base';
+@import 'media/base';
+@import 'misc/base';
+@import 'modals/base';
+@import 'modules/base';
+@import 'navigation/base';
+@import 'typography/base';
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Forms
+
+===
+
+Form element styles depend on a specific markup, which is defined
+in the allink Core.
+
+That's the reason why we predefined styles than can be styled using variables.
+
+Should the provided variables not be enough, feel free to create your
+on files in the ./form folder (ideally named analoguely to the files in the core repo)
+
+*/
+
+@import '../../allink_core_static/scss/form/base';
+@import 'form/base';
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+allink Core (content section and allink plugins)
+
+===
+
+IMPORTANT: These files contain setting variables that can be set
+in our _variables.scss
+
+Should there be a variable missing that might be of interest to all
+projects, add it to the repo and define a variable and set a default value.
+
+If it's very project specific, create a project version of each file (ideally named
+analoguely to the files in the core repo) and import it AFTER the following imports.
+
+*/
+
+// Content Section (general)
+@import '../../allink_core_static/scss/content-sections/content-section';
+
+// Content Plugin
+@import '../../allink_core_static/scss/content-sections/content-plugin';
+
+// App Content Plugin
+@import '../../allink_core_static/scss/content-sections/app-content-plugin';
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+allink default templates (allink app content plugin)
+
+===
+
+These styles make our app content plugin work out of the box.
+
+Custom templates should be added AFTER the following imports.
+
+*/
+
+@import '../../allink_core_static/scss/plugin-templates/grid-dynamic';
+@import '../../allink_core_static/scss/plugin-templates/grid-static';
+@import '../../allink_core_static/scss/plugin-templates/list';
+@import '../../allink_core_static/scss/plugin-templates/slider';
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+allink Styleguide
+
+*/
+
+@import '../../allink_core/allink_styleguide/static/scss/styleguide';
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+allink Apps
+
+===
+
+The plugin versions of our core apps are based on the allink_base -> app content plugin.
+
+These plugins have additional custom fields and varying detail views that might need extra
+styling.
+
+*/
+
+// example
+// @import '../../allink_apps/work/static/scss/work';
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Pure Project Specificness happens here... Happy styling!
+
+*/

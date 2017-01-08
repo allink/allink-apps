@@ -1,8 +1,16 @@
 # <DOCKER_FROM>  # Warning: text inside the DOCKER_FROM tags is auto-generated. Manual changes will be overwritten.
 FROM aldryn/base-project:3.18
 # </DOCKER_FROM>
+#ENV /app/allink_cmsplugins:
 
-# <DOCKER_BUILD>  # Warning: text inside the DOCKER_BUILD tags is auto-generated. Manual changes will be overwritten.
+# node modules
+# ------------
+# package.json is put into / so that mounting /app for local
+# development does not require re-running npm install
+# ENV PATH=/node_modules/.bin:$PATH
+# RUN npm install -g npm-install-retry
+# COPY package.json /
+# RUN (cd / && npm-install-retry -- --production && rm -rf /tmp/*)
 
 # python requirements
 # -------------------
@@ -24,5 +32,4 @@ COPY . /app
 # -------------
 RUN DJANGO_MODE=build python manage.py collectstatic --noinput
 
-# </DOCKER_BUILD>
 

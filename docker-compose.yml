@@ -14,3 +14,5 @@ db:
  image: postgres:9.4
  volumes:
   - ".:/app:rw"
+ ports:
+  - "5432:5432"

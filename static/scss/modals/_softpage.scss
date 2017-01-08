@@ -1,0 +1,65 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Softpage
+
+*/
+
+.tingle-modal.softpage {
+    overflow-x: hidden;
+
+    .form-modal-visible & {
+        opacity: 0;
+    }
+
+    .tingle-modal-box {
+        margin-right: 0;
+        top: 0 !important;
+        min-height: 100%;
+        opacity: 0;
+        transform: translate($softpage-content-box-offset,0);
+        transition: $softpage-content-box-transition;
+
+        @media (min-width: $screen-sm-min) and (max-width: 1700px) {
+            .max-width {
+                max-width: 90%;
+            }
+        }
+    }
+
+    .tingle-modal-box__content {
+        padding: 0;
+        padding-top: $grid-gutter-width*2;
+        padding-bottom: $grid-gutter-width*2;
+    }
+
+    .tingle-modal__close {
+        position: fixed;
+        line-height: 1;
+        top: 0;
+        right: 0;
+        left: auto;
+        &:focus {
+            outline: none;
+        }
+        @media (min-width: $screen-sm) {
+            width: 60px;
+            height: 60px;
+            transform: translate(0,0);
+            background: transparent;
+            border-radius: 0;
+        }
+        @media (min-width:$screen-md) {
+            right: $softpage-close-btn-position-right-md;
+        }
+        @media (min-width:$screen-xl) {
+            right: $softpage-close-btn-position-right-xl;
+        }
+    }
+
+    &.tingle-modal--visible {
+        .tingle-modal-box {
+            transform: translate(0,0);
+            opacity: 1;
+        }
+    }
+}

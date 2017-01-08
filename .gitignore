@@ -22,3 +22,6 @@ Thumbs.db
 /static_collected
 /node_modules
 # </DEFAULT>
+*.sublime-project
+*.sublime-workspace
+npm-debug.log

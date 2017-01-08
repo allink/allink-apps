@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n staticfiles cms_tags %}
+
+{% block body_class %}tpl-logo-addition-black tpl-logo-addition{% endblock %}
+
+{% block logo_addition_container %}
+    <div class="brand-addition-container">
+        <img src="{% static "images/branding/haus-der-farbe-logo-addition-black.svg" %}" alt="{{ request.site.name }}" />
+    </div>
+{% endblock logo_addition_container %}
+
+{% block content %}
+    {% placeholder "content" %}
+{% endblock content %}

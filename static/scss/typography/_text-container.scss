@@ -1,0 +1,91 @@
+.text-container,
+.editor-body {
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    a {
+        transition: $link-transition;
+    }
+
+    p,
+    ul,
+    ol,
+    table,
+    figure {
+        margin: $text-container-element-default-margin-xs;
+        @media (min-width:$screen-md) {
+            margin: $text-container-element-default-margin-md;
+        }
+        @media (min-width:$screen-xl) {
+            margin: $text-container-element-default-margin-xl;
+        }
+    }
+
+    p {
+        &.lead {
+            @include p-lead();
+        }
+        &.small {
+            @include p-small();
+        }
+    }
+
+    h1 {
+        @include h1();
+        margin: $text-container-h1-margin-xs;
+        @media (min-width:$screen-md) {
+            margin: $text-container-h1-margin-md;
+        }
+        @media (min-width:$screen-xl) {
+            margin: $text-container-h1-margin-xl;
+        }
+    }
+    h2 {
+        @include h2();
+        margin: $text-container-h2-margin-xs;
+        @media (min-width:$screen-md) {
+            margin: $text-container-h2-margin-md;
+        }
+        @media (min-width:$screen-xl) {
+            margin: $text-container-h2-margin-xl;
+        }
+    }
+    h3 {
+        @include h3();
+        margin: $text-container-h3-margin-xs;
+        @media (min-width:$screen-md) {
+            margin: $text-container-h3-margin-md;
+        }
+        @media (min-width:$screen-xl) {
+            margin: $text-container-h3-margin-xl;
+        }
+    }
+    h4 {
+        @include h4();
+        margin: $text-container-h4-margin-xs;
+        @media (min-width:$screen-md) {
+            margin: $text-container-h4-margin-md;
+        }
+        @media (min-width:$screen-xl) {
+            margin: $text-container-h4-margin-xl;
+        }
+    }
+
+    .display-1 {
+        @include display-1();
+        margin: $text-container-display-1-margin-xs;
+        @media (min-width:$screen-md) {
+            margin: $text-container-display-1-margin-md;
+        }
+        @media (min-width:$screen-xl) {
+            margin: $text-container-display-1-margin-xl;
+        }
+    }
+
+    *:first-child { margin-top: 0; }
+    *:last-child { margin-bottom: 0; }
+
+}

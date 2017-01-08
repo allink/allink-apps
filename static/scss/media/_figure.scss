@@ -1,0 +1,11 @@
+figure {
+    margin: 0;
+    a {
+        display: block;
+    }
+}
+
+figcaption {
+    margin-top: $grid-gutter-width/2;
+    @include p-small();
+}

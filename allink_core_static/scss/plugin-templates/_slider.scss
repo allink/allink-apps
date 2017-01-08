@@ -1,0 +1,164 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Global Swiper Custom Styles
+
+*/
+
+// Slide
+
+.swiper-slide {
+    background-color: $slider-default-bg;
+    background-size: cover;
+    background-position: center center;
+    @include aspect-ratio($slider-default-aspect-ratio-width-xs,$slider-default-aspect-ratio-height-xs);
+    @media (min-width:$screen-md) {
+        @include aspect-ratio($slider-default-aspect-ratio-width-md,$slider-default-aspect-ratio-height-md);
+    }
+    @media (min-width:$screen-xl) {
+        @include aspect-ratio($slider-default-aspect-ratio-width-xl,$slider-default-aspect-ratio-height-md);
+    }
+}
+
+// Buttons (arrows)
+
+.swiper-button {
+    background: none;
+    width: $slider-default-arrows-width;
+    height: $slider-default-arrows-height;
+    margin-top: -($slider-default-arrows-height/2);
+    opacity: $slider-default-arrows-opacity;
+    transform: $slider-default-arrows-transition;
+    &:hover,
+    &:focus {
+        opacity: $slider-default-arrows-opacity-hover;
+        > i {
+            color: $slider-default-arrows-color-hover;
+        }
+    }
+    > i {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        color: $slider-default-arrows-color;
+    }
+    // no point in displaying controls if there is only 1 slide
+    .swiper-disabled & {
+        display: none;
+    }
+}
+
+.swiper-button-prev {
+    left: $slider-default-arrows-offset;
+}
+
+.swiper-button-next {
+    right: $slider-default-arrows-offset;
+}
+
+// Pagination
+.swiper-pagination {
+    // no point in displaying controls if there is only 1 slide
+    .swiper-disabled & {
+        display: none;
+    }
+}
+
+.swiper-pagination-bullet {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    margin: 0 !important;
+    opacity: 1;
+    &:before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -($slider-default-bullet-size/2);
+        margin-left: -($slider-default-bullet-size/2);
+        width: $slider-default-bullet-size;
+        height: $slider-default-bullet-size;
+        border-radius: 50%;
+        border-width: $slider-default-bullet-border-width;
+        border-style: $slider-default-bullet-border-style;
+        border-color: $slider-default-bullet-border-color;
+        background-color: $slider-default-bullet-bg;
+        transform: scale(1);
+        transition: all 150ms ease-in-out;
+    }
+}
+
+.swiper-pagination-bullet-active {
+    &:before {
+        background-color: $slider-default-bullet-bg-active;
+        border-color: $slider-default-bullet-border-color-active;
+    }
+}
+
+// overlay
+
+@if $slider-default-overlay-styles-enabled == true {
+    .swiper-content-overlay {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        @include gradient-overlay($slider-default-overlay-gradient-height);
+    }
+    .swiper-content-container {
+        .heading {
+            color: $overlay-heading-color;
+        }
+        .text-container {
+            > * {
+                color: $overlay-text-color;
+            }
+        }
+    }
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Basic slider content styling
+
+*/
+
+.swiper-content-container {
+    position: absolute;
+    @include content-section-spacing-position(bottom);
+    @include content-section-spacing-position(left);
+    @include content-section-spacing-position(right);
+
+    @media (min-width:$screen-lg) {
+        max-width: 66.66%;
+    }
+
+    .heading {
+        @include p-lead();
+    }
+}
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Slider in Detail View
+
+*/
+
+.swiper-detail-view {
+
+    .swiper-slide {
+        @include aspect-ratio($slider-detail-view-aspect-ratio-width-xs,$slider-detail-view-aspect-ratio-height-xs);
+        @media (min-width:$screen-md) {
+            @include aspect-ratio($slider-detail-view-aspect-ratio-width-md,$slider-detail-view-aspect-ratio-height-md);
+        }
+        @media (min-width:$screen-xl) {
+            @include aspect-ratio($slider-detail-view-aspect-ratio-width-xl,$slider-detail-view-aspect-ratio-height-md);
+        }
+    }
+
+}
+

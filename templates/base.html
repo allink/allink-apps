@@ -1,0 +1,112 @@
+{% extends "base_root.html" %}
+{% load i18n staticfiles cms_tags menu_tags %}
+
+{% block body_class %}tpl-base{% endblock %}
+
+{# no indent for better readability on extend_root #}
+{% block body_content %}
+    {% block header %}
+
+        <header class="site-header compact-mode-enabled">
+            <div class="container">
+
+                <h1 class="navbar-brand">
+                    <a href="{% url "pages-root" %}">
+                        <span class="sr-only">{{ request.site.name }}</span>
+                        <img src="{% static "images/branding/haus-der-farbe-white.svg" %}" alt="{{ request.site.name }}" />
+                    </a>
+                </h1>
+
+                {% block logo_addition_container %}
+                {% endblock logo_addition_container %}
+
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#primary-nav" aria-expanded="false" aria-controls="primary-nav">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <div id="primary-nav" class="navbar-collapse collapse primary-nav" role="navigation">
+                    {% block navbar %}
+                        <nav class="nav navbar-right">
+                            <h2 class="sr-only">{% trans "Navigation" %}</h2>
+                            {% render_model_block request.current_page "changelist" %}
+                                {% with dropdown="true" %}
+                                    <ul class="nav navbar-nav">
+                                        {% show_menu 0 1 100 100 "includes/menu/navigation.html" %}
+                                        {% comment %}
+                                            <li class="divider" role="presentation"><span class="sr-only">{% trans "Separator" %}</span></li>
+                                            {% show_menu_below_id "meta" 0 0 100 100 "includes/menu/navigation.html" %}
+                                            {% language_chooser "includes/menu/langnav.html" "native" %}
+                                        {% endcomment %}
+                                    </ul>
+                                {% endwith %}
+                            {% endrender_model_block %}
+                        </nav>
+                    {% endblock navbar %}
+                </div>
+
+            </div>
+        </header>
+
+        {# required to hold the space for fixed headers #}
+        <div class="site-header-buffer"></div>
+
+    {% endblock header %}
+
+    {# DOCS: http://getbootstrap.com/components/#breadcrumbs #}
+    {% block breadcrumb %}
+    {% endblock breadcrumb %}
+
+    {# start: content #}
+    <hr class="sr-only" id="page-content" />
+    {% block content_container %}
+        <section class="site-content">
+            {% block content %}{% endblock %}
+        </section>
+    {% endblock content_container %}
+    <hr class="sr-only" />
+    {# end: content #}
+
+    {% block footer %}
+        <footer class="site-footer" role="contentinfo" data-scroll-spy>
+            <h1 class="sr-only" id="page-footer">{% trans "Sitemap" %}</h1>
+            <div class="map">
+                {% static_placeholder "map" %}
+            </div>
+            <div class="container">
+                <div class="inner">
+                    {% static_placeholder "footer_content" %}
+                    <div class="social-profile-container">
+                        {% static_placeholder "social_profiles" %}
+                    </div>
+                    <div class="newsletter-container">
+                        TBD Newsletter
+                    </div>
+                    <div class="secondary-nav">
+                        TBD Secondary Navigation
+                    </div>
+                </div>
+                {% comment %}
+                    {% render_model_block request.current_page "changelist" %}
+                        <ul class="list-inline">
+                            <li class="pull-right"><a href="#page-top" data-spy="scroll"><span class="fa fa-left fa-arrow-up"></span>{% trans "Back to top" %}</a></li>
+                            {% show_menu_below_id "footer" 0 0 100 100 "includes/menu/navigation.html" %}
+                        </ul>
+                    {% endrender_model_block %}
+                {% endcomment %}
+            </div>
+
+        </footer>
+    {% endblock footer %}
+
+    {% block to_the_top %}
+        <a href="#page-top" class="to-the-top">
+            <span class="inner">
+                <span class="sr-only">
+                    {% trans "To the top" %}
+                </span>
+            </span>
+        </a>
+    {% endblock to_the_top %}
+
+{% endblock body_content %}

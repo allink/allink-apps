@@ -1,0 +1,50 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Tweaking Django CMS
+
+*/
+
+// reduce spacing between fieldsets
+form fieldset.module {
+    margin-bottom: 0 !important;
+    & + .module {
+        margin-top: 15px;
+    }
+    > h2 {
+        margin-bottom: 0;
+        & + * {
+            margin-top: 15px;
+        }
+    }
+}
+
+// Manual Order Package
+.sortedm2m-container {
+    ul.sortedm2m-items {
+        li.sortedm2m-item {
+            padding-top: 0.2em !important;
+            padding-bottom: 0.2em !important;
+            &.ui-sortable-placeholder {
+                background-color: #eee;
+                visibility: visible !important;
+                height: 21px;
+            }
+            > label {
+                position: relative;
+                padding-left: 1.5em !important;
+                > input {
+                    position: absolute;
+                    top: 50%;
+                    left: 0.3em;
+                    transform: translate(0,-50%);
+                    margin-left: 0;
+                    margin-right: 0.3em;
+                }
+            }
+            > a {
+                display: inline-block;
+                margin-left: 0.5em;
+            }
+        }
+    }
+ }

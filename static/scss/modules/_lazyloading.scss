@@ -1,0 +1,31 @@
+.lazyload,
+.lazyloading,
+.lazyloaded {
+    display: block;
+    opacity: 0;
+    width: 100%;
+    height: auto;
+    max-width: none;
+    transform: translate3d(0,0,0);
+}
+
+.lazyloaded {
+    position: relative;
+    opacity: 1;
+    z-index: 2;
+    transition: opacity $lazyloader-transition-duration;
+}
+
+picture.lazyloader {
+    display: block;
+    background: $lazyloader-bg-color;
+    @include the-loader();
+    // will be reset via JS at THE END of the document ready block
+    // opacity: 0;
+    transition: opacity $lazyloader-transition-duration;
+    &.no-icon {
+        &:before {
+            display: none;
+        }
+    }
+}

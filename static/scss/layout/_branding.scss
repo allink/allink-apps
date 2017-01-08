@@ -1,0 +1,91 @@
+.navbar-brand {
+    position: absolute;
+    top: 50%;
+    left: auto;
+    transform: translate(0,-50%);
+    padding: 0;
+    .nav-expanded & {
+        z-index: z("above");
+    }
+    // TBR
+    padding-bottom: 0;
+    top: auto;
+    bottom: -1px; // if 0, there's a tiny gap
+    transform: none;
+    // TBR
+    > a {
+        display: block;
+        > img {
+            height: $brand-logo-height-xs;
+            width: auto;
+            transition: $brand-logo-compact-mode-transition;
+            @media (min-width:$screen-md) {
+                height: $brand-logo-height-md;
+            }
+            @media (min-width:$screen-xl) {
+                height: $brand-logo-height-xl;
+            }
+            @media (min-width:$screen-xxl) {
+                height: $brand-logo-height-xxl;
+            }
+            .compact-mode & {
+                height: $brand-logo-compact-mode-height-xs;
+                @media (min-width:$screen-md) {
+                    height: $brand-logo-compact-mode-height-md;
+                }
+                @media (min-width:$screen-xl) {
+                    height: $brand-logo-compact-mode-height-xl;
+                }
+                @media (min-width:$screen-xxl) {
+                    height: $brand-logo-compact-mode-height-xxl;
+                }
+            }
+        }
+    }
+}
+
+// TBR
+.brand-addition-container {
+    position: absolute;
+    top: 110%; // fallback
+    top: calc(100% + #{$brand-logo-addition-spacing-xs};
+    padding-left: $brand-logo-addition-indent-xs;
+    visibility: visible;
+    @media (min-width:$screen-md) {
+        top: calc(100% + #{$brand-logo-addition-spacing-md};
+        padding-left: $brand-logo-addition-indent-md;
+    }
+    @media (min-width:$screen-xl) {
+        top: calc(100% + #{$brand-logo-addition-spacing-xl};
+        padding-left: $brand-logo-addition-indent-xl;
+    }
+    @media (min-width:$screen-xxl) {
+        top: calc(100% + #{$brand-logo-addition-spacing-xxl};
+        padding-left: $brand-logo-addition-indent-xxl;
+    }
+
+    .compact-mode & {
+        visibility: hidden;
+    }
+
+    > img {
+        height: $brand-logo-addition-height-xs;
+        width: auto;
+        transition: $brand-logo-compact-mode-transition;
+        @media (min-width:$screen-md) {
+            height: $brand-logo-addition-height-md;
+        }
+        @media (min-width:$screen-xl) {
+            height: $brand-logo-addition-height-xl;
+        }
+        @media (min-width:$screen-xxl) {
+            height: $brand-logo-addition-height-xxl;
+        }
+        .compact-mode & {
+            transform: translate(0,-15px);
+            opacity: 0;
+        }
+    }
+}
+
+// TBR

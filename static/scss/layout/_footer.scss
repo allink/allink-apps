@@ -1,0 +1,62 @@
+// important: do not define anything else in this body tag
+// it's only here because these settings are only used together with the footer
+body {
+    // only enabled if we're not on the styleguide page
+    &:not(.tpl-styleguide) {
+        @if $site-footer-fixed-enabled == true {
+            @include set-site-footer-body-margin();
+        }
+    }
+}
+
+.site-footer {
+
+    @if $site-footer-fixed-enabled == true {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        @include set-site-footer-height();
+    }
+
+    background-color: $site-footer-bg-color;
+    // TBR
+    padding: 0;
+    // TBR
+
+    @include clearfix();
+
+    > .container {
+        @include container-fixed();
+        @include max-width();
+        // TBR
+        padding-top: $content-section-spacing-md;
+        position: relative;
+        z-index: z("default");
+        // TBR
+    }
+
+    // TBR
+    .social-profile-container {
+        position: absolute;
+        top: $content-section-spacing-md;
+        left: 25%;
+    }
+    .map {
+        position: relative;
+        z-index: z("above");
+        float: right;
+        width: 50%;
+        height: 600px;
+        background-color: $gray;
+        .djangocms-googlemap,
+        .djangocms-googlemap-container {
+            height: 100% !important;
+            width: 100% !important;
+        }
+    }
+    .newsletter-container {
+        margin-top: $content-section-spacing-md;
+    }
+    // TBR
+
+}

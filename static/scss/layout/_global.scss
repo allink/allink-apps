@@ -1,0 +1,70 @@
+* {
+    box-sizing: border-box;
+    &:before,
+    &:after {
+        box-sizing: border-box;
+    }
+    // removes tap highlight on touch devices
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent;
+}
+
+html{
+
+    // basic setting
+    &.base-root {
+        position: relative;
+        min-height: 100%;
+    }
+
+    // prevent scrolling when modal is opened
+    &.scrolling-disabled {
+        overflow-y: hidden;
+        overflow: hidden;
+    }
+}
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+The .container element
+
+1. Reseting the default .container styles
+
+2. Sometimes, .container elements are NESTED within another .container
+
+In such cases, we wanna make sure that the inner
+.container doesn't get the max width again.
+
+*/
+
+.container {
+    max-width: none;
+    width: auto;
+    padding: 0;
+    margin: 0;
+    .container {
+        max-width: none !important;
+    }
+}
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+When the mobile navigation is visible, all elements defined
+in the sass-list will be hidden using a transition.
+
+*/
+
+@if variable-exists(nav-expanded-hide-container) {
+    @each $selector in $nav-expanded-hide-container {
+        #{$selector} {
+            transition: $nav-expanded-hide-container-transition;
+        }
+        .nav-expanded {
+            #{$selector} {
+                opacity: 0;
+            }
+        }
+    }
+}

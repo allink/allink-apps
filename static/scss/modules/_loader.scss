@@ -1,0 +1,55 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Re-Usable Loader Mixin
+
+*/
+
+// animation
+@keyframes loader-animation {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@mixin the-loader() {
+    position: relative;
+    > * {
+        z-index: 2;
+    }
+    &:before {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        content: '';
+        width: $loader-size;
+        height: $loader-size;
+        margin-left: -($loader-size/2);
+        margin-top: -($loader-size/2);
+        border: $loader-border-width solid transparent;
+        border-radius: 50%;
+        border-bottom-color: $brand-primary;
+        border-top-color: $brand-primary;
+        z-index: 1;
+        animation: loader-animation $loader-animation-duration ease-in-out infinite;
+    }
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Re-Usable Loader CLASS
+
+===
+
+Usage:
+
+<span class="loader"></span>
+
+Proper positioning has to be made in each context.
+
+*/
+
+.loader {
+    display: block;
+    width: $loader-size;
+    height: $loader-size;
+    @include the-loader();
+}
