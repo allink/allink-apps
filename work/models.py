@@ -51,6 +51,8 @@ class Work(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel
         )
     )
 
+    new_test_field = models.CharField(max_length=20, default='')
+
     objects = AllinkBaseModelManager()
 
     class Meta:
