@@ -55,8 +55,8 @@ class Work(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel
 
     class Meta:
         app_label = 'work'
-        verbose_name = _('Projekt/ Referenz')
-        verbose_name_plural = _('Projekte/ Referenzen')
+        verbose_name = _('Geschichte')
+        verbose_name_plural = _('Geschichten')
 
     @property
     def preview_image(self):

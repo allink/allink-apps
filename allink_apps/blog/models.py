@@ -72,8 +72,8 @@ class News(Blog):
 
     class Meta:
         app_label = 'blog'
-        verbose_name = _('News entry')
-        verbose_name_plural = _('News')
+        verbose_name = _('Sales entry')
+        verbose_name_plural = _('Sales')
 
 # Events
 class Events(Blog):
@@ -108,42 +108,6 @@ class Events(Blog):
         app_label = 'blog'
         verbose_name = _('Event')
         verbose_name_plural = _('Events')
-
-
-# Courses/ Workshops
-class Courses(Blog):
-
-    translations_events = TranslatedFields(
-        costs=models.CharField(
-            max_length=255,
-            help_text=_(u'Costs'),
-            blank=True,
-            null=True,
-        )
-    )
-
-    duration = models.CharField(
-        max_length=255,
-        help_text=_(u'Duration'),
-        blank=True,
-        null=True,
-    )
-
-    teacher = models.CharField(
-        max_length=255,
-        help_text=_(u'Teacher'),
-        blank=True,
-        null=True,
-    )
-
-    # location = models.ForeignKey(Locations)
-
-    objects = AllinkBaseModelManager()
-
-    class Meta:
-        app_label = 'blog'
-        verbose_name = _('Courses/ Workshops')
-        verbose_name_plural = _('Courses/ Workshops')
 
 
 # APP CONTENT PLUGIN

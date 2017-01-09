@@ -55,7 +55,7 @@ INSTALLED_APPS.extend([
     'allink_apps.locations',
     'allink_apps.people',
     'allink_apps.work',
-    'allink_apps.testimonials',
+    # 'allink_apps.testimonials',
     'allink_apps.blog',
 
 
@@ -255,11 +255,11 @@ RAVEN_CONFIG = {
 PROJECT_APP_MODEL_WITH_CATEGORY_CHOICES = [
     ('people', 'People'),
     ('work', 'Work'),
-    ('testimonial', 'Testimonials'),
+    # ('testimonial', 'Testimonials'),
     ('blog', 'Blog'),
     ('news', 'News'),
     ('events', 'Events'),
-    ('courses', 'Courses'),
+    # ('courses', 'Courses'),
     # ('locations', 'Locations'),
 ]
 
