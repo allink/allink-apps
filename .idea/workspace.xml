@@ -1,17 +1,133 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/allink_core/allink_base/models/mixins.py" />
-  </component>
   <component name="ChangeListManager">
     <list default="true" id="4f438c68-4e78-431b-8dc4-5b9d9e7a7e81" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/admin/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/admin/admin.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/admin/cms_plugins.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/admin/forms.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/forms/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/forms/forms.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/forms/validators.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/forms/widgets.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/models/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/models/choices.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/models/managers.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/models/mixins.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/models/models.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/settings/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/settings/easy_thumbnail.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/templates/app_content/ajax_base.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/templates/app_content/app_content_base.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/templates/app_content/plugins/grid_dynamic/_content.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/templates/app_content/plugins/grid_dynamic/content.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/templates/app_content/plugins/grid_dynamic/item.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/templates/app_content/plugins/grid_static/_content.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/templates/app_content/plugins/grid_static/content.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/templates/app_content/plugins/grid_static/item.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/templates/app_content/plugins/list/_content.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/templates/app_content/plugins/list/content.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/templates/app_content/plugins/list/item.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/templates/app_content/plugins/slider/_content.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/templates/app_content/plugins/slider/content.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/templates/app_content/plugins/slider/item.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/templates/detail.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/templates/slider_detail/content.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/templates/slider_detail/item.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/templates/templatetags/allink_image.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/templates/templatetags/app_content_image.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/templatetags/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/templatetags/allink_image_tags.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/utils/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/utils/cms_toolbars.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/utils/utils.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/views/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/views/mixins.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_base/views/views.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_categories/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_categories/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_categories/admin.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_categories/apps.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_categories/cms_wizards.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_categories/fields.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_categories/migrations/0001_initial.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_categories/migrations/0002_auto_20161206_0921.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_categories/migrations/0003_auto_20161206_1038.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_categories/migrations/0004_remove_allinkcategory_app_category_label.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_categories/migrations/0005_allinkcategory_app_category_label.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_categories/migrations/0006_auto_20161207_0305.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_categories/migrations/0007_remove_allinkcategorytranslation_app_category_label.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_categories/migrations/0008_allinkcategory_app_category_label.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_categories/migrations/0009_auto_20161207_0707.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_categories/migrations/0010_auto_20161209_0311.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_categories/migrations/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_categories/models.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_categories/tests/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_categories/tests/base.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_categories/tests/test_admin.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_categories/tests/test_fields.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_categories/tests/test_models.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_styleguide/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_styleguide/static/scss/_styleguide.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_styleguide/templates/allink_styleguide/styleguide.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/allink_styleguide/urls.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/cms_plugins.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/forms.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/migrations/0001_initial.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/migrations/0002_auto_20161111_0718.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/migrations/0003_auto_20161111_0857.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/migrations/0004_contentcolumn_template.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/migrations/0005_auto_20161114_0434.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/migrations/0006_auto_20161114_0926.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/migrations/0007_content_bg_color_enabled.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/migrations/0008_auto_20161114_1037.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/migrations/0009_auto_20161128_0706.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/migrations/0010_auto_20161128_0707.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/migrations/0011_auto_20161128_0712.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/migrations/0012_auto_20161128_0712.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/migrations/0013_auto_20161201_1338.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/migrations/0014_auto_20161201_1406.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/migrations/0015_auto_20161201_1408.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/migrations/0016_auto_20161204_0917.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/migrations/0017_auto_20161204_0923.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/migrations/0018_auto_20161204_0936.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/migrations/0019_auto_20161204_0943.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/migrations/0020_auto_20161204_1442.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/migrations/0021_auto_20161205_0635.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/migrations/0021_auto_20161205_0709.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/migrations/0022_merge.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/migrations/0023_auto_20161205_0823.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/migrations/0024_auto_20161205_0826.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/migrations/0025_auto_20161205_0840.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/migrations/0026_auto_20161206_0700.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/migrations/0027_auto_20161207_0121.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/migrations/0028_auto_20161207_0327.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/migrations/0029_auto_20161208_1546.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/migrations/0030_auto_20161213_1049.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/migrations/0031_auto_20161213_1111.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/migrations/0032_auto_20161215_0455.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/migrations/0033_auto_20161222_0525.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/migrations/0034_auto_20161223_0710.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/migrations/0035_remove_allinkcontentcolumnplugin_template.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/migrations/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/models.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/templates/djangocms_content/default/column.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_content/templates/djangocms_content/default/content.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_gallery/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_gallery/cms_plugins.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_gallery/forms.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_gallery/migrations/0001_initial.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_gallery/migrations/0002_auto_20161223_0841.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_gallery/migrations/0003_auto_20161230_0305.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_gallery/migrations/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_gallery/models.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_gallery/templates/djangocms_gallery/slider/content.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_core/djangocms_gallery/templates/djangocms_gallery/slider/item.html" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/allink_apps/blog/admin.py" afterPath="$PROJECT_DIR$/allink_apps/blog/admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/allink_apps/blog/cms_toolbars.py" afterPath="$PROJECT_DIR$/allink_apps/blog/cms_toolbars.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/allink_apps/blog/models.py" afterPath="$PROJECT_DIR$/allink_apps/blog/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/allink_apps/people/models.py" afterPath="$PROJECT_DIR$/allink_apps/people/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/allink_apps/work/models.py" afterPath="$PROJECT_DIR$/allink_apps/work/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings.py" afterPath="$PROJECT_DIR$/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.in" afterPath="$PROJECT_DIR$/requirements.in" />
     </list>
     <ignored path="haus-der-farbe-allink.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,7 +161,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="admin.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="admin.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/allink_apps/blog/admin.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="801">
@@ -53,6 +169,16 @@
               <folding>
                 <element signature="e#24#56#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="requirements.in" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/requirements.in">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="23" column="93" selection-start-line="23" selection-start-column="93" selection-end-line="23" selection-end-column="93" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -72,7 +198,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/allink_apps/work/cms_plugins.py" />
         <option value="$PROJECT_DIR$/allink_apps/people/templates/people/plugins/grid_static/item.html" />
         <option value="$PROJECT_DIR$/allink_apps/blog/fixtures/categories_fixture.json" />
         <option value="$PROJECT_DIR$/allink_core/allink_base/templates/app_content/plugins/list/item.html" />
@@ -123,6 +248,7 @@
         <option value="$PROJECT_DIR$/allink_apps/work/models.py" />
         <option value="$PROJECT_DIR$/settings.py" />
         <option value="$PROJECT_DIR$/allink_apps/blog/admin.py" />
+        <option value="$PROJECT_DIR$/requirements.in" />
       </list>
     </option>
   </component>
@@ -179,60 +305,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="teojakob-allink" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="teojakob-allink" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="teojakob-allink" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="allink_apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="teojakob-allink" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="teojakob-allink" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="allink_apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="blog" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="teojakob-allink" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="teojakob-allink" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="allink_apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="blog" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="migrations" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -554,9 +626,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="2560" height="1573" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16878475" sideWeight="0.49607182" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16878475" sideWeight="0.49607182" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32950708" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32883188" sideWeight="0.49642575" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4166104" sideWeight="0.522637" order="7" side_tool="true" content_ui="tabs" />
@@ -627,13 +699,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/allink_core/allink_base/templates/app_content/plugins/grid_dynamic/content.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/allink_core/allink_base/templates/app_content/plugins/grid_dynamic/_content.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -716,9 +781,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="69" selection-start-line="10" selection-start-column="69" selection-end-line="10" selection-end-column="69" />
-          <folding>
-            <element signature="e#24#79#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -983,6 +1046,14 @@
           <folding>
             <element signature="e#24#56#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.in">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="93" selection-start-line="23" selection-start-column="93" selection-end-line="23" selection-end-column="93" />
+          <folding />
         </state>
       </provider>
     </entry>
