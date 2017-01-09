@@ -1,4 +1,4 @@
-<!doctype html>{% load i18n staticfiles cms_tags sekizai_tags %}
+<!doctype html>{% load i18n staticfiles cms_tags sekizai_tags google_tag_manager_tags %}
 {% load render_bundle from webpack_loader %}
 
 <html lang="{{ LANGUAGE_CODE }}" class="base-root no-js">
@@ -175,7 +175,7 @@
 </head>
 
 <body id="page-top" class="noscript lang-{{ LANGUAGE_CODE }} {% block body_class %}tpl-root{% endblock %}">
-
+    {% google_tag_manager 
 
     {% comment %}
 
