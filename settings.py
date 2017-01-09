@@ -12,6 +12,7 @@ INSTALLED_ADDONS = [
     'aldryn-django-cms',
     'aldryn-devsync',
     'aldryn-common',
+    'aldryn-google-tag-manager',
     'djangocms-file',
     'djangocms-googlemap',
     'djangocms-link',
