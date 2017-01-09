@@ -84,11 +84,6 @@ class People(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableMod
         return u'{} {}'.format(self.lastname, self.firstname)
 
     @property
-    def formatted_phone(self):
-        x = phonenumbers.parse(str(self.phone), None)
-        return str(phonenumbers.format_number(x, phonenumbers.PhoneNumberFormat.INTERNATIONAL))
-
-    @property
     def preview_image(self):
         if self.peopleimage_set.count() > 0:
             return self.peopleimage_set.first().image

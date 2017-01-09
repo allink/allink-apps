@@ -27,6 +27,8 @@ class LocationsAdmin(AllinkBaseAdmin):
                     'text',
                     ('zip', 'city',),
                     'street',
+                    ('phone', 'mobile',),
+                    ('email', 'fax',),
                     ('lat', 'lng',),
                 ),
             }),
