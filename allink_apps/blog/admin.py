@@ -103,7 +103,7 @@ class EventsAdmin(BlogAdmin):
         }),
 
         fieldsets += self.get_base_fieldsets()
-    return fieldsets
+        return fieldsets
 
 
 @admin.register(BlogAppContentPlugin)

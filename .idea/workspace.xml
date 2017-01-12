@@ -2,85 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4f438c68-4e78-431b-8dc4-5b9d9e7a7e81" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/blog/migrations/0005_auto_20170110_0419.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/blog/migrations/0006_auto_20170110_0641.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/blog/migrations/0007_auto_20170110_0809.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/blog/migrations/0008_courses_location.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/blog/migrations/0009_remove_courses_teacher.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/blog/migrations/0010_teachers.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/blog/migrations/0011_auto_20170111_1123.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/blog/migrations/0012_auto_20170112_0632.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/blog/sitemaps/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/blog/sitemaps/sitemaps.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/blog/templates/blog/courses_detail.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/blog/templates/blog/plugins/grid_static/content.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/blog/templates/blog/plugins/grid_static/item.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/locations/migrations/0003_auto_20170109_0320.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/locations/migrations/0004_auto_20170109_0322.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/locations/migrations/0005_auto_20170109_0333.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/locations/migrations/0006_auto_20170110_0419.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/locations/migrations/0007_auto_20170110_0641.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/locations/migrations/0008_auto_20170110_0809.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/locations/migrations/0009_locations_zoom_level.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/locations/migrations/0010_auto_20170111_0250.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/locations/migrations/0011_auto_20170112_0632.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/locations/migrations/0012_auto_20170112_0852.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/locations/sitemaps/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/locations/sitemaps/sitemaps.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/locations/templates/app_content/plugins/map/content.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/people/migrations/0003_auto_20170109_0333.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/people/migrations/0004_auto_20170110_0419.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/people/migrations/0005_auto_20170110_0641.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/people/migrations/0006_auto_20170110_0728.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/people/migrations/0006_auto_20170110_0809.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/people/migrations/0007_merge.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/people/migrations/0008_auto_20170112_0632.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/people/migrations/0009_auto_20170112_0852.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/people/sitemaps/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/people/sitemaps/sitemaps.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/people/static/scss/_people.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/people/templates/people/plugins/table/content.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/people/templates/people/plugins/table/item.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/people/templates/people/plugins/table_2/_content.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/people/templates/people/plugins/table_2/content.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/people/templates/people/plugins/table_2/item.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/testimonials/migrations/0003_auto_20170110_0419.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/testimonials/migrations/0004_auto_20170110_0641.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/testimonials/migrations/0005_auto_20170110_0809.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/testimonials/migrations/0006_auto_20170112_0632.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/testimonials/sitemaps/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/testimonials/sitemaps/sitemaps.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/testimonials/templates/testimonials/testimonial_detail.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/work/migrations/0003_auto_20170110_0419.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/work/migrations/0004_auto_20170110_0641.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/work/migrations/0005_auto_20170110_0809.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/work/migrations/0006_auto_20170112_0632.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/work/sitemaps/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allink_apps/work/sitemaps/sitemaps.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/allink_apps/testimonials/templates/testimonials/testimonials_detail.html" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/allink_apps/blog/admin.py" afterPath="$PROJECT_DIR$/allink_apps/blog/admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/allink_apps/blog/cms_plugins.py" afterPath="$PROJECT_DIR$/allink_apps/blog/cms_plugins.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/allink_apps/blog/migrations/0001_initial.py" afterPath="$PROJECT_DIR$/allink_apps/blog/migrations/0001_initial.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/allink_apps/blog/models.py" afterPath="$PROJECT_DIR$/allink_apps/blog/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/allink_apps/blog/templates/blog/blog_detail.html" afterPath="$PROJECT_DIR$/allink_apps/blog/templates/blog/blog_detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/allink_apps/blog/templates/blog/events_detail.html" afterPath="$PROJECT_DIR$/allink_apps/blog/templates/blog/events_detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/allink_apps/blog/templates/blog/news_detail.html" afterPath="$PROJECT_DIR$/allink_apps/blog/templates/blog/news_detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/allink_apps/blog/views.py" afterPath="$PROJECT_DIR$/allink_apps/blog/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/allink_apps/locations/admin.py" afterPath="$PROJECT_DIR$/allink_apps/locations/admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/allink_apps/locations/cms_plugins.py" afterPath="$PROJECT_DIR$/allink_apps/locations/cms_plugins.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/allink_apps/locations/models.py" afterPath="$PROJECT_DIR$/allink_apps/locations/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/allink_apps/people/admin.py" afterPath="$PROJECT_DIR$/allink_apps/people/admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/allink_apps/people/models.py" afterPath="$PROJECT_DIR$/allink_apps/people/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/allink_apps/people/templates/people/people_detail.html" afterPath="$PROJECT_DIR$/allink_apps/people/templates/people/people_detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/allink_apps/people/templates/people/plugins/grid_static/item.html" afterPath="$PROJECT_DIR$/allink_apps/people/templates/people/plugins/grid_static/item.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/allink_apps/testimonials/admin.py" afterPath="$PROJECT_DIR$/allink_apps/testimonials/admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/allink_apps/testimonials/migrations/0001_initial.py" afterPath="$PROJECT_DIR$/allink_apps/testimonials/migrations/0001_initial.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/allink_apps/testimonials/models.py" afterPath="$PROJECT_DIR$/allink_apps/testimonials/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/allink_apps/work/admin.py" afterPath="$PROJECT_DIR$/allink_apps/work/admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/allink_apps/work/migrations/0001_initial.py" afterPath="$PROJECT_DIR$/allink_apps/work/migrations/0001_initial.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/allink_apps/work/models.py" afterPath="$PROJECT_DIR$/allink_apps/work/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/allink_apps/work/templates/work/plugins/grid_dynamic/item.html" afterPath="$PROJECT_DIR$/allink_apps/work/templates/work/plugins/grid_dynamic/item.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/allink_apps/work/templates/work/plugins/grid_static/item.html" afterPath="$PROJECT_DIR$/allink_apps/work/templates/work/plugins/grid_static/item.html" />
     </list>
     <ignored path="haus-der-farbe-allink.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -117,9 +39,11 @@
       <file leaf-file-name="admin.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/allink_apps/blog/admin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="747">
+              <caret line="105" column="8" selection-start-line="105" selection-start-column="8" selection-end-line="105" selection-end-column="8" />
+              <folding>
+                <element signature="e#24#56#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -609,7 +533,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="2560" height="1573" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1711676" sideWeight="0.49607182" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32950708" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -619,7 +543,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32950708" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24980143" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3187036" sideWeight="0.45552024" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3187036" sideWeight="0.45552024" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13264495" sideWeight="0.5039282" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -948,9 +872,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/allink_apps/blog/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="747">
+          <caret line="105" column="8" selection-start-line="105" selection-start-column="8" selection-end-line="105" selection-end-column="8" />
+          <folding>
+            <element signature="e#24#56#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
