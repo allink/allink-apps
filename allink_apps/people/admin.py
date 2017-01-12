@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
-from adminsortable.admin import SortableStackedInline
+from adminsortable.admin import SortableTabularInline
 from allink_core.allink_base.admin import AllinkBaseAdmin
 from allink_core.allink_base.admin.forms import AllinkBaseAdminForm
 from .models import PeopleImage, People, PeopleAppContentPlugin
 
-class PeopleImageInline(SortableStackedInline):
+class PeopleImageInline(SortableTabularInline):
     model = PeopleImage
     extra = 1
     verbose_name = None
@@ -28,26 +28,19 @@ class PeopleAdmin(AllinkBaseAdmin):
         fieldsets = (
             (None, {
                 'fields': (
-                    'gender',
-                    'firstname',
-                    'lastname',
-                    'job_title',
-                    'job_function',
-                    'email',
+                    'active',
+                    ('firstname', 'lastname', 'gender'),
+                    ('job_title', 'job_function'),
+                    ('email', 'website'),
+                    ('company_name', 'place'),
                     ('phone', 'mobile', 'fax'),
-                    'website',
                     'text',
                     'slug',
                 ),
             }),
         )
 
-        if self.model.get_can_have_categories():
-            fieldsets += (_('Categories'), {
-                'fields': (
-                    'categories',
-                )
-            }),
+        fieldsets += self.get_base_fieldsets()
 
         return fieldsets
 

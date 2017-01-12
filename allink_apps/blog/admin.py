@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
-from adminsortable.admin import SortableStackedInline
+from django import forms
+from adminsortable.admin import SortableTabularInline
 from django.utils.translation import ugettext_lazy as _
 from allink_core.allink_base.admin import AllinkBaseAdmin
 
 from .models import BlogImage, Blog, News, Events, BlogAppContentPlugin
 
-
-class BlogImageInline(SortableStackedInline):
+class BlogImageInline(SortableTabularInline):
     model = BlogImage
     extra = 1
     verbose_name = 'IMAGES'
@@ -18,19 +18,25 @@ class BlogImageInline(SortableStackedInline):
 class BlogAdmin(AllinkBaseAdmin):
     inlines = [BlogImageInline, ]
 
+    def formfield_for_dbfield(self, db_field, **kwargs):
+        if db_field.name == 'lead':
+            kwargs['widget'] = forms.Textarea
+        return super(BlogAdmin, self).formfield_for_dbfield(db_field, **kwargs)
+
     def get_fieldsets(self, request, obj=None):
         fieldsets = (
             (None, {
                 'fields': (
+                    'active',
                     'title',
                     'slug',
-                    'active',
+                    'lead',
                     'text',
                 ),
             }),
         )
 
-        fieldsets += (_('Published Form/ To'), {
+        fieldsets += (_('Published From/To'), {
             'classes': ('collapse',),
             'fields': (
                 'start',
@@ -38,32 +44,27 @@ class BlogAdmin(AllinkBaseAdmin):
             )
         }),
 
-        if self.model.get_can_have_categories():
-            fieldsets += (_('Categories'), {
-                'fields': (
-                    'categories',
-                )
-            }),
+        fieldsets += self.get_base_fieldsets()
 
         return fieldsets
 
 @admin.register(News)
-class NewsAdmin(AllinkBaseAdmin):
-    inlines = [BlogImageInline, ]
+class NewsAdmin(BlogAdmin):
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = (
             (None, {
                 'fields': (
+                    'active',
                     'title',
                     'slug',
-                    'active',
+                    'lead',
                     'text',
                 ),
             }),
         )
 
-        fieldsets += (_('Published Form/ To'), {
+        fieldsets += (_('Published From/To'), {
             'classes': ('collapse',),
             'fields': (
                 'start',
@@ -71,27 +72,21 @@ class NewsAdmin(AllinkBaseAdmin):
             )
         }),
 
-        if self.model.get_can_have_categories():
-            fieldsets += (_('Categories'), {
-                'fields': (
-                    'categories',
-                )
-            }),
+        fieldsets += self.get_base_fieldsets()
 
         return fieldsets
 
 
 @admin.register(Events)
-class EventsAdmin(AllinkBaseAdmin):
-    inlines = [BlogImageInline, ]
+class EventsAdmin(BlogAdmin):
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = (
             (None, {
                 'fields': (
+                    'active',
                     'title',
                     'slug',
-                    'active',
                     'lead',
                     'text',
                     ('event_date', 'costs', )
@@ -99,7 +94,7 @@ class EventsAdmin(AllinkBaseAdmin):
             }),
         )
 
-        fieldsets += (_('Published Form/ To'), {
+        fieldsets += (_('Published From/To'), {
             'classes': ('collapse',),
             'fields': (
                 'start',
@@ -107,14 +102,8 @@ class EventsAdmin(AllinkBaseAdmin):
             )
         }),
 
-        if self.model.get_can_have_categories():
-            fieldsets += (_('Categories'), {
-                'fields': (
-                    'categories',
-                )
-            }),
-
-        return fieldsets
+        fieldsets += self.get_base_fieldsets()
+    return fieldsets
 
 
 @admin.register(BlogAppContentPlugin)

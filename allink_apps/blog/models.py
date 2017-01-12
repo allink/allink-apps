@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 from django.utils.translation import ugettext_lazy as _
+from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
 
+from adminsortable.models import SortableMixin
 from adminsortable.fields import SortableForeignKey
 from parler.models import TranslatableModel, TranslatedFields
 from djangocms_text_ckeditor.fields import HTMLField
@@ -16,7 +18,9 @@ from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 from allink_core.allink_base.models.mixins import AllinkManualEntriesMixin
 from allink_core.allink_base.models import AllinkBaseModelManager
 from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin
-from allink_core.allink_categories.models import AllinkCategory
+from allink_apps.people.models import People
+from allink_apps.locations.models import Locations
+
 
 #  Blog Parent class
 class Blog(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, TimeFramedModel, AllinkBaseModel):
@@ -42,7 +46,7 @@ class Blog(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel
         ),
         lead=HTMLField(
             _(u'Lead Text'),
-            help_text=_(u'Used as a teaser. Not displayed in detail view.'),
+            help_text=_(u'Teaser text that in some cases is used in the list view and/or in the detail view.'),
             blank=True,
             null=True,
         ),
@@ -65,6 +69,11 @@ class Blog(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel
     def preview_image(self):
         if self.blogimage_set.count() > 0:
             return self.blogimage_set.first().image
+
+    @property
+    def images(self):
+        return self.blogimage_set.all()
+
 
 # News
 class News(Blog):
@@ -114,6 +123,12 @@ class Events(Blog):
 class BlogAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin):
     """
     """
+
+    TEMPLATES = (
+        (AllinkBaseAppContentPlugin.GRID_STATIC, 'Grid (Static)'),
+        (AllinkBaseAppContentPlugin.SLIDER, 'Slider'),
+    )
+
     data_model = Blog
 
     manual_entries = SortedM2MModelField(

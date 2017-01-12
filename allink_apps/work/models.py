@@ -39,7 +39,7 @@ class Work(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel
         ),
         lead=HTMLField(
             _(u'Lead Text'),
-            help_text=_(u'Used as a teaser. Not displayed in detail view.'),
+            help_text=_(u'Teaser text that in some cases is used in the list view and/or in the detail view.'),
             blank=True,
             null=True,
         ),
