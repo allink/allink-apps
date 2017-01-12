@@ -4,6 +4,7 @@ from django.db import models
 from adminsortable.fields import SortableForeignKey
 from parler.models import TranslatableModel, TranslatedFields
 from djangocms_text_ckeditor.fields import HTMLField
+from phonenumber_field.modelfields import PhoneNumberField
 
 from aldryn_translation_tools.models import (
     TranslatedAutoSlugifyMixin,
@@ -27,33 +28,33 @@ class Locations(TranslationHelperMixin, TranslatedAutoSlugifyMixin, Translatable
     slug_source_field_name = 'title'
 
     translations = TranslatedFields(
-        title=models.CharField(
+        title = models.CharField(
             max_length=255
         ),
-        text=HTMLField(
+        text = HTMLField(
             _(u'Text'),
             blank=True,
             null=True
         ),
-        zip=models.CharField(
+        zip = models.CharField(
             _(u'ZIP Code'),
             max_length=4,
             blank=True,
             null=True,
         ),
-        city=models.CharField(
+        city = models.CharField(
             _(u'City'),
             max_length=127,
             blank=True,
             null=True,
         ),
-        street=models.CharField(
-            _(u'City'),
+        street = models.CharField(
+            _(u'Street'),
             max_length=255,
             blank=True,
             null=True,
         ),
-        slug=models.SlugField(
+        slug = models.SlugField(
             _(u'Slug'),
             max_length=255,
             default='',
@@ -96,14 +97,55 @@ class LocationsAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPl
     # TEMPLATES = AllinkBaseAppContentPlugin.TEMPLATES \
     #             + ('map', 'Map')
 
+    TEMPLATES = (
+        # (AllinkBaseAppContentPlugin.GRID_STATIC, 'Grid (Static)'),
+        # (AllinkBaseAppContentPlugin.GRID_DYNAMIC, 'Grid (Dynamic)'),
+        ('map', 'Map'),
+    )
+
+    ZOOM_LEVEL_CHOICES = (
+        (0, 0),
+        (1, 1),
+        (2, 2),
+        (3, 3),
+        (4, 4),
+        (5, 5),
+        (6, 6),
+        (7, 7),
+        (8, 8),
+        (9, 9),
+        (10, 10),
+        (11, 11),
+        (12, 12),
+        (13, 13),
+        (14, 14),
+        (15, 15),
+        (16, 16),
+        (17, 17),
+        (18, 18),
+    )
+
     data_model = Locations
 
     manual_entries = SortedM2MModelField(
-        '{}.{}'.format(data_model._meta.app_label, data_model._meta.model_name), blank=True,
+        '{}.{}'.format(data_model._meta.app_label, data_model._meta.model_name),
+        blank=True,
         help_text=_('Select and arrange specific entries, or, leave blank to select all. (If '
                     'manual entries are selected the category filtering will be ignored.)')
     )
 
+    zoom_level = models.IntegerField(
+        _(u'Zoom Level'),
+        help_text=_(u'The higher the number, the more we zoom in.'),
+        choices=ZOOM_LEVEL_CHOICES,
+        default=14
+    )
 
 class LocationsImage(AllinkBaseImage):
-    location = SortableForeignKey(Locations,  verbose_name=_(u'Images'), help_text=_(u'The first image will be used as preview image.'), blank=True, null=True)
+    location = SortableForeignKey(
+        Locations,
+        verbose_name=_(u'Images'),
+        help_text=_(u'The first image will be used as preview image.'),
+        blank=True,
+        null=True
+    )

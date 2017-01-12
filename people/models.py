@@ -66,6 +66,20 @@ class People(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableMod
         ),
     )
 
+    company_name = models.CharField(
+        _(u'Company Name'),
+        max_length=255,
+        blank=True,
+        null=True
+    )
+
+    place = models.CharField(
+        _(u'Place'),
+        max_length=255,
+        blank=True,
+        null=True
+    )
+
     gender = models.IntegerField(
         _(u'Gender'),
         choices=GENDER_CHOICES,
@@ -81,12 +95,7 @@ class People(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableMod
 
     @property
     def full_name(self):
-        return u'{} {}'.format(self.lastname, self.firstname)
-
-    @property
-    def formatted_phone(self):
-        x = phonenumbers.parse(str(self.phone), None)
-        return str(phonenumbers.format_number(x, phonenumbers.PhoneNumberFormat.INTERNATIONAL))
+        return u'{} {}'.format(self.firstname, self.lastname)
 
     @property
     def preview_image(self):
@@ -99,7 +108,7 @@ class People(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableMod
 
     @property
     def title(self):
-        return u'{} {}'.format(self.lastname, self.firstname)
+        return u'{} {}'.format(self.firstname, self.lastname)
 
 
 # APP CONTENT PLUGIN
@@ -119,8 +128,10 @@ class PeopleAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugi
     )
 
     """
+
     TEMPLATES = (
         (AllinkBaseAppContentPlugin.GRID_STATIC, 'Grid (Static)'),
+        (AllinkBaseAppContentPlugin.LIST, 'List'),
     )
     data_model = People
 

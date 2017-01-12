@@ -26,3 +26,7 @@ class CMSBlogPlugin(CMSAllinkBaseAppContentPlugin):
     model = BlogAppContentPlugin
     name = model.data_model._meta.verbose_name_plural
     data_model = BlogAppContentPlugin.data_model
+
+    @classmethod
+    def get_render_queryset(cls):
+        return cls.model._default_manager.all()
