@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
-from adminsortable.admin import SortableStackedInline
+from adminsortable.admin import SortableTabularInline
 from django.utils.translation import ugettext_lazy as _
 from allink_core.allink_base.admin import AllinkBaseAdmin
 
 from .models import LocationsImage, Locations, LocationsAppContentPlugin
 
 
-class LocationsImageInline(SortableStackedInline):
+class LocationsImageInline(SortableTabularInline):
     model = LocationsImage
     extra = 1
     verbose_name = 'IMAGES'
@@ -16,14 +16,15 @@ class LocationsImageInline(SortableStackedInline):
 @admin.register(Locations)
 class LocationsAdmin(AllinkBaseAdmin):
     inlines = [LocationsImageInline, ]
+    exclude = ('lead', )
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = (
             (None, {
                 'fields': (
+                    'active',
                     'title',
                     'slug',
-                    'active',
                     'text',
                     ('zip', 'city',),
                     'street',
@@ -34,12 +35,7 @@ class LocationsAdmin(AllinkBaseAdmin):
             }),
         )
 
-        if self.model.get_can_have_categories():
-            fieldsets += (_('Categories'), {
-                'fields': (
-                    'categories',
-                )
-            }),
+        fieldsets += self.get_base_fieldsets()
 
         return fieldsets
 

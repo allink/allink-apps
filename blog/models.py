@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 from django.utils.translation import ugettext_lazy as _
+from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
 
+from adminsortable.models import SortableMixin
 from adminsortable.fields import SortableForeignKey
 from parler.models import TranslatableModel, TranslatedFields
 from djangocms_text_ckeditor.fields import HTMLField
@@ -16,7 +18,9 @@ from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 from allink_core.allink_base.models.mixins import AllinkManualEntriesMixin
 from allink_core.allink_base.models import AllinkBaseModelManager
 from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin
-from allink_core.allink_categories.models import AllinkCategory
+from allink_apps.people.models import People
+from allink_apps.locations.models import Locations
+
 
 #  Blog Parent class
 class Blog(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, TimeFramedModel, AllinkBaseModel):
@@ -42,7 +46,7 @@ class Blog(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel
         ),
         lead=HTMLField(
             _(u'Lead Text'),
-            help_text=_(u'Used as a teaser. Not displayed in detail view.'),
+            help_text=_(u'Teaser text that in some cases is used in the list view and/or in the detail view.'),
             blank=True,
             null=True,
         ),
@@ -65,6 +69,11 @@ class Blog(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel
     def preview_image(self):
         if self.blogimage_set.count() > 0:
             return self.blogimage_set.first().image
+
+    @property
+    def images(self):
+        return self.blogimage_set.all()
+
 
 # News
 class News(Blog):
@@ -129,14 +138,7 @@ class Courses(Blog):
         null=True,
     )
 
-    teacher = models.CharField(
-        max_length=255,
-        help_text=_(u'Teacher'),
-        blank=True,
-        null=True,
-    )
-
-    # location = models.ForeignKey(Locations)
+    location = models.ForeignKey(Locations, blank=True, null=True)
 
     objects = AllinkBaseModelManager()
 
@@ -146,10 +148,58 @@ class Courses(Blog):
         verbose_name_plural = _('Courses/ Workshops')
 
 
+
+@python_2_unicode_compatible
+class Teachers(SortableMixin):
+
+    sort_order = models.PositiveIntegerField(
+        default=0,
+        editable=False,
+        db_index=True
+    )
+    internal = models.ForeignKey(
+        People,
+        verbose_name=_(u'Intern teacher'),
+        blank=True,
+        null=True
+    )
+    external = models.CharField(
+        verbose_name=_(u'External teacher'),
+        max_length=255,
+        help_text=_(u'Intern teacher will override this field.'),
+        blank=True,
+        null=True
+    )
+    website = models.URLField(
+        verbose_name=_(u'Link'),
+        help_text=_(u'Only used when extern teacher is filled.'),
+        blank=True,
+        null=True
+    )
+    courses = SortableForeignKey(Courses, blank=True, null=True)
+
+    class Meta:
+        ordering = ('sort_order',)
+
+    def __str__(self):
+        if self.internal:
+            return unicode(self.internal)
+        elif self.external:
+            return unicode(self.external)
+        else:
+            return _(u'Teacher')
+
+
 # APP CONTENT PLUGIN
 class BlogAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin):
     """
     """
+
+    TEMPLATES = (
+        (AllinkBaseAppContentPlugin.GRID_STATIC, 'Grid (Static)'),
+        (AllinkBaseAppContentPlugin.SLIDER, 'Slider'),
+    )
+
     data_model = Blog
 
     manual_entries = SortedM2MModelField(

@@ -84,7 +84,7 @@ class Migration(migrations.Migration):
                 ('language_code', models.CharField(max_length=15, verbose_name='Language', db_index=True)),
                 ('title', models.CharField(max_length=255)),
                 ('slug', models.SlugField(default=b'', max_length=255, blank=True, help_text='Leave blank to auto-generate a unique slug.', verbose_name='Slug')),
-                ('lead', djangocms_text_ckeditor.fields.HTMLField(help_text='Used as a teaser. Not displayed in detail view.', null=True, verbose_name='Lead Text', blank=True)),
+                ('lead', djangocms_text_ckeditor.fields.HTMLField(help_text='Teaser text that in some cases is used in the list view and/or in the detail view.', null=True, verbose_name='Lead Text', blank=True)),
                 ('text', djangocms_text_ckeditor.fields.HTMLField(help_text='The full text in detail view.', null=True, verbose_name='Detailed Text', blank=True)),
                 ('master', models.ForeignKey(related_name='translations', editable=False, to='work.Work', null=True)),
             ],

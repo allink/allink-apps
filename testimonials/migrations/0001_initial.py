@@ -85,7 +85,7 @@ class Migration(migrations.Migration):
                 ('firstname', models.CharField(default=b'', max_length=255, verbose_name='Firstname')),
                 ('lastname', models.CharField(default=b'', max_length=255, verbose_name='Lastname')),
                 ('slug', models.SlugField(default=b'', max_length=255, blank=True, help_text='Leave blank to auto-generate a unique slug.', verbose_name='Slug')),
-                ('lead', djangocms_text_ckeditor.fields.HTMLField(help_text='Used as a teaser. Not displayed in detail view.', null=True, verbose_name='Testimonial Text', blank=True)),
+                ('lead', djangocms_text_ckeditor.fields.HTMLField(help_text='Teaser text that in some cases is used in the list view and/or in the detail view.', null=True, verbose_name='Testimonial Text', blank=True)),
                 ('text', djangocms_text_ckeditor.fields.HTMLField(help_text='The full text in detail view.', null=True, verbose_name='Detailed Text', blank=True)),
                 ('master', models.ForeignKey(related_name='translations', editable=False, to='testimonials.Testimonial', null=True)),
             ],

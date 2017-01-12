@@ -47,7 +47,7 @@ class Testimonial(TranslationHelperMixin, TranslatedAutoSlugifyMixin, Translatab
         ),
         lead=HTMLField(
             _(u'Testimonial Text'),
-            help_text=_(u'Used as a teaser. Not displayed in detail view.'),
+            help_text=_(u'Teaser text that in some cases is used in the list view and/or in the detail view.'),
             blank=True,
             null=True,
         ),
@@ -77,11 +77,11 @@ class Testimonial(TranslationHelperMixin, TranslatedAutoSlugifyMixin, Translatab
 
     @property
     def full_name(self):
-        return u'{} {}'.format(self.lastname, self.firstname)
+        return u'{} {}'.format(self.firstname, self.lastname)
 
     @property
     def title(self):
-        return u'{} {}'.format(self.lastname, self.firstname)
+        return u'{} {}'.format(self.firstname, self.lastname)
 
 
 # APP CONTENT PLUGIN

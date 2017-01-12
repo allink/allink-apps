@@ -102,6 +102,29 @@ class LocationsAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPl
         # (AllinkBaseAppContentPlugin.GRID_DYNAMIC, 'Grid (Dynamic)'),
         ('map', 'Map'),
     )
+
+    ZOOM_LEVEL_CHOICES = (
+        (0, 0),
+        (1, 1),
+        (2, 2),
+        (3, 3),
+        (4, 4),
+        (5, 5),
+        (6, 6),
+        (7, 7),
+        (8, 8),
+        (9, 9),
+        (10, 10),
+        (11, 11),
+        (12, 12),
+        (13, 13),
+        (14, 14),
+        (15, 15),
+        (16, 16),
+        (17, 17),
+        (18, 18),
+    )
+
     data_model = Locations
 
     manual_entries = SortedM2MModelField(
@@ -111,6 +134,12 @@ class LocationsAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPl
                     'manual entries are selected the category filtering will be ignored.)')
     )
 
+    zoom_level = models.IntegerField(
+        _(u'Zoom Level'),
+        help_text=_(u'The higher the number, the more we zoom in.'),
+        choices=ZOOM_LEVEL_CHOICES,
+        default=14
+    )
 
 class LocationsImage(AllinkBaseImage):
     location = SortableForeignKey(

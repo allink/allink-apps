@@ -11,7 +11,7 @@
 
     <div class="map-container">
 
-        <div class="locations-map" id="map-{{instance.id}}"></div>
+        <div class="locations-map" id="map-{{instance.id}}" data-zoom-level="{{instance.zoom_level}}"></div>
 
         <script type="text/javascript">
 
@@ -25,35 +25,44 @@
                 locations: {
                     // loop through locations
                     {% for object in object_list %}
-                        {{forloop.counter}}: {
-                            lat: '{{object.lat}}',
-                            lng: '{{object.lng}}',
-                            infowindow_content: '{% spaceless %}
-                            <div class="map-info-box">
-                                <address>
-                                    <div class="block">
-                                        <strong>{{object.title}}</strong><br>'
-                                        + '{{object.street}}<br>'
-                                        + '{{object.zip}} {{object.city}}<br>'
-                                    + '</div>'
-                                    + '<div class="block">'
-                                        {% if object.phone %}
-                                            + 'T <a href="tel:{{object.phone}}">{{object.phone}}</a><br>'
-                                        {% endif %}
-                                        {% if object.mobile %}
-                                            + 'M <a href="tel:{{object.mobile}}">{{object.mobile}}</a><br>'
-                                        {% endif %}
-                                        {% if object.fax %}
-                                            + 'F <a href="tel:{{object.fax}}">{{object.fax}}</a><br>'
-                                        {% endif %}
-                                        {% if object.email %}
-                                            + 'E <a href="mailto:{{object.email}}">{{object.email}}</a><br>'
-                                        {% endif %}
-                                    + '</div>'
-                                + '</address>
-                            </div>
-                            {% endspaceless %}',
-                        },
+                        // LAT and LNG are required
+                        {% if object.lat or object.lng %}
+                            {{forloop.counter}}: {
+                                lat: '{{object.lat}}',
+                                lng: '{{object.lng}}',
+                                infowindow_content: '{% spaceless %}
+                                <div class="map-info-box">
+                                    <address>
+                                        <div class="block">'
+                                            {% if object.title %}
+                                                + '<strong>{{object.title}}</strong><br>'
+                                            {% endif %}
+                                            {% if object.street %}
+                                                + '{{object.street}}<br>'
+                                            {% endif %}
+                                            {% if object.zip or object.city %}
+                                                + '{{object.zip}} {{object.city}}<br>'
+                                            {% endif %}
+                                        + '</div>'
+                                        + '<div class="block">'
+                                            {% if object.phone %}
+                                                + 'T <a href="tel:{{object.phone}}">{{object.phone_formatted}}</a><br>'
+                                            {% endif %}
+                                            {% if object.mobile %}
+                                                + 'M <a href="tel:{{object.mobile}}">{{object.mobile_formatted}}</a><br>'
+                                            {% endif %}
+                                            {% if object.fax %}
+                                                + 'F <a href="tel:{{object.fax}}">{{object.fax_formatted}}</a><br>'
+                                            {% endif %}
+                                            {% if object.email %}
+                                                + 'E <a href="mailto:{{object.email}}">{{object.email}}</a><br>'
+                                            {% endif %}
+                                        + '</div>'
+                                    + '</address>
+                                </div>
+                                {% endspaceless %}',
+                            },
+                        {% endif %}
                     {% endfor %}
                 }
             }

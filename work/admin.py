@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
-from adminsortable.admin import SortableStackedInline
-from django.utils.translation import ugettext_lazy as _
+from django import forms
+from adminsortable.admin import SortableTabularInline
 from allink_core.allink_base.admin import AllinkBaseAdmin
 
 from .models import WorkImage, Work, WorkAppContentPlugin
 
 
-class WorkImageInline(SortableStackedInline):
+class WorkImageInline(SortableTabularInline):
     model = WorkImage
     extra = 1
     verbose_name = 'IMAGES'
@@ -21,23 +21,23 @@ class WorkAdmin(AllinkBaseAdmin):
         fieldsets = (
             (None, {
                 'fields': (
+                    'active',
                     'title',
                     'slug',
-                    'active',
                     'lead',
                     'text',
                 ),
             }),
         )
 
-        if self.model.get_can_have_categories():
-            fieldsets += (_('Categories'), {
-                'fields': (
-                    'categories',
-                )
-            }),
+        fieldsets += self.get_base_fieldsets()
 
         return fieldsets
+
+    def formfield_for_dbfield(self, db_field, **kwargs):
+        if db_field.name == 'lead':
+            kwargs['widget'] = forms.Textarea
+        return super(WorkAdmin, self).formfield_for_dbfield(db_field, **kwargs)
 
 
 @admin.register(WorkAppContentPlugin)
