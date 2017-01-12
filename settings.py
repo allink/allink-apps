@@ -28,8 +28,10 @@ import aldryn_addons.settings
 import os
 import raven
 
+from aldryn_addons.utils import senv
+
 from allink_core.allink_base.utils import get_height_from_ratio
-from allink_core.allink_base.settings.easy_thumbnail import THUMBNAIL_ALIASES
+from allink_core.allink_config.easy_thumbnail import THUMBNAIL_ALIASES
 from django.utils.translation import ugettext_lazy as _
 
 aldryn_addons.settings.load(locals())
@@ -46,9 +48,11 @@ INSTALLED_APPS.extend([
     'aldryn_bootstrap3',
     'adminsortable',
     'sortedm2m',
+    'solo',
 
     # allink core apps
     'allink_core.allink_base',
+    'allink_core.allink_config',
     'allink_core.allink_categories',
     'allink_core.allink_styleguide',
 
@@ -63,6 +67,7 @@ INSTALLED_APPS.extend([
     # allink core djangocms plugins
     'allink_core.djangocms_content',
     'allink_core.djangocms_gallery',
+    'allink_core.djangocms_socialicon',
 
 ])
 
@@ -141,6 +146,7 @@ CKEDITOR_SETTINGS = {
     'contentsCss': os.path.join(STATIC_URL, 'build/style.css'),
     'bodyClass': 'editor-body',
     'startupOutlineBlocks': 'true',
+    'forcePasteAsPlainText': 'true',
     'skin': 'moono',
     'height': 400,
     'language': '{{ language }}',
@@ -225,26 +231,41 @@ CMS_PLACEHOLDER_CONF = {
         ],
         'exclude_plugins': ['InheritPlugin'],
     },
+    'social_profiles': {
+        "plugins": ['CMSAllinkLinkContainerPlugin'],
+        'exclude_plugins': ['InheritPlugin'],
+    },
     'footer_content': {
         "plugins": ['TextPlugin'],
         'exclude_plugins': ['InheritPlugin'],
     },
     'map': {
-        "plugins": ['GoogleMapPlugin'],
+        "plugins": ['CMSLocationsPlugin'],
         'exclude_plugins': ['InheritPlugin'],
     },
 }
 
+
 ####################################################################################
 
-# =SENTRY CONFIG
+# Divio Environment Variables
 
+# https://control.divio.com/
+
+# =SENTRY CONFIG
 RAVEN_CONFIG = {
-    'dsn': 'https://be1c174982cb433b87fcb9995ede9c91:acfbc4af728241b48bfe8cd9701f3727@sentry.io/126930',
-    # If you are using git, you can also automatically configure the
-    # release based on the git info.
-    # 'release': raven.fetch_git_sha(os.path.dirname(os.pardir)),
+    'dns': senv('SENTRY_DNS'),
 }
+
+# =MAILCHIMP CONFIG
+MAILCHIMP_API_KEY = senv('MAILCHIMP_API_KEY')
+MAILCHIMP_DEFAULT_LIST_ID = senv('MAILCHIMP_DEFAULT_LIST_ID')
+
+# =GOOGLE TAG MANAGER CONFIG
+GOOGLE_TAG_MANAGER_ID = senv('GOOGLE_TAG_MANAGER_ID')
+
+# =GOOGLE MAP API KEY
+GOOGLE_MAP_API_KEY = senv('GOOGLE_MAP_API_KEY')
 
 
 ####################################################################################
@@ -268,11 +289,11 @@ PROJECT_APP_MODEL_WITH_CATEGORY_CHOICES = [
 ####################################################################################
 
 # =allink app_content additional templates for apps
-# the variable name prefix 'PEOPLE_PLUGIN_TEMPLATES' has to be equal to "_meta.model_name"
+# the variable name prefix 'PEOPLE' in 'PEOPLE_PLUGIN_TEMPLATES' has to be equal to "_meta.model_name"
 #
 
 PEOPLE_PLUGIN_TEMPLATES = [
-    # ('gallery', 'Gallery'),
+    # ('table', 'Table (Alumni)'),
 ]
 
 
