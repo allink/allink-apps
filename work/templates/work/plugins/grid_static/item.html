@@ -24,7 +24,9 @@
         {% endif %}
         {% if object.lead %}
             <div class="text-container">
-                {% render_model object "lead" %}
+                <p>
+                    {{object.lead|striptags}}
+                </p>
             </div>
         {% endif %}
         {% if object.text %}

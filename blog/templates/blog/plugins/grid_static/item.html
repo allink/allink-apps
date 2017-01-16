@@ -16,13 +16,14 @@
             <div class="heading-container">
                 <h2 class="heading">
                     {{ object.title }}
-
                 </h2>
             </div>
         {% endif %}
         {% if object.lead %}
             <div class="text-container">
-                {{ object.lead }}
+                <p>
+                    {{object.lead|striptags}}
+                </p>
             </div>
         {% endif %}
         {% if object.text %}
