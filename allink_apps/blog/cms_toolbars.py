@@ -17,9 +17,3 @@ class NewsModifier(AllinkBaseModifierMixin, CMSToolbar):
 class EventsModifier(AllinkBaseModifierMixin, CMSToolbar):
     model = Events
     app_label = Events._meta.app_label
-
-
-@toolbar_pool.register
-class CoursesModifier(AllinkBaseModifierMixin, CMSToolbar):
-    model = Courses
-    app_label = Courses._meta.app_label
