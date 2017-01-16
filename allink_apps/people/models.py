@@ -91,7 +91,7 @@ class People(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableMod
     class Meta:
         app_label = 'people'
         verbose_name = _('Person')
-        verbose_name_plural = _('People')
+        verbose_name_plural = _('Team')
 
     @property
     def full_name(self):
