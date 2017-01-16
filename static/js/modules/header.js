@@ -37,4 +37,9 @@ $(function(){
         initHeader();
     });
 
+    // initialize again when viewport width has changed
+    $(window).on('viewportWidthHasChanged', function(){
+        initHeader();
+    });
+
 });

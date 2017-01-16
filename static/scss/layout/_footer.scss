@@ -29,33 +29,60 @@ body {
         @include container-fixed();
         @include max-width();
         // TBR
-        padding-top: $content-section-spacing-md;
         position: relative;
         z-index: z("default");
         // TBR
     }
 
     // TBR
-    .social-profile-container {
-        position: absolute;
-        top: $content-section-spacing-md;
-        left: 25%;
+
+    .inner {
+        margin: $content-section-spacing-xs 0;
+        @media (min-width:$screen-md) {
+            position: relative;
+            width: 50%;
+            margin: $content-section-spacing-md 0;
+        }
+        @media (min-width:$screen-xl) {
+            margin: $content-section-spacing-xl 0;
+        }
+        & > * {
+            & + * {
+                margin-top: $site-footer-elements-spacing-xs;
+                @media (min-width:$screen-md) {
+                    margin-top: $site-footer-elements-spacing-md;
+                }
+                @media (min-width:$screen-xl) {
+                    margin-top: $site-footer-elements-spacing-xl;
+                }
+            }
+        }
     }
-    .map {
+
+    .footer-social-profile-container {
+        @media (min-width:$screen-md) {
+            position: absolute;
+            top: 0;
+            right: $content-section-spacing-md;
+            margin-top: 0;
+        }
+    }
+    .map-container {
         position: relative;
         z-index: z("above");
-        float: right;
-        width: 50%;
-        height: 600px;
-        background-color: $gray;
+        height: 300px;
+        @media (min-width:$screen-md) {
+            float: right;
+            width: 50%;
+            height: 700px;
+            background-color: $gray;
+        }
+        .locations-map,
         .djangocms-googlemap,
         .djangocms-googlemap-container {
             height: 100% !important;
             width: 100% !important;
         }
-    }
-    .newsletter-container {
-        margin-top: $content-section-spacing-md;
     }
     // TBR
 

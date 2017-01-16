@@ -16,7 +16,7 @@ Customizations
     // TBR
     position: relative;
     padding-right: 1.5em;
-    @include icon-left($padding: 2em, $icon: '\e902', $icon-size: 1em);
+    @include icon-left($icon: '\e902', $icon-size: 1em, $padding: 2em);
     &:before {
         left: 0.3em;
     }

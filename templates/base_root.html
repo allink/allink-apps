@@ -1,4 +1,4 @@
-<!doctype html>{% load i18n staticfiles cms_tags sekizai_tags google_tag_manager_tags %}
+<!doctype html>{% load i18n staticfiles cms_tags sekizai_tags google_tag_manager_tags allink_helpers %}
 {% load render_bundle from webpack_loader %}
 
 <html lang="{{ LANGUAGE_CODE }}" class="base-root no-js">
@@ -28,9 +28,7 @@
 
 
     {% comment %}
-
         META Block
-
     {% endcomment %}
 
     {% block meta_tags %}
@@ -51,9 +49,7 @@
 
 
     {% comment %}
-
         OpenGraph Block
-
     {% endcomment %}
 
     {% block og_tags %}
@@ -65,27 +61,22 @@
         {% endspaceless %}">
         <meta property="og:title" content="{% spaceless %}
             {% block og_title_container %}
-                {% block og_title %}{% page_attribute page_title %}{% endblock og_title %} {% block og_title_base %}| {{ request.site.name }}{% endblock og_title_base %}
+                {% block og_title %}{% if request.current_page.get_title_obj.allinkmetatagextension.og_title %}{{request.current_page.get_title_obj.allinkmetatagextension.og_title}}{% else %}{% page_attribute page_title %}{% endif %}{% endblock og_title %} {% block og_title_base %}| {{ request.site.name }}{% endblock og_title_base %}
             {% endblock og_title_container %}
         {% endspaceless %}">
         <meta property="og:description" content="{% spaceless %}
             {% block og_description %}
-                {% page_attribute meta_description %}
+            {% if request.current_page.get_title_obj.allinkmetatagextension.og_description %}{{request.current_page.get_title_obj.allinkmetatagextension.og_description}}{% else %}{% page_attribute meta_description %}{% endif %}
             {% endblock og_description %}
         {% endspaceless %}">
         {% comment %}
-
             TBD: Alternative Languages recommended?
-
             http://ogp.me/#optional
-
         {% endcomment %}
         <meta property="og:image" content="{% spaceless %}
             {% block og_image %}
                 {% comment %}
-
                     TBD: og:image
-
                 {% endcomment %}
             {% endblock og_image %}
         {% endspaceless %}">
@@ -95,9 +86,7 @@
 
 
     {% comment %}
-
         Favicon Set
-
     {% endcomment %}
 
     <link rel="apple-touch-icon" sizes="57x57" href="{% static 'images/favicons/apple-touch-icon-57x57.png' %}">
@@ -122,9 +111,7 @@
 
 
     {% comment %}
-
         Load our CSS
-
     {% endcomment %}
 
     {% render_bundle 'style' 'css' %}
@@ -132,20 +119,16 @@
 
 
     {% comment %}
-
         Load internal JavaScript (that is required to be loaded in the <head>)
-
     {% endcomment %}
 
     <script src="{% static 'js/libs/modernizr-custom.js' %}"></script>
 
 
     {% comment %}
-
         Load external JavaScript
 
         Included from: https://cdnjs.com/
-
     {% endcomment %}
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/picturefill/3.0.2/picturefill.min.js"></script>
@@ -156,18 +139,14 @@
 
 
     {% comment %}
-
         Optional: Extra Header Block
-
     {% endcomment %}
 
     {% block extrahead %}{% endblock %}
 
 
     {% comment %}
-
         Divio Stuff
-
     {% endcomment %}
 
     {{ ALDRYN_SNAKE.render_head }}
@@ -175,12 +154,15 @@
 </head>
 
 <body id="page-top" class="noscript lang-{{ LANGUAGE_CODE }} {% block body_class %}tpl-root{% endblock %}">
-    {% google_tag_manager %}
 
     {% comment %}
+        Adding Google Tag Manager
+    {% endcomment %}
+    {% google_tag_manager %}
 
+
+    {% comment %}
         Accessibility: TBD - Make sure the anchor IDs are up-to-date
-
     {% endcomment %}
 
     <h2 class="sr-only">{% trans "Shortcuts" %}</h2>
@@ -191,59 +173,54 @@
 
 
     {% comment %}
-
         The Django CMS Toolbar
-
     {% endcomment %}
 
     {% cms_toolbar %}
 
 
     {% comment %}
-
         The main content block
-
     {% endcomment %}
 
     {% block body_content %}{% endblock body_content %}
 
 
     {% comment %}
-
         Load our JavaScript
-
     {% endcomment %}
+
+    <script type="text/javascript">
+        var GOOGLE_MAP_API_KEY = '{% settings_value "GOOGLE_MAP_API_KEY" %}';
+    </script>
 
     {% render_block "js" %}
     {% render_bundle 'app' %}
 
 
     {% comment %}
-
         Optional: Additional Scripts
-
     {% endcomment %}
 
     {% render_block "extrafoot" %}
-    {% block extrafoot %}{% endblock %}
+    {% block extrafoot %}
+    {% endblock %}
 
 
     {% comment %}
-
         Divio Stuff
-
     {% endcomment %}
 
     {{ ALDRYN_SNAKE.render_tail }}
 
 
     {% comment %}
-
         Google Analytics Code
-
     {% endcomment %}
 
     {% include "includes/analytics.html" %}
+
+    <div class="site-overlay"></div>
 
 </body>
 </html>

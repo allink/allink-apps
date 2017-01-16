@@ -1,7 +1,10 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const BundleTracker = require('webpack-bundle-tracker');
+const path = require('path');
 
+// const CopyWebpackPlugin = require('copy-webpack-plugin');
+// const BUILD_FOLDER = path.join(__dirname, 'static/build/');
 
 exports.production = function() {
     return {
@@ -19,6 +22,15 @@ exports.production = function() {
                 },
             }),
             new ExtractTextPlugin('[name].min.[hash].css'),
+            // new CopyWebpackPlugin([
+            //     {
+            //         from: path.join(BUILD_FOLDER, 'djangocms*.css'),
+            //         to: path.join(BUILD_FOLDER, 'test.css'),
+            //     },
+            //     {
+            //         copyUnmodified: true,
+            //     },
+            // ]),
         ]
     };
 };

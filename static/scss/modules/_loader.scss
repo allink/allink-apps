@@ -26,10 +26,21 @@ Re-Usable Loader Mixin
         margin-top: -($loader-size/2);
         border: $loader-border-width solid transparent;
         border-radius: 50%;
-        border-bottom-color: $brand-primary;
-        border-top-color: $brand-primary;
+        border-top-color: $loader-border-top-color;
+        border-bottom-color: $loader-border-bottom-color;
         z-index: 1;
-        animation: loader-animation $loader-animation-duration ease-in-out infinite;
+        animation: loader-animation $loader-animation-duration $loader-animation-timing-function infinite;
+    }
+    // within an AJAX button loader
+    &[data-btn-ajax-loader] {
+        &:before {
+            width: $btn-loader-size;
+            height: $btn-loader-size;
+            margin-left: -($btn-loader-size/2);
+            margin-top: -($btn-loader-size/2);
+            border-top-color: $btn-loader-border-top-color;
+            border-bottom-color: $btn-loader-border-bottom-color;
+        }
     }
 }
 

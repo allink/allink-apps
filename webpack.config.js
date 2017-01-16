@@ -15,6 +15,7 @@ const STATIC_ROOT = path.join(__dirname, 'static');
 const PATHS = {
     app: path.join(STATIC_ROOT, 'js/app'),
     style: path.join(STATIC_ROOT, 'scss/style.scss'),
+    djangocms_custom_admin_scripts: path.join(STATIC_ROOT, 'js/djangocms-custom-admin-scripts'),
     djangocms_custom_admin_style: path.join(STATIC_ROOT, 'scss/djangocms-custom-admin-style.scss'),
     build: path.join(STATIC_ROOT, './build')
 };
@@ -24,6 +25,7 @@ const common = {
         app: PATHS.app,
         style: PATHS.style,
         djangocms_custom_admin_style: PATHS.djangocms_custom_admin_style,
+        djangocms_custom_admin_scripts: PATHS.djangocms_custom_admin_scripts,
     },
     output: {
     	path: path.resolve(PATHS.build),
@@ -70,7 +72,13 @@ const common = {
             }
         ],
     },
-    postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ],
+    postcss: [
+        autoprefixer(
+            {
+                browsers: ['last 2 versions']
+            }
+        )
+    ],
     plugins: [
         new ProgressBarPlugin(),
         new CleanWebpackPlugin(['build'], {

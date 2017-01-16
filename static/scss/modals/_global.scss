@@ -37,9 +37,11 @@ Global Modal Styles
 */
 
 .tingle-modal {
-    background: rgba($modal-default-overlay-bg, $modal-default-overlay-opacity);
+    // background: rgba($modal-default-overlay-bg, $modal-default-overlay-opacity);
+    background: none;
     cursor: pointer;
     transition: $modal-default-overlay-transition;
+    z-index: z("modal");
     @media (max-width: $screen-xs-max) {
         -webkit-overflow-scrolling: touch;
     }
@@ -52,21 +54,14 @@ Global Modal Styles
     transition: none;
     border-radius: 0;
     background-color: $modal-default-content-bg;
-    @media (max-width: $screen-sm-max) {
-        width: 80%;
-    }
-    @media (max-width: $screen-xs-max) {
-        width: 100%;
-        top: 0;
-    }
     @media (min-width:$screen-md) {
         width: 90%;
     }
-    @media (min-width:$screen-lg) {
-        width: 80%;
+    @media (min-width:$screen-xl) {
+        max-width: $max-width-xl;
     }
-    @media (min-width:1600px) {
-        width: 70%;
+    @media (min-width:$screen-xxl) {
+        max-width: $max-width-xxl;
     }
 }
 

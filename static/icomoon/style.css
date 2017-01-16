@@ -54,9 +54,6 @@
 .icomoon-twitter:before {
   content: "\e605";
 }
-.icomoon-youtube-big:before {
-  content: "\e606";
-}
 .icomoon-plus:before {
   content: "\e60d";
 }
@@ -108,13 +105,28 @@
 .icomoon-letter:before {
   content: "\e04c";
 }
+.icomoon-pinterest:before {
+  content: "\e907";
+}
+.icomoon-spotify:before {
+  content: "\e908";
+}
+.icomoon-vimeo2:before {
+  content: "\e909";
+}
 .icomoon-facebook-official:before {
   content: "\e900";
 }
 .icomoon-instagram:before {
   content: "\e901";
 }
-.icomoon-pinterest:before {
-  content: "\e907";
+.icomoon-google-plus2:before {
+  content: "\e90b";
+}
+.icomoon-snapchat:before {
+  content: "\e90a";
+}
+.icomoon-folder-open:before {
+  content: "\e90c";
 }
 

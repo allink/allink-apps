@@ -27,11 +27,17 @@ html {
   font-size: 62.5%; // (Almost) equal to 10px (when default browser setting of 16px). Meaning 1rem ~= 10px
 }
 
+// default text color
 body {
+    color: $body-color;
     @include text-default();
     @include print() {
         color: $body-color-print;
     }
+}
+// inverted text color
+.inverted-colors {
+    color: $body-inverted-color;
 }
 
 .form-control,
@@ -73,13 +79,19 @@ a {
     &:visited {
         color: $link-color;
         text-decoration: $link-decoration;
+        .inverted-colors & {
+            color: $link-inverted-color;
+        }
     }
 
     &:hover,
     &:active,
     &:focus {
-        color: $link-hover-color;
-        text-decoration: $link-hover-decoration;
+        color: $link-color-hover;
+        text-decoration: $link-decoration-hover;
+        .inverted-colors & {
+            color: $link-inverted-color-hover;
+        }
     }
 
 }

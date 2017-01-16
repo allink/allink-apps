@@ -1,14 +1,34 @@
 .text-container,
 .editor-body {
 
+    /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+    Images
+
+    */
+
     img {
         max-width: 100%;
         height: auto;
     }
 
+
+    /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+    Links
+
+    */
+
     a {
         transition: $link-transition;
     }
+
+
+    /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+    Spacing between elements
+
+    */
 
     p,
     ul,
@@ -24,14 +44,91 @@
         }
     }
 
+
+    /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+    Paragraphs
+
+    */
+
     p {
         &.lead {
             @include p-lead();
+            margin: $p-lead-margin-xs;
+            @media (min-width:$screen-md) {
+                margin: $p-lead-margin-md;
+            }
+            @media (min-width:$screen-xl) {
+                margin: $p-lead-margin-xl;
+            }
         }
         &.small {
             @include p-small();
         }
     }
+
+
+    /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+    Lists
+
+    */
+
+    ul,
+    ol {
+        padding: 0;
+        li {
+            position: relative;
+            list-style: none;
+            padding-left: $list-padding-xs;
+            @media (min-width:$screen-md) {
+                padding-left: $list-padding-md;
+            }
+            &:before {
+                position: absolute;
+            }
+        }
+    }
+
+    ul {
+        padding: 0;
+        li {
+            margin-left: 0;
+            &:before {
+                content: $unordered-list-item-icon;
+                font-size: $unordered-list-item-icon-size;
+                left: $unordered-list-item-icon-spacing-left-xs;
+                top: $unordered-list-item-icon-spacing-top-xs;
+                transform: translate(0,-50%);
+                @include icomoon();
+                @media (min-width:$screen-md) {
+                    left: $unordered-list-item-icon-spacing-left-md;
+                    top: $unordered-list-item-icon-spacing-top-md;
+                }
+            }
+        }
+    }
+
+    ol {
+        counter-reset: custom-counter;
+        li {
+            &:before {
+                content: counter(custom-counter)'.';
+                counter-increment: custom-counter;
+                left: $ordered-list-item-icon-spacing-left-xs;
+                @media (min-width:$screen-md) {
+                    left: $ordered-list-item-icon-spacing-left-md;
+                }
+            }
+        }
+    }
+
+
+    /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+    Headings
+
+    */
 
     h1 {
         @include h1();
@@ -85,7 +182,17 @@
         }
     }
 
-    *:first-child { margin-top: 0; }
-    *:last-child { margin-bottom: 0; }
+
+    /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+    First/Last element, forcefully remove unnecessary spacing
+
+    Hint: Should you need "that" extra spacing for some reason, then the .text-container
+    is not the right parent for this case.
+
+    */
+
+    *:first-child { margin-top: 0 !important; }
+    *:last-child { margin-bottom: 0 !important; }
 
 }

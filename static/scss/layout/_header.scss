@@ -28,7 +28,7 @@
 
 .site-header-buffer {
     @if $site-header-fixed-enabled == true and $site-header-fixed-use-buffer == true {
-        background: $site-header-fixed-buffer-bg;
+        background: $site-header-fixed-buffer-bg-color;
         @include set-site-header-height();
     }
     @else {
@@ -40,30 +40,5 @@
     height: auto;
     > a {
         text-decoration: none;
-    }
-}
-
-@if $primary-nav-collapsed-overlay-enabled == true {
-    @media (max-width:$grid-float-breakpoint) {
-        .nav-expanded {
-            .primary-nav {
-                position: fixed;
-                top: 0;
-                right: 0;
-                bottom: 0;
-                left: 0;
-                background-color: $primary-nav-collapsed-overlay-bg;
-                z-index: z("default");
-                .nav {
-                    margin-top: $primary-nav-collapsed-overlay-spacing-top-xs !important;
-                    @media (min-width:$screen-md) {
-                        margin-top: $primary-nav-collapsed-overlay-spacing-top-md !important;
-                    }
-                    @media (min-width:$screen-xl) {
-                        margin-top: $primary-nav-collapsed-overlay-spacing-top-xl !important;
-                    }
-                }
-            }
-        }
     }
 }

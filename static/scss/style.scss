@@ -85,12 +85,12 @@ Home-made
 */
 
 @import 'elements/base';
+@import 'modules/base';
 @import 'form/base';
 @import 'layout/base';
 @import 'media/base';
 @import 'misc/base';
 @import 'modals/base';
-@import 'modules/base';
 @import 'navigation/base';
 @import 'typography/base';
 
@@ -133,13 +133,7 @@ analoguely to the files in the core repo) and import it AFTER the following impo
 */
 
 // Content Section (general)
-@import '../../allink_core_static/scss/content-sections/content-section';
-
-// Content Plugin
-@import '../../allink_core_static/scss/content-sections/content-plugin';
-
-// App Content Plugin
-@import '../../allink_core_static/scss/content-sections/app-content-plugin';
+@import '../../allink_core_static/scss/content-sections/base';
 
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -154,10 +148,7 @@ Custom templates should be added AFTER the following imports.
 
 */
 
-@import '../../allink_core_static/scss/plugin-templates/grid-dynamic';
-@import '../../allink_core_static/scss/plugin-templates/grid-static';
-@import '../../allink_core_static/scss/plugin-templates/list';
-@import '../../allink_core_static/scss/plugin-templates/slider';
+@import '../../allink_core_static/scss/plugin-templates/base';
 
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -183,7 +174,7 @@ styling.
 */
 
 // example
-// @import '../../allink_apps/work/static/scss/work';
+@import '../../allink_apps/people/static/scss/people';
 
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

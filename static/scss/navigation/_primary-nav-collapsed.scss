@@ -1,13 +1,62 @@
 @media (max-width:$grid-float-breakpoint-max) {
 
+    // fine tuning when logged-in
+    html.cms-ready {
+        // collapsed
+        .primary-nav > .nav {
+            margin-top: ($primary-nav-collapsed-overlay-spacing-top-xs+$cms-toolbar-height-collapsed);
+            @media (min-width:$screen-md) {
+                margin-top: ($primary-nav-collapsed-overlay-spacing-top-md+$cms-toolbar-height-collapsed);
+            }
+            @media (min-width:$screen-xl) {
+                margin-top: ($primary-nav-collapsed-overlay-spacing-top-xl+$cms-toolbar-height-collapsed);
+            }
+        }
+        // toolbar expanded
+        &.cms-toolbar-expanded {
+            .primary-nav > .nav {
+                margin-top: ($primary-nav-collapsed-overlay-spacing-top-xs+$cms-toolbar-height-expanded);
+                @media (min-width:$screen-md) {
+                    margin-top: ($primary-nav-collapsed-overlay-spacing-top-md+$cms-toolbar-height-expanded);
+                }
+                @media (min-width:$screen-xl) {
+                    margin-top: ($primary-nav-collapsed-overlay-spacing-top-xl+$cms-toolbar-height-expanded);
+                }
+            }
+        }
+    }
+
     .primary-nav {
 
-        display: none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: $primary-nav-collapsed-overlay-bg;
+        z-index: z("default");
+        opacity: 0;
+        visibility: hidden;
+        transition: $primary-nav-collapsed-transition;
+
+        > .nav {
+            margin-top: $primary-nav-collapsed-overlay-spacing-top-xs;
+
+
+
+            @media (min-width:$screen-md) {
+                margin-top: $primary-nav-collapsed-overlay-spacing-top-md;
+            }
+            @media (min-width:$screen-xl) {
+                margin-top: $primary-nav-collapsed-overlay-spacing-top-xl;
+            }
+        }
 
         &.in {
-            display: block;
             padding: 0;
             box-shadow: none;
+            opacity: 1;
+            visibility: visible;
         }
 
         /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -30,14 +79,17 @@
             margin: 0;
             > .child {
                 > a {
-                    display: block;
-                    text-align: $primary-nav-collapsed-text-align;
-                    padding: $primary-nav-collapsed-item-padding;
-                    background-color: $primary-nav-collapsed-item-bg-default;
-                    color: $primary-nav-collapsed-item-text-default;
-                    text-decoration: none;
+                    &,
                     &:hover,
                     &:focus {
+                        display: block;
+                        text-align: $primary-nav-collapsed-text-align;
+                        padding: $primary-nav-collapsed-item-padding;
+                        background-color: $primary-nav-collapsed-item-bg-default;
+                        color: $primary-nav-collapsed-item-text-default;
+                        text-decoration: none;
+                    }
+                    &:active {
                         background-color: $primary-nav-collapsed-item-bg-hover;
                         color: $primary-nav-collapsed-item-text-hover;
                     }
@@ -122,14 +174,17 @@
             background-color: $primary-nav-collapsed-bg;
             > .child {
                 > a {
-                    display: block;
-                    text-align: $primary-nav-collapsed-text-align;
-                    padding: $primary-nav-collapsed-dropdown-item-padding !important;
-                    background-color: $primary-nav-collapsed-dropdown-item-bg-default;
-                    color: $primary-nav-collapsed-dropdown-item-text-default;
-                    text-decoration: none;
+                    &,
                     &:hover,
                     &:focus {
+                        display: block;
+                        text-align: $primary-nav-collapsed-text-align;
+                        padding: $primary-nav-collapsed-dropdown-item-padding !important;
+                        background-color: $primary-nav-collapsed-dropdown-item-bg-default;
+                        color: $primary-nav-collapsed-dropdown-item-text-default;
+                        text-decoration: none;
+                    }
+                    &:active {
                         color: $primary-nav-collapsed-dropdown-item-text-hover;
                         background-color: $primary-nav-collapsed-dropdown-item-bg-hover;
                     }

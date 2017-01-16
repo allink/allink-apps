@@ -10,9 +10,7 @@
     border: none;
     background-color: transparent;
     cursor: pointer;
-    .nav-expanded & {
-        z-index: z("above");
-    }
+    z-index: z("above");
 
     &:hover {
         background-color: transparent;

@@ -1,1 +1,893 @@
-form fieldset.module{margin-bottom:0!important}form fieldset.module+.module{margin-top:15px}form fieldset.module>h2{margin-bottom:0}form fieldset.module>h2+*{margin-top:15px}.sortedm2m-container ul.sortedm2m-items li.sortedm2m-item{padding-top:.2em!important;padding-bottom:.2em!important}.sortedm2m-container ul.sortedm2m-items li.sortedm2m-item.ui-sortable-placeholder{background-color:#eee;visibility:visible!important;height:21px}.sortedm2m-container ul.sortedm2m-items li.sortedm2m-item>label{position:relative;padding-left:1.5em!important}.sortedm2m-container ul.sortedm2m-items li.sortedm2m-item>label>input{position:absolute;top:50%;left:.3em;transform:translateY(-50%);margin-left:0;margin-right:.3em}.sortedm2m-container ul.sortedm2m-items li.sortedm2m-item>a{display:inline-block;margin-left:.5em}
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Tweaking Django CMS
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+First of all, get the default settings
+
+This way we can avoid to have undefined variables
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Breakpoints
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Grid (Bootstrap)
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+allink Core SASS Variables
+
+===
+
+This document provides a complete list of settings related to the CORE plugins
+and elements. They act as !default values (but are NOT set as !default due to
+conflicts with Bootstrap) and can easily be overwritten.
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Color Definitions
+
+Note: If possible, only use these colors in this settings-file
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Color variables names can be hard to remember.
+I find the following approach worth trying:
+https://davidwalsh.name/sass-color-variables-dont-suck
+
+It's simple: Give a variable a unique but memorable name.
+
+Examples:
+
+// Red Color Variables
+$blood:     #68121a;
+$brick:     #581207;
+$apple:     #fa041b;
+$coral:     #e47f88;
+
+// Blue Color Variables
+$midnight:  #2e3e5c;
+$blueberry: #0067ac;
+$dusk:      #5f6f8e;
+
+Looking for names? Simply type in the HEX-Code on the following site:
+http://chir.ag/projects/name-that-color/#C8E2F9
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Django CMS Toolbar
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Default Transition
+
+This is an attempt of creating the same feel across the site by
+using the same transition duration.
+
+Note: In some cases it makes sense to define different transition settings
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Links (default)
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Content =Section '.content-section'
+
+VERTICAL spacings of plugin content within '.site-content'
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+App Content Plugin specifc spacings:
+
+VERTICAL spacing between list or grid items
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+The AJAX container (where items are exchanged OR appended)
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+"=Load =More" container
+
+VERTICAL spacing
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+'.manage-spacings' container
+
+VERTICAL spacing between standard components (such as image-container, text-container, btn-container, form-container, ...) within the '.manage-spacings' container
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Content Plugin specifc Styles
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Overlay Settings (the background of text above an image)
+
+Overlay text is POSITIONED absolute.
+So 'spacing' in this context relates to the 'top, right, bottom and left' properties.
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Form Settings
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+General Form =Field Settings (.form-control)
+
+These settings apply to:
+
+<input>'s
+<textarea>'s
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Checkboxes
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Radio
+
+Important: Per default, the radio boxes inherit most of the checkbox styles, for they
+usually look similar
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Buttons
+
+Usage: In rare cases, you might need a specific value of a
+specific button variant. This is how to acces map values:
+
+color: map-deep-get($btn-variations,'default','bg');
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Bootstrap =Select Styles
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=File Upload Styles
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Datepicker
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Dropdown
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Swiper (=Slider)
+
+Important: The ratio's are closely linked to the thumbnail settings
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Custom Scrollbars
+
+Used with responsive tables
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Color Definitions
+
+Note: If possible, only use these colors in this settings-file
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Color variables names can be hard to remember.
+I find the following approach worth trying:
+https://davidwalsh.name/sass-color-variables-dont-suck
+
+It's simple: Give a variable a unique but memorable name.
+
+Examples:
+
+// Red Color Variables
+$blood:     #68121a;
+$brick:     #581207;
+$apple:     #fa041b;
+$coral:     #e47f88;
+
+// Blue Color Variables
+$midnight:  #2e3e5c;
+$blueberry: #0067ac;
+$dusk:      #5f6f8e;
+
+Looking for names? Simply type in the HEX-Code on the following site:
+http://chir.ag/projects/name-that-color/#C8E2F9
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Project colors..
+
+..are used for e.g. background colors of a '.content-section'
+
+Note: Number and class-names of project colors are defined in the PROJECT_COLORS dictionary in settings.py
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Container
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Default Transition
+
+This is an attempt of creating the same feel across the site by
+using the same transition duration.
+
+Note: In some cases it makes sense to define different transition settings
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Body
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Links (default)
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Selected Text
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Skip links
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Alerts
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Typography
+
+Notes:
+
+- The root (default) font-size of a browser is 16px (unless the user
+  changed it in the browser's settings).
+- By setting the font-size of the <html> to 62.5%, the root font-size of the <html> is now 10px. Easier to do math.
+
+This results in:
+
+1rem ~= 10px, 1.6rem ~= 16px, ...
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Text Container (text structure)
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Lists (withing .text-container)
+
+Make sure to define this list AFTER the typography (especially font size
+and line height) is defined. Otherwise you will have to readjust it.
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Header
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Branding
+
+Important: The values are closely linked to the header height.
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Footer
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Scroll Spy Settings
+
+All elements with the [data-scroll-spy] attribute are being watched and
+and animation/transition can be applied.
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Z-Index map
+
+When ever you use a z-index ANYWHERE (especially the core elements
+such as .site-header, .site-content, ..) in a stylesheet, add it to this list.
+This gives us an overview of all set z-indexes across the site.
+
+Usage:
+
+z-index: z("to-the-top");
+
+Note: Requires the z() function
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Content =Section '.content-section'
+
+VERTICAL spacings of plugin content within '.site-content'
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+App Content Plugin specifc spacings:
+
+VERTICAL spacing between list or grid items
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+The AJAX container (where items are exchanged OR appended)
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+"=Load =More" container
+
+VERTICAL spacing
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+'.manage-spacings' container
+
+VERTICAL spacing between standard components (such as image-container, text-container, btn-container, form-container, ...) within the '.manage-spacings' container
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Content Plugin specifc Styles
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Overlay Settings (the background of text above an image)
+
+Overlay text is POSITIONED absolute.
+So 'spacing' in this context relates to the 'top, right, bottom and left' properties.
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Hamburger =Toggle
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Navigation Styles (Expanded)
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Navigation Styles (=Collapsed)
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Hide the following elements when the mobile navigation is expanded
+
+Prevents that content becomes visible when scrolling.
+
+Defined in "layout/global"
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Loader
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Lazy Loading
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+To The Top! =ttt
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Form Settings
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+General Form =Field Settings (.form-control)
+
+These settings apply to:
+
+<input>'s
+<textarea>'s
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Checkboxes
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Radio
+
+Important: Per default, the radio boxes inherit most of the checkbox styles, for they
+usually SHOULD look similar in terms of size and spacings
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Buttons
+
+Usage: In rare cases, you might need a specific value of a
+specific button variant. This is how to acces map values:
+
+color: map-deep-get($btn-variations,'default','bg');
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Bootstrap =Select Styles
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=File Upload Styles
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Datepicker
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Dropdown
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Tabs
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Modal
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Softpage
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Swiper (=Slider)
+
+Important: The ratio's are closely linked to the thumbnail settings
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Custom Scrollbars
+
+Used with responsive tables
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Social Profile Icons
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+First of all, get the default settings
+
+This way we can avoid to have undefined variables
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Get z'index value of SASS map
+
+@param Configured SASS map
+@return z'index value of matching map item
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Get values of "Multi Level Maps"
+
+Usage:
+
+color: map-deep-get($btn-variations,'default','color');
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Return black or white, depending a given color
+
+Possible use case:
+
+Dynamically setting a text color dependent
+on a defined background
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Project specific functions
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+First of all, get the default settings
+
+This way we can avoid to have undefined variables
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Useful Accessibility Mixins
+
+Visually hide e.g. text elements, while still
+making them crawlable for search engines and readable for screenreaders
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Print: Add print styles on the spot. Easier than to navigate back and forth
+
+===
+
+.example-element {
+    color: red;
+    @include print() {
+        color: green;
+    }
+}
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Extends the Bootstrap grid with an XL and XXL breakpoint
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Column Padding Tweaks
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Main Container Mixins
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+The ascept-ratio magic
+
+Example Markup:
+
+<div class="example-container">
+    <!-- REQUIRED! (but the class name can be customized overwriting the $inner-container-class parameter) -->
+    <div class="inner">
+        ...
+    </div>
+</div>
+
+SCSS:
+
+.example-container {
+    @include aspect-ratio(2,1);
+}
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Header
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Footer
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+CSS tables
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+One specific breakpoint ONLY
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+MINimum breakpoint and EVERYTHING below
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+MAXimum breakpoint and EVERYTHING below
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+// spacing for gird
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Paddings Ros
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Spacings of content blocks within the .site-content
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+First and last section withing .site-content
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Position of absolutely positioned elements (e.g. a text within a parallax)
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+General Font Styles
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Font mixins
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Responsive Font Size mixin
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Antiialiasing
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Project Specific
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Config
+
+*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Tweaking Django CMS
+
+*/
+#content-main {
+  opacity: 0;
+  padding-bottom: 30px;
+  transition: all 300ms ease-in-out; }
+  #content-main.visible {
+    opacity: 1; }
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Visually separate blocks
+
+*/
+.change-form.cms-admin-modal,
+.change-form form {
+  background-color: #eee !important; }
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Option Fieldset Spacing
+
+*/
+@media (max-width: 767px) {
+  #content form {
+    padding: 10px; } }
+
+#content fieldset.module {
+  border-radius: 2px !important;
+  padding: 15px;
+  border: 1px solid #dedede !important;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.05) !important;
+  background-color: #fff !important;
+  width: 100%;
+  max-width: 1000px;
+  margin-bottom: 0 !important; }
+  #content fieldset.module.hide_options {
+    padding: 0;
+    height: 0;
+    overflow: hidden;
+    margin-top: 0 !important;
+    border: none !important; }
+  #content fieldset.module[class*="only_when"] {
+    padding: 0;
+    height: 0;
+    overflow: hidden;
+    margin-top: 0 !important;
+    border: none !important; }
+    #content fieldset.module[class*="only_when"].show_options {
+      height: auto;
+      padding: 15px;
+      overflow: visible;
+      margin-top: 15px !important; }
+  #content fieldset.module p.help {
+    margin-top: 0 !important;
+    padding-top: 10px !important; }
+  #content fieldset.module div.form-row {
+    padding: 0;
+    min-height: 25px; }
+    #content fieldset.module div.form-row + .form-row {
+      margin-top: 15px; }
+  #content fieldset.module + .module {
+    margin-top: 15px; }
+  #content fieldset.module > h2 {
+    margin-bottom: 0; }
+    #content fieldset.module > h2 + * {
+      margin-top: 15px; }
+  #content fieldset.module .checkbox-row:after {
+    content: '';
+    clear: both; }
+
+#content .inline-group {
+  width: 100%;
+  max-width: 1000px; }
+  #content .inline-group[id*="image_set-group"] .module > h2 {
+    padding-bottom: 30px; }
+  #content .inline-group[id*="image_set-group"] tr.ui-sortable-helper {
+    opacity: 0.8; }
+  #content .inline-group[id*="image_set-group"] tr.ui-sortable-placeholder {
+    visibility: visible !important; }
+    #content .inline-group[id*="image_set-group"] tr.ui-sortable-placeholder > td {
+      background-color: #ddd !important;
+      height: 157px !important; }
+  #content .inline-group[id*="image_set-group"] td:nth-child(1) {
+    width: 0; }
+  #content .inline-group[id*="image_set-group"] td:nth-child(2) {
+    width: 90%;
+    padding-left: 0 !important; }
+  #content .inline-group[id*="image_set-group"] td:nth-child(3) {
+    width: 10%;
+    text-align: center; }
+  #content .inline-group[id*="image_set-group"] td.original > p {
+    left: 10px; }
+  #content .inline-group .add-row a {
+    color: #0bf; }
+    #content .inline-group .add-row a:before {
+      color: #0bf; }
+    #content .inline-group .add-row a:hover, #content .inline-group .add-row a:focus {
+      color: #0bf !important; }
+      #content .inline-group .add-row a:hover:before, #content .inline-group .add-row a:focus:before {
+        color: #0bf; }
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Manual Order Package
+
+*/
+.sortedm2m-container ul.sortedm2m-items li.sortedm2m-item {
+  padding-top: 0.2em !important;
+  padding-bottom: 0.2em !important; }
+  .sortedm2m-container ul.sortedm2m-items li.sortedm2m-item.ui-sortable-placeholder {
+    background-color: #eee;
+    visibility: visible !important;
+    height: 21px; }
+  .sortedm2m-container ul.sortedm2m-items li.sortedm2m-item > label {
+    position: relative;
+    padding-left: 1.5em !important; }
+    .sortedm2m-container ul.sortedm2m-items li.sortedm2m-item > label > input {
+      position: absolute;
+      top: 50%;
+      left: 0.3em;
+      transform: translate(0, -50%);
+      margin-left: 0;
+      margin-right: 0.3em; }
+  .sortedm2m-container ul.sortedm2m-items li.sortedm2m-item > a {
+    display: inline-block;
+    margin-left: 0.5em; }
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+App Specific
+
+*/
+.change-form * {
+  box-sizing: border-box; }
+
+.change-form.app-people .field-box.field-firstname, .change-form.app-people .field-box.field-lastname, .change-form.app-people .field-box.field-gender {
+  width: 33.33%;
+  margin-right: 0 !important;
+  padding-right: 20px; }
+
+.change-form.app-people .field-box.field-gender {
+  padding-right: 0; }
+
+.change-form.app-people .field-box.field-phone, .change-form.app-people .field-box.field-mobile, .change-form.app-people .field-box.field-fax {
+  width: 33.33%;
+  margin-right: 0 !important;
+  padding-right: 20px; }
+  .change-form.app-people .field-box.field-phone input, .change-form.app-people .field-box.field-mobile input, .change-form.app-people .field-box.field-fax input {
+    width: 100%; }
+
+.change-form.app-people .field-box.field-fax {
+  padding-right: 0; }
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Filer field
+
+*/
+.filer-dropzone.js-object-attached .filerFile {
+  top: 50% !important;
+  transform: translate(0, -50%); }
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Project specific tweaks
+
+Hold on.. Is it really project specific? Then go ahead.
+
+But general tweaks that improve usability or the user experience
+belong into the allink_core_static repo.
+
+*/

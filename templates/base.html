@@ -70,18 +70,28 @@
     {% block footer %}
         <footer class="site-footer" role="contentinfo" data-scroll-spy>
             <h1 class="sr-only" id="page-footer">{% trans "Sitemap" %}</h1>
-            <div class="map">
-                {% static_placeholder "map" %}
-            </div>
+
+            {# render maps #}
+            {% static_placeholder "map" %}
+
             <div class="container">
-                <div class="inner">
-                    {% static_placeholder "footer_content" %}
-                    <div class="social-profile-container">
+                <div class="inner inverted-colors">
+                    {# render footer content #}
+                    <div class="footer-text-container">
+                        {% static_placeholder "footer_content" %}
+                    </div>
+
+                    {# render social profiles #}
+                    <div class="footer-social-profile-container">
                         {% static_placeholder "social_profiles" %}
                     </div>
+
+                    {# newsletter #}
                     <div class="newsletter-container">
                         TBD Newsletter
                     </div>
+
+                    {# secondary navigation #}
                     <div class="secondary-nav">
                         TBD Secondary Navigation
                     </div>

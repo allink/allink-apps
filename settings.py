@@ -46,6 +46,7 @@ INSTALLED_APPS.extend([
     # apps
     'webpack_loader',
     'aldryn_bootstrap3',
+    'cmsplugin_form_handler',
     'adminsortable',
     'sortedm2m',
     'solo',
@@ -54,6 +55,7 @@ INSTALLED_APPS.extend([
     'allink_core.allink_base',
     'allink_core.allink_config',
     'allink_core.allink_categories',
+    'allink_core.allink_mailchimp',
     'allink_core.allink_styleguide',
 
     # allink apps
@@ -227,7 +229,6 @@ CMS_PLACEHOLDER_CONF = {
             'CMSPeoplePlugin',
             'CMSWorkPlugin',
             'CMSBlogPlugin',
-            'CMSTestimonialPlugin'
         ],
         'exclude_plugins': ['InheritPlugin'],
     },
@@ -260,6 +261,8 @@ RAVEN_CONFIG = {
 # =MAILCHIMP CONFIG
 MAILCHIMP_API_KEY = senv('MAILCHIMP_API_KEY')
 MAILCHIMP_DEFAULT_LIST_ID = senv('MAILCHIMP_DEFAULT_LIST_ID')
+# MAILCHIMP_SIGNUP_FORM = ''
+# MAILCHIMP_DOUBLE_OPTIN = ''
 
 # =GOOGLE TAG MANAGER CONFIG
 GOOGLE_TAG_MANAGER_ID = senv('GOOGLE_TAG_MANAGER_ID')
