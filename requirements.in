@@ -23,4 +23,4 @@ django-model-utils==2.6
 django-admin-sortable==2.0.21
 django-phonenumber-field==1.1.0
 django-solo==1.1.2
-https://github.com/allink/allink-core/archive/e01a38748dc793cb7fcd01907d14e372b3c6780d.tar.gz
+https://github.com/allink/allink-core/archive/1ca9d844145a6f52eddfe14ec5cfd52c807ee6be.tar.gz

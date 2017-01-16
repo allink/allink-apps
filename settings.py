@@ -55,7 +55,7 @@ INSTALLED_APPS.extend([
     'allink_core.allink_base',
     'allink_core.allink_config',
     'allink_core.allink_categories',
-    # 'allink_core.allink_mailchimp',
+    'allink_core.allink_mailchimp',
     'allink_core.allink_styleguide',
 
     # allink apps
