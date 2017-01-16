@@ -75,7 +75,7 @@ INSTALLED_APPS.extend([
 
 # project specific apps
 PROJECT_APPS = [
-    # 'apps.work',
+    'apps.brands',
 ]
 
 INSTALLED_APPS.extend(PROJECT_APPS)
