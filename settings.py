@@ -229,6 +229,7 @@ CMS_PLACEHOLDER_CONF = {
             'CMSPeoplePlugin',
             'CMSWorkPlugin',
             'CMSBlogPlugin',
+            'CMSBrandsPlugin',
         ],
         'exclude_plugins': ['InheritPlugin'],
     },
