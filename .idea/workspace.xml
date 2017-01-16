@@ -1,55 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4f438c68-4e78-431b-8dc4-5b9d9e7a7e81" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/build/1277c610e4982bbf3572562766695664.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/build/f6466b2efabca5f339237b01b875d2d5.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/js/modules/slider.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/scss/modals/_default.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/scss/plugin-templates/_base.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/scss/plugin-templates/_grid-dynamic.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/scss/plugin-templates/_grid-static.scss" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/icomoon/fonts/icomoon.eot" afterPath="$PROJECT_DIR$/static/icomoon/fonts/icomoon.eot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/icomoon/fonts/icomoon.ttf" afterPath="$PROJECT_DIR$/static/icomoon/fonts/icomoon.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/icomoon/fonts/icomoon.woff" afterPath="$PROJECT_DIR$/static/icomoon/fonts/icomoon.woff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.in" afterPath="$PROJECT_DIR$/requirements.in" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings.py" afterPath="$PROJECT_DIR$/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/build/app.js" afterPath="$PROJECT_DIR$/static/build/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/build/djangocms_custom_admin_style.css" afterPath="$PROJECT_DIR$/static/build/djangocms_custom_admin_style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/build/djangocms_custom_admin_style.js" afterPath="$PROJECT_DIR$/static/build/djangocms_custom_admin_style.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/build/style.css" afterPath="$PROJECT_DIR$/static/build/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/build/style.js" afterPath="$PROJECT_DIR$/static/build/style.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/icomoon/fonts/icomoon.svg" afterPath="$PROJECT_DIR$/static/icomoon/fonts/icomoon.svg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/icomoon/selection.json" afterPath="$PROJECT_DIR$/static/icomoon/selection.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/icomoon/style.css" afterPath="$PROJECT_DIR$/static/icomoon/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/app.js" afterPath="$PROJECT_DIR$/static/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/modules/gallery-grid.js" afterPath="$PROJECT_DIR$/static/js/modules/gallery-grid.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/modules/header.js" afterPath="$PROJECT_DIR$/static/js/modules/header.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/scss/base/_grid.scss" afterPath="$PROJECT_DIR$/static/scss/base/_grid.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/scss/base/_variables.scss" afterPath="$PROJECT_DIR$/static/scss/base/_variables.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/scss/bootstrap/_bootstrap.scss" afterPath="$PROJECT_DIR$/static/scss/bootstrap/_bootstrap.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/scss/elements/_base.scss" afterPath="$PROJECT_DIR$/static/scss/elements/_base.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/scss/elements/_tables.scss" afterPath="$PROJECT_DIR$/static/scss/elements/_tables.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/scss/form/_base.scss" afterPath="$PROJECT_DIR$/static/scss/form/_base.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/scss/form/_buttons.scss" afterPath="$PROJECT_DIR$/static/scss/form/_buttons.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/scss/layout/_base.scss" afterPath="$PROJECT_DIR$/static/scss/layout/_base.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/scss/layout/_branding.scss" afterPath="$PROJECT_DIR$/static/scss/layout/_branding.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/scss/layout/_footer.scss" afterPath="$PROJECT_DIR$/static/scss/layout/_footer.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/scss/layout/_header.scss" afterPath="$PROJECT_DIR$/static/scss/layout/_header.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/scss/modals/_base.scss" afterPath="$PROJECT_DIR$/static/scss/modals/_base.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/scss/modals/_softpage.scss" afterPath="$PROJECT_DIR$/static/scss/modals/_softpage.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/scss/modules/_base.scss" afterPath="$PROJECT_DIR$/static/scss/modules/_base.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/scss/modules/_lazyloading.scss" afterPath="$PROJECT_DIR$/static/scss/modules/_lazyloading.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/scss/modules/_loader.scss" afterPath="$PROJECT_DIR$/static/scss/modules/_loader.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/scss/modules/_tabs.scss" afterPath="$PROJECT_DIR$/static/scss/modules/_tabs.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/scss/navigation/_nav-toggle.scss" afterPath="$PROJECT_DIR$/static/scss/navigation/_nav-toggle.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/scss/navigation/_primary-nav-collapsed.scss" afterPath="$PROJECT_DIR$/static/scss/navigation/_primary-nav-collapsed.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/scss/style.scss" afterPath="$PROJECT_DIR$/static/scss/style.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/scss/typography/_global.scss" afterPath="$PROJECT_DIR$/static/scss/typography/_global.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/scss/typography/_text-container.scss" afterPath="$PROJECT_DIR$/static/scss/typography/_text-container.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/urls.py" afterPath="$PROJECT_DIR$/urls.py" />
-    </list>
+    <list default="true" id="4f438c68-4e78-431b-8dc4-5b9d9e7a7e81" name="Default" comment="" />
     <ignored path="haus-der-farbe-allink.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
