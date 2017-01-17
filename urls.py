@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^testimonials/', include('allink_apps.testimonials.urls', namespace='testimonial')),
     url(r'^blog/', include('allink_apps.blog.urls', namespace='blog')),
     url(r'^locations/', include('allink_apps.locations.urls', namespace='locations')),
+    url(r'^brands/', include('allink_apps.locations.urls', namespace='brands')),
     url(r'^plugin_forms/', include('cmsplugin_form_handler.urls',
                                    namespace='cmsplugin_form_handler')),
     *aldryn_addons.urls.i18n_patterns()  # MUST be the last entry!
