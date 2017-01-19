@@ -29,7 +29,13 @@
                         {% render_model object "job_title" %}<br>
                     {% endif %}
                     {% if object.job_title %}
-                        {% render_model object "job_function" %}
+                        {% render_model object "job_function" %}<br>
+                    {% endif %}
+                    {% if object.email %}
+                        <a href="mailto:{{object.email}}">{% render_model object "email" %}</a><br>
+                    {% endif %}
+                    {% if object.phone %}
+                        <a href="tel:{{object.phone}}">{% render_model object "phone" %}</a><br>
                     {% endif %}
                 </p>
             </div>
