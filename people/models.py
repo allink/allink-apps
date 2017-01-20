@@ -12,10 +12,10 @@ from aldryn_translation_tools.models import (
 from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 
 from allink_core.allink_base.models.choices import GENDER_CHOICES
-from allink_core.allink_base.models import AllinkBaseModelManager
 from allink_core.allink_base.models.mixins import AllinkManualEntriesMixin
 from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin, AllinkContactFieldsModel
 
+from allink_apps.locations.models import Locations
 from .managers import AllinkPeopleManager
 
 
@@ -85,6 +85,8 @@ class People(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableMod
         choices=GENDER_CHOICES,
         null=True
     )
+
+    # location = models.ManyToManyField(Locations, blank=True, null=True, related_name='people')
 
     objects = AllinkPeopleManager()
 

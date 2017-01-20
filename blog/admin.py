@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
 from django import forms
-from adminsortable.admin import SortableTabularInline
 from django.utils.translation import ugettext_lazy as _
+from adminsortable.admin import SortableTabularInline
 from allink_core.allink_base.admin import AllinkBaseAdmin
 
-from .models import BlogImage, Blog, News, Events, Teachers, Courses, BlogAppContentPlugin
+from .models import BlogImage, Blog, News, Events, BlogAppContentPlugin
 
 class BlogImageInline(SortableTabularInline):
     model = BlogImage
@@ -90,50 +90,6 @@ class EventsAdmin(BlogAdmin):
                     'lead',
                     'text',
                     ('event_date', 'costs', )
-                ),
-            }),
-        )
-
-        fieldsets += (_('Published From/To'), {
-            'classes': ('collapse',),
-            'fields': (
-                'start',
-                'end',
-            )
-        }),
-
-        fieldsets += self.get_base_fieldsets()
-
-        return fieldsets
-
-
-@admin.register(Teachers)
-class TeachersAdmin(admin.ModelAdmin):
-    pass
-
-
-class TeachersInline(SortableTabularInline):
-    model = Teachers
-    extra = 1
-    verbose_name = None
-    verbose_name_plural = ''
-
-
-@admin.register(Courses)
-class CoursesAdmin(BlogAdmin):
-    inlines = [BlogImageInline, TeachersInline, ]
-
-    def get_fieldsets(self, request, obj=None):
-        fieldsets = (
-            (None, {
-                'fields': (
-                    'title',
-                    'slug',
-                    'active',
-                    'lead',
-                    'text',
-                    'location',
-                    ('duration', 'costs', )
                 ),
             }),
         )

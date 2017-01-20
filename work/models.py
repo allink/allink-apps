@@ -17,13 +17,7 @@ from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, All
 
 
 class Work(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, AllinkBaseModel):
-    """
-    Translations
-     feel free to add app specific fields)
-     to override slug generation:
-     slug_source_field_name = 'title'
 
-    """
     slug_source_field_name = 'title'
 
     translations = TranslatedFields(
@@ -70,8 +64,7 @@ class Work(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel
 
 # APP CONTENT PLUGIN
 class WorkAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin):
-    """
-    """
+
     data_model = Work
 
     manual_entries = SortedM2MModelField(

@@ -19,8 +19,6 @@ class BlogDetail(AllinkBaseDetailView):
             name = self.object.events._meta.model_name
         elif hasattr(self.object, 'news'):
             name = self.object.news._meta.model_name
-        elif hasattr(self.object, 'courses'):
-            name = self.object.courses._meta.model_name
         else:
             name = self.object._meta.model_name
 
