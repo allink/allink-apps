@@ -3,11 +3,11 @@
     <div class="manage-spacings">
         {% if object.preview_image %}
             <div class="image-container">
-                {% if object.text %}
+                {% if instance.detail_link_enabled and object.text %}
                     <a href="{{object.get_absolute_url}}">
                 {% endif %}
                     {% render_app_content_image %}
-                {% if object.text %}
+                {% if instance.detail_link_enabled and object.text %}
                     </a>
                 {% endif %}
             </div>
@@ -19,6 +19,14 @@
                 </h2>
             </div>
         {% endif %}
+        {% if object.events.event_date %}
+            <div class="text-container">
+                <p>
+                    {{object.events.event_date|date:"l j.n.Y"}}{% if object.events.event_time%}{{object.events.event_time|time:", g"}} {% trans 'Uhr' %}{% endif %} {% if object.events.location %}{{object.events.location.title}} {% endif %}
+                </p>
+            </div>
+        {% endif %}
+
         {% if object.lead %}
             <div class="text-container">
                 <p>
@@ -26,7 +34,7 @@
                 </p>
             </div>
         {% endif %}
-        {% if object.text %}
+        {% if instance.detail_link_enabled and object.text %}
             <div class="link-container">
                 <a class="btn btn-default" href="{{object.get_absolute_url}}">
                     {% if instance.detail_link_text %}

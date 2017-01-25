@@ -11,8 +11,8 @@
         {% endif %}
     </td>
     <td>
-        {% if object.job_function %}
-            {% render_model object "job_function" %}
+        {% if object.job_title %}
+            {% render_model object "job_title" %}
         {% endif %}
     </td>
     <td>
@@ -22,8 +22,8 @@
             </a>
         {% endif %}
     </td>
-    <td>
-        {% if object.text %}
+    {% if instance.detail_link_enabled and object.text %}
+        <td>
             <a href="{{object.get_absolute_url}}" class="btn btn-default">
                 {% if instance.detail_link_text %}
                     {{ instance.detail_link_text }}
@@ -31,6 +31,6 @@
                     {% trans "More" %}
                 {% endif %}
             </a>
-        {% endif %}
-    </td>
+        </td>
+    {% endif %}
 </tr>

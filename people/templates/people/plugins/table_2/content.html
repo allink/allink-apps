@@ -11,7 +11,9 @@
                         <th>{% trans "Name" %}</th>
                         <th>{% trans "Beruf" %}</th>
                         <th>{% trans "Website" %}</th>
-                        <th>&nbsp;</th>
+                        {% if instance.detail_link_enabled %}
+                            <th>&nbsp;</th>
+                        {% endif %}
                     {% endblock table_head %}
                 </tr>
             </thead>

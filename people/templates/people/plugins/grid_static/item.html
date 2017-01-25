@@ -4,13 +4,13 @@
     <div class="manage-spacings">
         {% if object.preview_image %}
             <div class="image-container">
-                {% if object.text %}
+                {% if instance.detail_link_enabled and object.text %}
                     <a href="{{object.get_absolute_url}}">
                 {% endif %}
 
                     {% render_app_content_image %}
 
-                {% if object.text %}
+                {% if instance.detail_link_enabled and object.text %}
                     </a>
                 {% endif %}
             </div>
@@ -28,13 +28,20 @@
                     {% if object.job_title %}
                         {% render_model object "job_title" %}<br>
                     {% endif %}
-                    {% if object.job_title %}
+                    {% if object.job_function %}
                         {% render_model object "job_function" %}
                     {% endif %}
                 </p>
+                {% if object.email %}
+                    <p>
+                        <a href="mailto:{{object.email}}" target="_blank">
+                            {{object.email}}
+                        </a>
+                    </p>
+                {% endif %}
             </div>
         {% endif %}
-        {% if object.text %}
+        {% if object.detail_link_enabled and object.text %}
             <div class="link-container">
                 <a class="btn btn-default" href="{{object.get_absolute_url}}">
                     {% if instance.detail_link_text %}

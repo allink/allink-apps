@@ -79,7 +79,7 @@ class NewsAdmin(BlogAdmin):
 
 @admin.register(Events)
 class EventsAdmin(BlogAdmin):
-
+    list_display = ('title', 'event_date', 'active', )
     def get_fieldsets(self, request, obj=None):
         fieldsets = (
             (None, {
@@ -89,7 +89,8 @@ class EventsAdmin(BlogAdmin):
                     'slug',
                     'lead',
                     'text',
-                    ('event_date', 'costs', )
+                    'location',
+                    ('event_date', 'event_time', 'costs', )
                 ),
             }),
         )

@@ -12,12 +12,12 @@ from aldryn_translation_tools.models import (
 from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 
 from allink_core.allink_base.models.mixins import AllinkManualEntriesMixin
-from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin
+from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin, AllinkAddressBasicFieldsModel
 
 from .managers import AllinkTestimonialManager
 
 
-class Testimonial(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, AllinkBaseModel):
+class Testimonial(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, AllinkAddressBasicFieldsModel, AllinkBaseModel):
     """
     Translations
      feel free to add app specific fields)

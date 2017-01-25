@@ -21,6 +21,7 @@ from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, All
 from allink_apps.people.models import People
 from allink_apps.locations.models import Locations
 
+from .managers import AllinkEventManager
 
 #  Blog Parent class
 class Blog(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, TimeFramedModel, AllinkBaseModel):
@@ -102,16 +103,20 @@ class Events(Blog):
         null=True,
     )
 
-    event_time = models.CharField(
-        max_length=255,
-        help_text=_(u'Event Time'),
+    event_time = models.TimeField(
+        _(u'Event Time'),
         blank=True,
         null=True,
     )
 
-    # location = models.ForeignKey(Locations, blank=True, null=True, related_name='events')
+    location = models.ForeignKey(
+        Locations,
+        blank=True,
+        null=True,
+        related_name='events'
+    )
 
-    objects = AllinkBaseModelManager()
+    objects = AllinkEventManager()
 
     class Meta:
         app_label = 'blog'

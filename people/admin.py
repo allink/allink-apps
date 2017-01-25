@@ -18,9 +18,8 @@ class PeopleAdmin(AllinkBaseAdmin):
     inlines = [PeopleImageInline, ]
 
     form = AllinkBaseAdminForm
-    search_fields = ('firstname', 'lastname',)
+    search_fields = ('translations__firstname', 'translations__lastname',)
     list_display = ('firstname', 'lastname', 'get_categories', 'active', 'created', 'modified')
-    list_filter = ('active',)
 
     exclude = ('images',)
 
@@ -32,8 +31,10 @@ class PeopleAdmin(AllinkBaseAdmin):
                     ('firstname', 'lastname', 'gender'),
                     ('job_title', 'job_function'),
                     ('email', 'website'),
-                    ('company_name', 'place'),
+                    'company_name',
                     ('phone', 'mobile', 'fax'),
+                    ('street'),
+                    ('place', 'zip_code'),
                     'text',
                     'slug',
                 ),

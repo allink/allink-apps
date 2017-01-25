@@ -16,6 +16,7 @@ class WorkImageInline(SortableTabularInline):
 @admin.register(Work)
 class WorkAdmin(AllinkBaseAdmin):
     inlines = [WorkImageInline, ]
+    # list_filter = ('active', 'categories',)
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = (
