@@ -68,13 +68,23 @@
 
                 <div class="col">
                     <div class="manage-spacings">
-                       {% comment %}
-
-                           {{object.events.costs}}
-                           {{object.events.duration}}
-                           {{object.events.location}}
-
-                       {% endcomment %}
+                       <div class="text-container">
+                            {% if object.events.event_date %}
+                                <h2 class="heading">
+                                    {% trans "Datum" %}
+                                </h2>
+                                <p>{{object.events.event_date|date:"l, j.n.Y"}}{% if object.events.event_time%}{{object.events.event_time|time:", G:i"}} {% trans 'Uhr' %}<br>{% endif %}</p>
+                            {% endif %}
+                            {% if object.events.location.title %}
+                                <h2 class="heading">
+                                    {% trans "Ort" %}
+                                </h2>
+                                <p>
+                                    {{object.events.location.title}}<br>
+                                    {{object.events.location.street}}<br>
+                                    {{object.events.location.zip_code}} {{object.events.location.place}}<br>
+                                </p>
+                            {% endif %}
                     </div>
                 </div>{# end .col #}
 

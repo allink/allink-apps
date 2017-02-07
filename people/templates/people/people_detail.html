@@ -50,14 +50,14 @@
                 <div class="col">
                     <div class="text-container">
                         {# optional: lead #}
-                        {% if object.job_title or object.job_function %}
-                            <p class="lead">
-                                {% if object.job_title %}
-                                    {{object.job_title}}<br>
-                                {% endif %}
-                                {{object.job_function}}
-                            </p>
-                        {% endif %}
+{#                        {% if object.job_title or object.job_function %}#}
+{#                            <p class="lead">#}
+{#                                {% if object.job_title %}#}
+{#                                    {{object.job_title}}<br>#}
+{#                                {% endif %}#}
+{#                                {{object.job_function}}#}
+{#                            </p>#}
+{#                        {% endif %}#}
                         {# we wouldn't be here if the text was empty #}
                         {{object.text}}
                     </div>

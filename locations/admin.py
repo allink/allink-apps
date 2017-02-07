@@ -26,7 +26,7 @@ class LocationsAdmin(AllinkBaseAdmin):
                     'title',
                     'slug',
                     'text',
-                    ('zip', 'city',),
+                    ('zip_code', 'place',),
                     'street',
                     ('phone', 'mobile',),
                     ('email', 'fax',),
@@ -39,7 +39,7 @@ class LocationsAdmin(AllinkBaseAdmin):
 
         return fieldsets
 
-
-@admin.register(LocationsAppContentPlugin)
-class LocationsAppContentPluginAdmin(admin.ModelAdmin):
-    pass
+#
+# @admin.register(LocationsAppContentPlugin)
+# class LocationsAppContentPluginAdmin(admin.ModelAdmin):
+#     pass

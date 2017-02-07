@@ -14,10 +14,10 @@ from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 
 from allink_core.allink_base.models.mixins import AllinkManualEntriesMixin
 from allink_core.allink_base.models.managers import AllinkBaseModelManager
-from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin, AllinkContactFieldsModel
+from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin, AllinkAddressBasicFieldsModel, AllinkContactFieldsModel
 
 
-class Locations(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, AllinkContactFieldsModel, AllinkBaseModel):
+class Locations(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, AllinkAddressBasicFieldsModel, AllinkContactFieldsModel, AllinkBaseModel):
     """
     Translations
      feel free to add app specific fields)
@@ -28,33 +28,15 @@ class Locations(TranslationHelperMixin, TranslatedAutoSlugifyMixin, Translatable
     slug_source_field_name = 'title'
 
     translations = TranslatedFields(
-        title = models.CharField(
+        title=models.CharField(
             max_length=255
         ),
-        text = HTMLField(
+        text=HTMLField(
             _(u'Text'),
             blank=True,
             null=True
         ),
-        zip = models.CharField(
-            _(u'ZIP Code'),
-            max_length=4,
-            blank=True,
-            null=True,
-        ),
-        city = models.CharField(
-            _(u'City'),
-            max_length=127,
-            blank=True,
-            null=True,
-        ),
-        street = models.CharField(
-            _(u'Street'),
-            max_length=255,
-            blank=True,
-            null=True,
-        ),
-        slug = models.SlugField(
+        slug=models.SlugField(
             _(u'Slug'),
             max_length=255,
             default='',

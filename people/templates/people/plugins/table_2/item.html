@@ -1,6 +1,6 @@
 {% load cms_tags sekizai_tags i18n thumbnail allink_image_tags %}
 
-<tr class="table-row {% if appended %}appended{% endif %}">
+<tr class="{% if appended %}appended{% endif %}">
     <td>
         {% if object.title %}
             <div class="heading-container">
@@ -22,15 +22,17 @@
             </a>
         {% endif %}
     </td>
-    {% if instance.detail_link_enabled and object.text %}
+    {% if instance.detail_link_enabled %}
         <td>
-            <a href="{{object.get_absolute_url}}" class="btn btn-default">
-                {% if instance.detail_link_text %}
-                    {{ instance.detail_link_text }}
-                {% else %}
-                    {% trans "More" %}
-                {% endif %}
-            </a>
+            {% if object.text %}
+                <a href="{{object.get_absolute_url}}" class="btn btn-default">
+                    {% if instance.detail_link_text %}
+                        {{ instance.detail_link_text }}
+                    {% else %}
+                        {% trans "More" %}
+                    {% endif %}
+                </a>
+            {% endif %}
         </td>
     {% endif %}
 </tr>

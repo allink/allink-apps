@@ -15,22 +15,22 @@
         {% if object.title %}
             <div class="heading-container">
                 <h2 class="heading">
-                    {{ object.title }}
+                    {% render_model object "title" %}
                 </h2>
+            </div>
+        {% endif %}
+        {% if object.lead %}
+            <div class="text-container">
+                <p>
+                    {{object.lead|striptags}}
+                </p>
             </div>
         {% endif %}
         {% if object.events.event_date %}
             <div class="text-container">
                 <p>
-                    {{object.events.event_date|date:"l j.n.Y"}}{% if object.events.event_time%}{{object.events.event_time|time:", g"}} {% trans 'Uhr' %}{% endif %} {% if object.events.location %}{{object.events.location.title}} {% endif %}
-                </p>
-            </div>
-        {% endif %}
-
-        {% if object.lead %}
-            <div class="text-container">
-                <p>
-                    {{object.lead|striptags}}
+                    {{object.events.event_date|date:"l, j.n.Y"}}{% if object.events.event_time%}{{object.events.event_time|time:", G:i"}} {% trans 'Uhr' %}<br>{% endif %}
+                    {% if object.events.location %}{{object.events.location.title}}{% endif %}
                 </p>
             </div>
         {% endif %}
