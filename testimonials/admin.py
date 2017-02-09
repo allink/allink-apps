@@ -43,8 +43,3 @@ class TestimonialAdmin(AllinkBaseAdmin):
         if db_field.name == 'lead':
             kwargs['widget'] = forms.Textarea
         return super(TestimonialAdmin, self).formfield_for_dbfield(db_field, **kwargs)
-
-
-@admin.register(TestimonialAppContentPlugin)
-class TestimonialAppContentPluginAdmin(admin.ModelAdmin):
-    pass

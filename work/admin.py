@@ -39,8 +39,3 @@ class WorkAdmin(AllinkBaseAdmin):
         if db_field.name == 'lead':
             kwargs['widget'] = forms.Textarea
         return super(WorkAdmin, self).formfield_for_dbfield(db_field, **kwargs)
-
-
-@admin.register(WorkAppContentPlugin)
-class WorkAppContentPluginAdmin(admin.ModelAdmin):
-    pass

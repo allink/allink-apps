@@ -106,8 +106,3 @@ class EventsAdmin(BlogAdmin):
         fieldsets += self.get_base_fieldsets()
 
         return fieldsets
-
-
-@admin.register(BlogAppContentPlugin)
-class BlogAppContentPluginAdmin(admin.ModelAdmin):
-    pass

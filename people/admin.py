@@ -44,8 +44,3 @@ class PeopleAdmin(AllinkBaseAdmin):
         fieldsets += self.get_base_fieldsets()
 
         return fieldsets
-
-
-@admin.register(PeopleAppContentPlugin)
-class PeopleAppContentPluginAdmin(admin.ModelAdmin):
-    pass

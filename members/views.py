@@ -8,7 +8,6 @@ try:
 except ImportError:
     from django.contrib.sites.models import get_current_site
 
-from .utils import update_mailchimp_list_member, update_mailchimp_email_adress
 from .forms import MemberProfileEditForm
 from .email import send_member_modified_email
 
@@ -36,9 +35,6 @@ class MembersProfileEdit(FormView):
         user.email = form.cleaned_data.get('email')
         user.save()
 
-        # send notification email to staff
-        send_member_modified_email(member)
-
         if 'email' in form.changed_data:
             member.log('email_changed_member', u'Email-Address changed in member-area.')
 
@@ -49,11 +45,10 @@ class MembersProfileEdit(FormView):
             member.log('lastname_name_changed_member', u'Lastname changed in member-area.')
 
         # update mailchimp list
-        if not 'email' in form.changed_data:
-            update_mailchimp_list_member(member)
-        else:
-            update_mailchimp_email_adress(form.initial.get('email'), member)
+        member.put_to_mailchimp_list(form.initial.get('email'))
 
+        # send notification email to staff
+        send_member_modified_email(member)
 
         return JsonResponse({}, status=200)
 

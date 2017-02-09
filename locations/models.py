@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import datetime
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from adminsortable.fields import SortableForeignKey
@@ -47,10 +48,22 @@ class Locations(TranslationHelperMixin, TranslatedAutoSlugifyMixin, Translatable
 
     lat = models.FloatField(
         _(u'Latitude'),
+        blank=True,
+        null=True
     )
     lng = models.FloatField(
         _(u'Longitude'),
+        blank=True,
+        null=True
     )
+
+    mon = models.CharField(_(u'Montag'), blank=True, max_length=100)
+    tue = models.CharField(_(u'Dienstag'), blank=True, max_length=100)
+    wed = models.CharField(_(u'Mittwoch'), blank=True, max_length=100)
+    thu = models.CharField(_(u'Donnerstag'), blank=True, max_length=100)
+    fri = models.CharField(_(u'Freitag'), blank=True, max_length=100)
+    sat = models.CharField(_(u'Samstag'), blank=True, max_length=100)
+    sun = models.CharField(_(u'Sonntag'), blank=True, max_length=100)
 
     # TODO:
     #  page = LINK to CMS Page (or Link to detail view from location app!)
@@ -70,6 +83,108 @@ class Locations(TranslationHelperMixin, TranslatedAutoSlugifyMixin, Translatable
     @property
     def images(self):
         return self.locationsimage_set.all()
+
+    def value_has_changed_for_fields(instance, fields):
+        """
+        Did any field values change since the last time they were saved?
+        """
+        if not instance.pk:  # if new
+            return True
+        old_values = instance.__class__._default_manager.filter(pk=instance.pk).values().get()
+        for f in fields:
+            if not getattr(instance, f) == old_values[f]:
+                return True
+        return False
+
+    def geocode_location(self):
+        """
+        Update lat and lng fields based on address
+        """
+        from geopy import geocoders
+        g = geocoders.GoogleV3()
+        try:
+            place, (lat, lng) = g.geocode((u'%s %s %s, Schweiz' % (self.street, self.zip_code, self.place)).encode("utf-8"))
+        except Exception as e:
+            return "%s: %s" % (self, e)
+        else:
+            self.lat = lat
+            self.lng = lng
+        return True
+
+    def is_currently_open(self):
+        opening_times = [self.mon, self.tue, self.wed, self.thu, self.fri, self.sat, self.sun]
+        return self.opening_info(opening_times[datetime.date.today().weekday()])
+    is_currently_open.boolean = True
+    is_currently_open.short_description = _(u'Jetzt geöffnet')
+
+    def opening_info(self, times):
+        """
+        For the given times attr and the current time,
+        is our store open?
+        """
+        try:
+            times_splited = times.split('-')
+            current_time = datetime.datetime.today().time()
+
+            # 9:00 - 12:00  15:00 - 18:30
+            if len(times_splited) > 2:
+                times_pair_splited = times.split('  ')
+                if len(times_pair_splited) < 2:
+                    times_pair_splited = times.split(' ')
+
+                times_splited_1 = times_pair_splited[0].split('-')
+                times_splited_2 = times_pair_splited[1].split('-')
+
+                start_time_1 = datetime.datetime.strptime(times_splited_1[0], '%H:%M').time()
+                end_time_1 = datetime.datetime.strptime(times_splited_1[1], '%H:%M').time()
+
+                start_time_2 = datetime.datetime.strptime(times_splited_2[0], '%H:%M').time()
+                end_time_2 = datetime.datetime.strptime(times_splited_2[1], '%H:%M').time()
+
+                if start_time_1 < current_time and end_time_1 > current_time or start_time_2 < current_time and end_time_2 > current_time:
+                    return True
+                else:
+                    return False
+
+            else:
+                start = times_splited[0]
+                end = times_splited[1]
+
+                start_time = datetime.datetime.strptime(start, '%H:%M').time()
+                end_time = datetime.datetime.strptime(end, '%H:%M').time()
+
+                if start_time < current_time and end_time > current_time:
+                    return True
+                else:
+                    return False
+        except:
+            return False
+
+    def has_opening_info(self):
+        """
+        Returns whether store has any filled in opening info
+        If all fields are empty, returns False, else True
+        """
+        if self.mon or \
+           self.tue or \
+           self.wed or \
+           self.thu or \
+           self.fri or \
+           self.sat or \
+           self.sun:
+            return True
+
+        return False
+
+    def gmaps_link(self):
+        """
+        Returns google maps link with query of current store
+        """
+        return (u"https://www.google.ch/maps?q=Chicorée+Mode+AG+%(street)s+%(zip_code)s+%(place)s" % {
+            'street': self.street,
+            'zip_code': self.zip_code,
+            'place': self.place
+        }).replace(' ', '+')
 
 
 # APP CONTENT PLUGIN

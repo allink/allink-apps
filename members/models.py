@@ -10,7 +10,11 @@ from aldryn_translation_tools.models import (
     TranslatedAutoSlugifyMixin,
     TranslationHelperMixin,
 )
-from .utils import update_mailchimp_list_member
+from allink_core.allink_mailchimp.config import MailChimpConfig
+from allink_core.allink_mailchimp.helpers import list_members_delete, list_members_put, get_status_if_new
+
+config = MailChimpConfig()
+
 
 @python_2_unicode_compatible
 class Members(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, TimeStampedModel):
@@ -83,7 +87,7 @@ class Members(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableMo
             group = Group.objects.get_or_create(name='Member')
             user.groups.add(group[0])
             self.user = user
-            update_mailchimp_list_member(self)
+            self.put_to_mailchimp_list()
         else:
             self.user.username = self.member_nr
             self.user.email = self.email
@@ -96,6 +100,7 @@ class Members(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableMo
     def delete(self, *args, **kwargs):
         if self.user:
             self.user.delete()
+            self.delete_from_mailchimp_list()
         super(Members, self).delete(*args, **kwargs)
 
     def get_absolute_url(self):
@@ -105,6 +110,37 @@ class Members(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableMo
 
     def log(self, log, description):
         MembersLog.objects.create(members=self, log=log, description=description)
+
+    def put_to_mailchimp_list(self, member_hash_email=None):
+        data = {
+            'email_address': self.email,
+            'status': 'subscribed',
+            'status_if_new': get_status_if_new(),
+            'language': self.language,
+            'merge_fields': {
+                'FNAME': self.first_name,
+                'LNAME': self.last_name
+            }
+        }
+        if config.merge_vars:
+            data = data.append(config.merge_vars)
+
+        list_members_put(data=data, member_hash_email=member_hash_email)
+
+    def delete_from_mailchimp_list(self):
+        # delete member
+        data = {
+            'email_address': self.email,
+            'status': 'subscribed',
+            'language': self.language,
+            'merge_fields': {
+                'FNAME': self.first_name,
+                'LNAME': self.last_name
+            }
+        }
+        if config.merge_vars:
+            data = data.append(config.merge_vars)
+        list_members_delete(data)
 
 
 @python_2_unicode_compatible
