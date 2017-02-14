@@ -6,6 +6,7 @@ from adminsortable.fields import SortableForeignKey
 from parler.models import TranslatableModel, TranslatedFields
 from djangocms_text_ckeditor.fields import HTMLField
 from phonenumber_field.modelfields import PhoneNumberField
+from allink_core.allink_base.models import model_fields
 
 from aldryn_translation_tools.models import (
     TranslatedAutoSlugifyMixin,
@@ -15,10 +16,10 @@ from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 
 from allink_core.allink_base.models.mixins import AllinkManualEntriesMixin
 from allink_core.allink_base.models.managers import AllinkBaseModelManager
-from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin, AllinkAddressBasicFieldsModel, AllinkContactFieldsModel
+from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin, AllinkContactFieldsModel
 
 
-class Locations(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, AllinkAddressBasicFieldsModel, AllinkContactFieldsModel, AllinkBaseModel):
+class Locations(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, AllinkContactFieldsModel, AllinkBaseModel):
     """
     Translations
      feel free to add app specific fields)
@@ -45,6 +46,9 @@ class Locations(TranslationHelperMixin, TranslatedAutoSlugifyMixin, Translatable
             help_text=_(u'Leave blank to auto-generate a unique slug.')
         ),
     )
+    street = model_fields.Street()
+    zip_code = model_fields.ZipCode()
+    place = model_fields.Place()
 
     lat = models.FloatField(
         _(u'Latitude'),
@@ -57,13 +61,20 @@ class Locations(TranslationHelperMixin, TranslatedAutoSlugifyMixin, Translatable
         null=True
     )
 
-    mon = models.CharField(_(u'Montag'), blank=True, max_length=100)
-    tue = models.CharField(_(u'Dienstag'), blank=True, max_length=100)
-    wed = models.CharField(_(u'Mittwoch'), blank=True, max_length=100)
-    thu = models.CharField(_(u'Donnerstag'), blank=True, max_length=100)
-    fri = models.CharField(_(u'Freitag'), blank=True, max_length=100)
-    sat = models.CharField(_(u'Samstag'), blank=True, max_length=100)
-    sun = models.CharField(_(u'Sonntag'), blank=True, max_length=100)
+    mon = models.CharField(_(u'Monday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
+    tue = models.CharField(_(u'Tuesday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
+    wed = models.CharField(_(u'Wednesday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
+    thu = models.CharField(_(u'Thursday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
+    fri = models.CharField(_(u'Friday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
+    sat = models.CharField(_(u'Saturday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
+    sun = models.CharField(_(u'Sunday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
+    mon_afternoon = models.CharField(_(u'Monday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break', blank=True, max_length=100)
+    tue_afternoon = models.CharField(_(u'Tuesday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break', blank=True, max_length=100)
+    wed_afternoon = models.CharField(_(u'Wednesday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break', blank=True, max_length=100)
+    thu_afternoon = models.CharField(_(u'Thursday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break', blank=True, max_length=100)
+    fri_afternoon = models.CharField(_(u'Friday mo morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break', blank=True, max_length=100)
+    sat_afternoon = models.CharField(_(u'Saturday  morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break', blank=True, max_length=100)
+    sun_afternoon = models.CharField(_(u'Sunday mo morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break', blank=True, max_length=100)
 
     # TODO:
     #  page = LINK to CMS Page (or Link to detail view from location app!)
@@ -112,51 +123,55 @@ class Locations(TranslationHelperMixin, TranslatedAutoSlugifyMixin, Translatable
         return True
 
     def is_currently_open(self):
-        opening_times = [self.mon, self.tue, self.wed, self.thu, self.fri, self.sat, self.sun]
+        opening_times = [
+            (self.mon, self.mon_afternoon),
+            (self.tue, self.tue_afternoon),
+            (self.wed, self.wed_afternoon),
+            (self.thu, self.thu_afternoon),
+            (self.fri, self.fri_afternoon),
+            (self.sat, self.sat_afternoon),
+            (self.sun, self.sun_afternoon)
+        ]
         return self.opening_info(opening_times[datetime.date.today().weekday()])
     is_currently_open.boolean = True
-    is_currently_open.short_description = _(u'Jetzt geöffnet')
+    is_currently_open.short_description = _(u'Now open_(u')
 
     def opening_info(self, times):
         """
         For the given times attr and the current time,
         is our store open?
         """
+        morning = times[0]
+        afternoon = times[1]
+
         try:
-            times_splited = times.split('-')
             current_time = datetime.datetime.today().time()
+            morning_splited = morning.split('-')
 
-            # 9:00 - 12:00  15:00 - 18:30
-            if len(times_splited) > 2:
-                times_pair_splited = times.split('  ')
-                if len(times_pair_splited) < 2:
-                    times_pair_splited = times.split(' ')
+            start_morning = morning_splited[0]
+            end_morning = morning_splited[1]
 
-                times_splited_1 = times_pair_splited[0].split('-')
-                times_splited_2 = times_pair_splited[1].split('-')
+            start_time = datetime.datetime.strptime(start_morning, '%H:%M').time()
+            end_time = datetime.datetime.strptime(end_morning, '%H:%M').time()
 
-                start_time_1 = datetime.datetime.strptime(times_splited_1[0], '%H:%M').time()
-                end_time_1 = datetime.datetime.strptime(times_splited_1[1], '%H:%M').time()
+            if start_time < current_time and end_time > current_time:
+                return True
 
-                start_time_2 = datetime.datetime.strptime(times_splited_2[0], '%H:%M').time()
-                end_time_2 = datetime.datetime.strptime(times_splited_2[1], '%H:%M').time()
+            elif afternoon:
+                afternoon_splited = afternoon.split('-')
 
-                if start_time_1 < current_time and end_time_1 > current_time or start_time_2 < current_time and end_time_2 > current_time:
+                start_afternoon = afternoon_splited[0]
+                end_afternoon = afternoon_splited[1]
+
+                start_time_afternoon = datetime.datetime.strptime(start_afternoon, '%H:%M').time()
+                end_time_afternoon = datetime.datetime.strptime(end_afternoon, '%H:%M').time()
+
+                if start_time_afternoon < current_time and end_time_afternoon > current_time:
                     return True
                 else:
                     return False
-
             else:
-                start = times_splited[0]
-                end = times_splited[1]
-
-                start_time = datetime.datetime.strptime(start, '%H:%M').time()
-                end_time = datetime.datetime.strptime(end, '%H:%M').time()
-
-                if start_time < current_time and end_time > current_time:
-                    return True
-                else:
-                    return False
+                return False
         except:
             return False
 
@@ -165,16 +180,26 @@ class Locations(TranslationHelperMixin, TranslatedAutoSlugifyMixin, Translatable
         Returns whether store has any filled in opening info
         If all fields are empty, returns False, else True
         """
-        if self.mon or \
-           self.tue or \
-           self.wed or \
-           self.thu or \
-           self.fri or \
-           self.sat or \
-           self.sun:
-            return True
-
-        return False
+        return reduce(
+            lambda x, y: x or y,
+            [
+                self.mon,
+                self.mon_afternoon,
+                self.tue,
+                self.tue_afternoon,
+                self.wed,
+                self.wed_afternoon,
+                self.thu,
+                self.thu_afternoon,
+                self.fri,
+                self.fri_afternoon,
+                self.sat,
+                self.sat_afternoon,
+                self.sun,
+                self.sun_afternoon
+            ],
+            False
+        )
 
     def gmaps_link(self):
         """

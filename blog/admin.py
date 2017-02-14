@@ -5,7 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 from adminsortable.admin import SortableTabularInline
 from allink_core.allink_base.admin import AllinkBaseAdmin
 
-from .models import BlogImage, Blog, News, Events, BlogAppContentPlugin
+from .models import BlogImage, Blog, News, Events, EventsRegistration
 
 class BlogImageInline(SortableTabularInline):
     model = BlogImage
@@ -30,6 +30,7 @@ class BlogAdmin(AllinkBaseAdmin):
                     'active',
                     'title',
                     'slug',
+                    'created',
                     'lead',
                     'text',
                 ),
@@ -58,6 +59,7 @@ class NewsAdmin(BlogAdmin):
                     'active',
                     'title',
                     'slug',
+                    'created',
                     'lead',
                     'text',
                 ),
@@ -80,6 +82,7 @@ class NewsAdmin(BlogAdmin):
 @admin.register(Events)
 class EventsAdmin(BlogAdmin):
     list_display = ('title', 'event_date', 'active', )
+
     def get_fieldsets(self, request, obj=None):
         fieldsets = (
             (None, {
@@ -87,9 +90,11 @@ class EventsAdmin(BlogAdmin):
                     'active',
                     'title',
                     'slug',
+                    'created',
                     'lead',
                     'text',
                     'location',
+                    'form_enabled',
                     ('event_date', 'event_time', 'costs', )
                 ),
             }),
@@ -106,3 +111,7 @@ class EventsAdmin(BlogAdmin):
         fieldsets += self.get_base_fieldsets()
 
         return fieldsets
+
+
+class EventsRegistrationAdmin(admin.ModelAdmin):
+    pass

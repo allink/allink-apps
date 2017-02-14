@@ -13,12 +13,13 @@ from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 
 from allink_core.allink_base.models.choices import GENDER_CHOICES
 from allink_core.allink_base.models.mixins import AllinkManualEntriesMixin
-from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin, AllinkContactFieldsModel, AllinkAddressBasicFieldsModel
+from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin, AllinkContactFieldsModel
+from allink_core.allink_base.models import model_fields
 
 from .managers import AllinkPeopleManager
 
 
-class People(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, AllinkContactFieldsModel, AllinkAddressBasicFieldsModel, AllinkBaseModel):
+class People(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, AllinkContactFieldsModel, AllinkBaseModel):
     """
     Translations
      feel free to add app specific fields)
@@ -64,6 +65,10 @@ class People(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableMod
             help_text=_(u'Leave blank to auto-generate a unique slug.')
         ),
     )
+
+    street = model_fields.Street()
+    zip_code = model_fields.ZipCode()
+    place = model_fields.Place()
 
     company_name = models.CharField(
         _(u'Company Name'),

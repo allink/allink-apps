@@ -12,12 +12,13 @@ from aldryn_translation_tools.models import (
 from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 
 from allink_core.allink_base.models.mixins import AllinkManualEntriesMixin
-from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin, AllinkAddressBasicFieldsModel
+from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin
+from allink_core.allink_base.models import model_fields
 
 from .managers import AllinkTestimonialManager
 
 
-class Testimonial(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, AllinkAddressBasicFieldsModel, AllinkBaseModel):
+class Testimonial(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, AllinkBaseModel):
     """
     Translations
      feel free to add app specific fields)
@@ -58,6 +59,9 @@ class Testimonial(TranslationHelperMixin, TranslatedAutoSlugifyMixin, Translatab
             null=True,
         )
     )
+    street = model_fields.Street()
+    zip_code = model_fields.ZipCode()
+    place = model_fields.Place()
 
     objects = AllinkTestimonialManager()
 

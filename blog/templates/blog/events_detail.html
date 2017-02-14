@@ -64,6 +64,14 @@
                         {# we wouldn't be here if the text was empty #}
                         {{object.text}}
                     </div>
+
+                    {% if object.events.form_enabled %}
+                        <a href="{% url 'blog:register' slug=object.slug %}" class="btn btn-default toggle-form-modal">
+                            {% trans "Anmelden" %}
+                        </a>
+{#                        {% include 'blog/events_register_detail.html' %}#}
+                    {% endif %}
+
                 </div>{# end .col #}
 
                 <div class="col">

@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.utils.translation import ugettext_lazy as _
-from django.utils.encoding import python_2_unicode_compatible
+
 from django.db import models
 
-from adminsortable.models import SortableMixin
 from adminsortable.fields import SortableForeignKey
 from parler.models import TranslatableModel, TranslatedFields
 from djangocms_text_ckeditor.fields import HTMLField
@@ -17,9 +16,9 @@ from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 
 from allink_core.allink_categories.models import AllinkCategory
 from allink_core.allink_base.models.mixins import AllinkManualEntriesMixin
-from allink_core.allink_base.models import AllinkBaseModelManager
+from allink_core.allink_base.models.managers import AllinkBaseModelManager
 from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin
-from allink_apps.people.models import People
+from allink_core.allink_base.models import model_fields
 from allink_apps.locations.models import Locations
 
 from .managers import AllinkEventsManager
@@ -105,6 +104,11 @@ class Events(Blog):
             blank=True,
             null=True,
         )
+    )
+
+    form_enabled = models.BooleanField(
+        _(u'Event Form enabled'),
+        default=True
     )
 
     event_date = models.DateField(
@@ -211,3 +215,25 @@ class BlogAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin)
 
 class BlogImage(AllinkBaseImage):
     blog = SortableForeignKey(Blog,  verbose_name=_(u'Images'), help_text=_(u'The first image will be used as preview image.'), blank=True, null=True)
+
+
+class EventsRegistration(TimeFramedModel):
+
+    first_name = model_fields.FirstName()
+    last_name = model_fields.LastName()
+    email = model_fields.Email()
+    street = model_fields.Street()
+    zip_code = model_fields.ZipCode()
+    place = model_fields.Place()
+
+    message = model_fields.Message()
+
+    event = models.ForeignKey(Events)
+
+    job = models.TextField(
+        _(u'Education/ Job'),
+        blank=True,
+        null=True
+    )
+
+    # terms_accepted = REFERENCE to AGB

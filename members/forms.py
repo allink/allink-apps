@@ -11,7 +11,7 @@ class MembersAdminForm(TranslatableModelForm):
         fields = ('member_nr', 'first_name', 'last_name', 'email', 'language')
 
 
-class MemberProfileEditForm(forms.ModelForm):
+class MembersProfileEditForm(forms.ModelForm):
 
     class Meta:
         model = Members

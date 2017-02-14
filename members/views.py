@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django.views.generic import TemplateView, FormView
-from django.utils.translation import ugettext_lazy as _
 from django.http import JsonResponse
 from django.template.loader import render_to_string
 try:
@@ -8,7 +7,7 @@ try:
 except ImportError:
     from django.contrib.sites.models import get_current_site
 
-from .forms import MemberProfileEditForm
+from .forms import MembersProfileEditForm
 from .email import send_member_modified_email
 
 
@@ -17,7 +16,7 @@ class MembersIndex(TemplateView):
 
 
 class MembersProfileEdit(FormView):
-    form_class = MemberProfileEditForm
+    form_class = MembersProfileEditForm
     template_name = "members/profile_edit.html"
     success_url = 'members'
 

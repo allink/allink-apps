@@ -1,0 +1,6 @@
+{% load i18n %}
+{% include 'includes/forms/non_field_errors.html' %}
+{{ slug }}
+{% url "blog:register" slug=slug as action %}
+{% trans "Register" as cta %}
+{% include "includes/forms/form.html" with class='event-register-form' action=action cta=cta %}
