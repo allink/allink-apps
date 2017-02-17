@@ -5,8 +5,6 @@ from django.db import models
 from adminsortable.fields import SortableForeignKey
 from parler.models import TranslatableModel, TranslatedFields
 from djangocms_text_ckeditor.fields import HTMLField
-from phonenumber_field.modelfields import PhoneNumberField
-from allink_core.allink_base.models import model_fields
 
 from aldryn_translation_tools.models import (
     TranslatedAutoSlugifyMixin,
@@ -16,10 +14,10 @@ from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 
 from allink_core.allink_base.models.mixins import AllinkManualEntriesMixin
 from allink_core.allink_base.models.managers import AllinkBaseModelManager
-from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin, AllinkContactFieldsModel
+from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin, AllinkContactFieldsModel, AllinkAddressFieldsModel
 
 
-class Locations(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, AllinkContactFieldsModel, AllinkBaseModel):
+class Locations(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, AllinkContactFieldsModel, AllinkAddressFieldsModel, AllinkBaseModel):
     """
     Translations
      feel free to add app specific fields)
@@ -46,9 +44,6 @@ class Locations(TranslationHelperMixin, TranslatedAutoSlugifyMixin, Translatable
             help_text=_(u'Leave blank to auto-generate a unique slug.')
         ),
     )
-    street = model_fields.Street()
-    zip_code = model_fields.ZipCode()
-    place = model_fields.Place()
 
     lat = models.FloatField(
         _(u'Latitude'),

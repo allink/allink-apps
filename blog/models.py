@@ -17,8 +17,7 @@ from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 from allink_core.allink_categories.models import AllinkCategory
 from allink_core.allink_base.models.mixins import AllinkManualEntriesMixin
 from allink_core.allink_base.models.managers import AllinkBaseModelManager
-from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin
-from allink_core.allink_base.models import model_fields
+from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin, AllinkAddressFieldsModel
 from allink_apps.locations.models import Locations
 
 from .managers import AllinkEventsManager
@@ -217,16 +216,25 @@ class BlogImage(AllinkBaseImage):
     blog = SortableForeignKey(Blog,  verbose_name=_(u'Images'), help_text=_(u'The first image will be used as preview image.'), blank=True, null=True)
 
 
-class EventsRegistration(TimeFramedModel):
+class EventsRegistration(AllinkAddressFieldsModel, TimeFramedModel):
 
-    first_name = model_fields.FirstName()
-    last_name = model_fields.LastName()
-    email = model_fields.Email()
-    street = model_fields.Street()
-    zip_code = model_fields.ZipCode()
-    place = model_fields.Place()
-
-    message = model_fields.Message()
+    first_name = models.CharField(
+        _(u'First Name'),
+        max_length=255
+    )
+    last_name = models.CharField(
+        _(u'Last Name'),
+        max_length=255
+    )
+    email = models.EmailField(
+        _(u'Email'),
+        blank=True,
+        null=True
+    )
+    message = models.CharField(
+        _(u'Message'),
+        max_length=255
+    )
 
     event = models.ForeignKey(Events)
 

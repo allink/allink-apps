@@ -10,7 +10,3 @@ class EventsRegistrationForm(AllinkBaseModelForm):
     class Meta:
         model = EventsRegistration
         fields = ('event', 'first_name', 'last_name', 'email', 'street', 'zip_code', 'place',)
-
-    def save(self, commit=True):
-        super(EventsRegistrationForm, self).save(commit=True)
-

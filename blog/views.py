@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from allink_core.allink_base.views import AllinkBasePluginLoadMoreView, AllinkBaseDetailView, AllinkBaseAjaxFormView
-from .models import Blog, BlogAppContentPlugin
+from allink_core.allink_base.views import AllinkBasePluginLoadMoreView, AllinkBaseDetailView, AllinkBaseAjaxCreateView
+from .models import Blog, BlogAppContentPlugin, EventsRegistration
 from .forms import EventsRegistrationForm
 
 class BlogPluginLoadMore(AllinkBasePluginLoadMoreView):
@@ -56,11 +56,7 @@ class BlogDetail(AllinkBaseDetailView):
 
 
 
-class EventRegister(AllinkBaseAjaxFormView):
+class EventRegister(AllinkBaseAjaxCreateView):
     form_class = EventsRegistrationForm
     template_name = 'blog/events_register_detail.html'
-    # template_name = 'blog/events_detail.html'
     success_url = '/'
-
-    # def get_context_data(self, **kwargs):
-    #     super(EventsRegistrationForm, )

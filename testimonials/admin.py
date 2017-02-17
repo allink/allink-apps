@@ -26,7 +26,7 @@ class TestimonialAdmin(AllinkBaseAdmin):
                 'fields': (
                     'active',
                     ('firstname','lastname'),
-                    ('street'),
+                    ('street', 'street_nr'),
                     ('place', 'zip_code'),
                     'lead',
                     'text',

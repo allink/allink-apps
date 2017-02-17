@@ -28,7 +28,7 @@ class LocationsAdmin(AllinkBaseAdmin):
                     'slug',
                     'text',
                     ('zip_code', 'place',),
-                    'street',
+                    ('street', 'street_nr',)
                     ('phone', 'mobile',),
                     ('email', 'fax',),
                     ('lat', 'lng',),

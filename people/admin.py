@@ -33,7 +33,7 @@ class PeopleAdmin(AllinkBaseAdmin):
                     ('email', 'website'),
                     'company_name',
                     ('phone', 'mobile', 'fax'),
-                    ('street'),
+                    ('street', 'street_nr'),
                     ('place', 'zip_code'),
                     'text',
                     'slug',
