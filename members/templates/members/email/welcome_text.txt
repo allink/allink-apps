@@ -8,5 +8,5 @@ Bitte klicken Sie hier, um ein neues Passwort zu setzen:
 Das Passwort wird verschlüsselt abgelegt, die Kommunikation erfolgt über eine sichere Verbindung mittels SSL.
 
 Freundliche Grüsse
-mgfz Team
+MFGZ Team
 {% endblocktrans %}

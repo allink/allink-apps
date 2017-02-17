@@ -24,7 +24,7 @@ def send_welcome_email(request, member):
 
     logourl = 'https://mfgz-allink-stage.eu.aldryn.io/static/images/branding/mfgz-logo-web.svg'
     subject = render_to_string('members/email/welcome_subject.txt')
-    salutation = 'Guten Tag ' + member.full_name
+    salutation = 'Liebes MFGZ-Mitglied'
     text = render_to_string('members/email/welcome_text.txt', {'set_password_link': link})
     r = '<br />'
     text = text.replace('\r\n', r).replace('\n\r', r).replace('\r', r).replace('\n', r)
@@ -43,9 +43,9 @@ def send_welcome_email(request, member):
         'auto_text': None,
         # 'bcc_address': 'message.bcc_address@example.com',
         'from_email': config.default_from_email,
-        # 'from_name': config.default_from_name,
+        'from_name': 'MFGZ',
         'global_merge_vars': [
-            {'name': 'logourl', 'content': logourl},
+            # {'name': 'logourl', 'content': logourl},
             {'name': 'salutation', 'content': salutation},
             {'name': 'text', 'content': text},
         ],
@@ -91,7 +91,7 @@ def send_welcome_email(request, member):
         # 'view_content_link': None
     }
 
-    send_transactional_email(message=message, template_content=template_content)
+    send_transactional_email(message=message, template_name='mfgz_default', template_content=template_content)
     member.log('welcome_email_sent', u'Welcome email sent.')
 
 

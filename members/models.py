@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _, get_language
 from django.contrib.auth.models import User, Group
 from django.conf import settings
 from django.utils.encoding import python_2_unicode_compatible
@@ -39,12 +39,11 @@ class Members(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableMo
 
     email = models.EmailField(
         _(u'Email'),
-        unique=True,
     )
 
     first_name = models.CharField(
         _(u'Firstname'),
-        max_length=255,
+        max_length=30,
         blank=True,
         null=True
     )
@@ -69,7 +68,7 @@ class Members(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableMo
         verbose_name_plural = _('Members')
 
     def __str__(self):
-        return '{}: {} {}'.format(self.member_nr, self.user.first_name, self.user.last_name)
+        return u'{}: {} {}'.format(self.member_nr, self.user.first_name, self.user.last_name)
 
     @property
     def full_name(self):
@@ -77,17 +76,18 @@ class Members(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableMo
 
     def save(self, **kwargs):
         if not self.pk:
-            user = User.objects.create_user(
+            user, created = User.objects.get_or_create(
                 username=self.member_nr,
                 email=self.email,
-                password=settings.MEMBERS_INITIAL_PWD,
+                # password=settings.MEMBERS_INITIAL_PWD,
                 first_name=self.first_name,
                 last_name=self.last_name
             )
-            group = Group.objects.get_or_create(name='Member')
+            group = Group.objects.get_or_create(name='Miglieder')
             user.groups.add(group[0])
+            self.language = get_language()
             self.user = user
-            self.put_to_mailchimp_list()
+            # self.put_to_mailchimp_list()
         else:
             self.user.username = self.member_nr
             self.user.email = self.email
