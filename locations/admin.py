@@ -28,7 +28,7 @@ class LocationsAdmin(AllinkBaseAdmin):
                     'slug',
                     'text',
                     ('zip_code', 'place',),
-                    ('street', 'street_nr',)
+                    ('street', 'street_nr',),
                     ('phone', 'mobile',),
                     ('email', 'fax',),
                     ('lat', 'lng',),
@@ -36,7 +36,8 @@ class LocationsAdmin(AllinkBaseAdmin):
                 ),
             }),
             (_(u'Opening hours'), {
-                'fields': ('is_currently_open', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'),
+                'classes': ('collapse',),
+                'fields': ('is_currently_open', 'mon', 'mon_afternoon', 'tue', 'tue_afternoon', 'wed', 'wed_afternoon', 'thu', 'thu_afternoon', 'fri', 'fri_afternoon', 'sat', 'sat_afternoon', 'sun', 'sun_afternoon'),
                 'description': _(u'Format: "9:00-12:00  13:00-20:00"')
             }),
         )

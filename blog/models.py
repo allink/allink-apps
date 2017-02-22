@@ -6,6 +6,7 @@ from django.db import models
 from adminsortable.fields import SortableForeignKey
 from parler.models import TranslatableModel, TranslatedFields
 from djangocms_text_ckeditor.fields import HTMLField
+from cms.models.fields import PlaceholderField
 from model_utils.models import TimeFramedModel
 
 from aldryn_translation_tools.models import (
@@ -17,10 +18,12 @@ from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 from allink_core.allink_categories.models import AllinkCategory
 from allink_core.allink_base.models.mixins import AllinkManualEntriesMixin
 from allink_core.allink_base.models.managers import AllinkBaseModelManager
-from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin, AllinkAddressFieldsModel
+from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin, AllinkBaseRegistration
+from allink_core.allink_terms.models import AllinkTerms
 from allink_apps.locations.models import Locations
 
 from .managers import AllinkEventsManager
+
 
 #  Blog Parent class
 class Blog(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, TimeFramedModel, AllinkBaseModel):
@@ -57,6 +60,9 @@ class Blog(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel
             null=True,
         )
     )
+
+    header_placeholder = PlaceholderField(u'blog_header', related_name='header_placeholder')
+    content_placeholder = PlaceholderField(u'blog_content', related_name='content_placeholder')
 
     objects = AllinkBaseModelManager()
 
@@ -140,7 +146,6 @@ class Events(Blog):
         return reverse(app, kwargs={'slug': self.slug})
 
 
-
 # APP CONTENT PLUGIN
 class BlogAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin):
     """
@@ -159,89 +164,71 @@ class BlogAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin)
                     'manual entries are selected the category filtering will be ignored.)')
     )
 
-    def get_specific_model(self, category):
-        if category.name == 'News':
-            return News
-        elif category.name == 'Events':
-            return Events
-        else:
-            return Blog
-
-    def get_render_queryset_for_display(self, category=None, category_id=None):
-        """
-         returns all data_model objects distinct to id which are in the selected categories
-         - either use category or category_id to select specific entries
-         -if neither category nor category_id is supplied
-
-        """
-        cat = None
-
-        if self.categories.count() > 0:
-            """
-             category selection
-            """
-            # performance enhancement when only one category
-            # if category_id is supplied, this one should be use
-            # if categories count == 1 this one should be used
-            if category:
-                cat = category
-            elif category_id:
-                cat = AllinkCategory.objects.get(id=category_id)
-            elif self.categories.count == 1:
-                cat = self.categories.select_related().first()
-
-            if cat:
-                # TODO how donwcasting to specific model??
-                queryset = self.get_specific_model(cat).objects.filter_by_category(cat)
-
-            else:
-                # more than one category on the same page
-                # because we have different models in Blog, we also have different instances here
-                queryset = self.data_model.objects.filter_by_categories(self.categories).select_subclasses(News, Events)
-
-            return self._apply_ordering_to_queryset_for_display(queryset)
-
-        else:
-            """
-             manual entries
-             ordering is always like manual entries order (drag n drop)
-             resulting instances are alwas blog entries because we can't downcast and order
-            """
-            queryset = self.manual_entries.select_related()
-
-            return queryset
+    # def get_specific_model(self, category):
+    #     if category.name == 'News':
+    #         return News
+    #     elif category.name == 'Events':
+    #         return Events
+    #     else:
+    #         return Blog
+    #
+    # def get_render_queryset_for_display(self, category=None, category_id=None):
+    #     """
+    #      returns all data_model objects distinct to id which are in the selected categories
+    #      - either use category or category_id to select specific entries
+    #      -if neither category nor category_id is supplied
+    #
+    #     """
+    #     cat = None
+    #
+    #     if self.categories.count() > 0:
+    #         """
+    #          category selection
+    #         """
+    #         # performance enhancement when only one category
+    #         # if category_id is supplied, this one should be use
+    #         # if categories count == 1 this one should be used
+    #         if category:
+    #             cat = category
+    #         elif category_id:
+    #             cat = AllinkCategory.objects.get(id=category_id)
+    #         elif self.categories.count == 1:
+    #             cat = self.categories.select_related().first()
+    #
+    #         if cat:
+    #             # TODO how donwcasting to specific model??
+    #             queryset = self.get_specific_model(cat).objects.filter_by_category(cat)
+    #
+    #         else:
+    #             # more than one category on the same page
+    #             # because we have different models in Blog, we also have different instances here
+    #             queryset = self.data_model.objects.filter_by_categories(self.categories).select_subclasses(News, Events)
+    #
+    #         return self._apply_ordering_to_queryset_for_display(queryset)
+    #
+    #     else:
+    #         """
+    #          manual entries
+    #          ordering is always like manual entries order (drag n drop)
+    #          resulting instances are alwas blog entries because we can't downcast and order
+    #         """
+    #         queryset = self.manual_entries.select_related()
+    #
+    #         return queryset
 
 
 class BlogImage(AllinkBaseImage):
-    blog = SortableForeignKey(Blog,  verbose_name=_(u'Images'), help_text=_(u'The first image will be used as preview image.'), blank=True, null=True)
+    blog = SortableForeignKey(Blog, verbose_name=_(u'Images'), help_text=_(u'The first image will be used as preview image.'), blank=True, null=True)
 
 
-class EventsRegistration(AllinkAddressFieldsModel, TimeFramedModel):
-
-    first_name = models.CharField(
-        _(u'First Name'),
-        max_length=255
-    )
-    last_name = models.CharField(
-        _(u'Last Name'),
-        max_length=255
-    )
-    email = models.EmailField(
-        _(u'Email'),
-        blank=True,
-        null=True
-    )
-    message = models.CharField(
-        _(u'Message'),
-        max_length=255
-    )
+class EventsRegistration(AllinkBaseRegistration):
 
     event = models.ForeignKey(Events)
 
     job = models.TextField(
-        _(u'Education/ Job'),
-        blank=True,
-        null=True
+        _(u'Education/ Job')
     )
-
-    # terms_accepted = REFERENCE to AGB
+    terms = models.ForeignKey(
+        AllinkTerms,
+        verbose_name=_(u'Terms')
+    )

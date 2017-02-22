@@ -4,6 +4,7 @@ from django import forms
 from django.utils.translation import ugettext_lazy as _
 from adminsortable.admin import SortableTabularInline
 from allink_core.allink_base.admin import AllinkBaseAdmin
+from cms.admin.placeholderadmin import PlaceholderAdminMixin
 
 from .models import BlogImage, Blog, News, Events, EventsRegistration
 
@@ -15,7 +16,7 @@ class BlogImageInline(SortableTabularInline):
 
 
 @admin.register(Blog)
-class BlogAdmin(AllinkBaseAdmin):
+class BlogAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
     inlines = [BlogImageInline, ]
 
     def formfield_for_dbfield(self, db_field, **kwargs):
@@ -81,7 +82,7 @@ class NewsAdmin(BlogAdmin):
 
 @admin.register(Events)
 class EventsAdmin(BlogAdmin):
-    list_display = ('title', 'event_date', 'active', )
+    list_display = ('title', 'get_categories', 'event_date', 'active', )
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = (

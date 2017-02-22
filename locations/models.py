@@ -109,7 +109,7 @@ class Locations(TranslationHelperMixin, TranslatedAutoSlugifyMixin, Translatable
         from geopy import geocoders
         g = geocoders.GoogleV3()
         try:
-            place, (lat, lng) = g.geocode((u'%s %s %s, Schweiz' % (self.street, self.zip_code, self.place)).encode("utf-8"))
+            place, (lat, lng) = g.geocode((u'%s %s %s %s, Schweiz' % (self.street, self.street_nr, self.zip_code, self.place)).encode("utf-8"))
         except Exception as e:
             return "%s: %s" % (self, e)
         else:
@@ -201,7 +201,7 @@ class Locations(TranslationHelperMixin, TranslatedAutoSlugifyMixin, Translatable
         Returns google maps link with query of current store
         """
         return (u"https://www.google.ch/maps?q=Chicorée+Mode+AG+%(street)s+%(zip_code)s+%(place)s" % {
-            'street': self.street,
+            'street': u'{} {}'.format(self.street, self.street_nr),
             'zip_code': self.zip_code,
             'place': self.place
         }).replace(' ', '+')

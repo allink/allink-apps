@@ -33,12 +33,12 @@
 
 
 {# Page Title - Required for Softpage (Google Tag Manager) #}
-{% block softpage_title %}{{ object.title }} | {{ request.site.name }}{% endblock softpage_title %}
+{% block softpage_title %}{{ object.title }} | {% if allink_config.default_base_title %}{{ allink_config.default_base_title }}{% else %}{{ request.site.name }}{% endif %}{% endblock softpage_title %}
 
 {% block content %}
     <div class="content-section app-content-plugin detail-view container-enabled">
         <div class="container" data-scroll-spy>
-
+            
             {% if object.preview_image %}
                 <div class="image-container header-image-container">
                     {% include "slider_detail/content.html" with display_title=False title_content=object.title %}
@@ -52,27 +52,29 @@
             </header>
 
             <div class="app-detail-col-container col-2-1">
-
                 <div class="col">
-                    <div class="text-container">
-                        {# optional: lead #}
-                        {% if object.lead %}
-                            <p class="lead">
-                                {{object.lead|striptags}}
-                            </p>
+                    <div class="manage-spacings">
+                        <div class="text-container">
+                            {# optional: lead #}
+                            {% if object.lead %}
+                                <p class="lead">
+                                    {{object.lead|striptags}}
+                                </p>
+                            {% endif %}
+                        </div>
+
+                        {% render_placeholder object.content_placeholder %}
+
+                        {% if object.events.form_enabled %}
+                        <div class="link-container">
+                            <a href="{% url 'blog:register' slug=object.slug %}" class="btn btn-default toggle-form-modal">
+                                {% trans "Anmelden" %}
+                            </a>
+                        </div>
+        {#                        {% include 'blog/events_register_detail.html' %}#}
                         {% endif %}
-                        {# we wouldn't be here if the text was empty #}
-                        {{object.text}}
                     </div>
-
-                    {% if object.events.form_enabled %}
-                        <a href="{% url 'blog:register' slug=object.slug %}" class="btn btn-default toggle-form-modal">
-                            {% trans "Anmelden" %}
-                        </a>
-{#                        {% include 'blog/events_register_detail.html' %}#}
-                    {% endif %}
-
-                </div>{# end .col #}
+                </div>
 
                 <div class="col">
                     <div class="manage-spacings">
@@ -89,13 +91,17 @@
                                 </h2>
                                 <p>
                                     {{object.events.location.title}}<br>
-                                    {{object.events.location.street}}<br>
-                                    {{object.events.location.zip_code}} {{object.events.location.place}}<br>
+                                    {% if object.events.location.street %}{{object.events.location.street}} {% if object.events.location.street_nr %}{{object.events.location.street_nr}}{% endif %}<br>{% endif %}
+                                    {% if object.events.location.zip_code %}{{object.events.location.zip_code}}{% endif %} {% if object.events.location.zip_code %}{{object.events.location.place}}<br>{% endif %}
                                 </p>
                             {% endif %}
+                    {% if object.events.form_enabled %}
+                        <a href="{% url 'blog:register' slug=object.slug %}" class="btn btn-default toggle-form-modal">
+                            {% trans "Anmelden" %}
+                        </a>
+                    {% endif %}
                     </div>
                 </div>{# end .col #}
-
             </div>{# end .col-container #}
         </div>
     </div>

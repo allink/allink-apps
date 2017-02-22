@@ -1,8 +1,16 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from allink_core.allink_base.views import AllinkBasePluginLoadMoreView, AllinkBaseDetailView, AllinkBaseAjaxCreateView
-from .models import Blog, BlogAppContentPlugin, EventsRegistration
+
+from allink_core.allink_base.views import AllinkBasePluginLoadMoreView, AllinkBaseDetailView, AllinkBaseCreateView
+from allink_core.allink_categories.models import AllinkCategory
+from allink_core.allink_mandrill.config import MandrillConfig
+from allink_core.allink_terms.models import AllinkTerms
+
+from .models import Blog, BlogAppContentPlugin, EventsRegistration, Events
 from .forms import EventsRegistrationForm
+from .email import send_registration_confirmation_email, send_registration_email
+
+config = MandrillConfig()
 
 class BlogPluginLoadMore(AllinkBasePluginLoadMoreView):
     model = Blog
@@ -28,35 +36,32 @@ class BlogDetail(AllinkBaseDetailView):
         ))
         return names
 
-    def get_context_data(self, **kwargs):
-        context = super(BlogDetail, self).get_context_data(**kwargs)
 
-        if hasattr(self.object, 'events'):
-            form = EventsRegistrationForm()
-            context.update({
-                'form': form
-            })
+class EventsRegistrationView(AllinkBaseCreateView):
+    model = EventsRegistration
+    form_class = EventsRegistrationForm
+    template_name = 'blog/registration_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(AllinkBaseCreateView, self).get_context_data(**kwargs)
+        context.update({
+            'slug': self.kwargs.get('slug', None)
+        })
         return context
 
-    # def form_valid(self, form):
-    #     if self.request.is_ajax():
-    #         return JsonResponse({}, status=200)
-    #     else:
-    #         return super(BlogDetail, self).form_valid()
-    #
-    #
-    #
-    # def form_invalid(self, form):
-    #     return JsonResponse({
-    #         'html': render_to_string(
-    #             self.get_template_names(),
-    #             self.get_context_data(form=form),
-    #             request=self.request)
-    #     }, status=400)
+    def get_initial(self):
+        self.event = Events.objects.get(translations__slug=self.kwargs.get('slug', None))
+        initial = super(EventsRegistrationView, self).get_initial()
+        initial = initial.copy()
+        initial['event'] = self.event
+        initial['terms'] = AllinkTerms.objects.get_published()
+        return initial
 
+    def form_valid(self, form):
+        response = super(EventsRegistrationView, self).form_valid(form)
+        self.send_mail()
+        return response
 
-
-class EventRegister(AllinkBaseAjaxCreateView):
-    form_class = EventsRegistrationForm
-    template_name = 'blog/events_register_detail.html'
-    success_url = '/'
+    def send_mail(self):
+        send_registration_email(self.get_form(), self.event)
+        send_registration_confirmation_email(self.get_form(), self.event)

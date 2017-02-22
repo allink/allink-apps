@@ -38,7 +38,7 @@
                                                 + '<strong>{{object.title}}</strong><br>'
                                             {% endif %}
                                             {% if object.street %}
-                                                + '{{object.street}}<br>'
+                                                + '{{object.street}} {{object.street_nr}}<br>'
                                             {% endif %}
                                             {% if object.zip_code or object.place %}
                                                 + '{{object.zip_code}} {{object.place}}<br>'

@@ -33,7 +33,7 @@
 
 
 {# Page Title - Required for Softpage (Google Tag Manager) #}
-{% block softpage_title %}{{ object.title }} | {{ request.site.name }}{% endblock softpage_title %}
+{% block softpage_title %}{{ object.title }} | {% if allink_config.default_base_title %}{{ allink_config.default_base_title }}{% else %}{{ request.site.name }}{% endif %}{% endblock softpage_title %}
 
 {% block content %}
     <div class="content-section app-content-plugin detail-view container-enabled">
@@ -54,15 +54,17 @@
             <div class="app-detail-col-container col-2-1">
 
                 <div class="col">
-                    <div class="text-container">
-                        {# optional: lead #}
-                        {% if object.lead %}
-                            <p class="lead">
-                                {{object.lead|striptags}}
-                            </p>
-                        {% endif %}
-                        {# we wouldn't be here if the text was empty #}
-                        {{object.text}}
+                    <div class="manage-spacings">
+                        <div class="text-container">
+                            {# optional: lead #}
+                            {% if object.lead %}
+                                <p class="lead">
+                                    {{object.lead|striptags}}
+                                </p>
+                            {% endif %}
+                            {# we wouldn't be here if the text was empty #}
+                        </div>
+                        {% render_placeholder object.content_placeholder %}
                     </div>
                 </div>{# end .col #}
 
