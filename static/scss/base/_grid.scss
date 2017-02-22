@@ -1,0 +1,59 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Breakpoints
+
+*/
+
+// Extra small screen / phone
+$screen-xs:                  0px;
+$screen-xs-min:              $screen-xs;
+$screen-phone:               $screen-xs-min;
+
+// Small screen / tablet
+$screen-sm:                  576px;
+$screen-sm-min:              $screen-sm;
+$screen-tablet:              $screen-sm-min;
+
+// Medium screen / desktop
+$screen-md:                  768px;
+$screen-md-min:              $screen-md;
+$screen-desktop:             $screen-md-min;
+
+// Large screen / wide desktop
+$screen-lg:                  992px;
+$screen-lg-min:              $screen-lg;
+$screen-lg-desktop:          $screen-lg-min;
+
+// Extra Large screen / wide desktop
+$screen-xl:                  1200px;
+$screen-xl-min:              $screen-xl;
+$screen-xl-desktop:          $screen-xl-min;
+
+// Extra Large screen / wide desktop
+$screen-xxl:                  1700px;
+$screen-xxl-min:              $screen-xxl;
+$screen-xxl-desktop:          $screen-xxl-min;
+
+// So media queries don't overlap when required, provide a maximum
+$screen-xs-max:              ($screen-sm-min - 1);
+$screen-sm-max:              ($screen-md-min - 1);
+$screen-md-max:              ($screen-lg-min - 1);
+$screen-lg-max:              ($screen-xl-min - 1);
+$screen-xl-max:              ($screen-xxl-min - 1);
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Grid (Bootstrap)
+
+*/
+
+//** Number of columns in the grid.
+$grid-columns:               24;
+//** Padding between columns. Gets divided in half for the left and right.
+$grid-gutter-width:          30px;
+// Navbar collapse
+//** Point at which the navbar becomes uncollapsed.
+$grid-float-breakpoint:      1024px;
+//** Point at which the navbar begins collapsing.
+$grid-float-breakpoint-max:  ($grid-float-breakpoint - 1);

@@ -1,0 +1,44 @@
+.site-header {
+
+    position: relative;
+    z-index: z("site-header");
+    background: rgba($site-header-bg-color,$site-header-bg-color-opacity);
+
+    // optional: fix header
+    @if $site-header-fixed-enabled == true {
+        position: fixed;
+        width: 100%;
+        @include set-site-header-height();
+    }
+
+    // optional: change height in compact mode
+    @if $site-header-compact-mode-enabled == true {
+        transition: $site-header-compact-mode-transition;
+        &.compact-mode {
+            @include set-site-header-compact-mode-height();
+        }
+    }
+
+    .container {
+        @include container-fixed();
+        @include max-width();
+        height: 100%;
+    }
+}
+
+.site-header-buffer {
+    @if $site-header-fixed-enabled == true and $site-header-fixed-use-buffer == true {
+        background: $site-header-fixed-buffer-bg-color;
+        @include set-site-header-height();
+    }
+    @else {
+        display: none;
+    }
+}
+
+.navbar-brand {
+    height: auto;
+    > a {
+        text-decoration: none;
+    }
+}

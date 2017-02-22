@@ -1,0 +1,129 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Django CMS specific adjustments
+
+Position when logged in. This prevents overlapping with the CMS toolbar.
+
+*/
+
+html.cms-ready {
+    // collapsed
+    .tingle-modal {
+        top: $cms-toolbar-height-collapsed;
+        @media (min-width:$screen-sm) {
+            .tingle-modal__close {
+                top: $cms-toolbar-height-collapsed;
+            }
+        }
+    }
+    // toolbar expanded
+    &.cms-toolbar-expanded {
+        .tingle-modal {
+            top: $cms-toolbar-height-expanded;
+        }
+        @media (min-width:$screen-sm) {
+            .tingle-modal__close {
+                top: $cms-toolbar-height-expanded;
+            }
+        }
+    }
+}
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Global Modal Styles
+
+*/
+
+.tingle-modal {
+    // background: rgba($modal-default-overlay-bg, $modal-default-overlay-opacity);
+    background: none;
+    cursor: pointer;
+    transition: $modal-default-overlay-transition;
+    z-index: z("modal");
+    @media (max-width: $screen-xs-max) {
+        -webkit-overflow-scrolling: touch;
+    }
+    h1 {
+        font-size: inherit;
+    }
+}
+
+.tingle-modal-box {
+    transition: none;
+    border-radius: 0;
+    background-color: $modal-default-content-bg;
+    @media (min-width:$screen-md) {
+        width: 90%;
+    }
+    @media (min-width:$screen-xl) {
+        max-width: $max-width-xl;
+    }
+    @media (min-width:$screen-xxl) {
+        max-width: $max-width-xxl;
+    }
+}
+
+.tingle-modal__close {
+    transition: none;
+    background: transparent;
+    width: $modal-default-close-btn-size;
+    height: $modal-default-close-btn-size;
+    &:hover,
+    &:focus,
+    &:active {
+        &:before {
+            color: $modal-default-close-icon-color-hover;
+        }
+    }
+    &:before {
+        content: $modal-default-close-icon;
+        color: $modal-default-close-icon-color;
+        font-size: $modal-default-close-icon-size;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        transition: $modal-default-close-icon-transition;
+        @include icomoon();
+    }
+    > span {
+        text-indent: -9999px;
+        display: inline-block;
+    }
+    @media (max-width: $screen-xs-max) {
+        transform: translate3d(0,0,10px);
+        position: absolute !important;
+    }
+}
+
+body.tingle-enabled {
+    @media (max-width: $screen-xs-max) {
+        .site-header,
+        .site-content,
+        .site-footer,
+        .to-the-top {
+            opacity: 0;
+        }
+    }
+}
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Print Settings for modal
+
+*/
+
+body.tingle-enabled {
+    @media print {
+        height: auto;
+        margin: 0;
+        overflow: visible;
+        .site-header,
+        .main-blog-container,
+        .site-footer {
+            display: none;
+        }
+    }
+}

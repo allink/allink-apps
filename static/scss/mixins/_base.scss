@@ -1,0 +1,18 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+First of all, get the default settings
+
+This way we can avoid to have undefined variables
+
+*/
+
+@import '~allink-core-static/scss/mixins/base';
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Project Specific
+
+*/
+
+@import 'loader';

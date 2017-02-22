@@ -1,0 +1,126 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot');
+  src:  url('fonts/icomoon.eot#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf') format('truetype'),
+    url('fonts/icomoon.woff') format('woff'),
+    url('fonts/icomoon.svg#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icomoon-"], [class*=" icomoon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icomoon-linkedin:before {
+  content: "\e607";
+}
+.icomoon-xing:before {
+  content: "\e608";
+}
+.icomoon-google-plus:before {
+  content: "\e600";
+}
+.icomoon-youtube-small:before {
+  content: "\e601";
+}
+.icomoon-twitter:before {
+  content: "\e605";
+}
+.icomoon-plus:before {
+  content: "\e60d";
+}
+.icomoon-minus:before {
+  content: "\e60c";
+}
+.icomoon-calendar:before {
+  content: "\e60e";
+}
+.icomoon-error:before {
+  content: "\e000";
+}
+.icomoon-warning:before {
+  content: "\e002";
+}
+.icomoon-pin:before {
+  content: "\e052";
+}
+.icomoon-download:before {
+  content: "\e0ff";
+}
+.icomoon-upload:before {
+  content: "\e100";
+}
+.icomoon-check:before {
+  content: "\e206";
+}
+.icomoon-close:before {
+  content: "\e209";
+}
+.icomoon-help:before {
+  content: "\e29b";
+}
+.icomoon-info:before {
+  content: "\e2a2";
+}
+.icomoon-search:before {
+  content: "\e2ca";
+}
+.icomoon-phone:before {
+  content: "\e03f";
+}
+.icomoon-letter:before {
+  content: "\e04c";
+}
+.icomoon-arrow-down:before {
+  content: "\e10f";
+}
+.icomoon-arrow-left2:before {
+  content: "\e110";
+}
+.icomoon-arrow-right:before {
+  content: "\e111";
+}
+.icomoon-arrow-up:before {
+  content: "\e112";
+}
+.icomoon-pinterest:before {
+  content: "\e907";
+}
+.icomoon-spotify:before {
+  content: "\e908";
+}
+.icomoon-vimeo2:before {
+  content: "\e909";
+}
+.icomoon-facebook-official:before {
+  content: "\e900";
+}
+.icomoon-instagram:before {
+  content: "\e901";
+}
+.icomoon-google-plus2:before {
+  content: "\e90b";
+}
+.icomoon-snapchat:before {
+  content: "\e90a";
+}
+.icomoon-tripadvisor:before {
+  content: "\e902";
+}
+.icomoon-folder-open:before {
+  content: "\e90c";
+}
+

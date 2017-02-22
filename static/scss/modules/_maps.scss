@@ -1,0 +1,12 @@
+.map-info-box {
+    padding: $grid-gutter-width/2;
+    @include text-default();
+    @media (min-width:$screen-md) {
+        padding: $grid-gutter-width;
+    }
+    .block {
+        & + .block {
+            margin-top: $grid-gutter-width/2;
+        }
+    }
+}

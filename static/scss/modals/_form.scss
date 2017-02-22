@@ -1,0 +1,56 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Form Modal
+
+*/
+
+.tingle-modal.form-modal {
+    overflow-x: hidden;
+
+    .tingle-modal-box {
+        top: 0;
+        width: 100%;
+        @media (min-width:$screen-md) {
+            top: $grid-gutter-width;
+            margin-bottom: $grid-gutter-width;
+            max-width: 700px;
+        }
+    }
+
+    .tingle-modal-box__content {
+        padding: $grid-gutter-width/2;
+        padding-top: $grid-gutter-width*2;
+        @media (min-width:$screen-sm) {
+            padding: $grid-gutter-width;
+        }
+    }
+
+    .tingle-modal__close {
+        position: fixed;
+        right: 20px; top: 20px;
+        line-height: 1;
+        color: green;
+
+        &:focus {
+            outline: none;
+        }
+
+        @media (max-width: $screen-sm-max) {
+            left: auto;
+            right: 0; top: 0;
+        }
+
+        @media (min-width: $screen-md) {
+            right: 0; top: 0;
+            width: 62px;
+            height: 60px;
+            transform: translate(0,0);
+            color: green;
+            border-radius: 0;
+        }
+    }
+
+    .form-modal-container {
+        margin-top: $grid-gutter-width;
+    }
+}

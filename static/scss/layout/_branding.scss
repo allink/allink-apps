@@ -1,0 +1,39 @@
+.navbar-brand {
+    position: absolute;
+    top: 50%;
+    left: auto;
+    transform: translate(0,-50%);
+    padding: 0;
+    z-index: z("above");
+    > a {
+        display: block;
+        > img {
+            height: $brand-logo-height-xs;
+            width: auto;
+            transition: $brand-logo-compact-mode-transition;
+            @media (min-width:$screen-md) {
+                height: $brand-logo-height-md;
+            }
+            @media (min-width:$screen-xl) {
+                height: $brand-logo-height-xl;
+            }
+            @media (min-width:$screen-xxl) {
+                height: $brand-logo-height-xxl;
+            }
+            @if $site-header-compact-mode-enabled == true {
+                .compact-mode & {
+                    height: $brand-logo-compact-mode-height-xs;
+                    @media (min-width:$screen-md) {
+                        height: $brand-logo-compact-mode-height-md;
+                    }
+                    @media (min-width:$screen-xl) {
+                        height: $brand-logo-compact-mode-height-xl;
+                    }
+                    @media (min-width:$screen-xxl) {
+                        height: $brand-logo-compact-mode-height-xxl;
+                    }
+                }
+            }
+        }
+    }
+}

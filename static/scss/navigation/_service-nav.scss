@@ -1,0 +1,19 @@
+.secondary-nav {
+    a {
+        @include nav-primary-font();
+        &,
+        &:link,
+        &:visited,
+        &:hover,
+        &:active,
+        &:focus {
+            text-decoration: none;
+        }
+    }
+    li {
+        margin-right: 1.5em;
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}

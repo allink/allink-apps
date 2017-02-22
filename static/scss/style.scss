@@ -1,0 +1,170 @@
+@charset 'utf-8';
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Functions
+
+===
+
+First thing we have to include, because we need them all over the place.
+
+Note: This import gets the allink_core_static functions, too.
+
+*/
+
+@import 'base/functions';
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Bootstrap
+
+The following import does the following:
+
+1. Import default Bootstrap variables
+2. Import OUR project specific variables (overwriting the Bootstrap variables)
+3. Import some Bootstrap modules
+
+*/
+
+@import 'bootstrap/bootstrap';
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+NPM Packages
+
+*/
+
+@import '~allink-core-static/scss/base/npm-packages';
+
+// project specific NPM packages belong here...
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Icon Font
+
+*/
+
+@import '../../static/icomoon/style.css';
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+allink Core (mixins)
+
+===
+
+Note: This import gets the allink_core_static mixins, too.
+
+*/
+
+@import 'mixins/base';
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Forms
+
+===
+
+Form element styles depend on a specific markup, which is defined
+in the allink Core.
+
+That's the reason why we predefined styles than can be styled using variables.
+
+Should the provided variables not be enough, feel free to create your
+on files in the ./form folder (ideally named analoguely to the files in the core repo)
+
+*/
+
+@import '~allink-core-static/scss/form/base';
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+allink Core (content section and allink plugins)
+
+===
+
+IMPORTANT: These files contain setting variables that can be set
+in our _variables.scss
+
+Should there be a variable missing that might be of interest to all
+projects, add it to the 'allink_core_static' repo and define a variable and
+set a default value.
+
+If it's very project specific, create a project version of each file (ideally named
+analoguely to the files in the core repo) and import it AFTER the following imports.
+
+*/
+
+@import '~allink-core-static/scss/content-sections/base';
+@import '~allink-core-static/scss/plugins/base';
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+allink default templates (allink app content plugin)
+
+===
+
+These styles make our app content plugin work out of the box.
+
+*/
+
+@import '~allink-core-static/scss/plugin-templates/base';
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+allink modules
+
+*/
+
+@import '~allink-core-static/scss/modules/base';
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+allink Styleguide
+
+*/
+
+@import '~allink-core-static/scss/base/styleguide';
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+allink Apps
+
+===
+
+The plugin versions of our core apps are based on the allink_base -> app content plugin.
+
+These plugins have additional custom fields and varying detail views that might need extra
+styling.
+
+*/
+
+// example
+@import '../../allink_apps/people/static/scss/people';
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Home-made
+
+Pure Project Specificness happens here... Happy styling!
+
+*/
+
+@import 'elements/base';
+@import 'form/base';
+@import 'layout/base';
+@import 'media/base';
+@import 'misc/base';
+@import 'modals/base';
+@import 'modules/base';
+@import 'navigation/base';
+@import 'typography/base';

@@ -1,0 +1,1463 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+First of all, get the default settings
+
+This way we can avoid to have undefined variables
+
+*/
+
+// 1. get grid variables (IMPORTANT: required by core variables)
+@import 'grid';
+// 2. get core variables
+@import '~allink-core-static/scss/base/variables';
+// 3. get color variables (IMPORTANT: Have to be included AFTER the CORE variables)
+@import 'colors';
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Container
+
+*/
+
+$max-width-xl:                  1300px;
+$max-width-xxl:                 1500px;
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Default Transition
+
+This is an attempt of creating the same feel across the site by
+using the same transition duration.
+
+Note: In some cases it makes sense to define different transition settings
+
+*/
+
+$default-transition-property:       all;
+$default-transition-duration:       150ms;
+$default-transition-timing:         ease-in-out;
+$default-transition:                $default-transition-property $default-transition-duration $default-transition-timing;
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Body
+
+*/
+
+$body-bg:                   #fff; // background
+$body-color:                $gray-dark; // text
+$body-color-print:          #000;
+
+// inverted text on dark background
+$body-inverted-color:         $white;
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Links (default)
+
+*/
+
+$link-transition:           $default-transition;
+$link-color:                $brand-primary;
+$link-decoration:           underline;
+$link-color-hover:          lighten($link-color, 15%);
+$link-decoration-hover:     underline;
+
+// inverted text on dark background
+$link-inverted-color:         $white;
+$link-inverted-color-hover:   $white;
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Selected Text
+
+*/
+
+$selection-bg-color:        $brand-primary;
+$selection-color:           get-black-or-white-contrast-color($brand-primary);
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Skip links
+
+*/
+
+$skip-link-bg:              $brand-primary;
+$skip-link-color:           get-black-or-white-contrast-color($brand-primary);
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Alerts
+
+*/
+
+$state-success-text:        #3c763d;
+$state-success-bg:          #dff0d8;
+$state-success-border:      darken(adjust-hue($state-success-bg, -10), 5%);
+
+$state-info-text:           #31708f;
+$state-info-bg:             #d9edf7;
+$state-info-border:         darken(adjust-hue($state-info-bg, -10), 7%);
+
+$state-warning-text:        #8a6d3b;
+$state-warning-bg:          #fcf8e3;
+$state-warning-border:      darken(adjust-hue($state-warning-bg, -10), 5%);
+
+$state-danger-text:         #a94442;
+$state-danger-bg:           #f2dede;
+$state-danger-border:       darken(adjust-hue($state-danger-bg, -10), 5%);
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Typography
+
+Notes:
+
+- The root (default) font-size of a browser is 16px (unless the user
+  changed it in the browser's settings).
+- By setting the font-size of the <html> to 62.5%, the root font-size of the <html> is now 10px. Easier to do math.
+
+This results in:
+
+1rem ~= 10px, 1.6rem ~= 16px, ...
+
+*/
+
+// defining font families
+$font-family-primary:                   'Interstate Light', Helvetica, Arial, sans-serif;
+$font-family-secondary:                 'Interstate Extra Light', Helvetica, Arial, sans-serif;
+$font-family-bold:                      'Interstate Light', Helvetica, Arial, sans-serif;
+$font-family-italic:                    'Interstate Light', Helvetica, Arial, sans-serif;
+
+// breakpoints used for font-sizes
+$font-size-breakpoints: (
+    // 'xs' doesn't exist. We use 'null' instead
+    sm:  $screen-sm,
+    md:  $screen-md,
+    lg:  $screen-lg,
+    xl:  $screen-xl,
+    xxl: $screen-xxl,
+);
+
+// the default font settings (body)
+$text-default-font-sizes: (
+    null: (1.6rem, 1.3),
+    md: 1.8rem,
+    xxl: 2.2rem,
+);
+$text-default-text-transform:           none;
+$text-default-letter-spacing:           0;
+$text-default-antialiased-enabled:      true;
+$text-default-font-weight:              normal;
+$text-default-font-family:              $font-family-primary;
+
+// paragraph: default
+$p-default-font-sizes:                  $text-default-font-sizes;
+$p-default-text-transform:              $text-default-text-transform;
+$p-default-letter-spacing:              $text-default-letter-spacing;
+$p-default-antialiased-enabled:         $text-default-antialiased-enabled;
+$p-default-font-weight:                 $text-default-font-weight;
+$p-default-font-family:                 $font-family-primary;
+
+// paragraph: small
+$p-small-font-sizes: (
+    null: (1.2rem, 1.2),
+    md: 1.4rem,
+    xxl: 1.8rem,
+);
+$p-small-text-transform:                none;
+$p-small-letter-spacing:                0;
+$p-small-antialiased-enabled:           true;
+$p-small-font-weight:                   normal;
+$p-small-font-family:                   $font-family-primary;
+
+// paragraph: lead
+$p-lead-font-sizes: (
+    null: (2.3rem, 1.1),
+    md: 3rem,
+    xl: 3.4rem,
+    xxl: 3.8rem,
+);
+$p-lead-text-transform:                 none;
+$p-lead-letter-spacing:                 0;
+$p-lead-antialiased-enabled:            true;
+$p-lead-font-weight:                    normal;
+$p-lead-font-family:                    $font-family-secondary;
+
+// button: default
+$btn-default-font-sizes:                $p-default-font-sizes;
+$btn-default-text-transform:            uppercase;
+$btn-default-letter-spacing:            0;
+$btn-default-antialiased-enabled:       true;
+$btn-default-font-weight:               normal;
+$btn-default-font-family:               $font-family-primary;
+
+// button: small
+$btn-small-font-sizes:                  $p-small-font-sizes;
+$btn-small-text-transform:              $btn-default-text-transform;
+$btn-small-letter-spacing:              $btn-default-letter-spacing;
+$btn-small-antialiased-enabled:         true;
+$btn-small-font-weight:                 normal;
+$btn-small-font-family:                 $font-family-primary;
+
+// button: large
+$btn-large-font-sizes:                  $p-lead-font-sizes;
+$btn-large-text-transform:              $btn-default-text-transform;
+$btn-large-letter-spacing:              $btn-default-letter-spacing;
+$btn-large-antialiased-enabled:         true;
+$btn-large-font-weight:                 normal;
+$btn-large-font-family:                 $font-family-primary;
+
+// input fields (text, select, textarea)
+$input-font-sizes:                      $text-default-font-sizes;
+$input-text-transform:                  $text-default-text-transform;
+$input-letter-spacing:                  $text-default-letter-spacing;
+$input-antialiased-enabled:             $text-default-antialiased-enabled;
+$input-font-weight:                     $text-default-font-weight;
+$input-font-family:                     $font-family-primary;
+
+// nav: primary
+$nav-primary-font-sizes:                $text-default-font-sizes;
+$nav-primary-text-transform:            uppercase;
+$nav-primary-letter-spacing:            0;
+$nav-primary-antialiased-enabled:       true;
+$nav-primary-font-weight:               normal;
+$nav-primary-font-family:               $font-family-primary;
+
+// display 1
+$display-1-font-sizes: (
+    null: (5rem, 1.1),
+    md: 8rem,
+    xl: 12rem,
+    xxl: 14rem,
+);
+$display-1-text-transform:              uppercase;
+$display-1-letter-spacing:              0;
+$display-1-antialiased-enabled:         true;
+$display-1-font-weight:                 normal;
+$display-1-font-family:                 $font-family-secondary;
+
+// h1
+$h1-font-sizes: (
+    null: (2.3rem, 1.2),
+    md: 3rem,
+    xl: 3.4rem,
+    xxl: 3.8rem,
+);
+$h1-text-transform:                     uppercase;
+$h1-letter-spacing:                     0;
+$h1-antialiased-enabled:                true;
+$h1-font-weight:                        normal;
+$h1-font-family:                        $font-family-primary;
+
+// h2
+$h2-font-sizes:                         $text-default-font-sizes;
+$h2-text-transform:                     uppercase;
+$h2-letter-spacing:                     0;
+$h2-antialiased-enabled:                true;
+$h2-font-weight:                        normal;
+$h2-font-family:                        $font-family-primary;
+
+// h3
+$h3-font-sizes: $p-default-font-sizes;
+$h3-text-transform:                     uppercase;
+$h3-letter-spacing:                     0;
+$h3-antialiased-enabled:                true;
+$h3-font-weight:                        normal;
+$h3-font-family:                        $font-family-primary;
+
+// h4
+$h4-font-sizes: $p-default-font-sizes;
+$h4-text-transform:                     uppercase;
+$h4-letter-spacing:                     0;
+$h4-antialiased-enabled:                true;
+$h4-font-weight:                        normal;
+$h4-font-family:                        $font-family-primary;
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Heading Colors
+
+*/
+
+$h1-color:                   black;
+$h1-color-inverted:          $body-inverted-color;
+$h2-color:                   black;
+$h2-color-inverted:          $body-inverted-color;
+$h3-color:                   black;
+$h3-color-inverted:          $body-inverted-color;
+$h4-color:                   black;
+$h4-color-inverted:          $body-inverted-color;
+$display-1-color:            black;
+$display-1-color-inverted:   $body-inverted-color;
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Text Container (text structure withing '.text-container')
+
+*/
+
+// for paragraphs, lists, tables and images (first and last item will be treated automatically)
+$text-container-element-default-margin-xs:  10px 0;
+$text-container-element-default-margin-md:  15px 0;
+$text-container-element-default-margin-xl:  15px 0;
+
+// p.lead
+$p-lead-margin-xs:                          20px 0;
+$p-lead-margin-md:                          30px 0;
+$p-lead-margin-xl:                          30px 0;
+
+// h1
+$text-container-h1-margin-xs:               $grid-gutter-width 0 $grid-gutter-width/2 0;
+$text-container-h1-margin-md:               $grid-gutter-width 0 $grid-gutter-width/2 0;
+$text-container-h1-margin-xl:               $grid-gutter-width 0 $grid-gutter-width/2 0;
+
+// h2
+$text-container-h2-margin-xs:               $grid-gutter-width 0 $grid-gutter-width/2 0;
+$text-container-h2-margin-md:               $grid-gutter-width 0 $grid-gutter-width/2 0;
+$text-container-h2-margin-xl:               $grid-gutter-width 0 $grid-gutter-width/2 0;
+
+// h3
+$text-container-h3-margin-xs:               $grid-gutter-width 0 $grid-gutter-width/2 0;
+$text-container-h3-margin-md:               $grid-gutter-width 0 $grid-gutter-width/2 0;
+$text-container-h3-margin-xl:               $grid-gutter-width 0 $grid-gutter-width/2 0;
+
+// h4
+$text-container-h4-margin-xs:               $grid-gutter-width 0 $grid-gutter-width/2 0;
+$text-container-h4-margin-md:               $grid-gutter-width 0 $grid-gutter-width/2 0;
+$text-container-h4-margin-xl:               $grid-gutter-width 0 $grid-gutter-width/2 0;
+
+// display-1
+$text-container-display-1-margin-xs:        $grid-gutter-width 0 $grid-gutter-width/2 0;
+$text-container-display-1-margin-md:        $grid-gutter-width 0 $grid-gutter-width/2 0;
+$text-container-display-1-margin-xl:        $grid-gutter-width 0 $grid-gutter-width/2 0;
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Lists (withing .text-container)
+
+Make sure to define this list AFTER the typography (especially font size
+and line height) is defined. Otherwise you will have to readjust it.
+
+*/
+
+// general
+$list-padding-xs: 30px;
+$list-padding-md: 40px;
+// ul
+$unordered-list-item-icon: '\e60c';
+$unordered-list-item-icon-size: 0.3em;
+// x position of icon/number (might need some fine tuning, depending on the icon and icon size)
+$unordered-list-item-icon-spacing-top-xs: 10px;
+$unordered-list-item-icon-spacing-top-md: 12px;
+$unordered-list-item-icon-spacing-left-xs: 14px;
+$unordered-list-item-icon-spacing-left-md: 14px;
+$ordered-list-item-icon-spacing-left-xs: 10px;
+$ordered-list-item-icon-spacing-left-md: 10px;
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Header
+
+*/
+
+$site-header-bg-color:                         $gray-lighter;
+$site-header-bg-color-opacity:                 1;
+$site-header-fixed-enabled:                    true; //boolean
+$site-header-fixed-use-buffer:                 true; //boolean
+$site-header-fixed-buffer-bg-color:            $gray-lighter;
+$site-header-height-xs:                        70px;
+$site-header-height-md:                        90px;
+$site-header-height-xl:                        90px;
+$site-header-height-xxl:                       90px;
+$site-header-compact-mode-enabled:             false; //boolean
+$site-header-compact-mode-transition:          all 300ms ease-in-out;
+$site-header-compact-mode-height-xs:           70px;
+$site-header-compact-mode-height-md:           90px;
+$site-header-compact-mode-height-xl:           90px;
+$site-header-compact-mode-height-xxl:          90px;
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Branding
+
+Important: The values are closely linked to the header height.
+
+*/
+
+$brand-logo-height-xs:                         40px;
+$brand-logo-height-md:                         60px;
+$brand-logo-height-xl:                         60px;
+$brand-logo-height-xxl:                        60px;
+
+
+// COMPACT MODE - Requires the following:
+// 1. The '.site-header' element needs an extra class '.compact-mode-enabled' to trigger the compact header using JavaScript
+// 2. '$site-header-compact-mode-enabled' has to be set to 'true'
+$brand-logo-compact-mode-height-xs:            55px;
+$brand-logo-compact-mode-height-md:            55px;
+$brand-logo-compact-mode-height-xl:            55px;
+$brand-logo-compact-mode-height-xxl:           85px;
+
+// it is recommended to be the same as $site-header-compact-mode-transition
+$brand-logo-compact-mode-transition:           $site-header-compact-mode-transition;
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Footer
+
+*/
+
+$site-footer-bg-color:                         $gray-dark;
+$site-footer-fixed-enabled:                    false; //boolean
+// the following settings only matter if $site-footer-fixed-enabled is set to 'true'
+$site-footer-fixed-height-xs:                  240px;
+$site-footer-fixed-height-md:                  230px;
+$site-footer-fixed-height-xl:                  230px;
+// gap between footer elements
+$site-footer-elements-spacing-xs:              $grid-gutter-width;
+$site-footer-elements-spacing-md:              $grid-gutter-width;
+$site-footer-elements-spacing-xl:              $grid-gutter-width*2;
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Scroll Spy Settings
+
+All elements with the [data-scroll-spy] attribute are being watched and
+and animation/transition can be applied.
+
+*/
+
+$scroll-spy-default-transition: opacity 800ms ease-in-out;
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Z-Index map
+
+When ever you use a z-index ANYWHERE (especially the core elements
+such as .site-header, .site-content, ..) in a stylesheet, add it to this list.
+This gives us an overview of all set z-indexes across the site.
+
+Usage:
+
+z-index: z("to-the-top");
+
+Note: Requires the z() function
+
+*/
+
+$z-layers: (
+    "site-header":                10,
+    "site-content":                5,
+
+    "site-overlay":              900,
+    "modal":                    1000,
+    "to-the-top":                 30,
+
+    "below":                      -1,
+    "below-all":             -100000,
+    "default":                     1,
+    "above":                       2,
+    "above-all":          2147483647, // highest possible z-index
+);
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Content =Section '.content-section'
+
+VERTICAL spacings of plugin content within '.site-content'
+
+*/
+
+// global spacing between the .content-section
+$content-section-spacing-xs:   30px;
+$content-section-spacing-sm:   45px;
+$content-section-spacing-md:   45px;
+$content-section-spacing-lg:   60px;
+$content-section-spacing-xl:   60px;
+
+// first item
+$content-section-spacing-first-item-xs:     $content-section-spacing-xs;
+$content-section-spacing-first-item-sm:     $content-section-spacing-sm;
+$content-section-spacing-first-item-md:     $content-section-spacing-md;
+$content-section-spacing-first-item-lg:     $content-section-spacing-lg;
+$content-section-spacing-first-item-xl:     $content-section-spacing-xl;
+
+// last item
+$content-section-spacing-last-item-xs:      $content-section-spacing-xs;
+$content-section-spacing-last-item-sm:      $content-section-spacing-sm;
+$content-section-spacing-last-item-md:      $content-section-spacing-md;
+$content-section-spacing-last-item-lg:      $content-section-spacing-lg;
+$content-section-spacing-last-item-xl:      $content-section-spacing-xl;
+
+// Content Plugin > spacing between STACKED COLUMNS (smaller screens)
+// This should be in harmony
+$content-section-col-stack-spacing-xs-max:  $grid-gutter-width/2;
+$content-section-col-stack-spacing-sm-max:  $grid-gutter-width;
+
+// Content Plugin > For template above >=3 colums
+// We have to define the spacing when stacked
+$content-plugin-stacked-col-spacing-xs:     $grid-gutter-width/2;
+$content-plugin-stacked-col-spacing-md:     $grid-gutter-width;
+$content-plugin-stacked-col-spacing-xl:     $grid-gutter-width;
+
+// Content Plugin > spacing between SECTION HEADING and the columns
+$content-section-heading-spacing-xs:        $grid-gutter-width/2;
+$content-section-heading-spacing-md:        $grid-gutter-width;
+$content-section-heading-spacing-xl:        $grid-gutter-width;
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+App Content Plugin specifc spacings:
+
+VERTICAL spacing between list or grid items
+
+*/
+
+// LIST template
+$app-content-plugin-list-item-spacing-xs:               $grid-gutter-width;
+$app-content-plugin-list-item-spacing-md:               $grid-gutter-width;
+$app-content-plugin-list-item-spacing-xl:               $grid-gutter-width;
+
+// DYNAMIC grid template
+$app-content-plugin-dynamic-grid-item-spacing-xs:       $grid-gutter-width;
+$app-content-plugin-dynamic-grid-item-spacing-md:       $grid-gutter-width;
+$app-content-plugin-dynamic-grid-item-spacing-xl:       $grid-gutter-width;
+
+// STATIC grid template
+$app-content-plugin-static-grid-item-spacing-xs:        $grid-gutter-width;
+$app-content-plugin-static-grid-item-spacing-md:        $grid-gutter-width;
+$app-content-plugin-static-grid-item-spacing-xl:        $grid-gutter-width;
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+The AJAX container (where items are exchanged OR appended)
+
+*/
+
+// the transition settings for the AJAX container AND the 'load-more-container' when changing categories
+$load-more-swop-category-transition-property:           opacity;
+$load-more-swop-category-transition-duration:           100ms;
+$load-more-swop-category-transition-timing-function:    ease-in;
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+"=Load =More" container
+
+VERTICAL spacing
+
+*/
+
+$load-more-container-spacing-top-xs:                    $grid-gutter-width;
+$load-more-container-spacing-top-md:                    $grid-gutter-width*2;
+$load-more-container-spacing-top-xl:                    $grid-gutter-width*2;
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+'.manage-spacings' container
+
+VERTICAL spacing between standard components (such as image-container, text-container, btn-container, form-container, ...) within the '.manage-spacings' container
+
+*/
+
+$manage-spacings-container-xs: $grid-gutter-width/2;
+$manage-spacings-container-md: $grid-gutter-width/2;
+$manage-spacings-container-xl: $grid-gutter-width/2;
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Content Plugin specifc Styles
+
+*/
+
+// parallax
+$parallax-bg-image-height:                           130%; // 100% is the size of the parallax section
+
+$parallax-aspect-ratio-width-xs:                     4;
+$parallax-aspect-ratio-height-xs:                    3;
+
+$parallax-aspect-ratio-width-md:                     3000;
+$parallax-aspect-ratio-height-md:                    1300;
+
+$parallax-aspect-ratio-width-xl:                     3000;
+$parallax-aspect-ratio-height-xl:                    1300;
+
+$parallax-max-height:                                800px;
+
+// inner background image
+$content-plugin-inner-bg-container-ratio-width-xs:   4;
+$content-plugin-inner-bg-container-ratio-height-xs:  3;
+
+$content-plugin-inner-bg-container-ratio-width-md:   2;
+$content-plugin-inner-bg-container-ratio-height-md:  1;
+
+$content-plugin-inner-bg-container-ratio-width-xl:   2;
+$content-plugin-inner-bg-container-ratio-height-xl:  1;
+
+// mobile image ratio for video replacement
+$content-plugin-video-mobile-image-ratio-width:      4;
+$content-plugin-video-mobile-image-ratio-height:     3;
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Overlay Settings (the background of text above an image)
+
+Overlay text is POSITIONED absolute.
+So 'spacing' in this context relates to the 'top, right, bottom and left' properties.
+
+*/
+
+$overlay-spacing-xs:                       $content-section-spacing-xs;
+$overlay-spacing-sm:                       $content-section-spacing-sm;
+$overlay-spacing-md:                       $content-section-spacing-md;
+$overlay-spacing-lg:                       $content-section-spacing-lg;
+$overlay-spacing-xl:                       $content-section-spacing-xl;
+
+$overlay-heading-color:                    #fff;
+$overlay-text-color:                       #fff;
+$overlay-gradient-start-color:             #000;
+$overlay-gradient-start-opacity:           0;
+$overlay-gradient-end-color:               #000;
+$overlay-gradient-end-opacity:             0.5;
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Hamburger =Toggle
+
+*/
+
+$navbar-toggle-spacing-top:                10px;
+$navbar-toggle-spacing-right:              $grid-gutter-width/2;
+$navbar-toggle-bar-bg-collapsed:           $body-color;
+$navbar-toggle-bar-bg-collapsed-hover:     $black;
+$navbar-toggle-bar-bg-expanded:            $body-color;
+$navbar-toggle-bar-bg-expanded-hover:      $black;
+$navbar-toggle-bar-transition:             all 200ms ease-in;
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Navigation Styles (Expanded)
+
+*/
+
+// primary (position)
+
+$primary-nav-transition:                     $site-header-compact-mode-transition; // it is recommended to be the same as $site-header-compact-mode-transition
+$primary-nav-position-top:                   auto;
+$primary-nav-position-right:                 0;
+$primary-nav-position-bottom:                0;
+$primary-nav-position-left:                  auto;
+
+// primary (level 1)
+$primary-nav-item-text-default:              $body-color;
+$primary-nav-item-text-hover:                $black;
+$primary-nav-item-text-active:               $black;
+$primary-nav-item-bg-default:                transparent;
+$primary-nav-item-bg-hover:                  transparent;
+$primary-nav-item-bg-active:                 transparent;
+$primary-nav-item-text-transform:            uppercase;
+$primary-nav-item-padding:                   1em;
+$primary-nav-item-spacing-between-items:     1em;
+$primary-nav-item-has-dropdown-padding:      1em 1.5em 1em 1.5em;
+
+// primary (the dropdown)
+$primary-nav-dropdown-positioned-right:     true; // boolean, whether to align subnav on the right. Default: false (to the left)
+$primary-nav-dropdown-icon:                 '\e10f';
+$primary-nav-dropdown-icon-size:            0.8em;
+$primary-nav-dropdown-icon-spacing-right:   0.8em; // set to 'auto' if aligned 'left'
+$primary-nav-dropdown-icon-spacing-left:    auto; // set to 'auto' if aligned 'right'
+$primary-nav-dropdown-bg:                   #eee;
+$primary-nav-dropdown-padding:              0;
+$primary-nav-dropdown-item-text-default:    #444;
+$primary-nav-dropdown-item-text-hover:      #000;
+$primary-nav-dropdown-item-text-active:     #000;
+$primary-nav-dropdown-item-bg-default:      #eee;
+$primary-nav-dropdown-item-bg-hover:        #ddd;
+$primary-nav-dropdown-item-bg-active:       #ccc;
+$primary-nav-dropdown-item-padding:         0.5em 1em;
+$primary-nav-dropdown-item-text-transform:  uppercase;
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Navigation Styles (=Collapsed)
+
+*/
+
+// general
+$primary-nav-collapsed-transition:                     $site-header-compact-mode-transition; // it is recommended to be the same as $site-header-compact-mode-transition
+$primary-nav-collapsed-overlay-bg:                     $gray-lighter;
+$primary-nav-collapsed-bg:                             $gray-lighter;
+$primary-nav-collapsed-text-align:                     center;
+
+// spacing top (default: uses the site-header heights, PLUS the gutter width for some extra margin)
+$primary-nav-collapsed-overlay-spacing-top-xs:         ($site-header-height-xs+$grid-gutter-width);
+$primary-nav-collapsed-overlay-spacing-top-md:         ($site-header-height-md+$grid-gutter-width);
+$primary-nav-collapsed-overlay-spacing-top-xl:         ($site-header-height-xl+$grid-gutter-width);
+
+// primary (level 1)
+$primary-nav-collapsed-dropdown-icon:                  '\e10f';
+$primary-nav-collapsed-dropdown-icon-size:             0.8em;
+$primary-nav-collapsed-dropdown-icon-spacing:          0.5em;
+$primary-nav-collapsed-dropdown-icon-is-on-the-left:   false;
+$primary-nav-collapsed-item-text-default:              $body-color;
+$primary-nav-collapsed-item-text-hover:                $black;
+$primary-nav-collapsed-item-text-active:               $black; // current page
+$primary-nav-collapsed-item-bg-default:                transparent;
+$primary-nav-collapsed-item-bg-hover:                  darken($gray-lighter,5%);
+$primary-nav-collapsed-item-bg-active:                 transparent; // current page
+$primary-nav-collapsed-item-padding:                   0.8em $grid-gutter-width/2;
+
+// primary (dropdown)
+$primary-nav-collapsed-dropdown-bg:                    $white;
+$primary-nav-collapsed-dropdown-padding:               $grid-gutter-width/2 0;
+$primary-nav-collapsed-dropdown-item-text-default:     $body-color;
+$primary-nav-collapsed-dropdown-item-text-hover:       $black;
+$primary-nav-collapsed-dropdown-item-text-active:      $black; // current page
+$primary-nav-collapsed-dropdown-item-bg-default:       transparent;
+$primary-nav-collapsed-dropdown-item-bg-hover:         darken($white,5%);
+$primary-nav-collapsed-dropdown-item-bg-active:        transparent; // current page
+$primary-nav-collapsed-dropdown-item-padding:          0.5em $grid-gutter-width;
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Hide the following elements when the mobile navigation is expanded
+
+Prevents that content becomes visible when scrolling.
+
+Defined in "layout/global"
+
+*/
+
+$nav-expanded-hide-container: (
+    ".site-content",
+    ".site-footer",
+);
+
+$nav-expanded-hide-container-transition:      $primary-nav-collapsed-transition; // recommended to be the same as $primary-nav-collapsed-transition
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Loader
+
+*/
+
+// default styles
+$loader-size:                           30px;
+$loader-border-width:                   1px;
+$loader-animation-duration:             1.5s;
+$loader-animation-timing-function:      ease-in-out;
+$loader-border-top-color:               $black;
+$loader-border-bottom-color:            $black;
+
+// within button
+$btn-loader-size:                       1em;
+$btn-loader-border-top-color:           $white;
+$btn-loader-border-bottom-color:        $white;
+$btn-loader-transition-duration:        300ms;
+$btn-loader-transition-delay:           300ms; // note: this is important, because we only want to see the loader icon if it is taking longer than it should.
+$btn-loader-transition-timing-function: ease-in-out;
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Lazy Loading
+
+*/
+
+$lazyloader-bg-color:               $gray-lighter;
+$lazyloader-transition-duration:    600ms;
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+To The Top! =ttt
+
+*/
+
+$ttt-bg-color:                      $black;
+$ttt-bg-color-hover:                $gray-dark;
+$ttt-border-radius:                 0;
+$ttt-visible-spacing-right-xs:      15px;
+$ttt-visible-spacing-bottom-xs:     15px;
+$ttt-visible-spacing-right-md:      30px;
+$ttt-visible-spacing-bottom-md:     30px;
+$ttt-width:                         40px;
+$ttt-height:                        40px;
+$ttt-icon:                          '\e112';
+$ttt-icon-size:                     15px;
+$ttt-icon-color:                    $gray-lightest;
+$ttt-icon-color-hover:              #fff;
+$ttt-opacity:                       0.85;
+$ttt-opacity-hover:                 0.85;
+$ttt-movement-transition:           $site-header-compact-mode-transition;
+$ttt-hover-transition:              $link-transition; // per default we use $site-header-compact-mode-transition, because they are meant to be toggled at the same time
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Form Settings
+
+*/
+
+// `.form-group` margin top (except :first-child)
+$form-group-spacing-xs:                $grid-gutter-width/2;
+$form-group-spacing-md:                $grid-gutter-width;
+$form-group-spacing-xl:                $grid-gutter-width;
+
+// `.label-control` margin bottom
+$form-label-spacing-xs:                $grid-gutter-width/4;
+$form-label-spacing-md:                $grid-gutter-width/2;
+$form-label-spacing-xl:                $grid-gutter-width/2;
+
+$form-field-required-icomoon-enabled:  false; // only set to 'true' if an icomoon icon is set below
+$form-field-required-icon:             '*';
+$form-field-required-icon-color:       #ba1414;
+// for accessibility reasons, there is a visually hidden 'required' text, that is set to visibility:hidden, and therefore still uses up some space. By setting dimensions and overflow:hidden we avoid undesired results.
+$form-field-required-icon-height:      0.9em;
+$form-field-required-icon-width:       1em;
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+General Form =Field Settings (.form-control)
+
+These settings apply to:
+
+<input>'s
+<textarea>'s
+
+*/
+
+$form-field-transition:                $default-transition;
+$form-field-border-radius-default:     0;
+$form-field-border-width:              2px;
+$form-field-border-style:              solid;
+$form-field-border-color:              transparent;
+
+// background color
+$input-bg:                             #fff;
+// background color of disabled form field (e.g. type="text")
+$input-bg-disabled:                    $gray-lighter;
+
+// Text color for `<input>`s
+$input-color:                          $gray;
+
+// horizontal padding settings for form fields and textarea
+$input-padding-left:                   0;
+$input-padding-right:                  1em;
+
+// border color
+$input-border-top-color:               transparent;
+$input-border-right-color:             transparent;
+$input-border-bottom-color:            #000;
+$input-border-left-color:              transparent;
+
+// border color :focus
+$input-border-top-color-focus:         transparent;
+$input-border-right-color-focus:       transparent;
+$input-border-bottom-color-focus:      #000;
+$input-border-left-color-focus:        transparent;
+
+// ERROR styles
+$input-error-border-top-color:         transparent;
+$input-error-border-right-color:       transparent;
+$input-error-border-bottom-color:      $form-field-required-icon-color;
+$input-error-border-left-color:        transparent;
+$input-error-bg:                       #ffeded;
+
+// Placeholder text color
+$input-color-placeholder:              $gray-light;
+
+// legend settings (IMPORTANT: currently not used and optizmied)
+$legend-color:                         $gray-dark;
+$legend-border-color:                  #e5e5e5;
+
+// textual input addons (IMPORTANT: currently not used and optizmied)
+// Background color
+$input-group-addon-bg:                 $gray-lighter;
+// Border color
+$input-group-addon-border-color:       $form-field-border-width;
+
+// Disabled cursor for form controls and buttons.
+$cursor-disabled:                      not-allowed;
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Checkboxes
+
+*/
+
+$checkbox-label-spacing:                1.5em;
+$checkbox-siblings-spacing-top:         0.3em;
+$checkbox-spacing-left:                 0.2em;
+$checkbox-bg-color:                     $input-bg;
+$checkbox-bg-color-focus:               $input-bg;
+$checkbox-bg-color-checked:             $input-bg;
+$checkbox-border-width:                 $form-field-border-width;
+$checkbox-border-color:                 $gray-light;
+$checkbox-border-color-focus:           $brand-primary;
+$checkbox-border-color-checked:         $brand-primary;
+$checkbox-size:                         1em;
+$checkbox-border-radius:                $form-field-border-radius-default;
+$checkbox-icon-color:                   $brand-primary;
+$checkbox-icon-color-focus:             green;
+$checkbox-transition:                   $form-field-transition;
+
+// optional: icon font settings
+$checkbox-font-icon-enabled:            true; // boolean, if set false, a 'CSS-only check icon' is used as a fallback
+$checkbox-font-icon-code:               '\e206'; // string, e.g. '\e906'
+$checkbox-font-icon-size:               $checkbox-size/1.25;
+
+// default: CSS check icon
+$checkbox-css-icon-size:                14px; // the calculations are made automatically according to this value. pixel value recommended
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Radio
+
+Important: Per default, the radio boxes inherit most of the checkbox styles, for they
+usually SHOULD look similar in terms of size and spacings
+
+*/
+
+$radio-label-spacing:                   $checkbox-label-spacing;
+$radio-siblings-spacing-top:            $checkbox-siblings-spacing-top;
+$radio-spacing-left:                    $checkbox-spacing-left;
+$radio-bg-color:                        $checkbox-bg-color;
+$radio-bg-color-focus:                  $checkbox-bg-color-focus;
+$radio-bg-color-checked:                $checkbox-bg-color-checked;
+$radio-border-width:                    $checkbox-border-width;
+$radio-border-color:                    $checkbox-border-color;
+$radio-border-color-focus:              $checkbox-border-color-focus;
+$radio-border-color-checked:            $checkbox-border-color-checked;
+$radio-size:                            $checkbox-size;
+$radio-transition:                      $checkbox-transition;
+
+// inner circle
+$radio-inner-circle-size:               $radio-size/2;
+$radio-inner-circle-bg:                 $brand-primary;
+$radio-inner-circle-transition:         $checkbox-transition;
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Buttons
+
+Usage: In rare cases, you might need a specific value of a
+specific button variant. This is how to acces map values:
+
+color: map-deep-get($btn-variations,'default','bg');
+
+*/
+
+// button config
+$btn-disabled-lighten: 20%;
+
+$btn-variations: (
+    'default': (
+        'color':                         #fff,
+        'bg':                            $brand-primary,
+        // default
+        'border-top-color':              $brand-primary,
+        'border-right-color':            $brand-primary,
+        'border-bottom-color':           $brand-primary,
+        'border-left-color':             $brand-primary,
+        // hover
+        'bg-hover':                      $brand-primary-light,
+        'color-hover':                   #fff,
+        'border-top-color-hover':        $brand-primary-light,
+        'border-right-color-hover':      $brand-primary-light,
+        'border-bottom-color-hover':     $brand-primary-light,
+        'border-left-color-hover':       $brand-primary-light,
+        // disabled
+        'color-disabled':                #fff,
+        'bg-disabled':                   lighten($brand-primary-light,$btn-disabled-lighten),
+        'border-top-color-disabled':     lighten($brand-primary-light,$btn-disabled-lighten),
+        'border-right-color-disabled':   lighten($brand-primary-light,$btn-disabled-lighten),
+        'border-bottom-color-disabled':  lighten($brand-primary-light,$btn-disabled-lighten),
+        'border-left-color-disabled':    lighten($brand-primary-light,$btn-disabled-lighten),
+    ),
+    'primary': (
+        'color':                         #fff,
+        'bg':                            $brand-primary,
+        // default
+        'border-top-color':              $brand-primary,
+        'border-right-color':            $brand-primary,
+        'border-bottom-color':           $brand-primary,
+        'border-left-color':             $brand-primary,
+        // hover
+        'bg-hover':                      $brand-primary-light,
+        'color-hover':                   #fff,
+        'border-top-color-hover':        $brand-primary-light,
+        'border-right-color-hover':      $brand-primary-light,
+        'border-bottom-color-hover':     $brand-primary-light,
+        'border-left-color-hover':       $brand-primary-light,
+        // disabled
+        'color-disabled':                #fff,
+        'bg-disabled':                   lighten($brand-primary-light,$btn-disabled-lighten),
+        'border-top-color-disabled':     lighten($brand-primary-light,$btn-disabled-lighten),
+        'border-right-color-disabled':   lighten($brand-primary-light,$btn-disabled-lighten),
+        'border-bottom-color-disabled':  lighten($brand-primary-light,$btn-disabled-lighten),
+        'border-left-color-disabled':    lighten($brand-primary-light,$btn-disabled-lighten),
+    ),
+    'success': (
+        'color':                         #fff,
+        'bg':                            $brand-success,
+        // default
+        'border-top-color':              $brand-success,
+        'border-right-color':            $brand-success,
+        'border-bottom-color':           $brand-success,
+        'border-left-color':             $brand-success,
+        // hover
+        'bg-hover':                      $brand-success-dark,
+        'color-hover':                   #fff,
+        'border-top-color-hover':        $brand-success-dark,
+        'border-right-color-hover':      $brand-success-dark,
+        'border-bottom-color-hover':     $brand-success-dark,
+        'border-left-color-hover':       $brand-success-dark,
+        // disabled
+        'color-disabled':                #fff,
+        'bg-disabled':                   lighten($brand-success-dark,$btn-disabled-lighten),
+        'border-top-color-disabled':     lighten($brand-success-dark,$btn-disabled-lighten),
+        'border-right-color-disabled':   lighten($brand-success-dark,$btn-disabled-lighten),
+        'border-bottom-color-disabled':  lighten($brand-success-dark,$btn-disabled-lighten),
+        'border-left-color-disabled':    lighten($brand-success-dark,$btn-disabled-lighten),
+    ),
+    'info': (
+        'color':                         #fff,
+        'bg':                            $brand-info,
+        // default
+        'border-top-color':              $brand-info,
+        'border-right-color':            $brand-info,
+        'border-bottom-color':           $brand-info,
+        'border-left-color':             $brand-info,
+        // hover
+        'bg-hover':                      $brand-info-dark,
+        'color-hover':                   #fff,
+        'border-top-color-hover':        $brand-info-dark,
+        'border-right-color-hover':      $brand-info-dark,
+        'border-bottom-color-hover':     $brand-info-dark,
+        'border-left-color-hover':       $brand-info-dark,
+        // disabled
+        'color-disabled':                #fff,
+        'bg-disabled':                   lighten($brand-info-dark,$btn-disabled-lighten),
+        'border-top-color-disabled':     lighten($brand-info-dark,$btn-disabled-lighten),
+        'border-right-color-disabled':   lighten($brand-info-dark,$btn-disabled-lighten),
+        'border-bottom-color-disabled':  lighten($brand-info-dark,$btn-disabled-lighten),
+        'border-left-color-disabled':    lighten($brand-info-dark,$btn-disabled-lighten),
+    ),
+    'warning': (
+        'color':                         #fff,
+        'bg':                            $brand-warning,
+        // default
+        'border-top-color':              $brand-warning,
+        'border-right-color':            $brand-warning,
+        'border-bottom-color':           $brand-warning,
+        'border-left-color':             $brand-warning,
+        // hover
+        'bg-hover':                      $brand-warning-dark,
+        'color-hover':                   #fff,
+        'border-top-color-hover':        $brand-warning-dark,
+        'border-right-color-hover':      $brand-warning-dark,
+        'border-bottom-color-hover':     $brand-warning-dark,
+        'border-left-color-hover':       $brand-warning-dark,
+        // disabled
+        'color-disabled':                #fff,
+        'bg-disabled':                   lighten($brand-warning-dark,$btn-disabled-lighten),
+        'border-top-color-disabled':     lighten($brand-warning-dark,$btn-disabled-lighten),
+        'border-right-color-disabled':   lighten($brand-warning-dark,$btn-disabled-lighten),
+        'border-bottom-color-disabled':  lighten($brand-warning-dark,$btn-disabled-lighten),
+        'border-left-color-disabled':    lighten($brand-warning-dark,$btn-disabled-lighten),
+    ),
+    'danger': (
+        'color':                         #fff,
+        'bg':                            $brand-danger,
+        // default
+        'border-top-color':              $brand-danger,
+        'border-right-color':            $brand-danger,
+        'border-bottom-color':           $brand-danger,
+        'border-left-color':             $brand-danger,
+        // hover
+        'bg-hover':                      $brand-danger-dark,
+        'color-hover':                   #fff,
+        'border-top-color-hover':        $brand-danger-dark,
+        'border-right-color-hover':      $brand-danger-dark,
+        'border-bottom-color-hover':     $brand-danger-dark,
+        'border-left-color-hover':       $brand-danger-dark,
+        // disabled
+        'color-disabled':                #fff,
+        'bg-disabled':                   lighten($brand-danger-dark,$btn-disabled-lighten),
+        'border-top-color-disabled':     lighten($brand-danger-dark,$btn-disabled-lighten),
+        'border-right-color-disabled':   lighten($brand-danger-dark,$btn-disabled-lighten),
+        'border-bottom-color-disabled':  lighten($brand-danger-dark,$btn-disabled-lighten),
+        'border-left-color-disabled':    lighten($brand-danger-dark,$btn-disabled-lighten),
+    ),
+    'link': (
+        'color':                         $link-color,
+        'bg':                            #fff,
+        // default
+        'border-top-color':              transparent,
+        'border-right-color':            transparent,
+        'border-bottom-color':           transparent,
+        'border-left-color':             transparent,
+        // hover
+        'bg-hover':                      transparent,
+        'color-hover':                   $link-color-hover,
+        'border-top-color-hover':        transparent,
+        'border-right-color-hover':      transparent,
+        'border-bottom-color-hover':     transparent,
+        'border-left-color-hover':       transparent,
+        // disabled
+        'color-disabled':                $link-color-hover,
+        'bg-disabled':                   transparent,
+        'border-top-color-disabled':     transparent,
+        'border-right-color-disabled':   transparent,
+        'border-bottom-color-disabled':  transparent,
+        'border-left-color-disabled':    transparent,
+    ),
+);
+
+// Global Button and Input Paddings
+// (important: will be applied to .form-control, too, because we sometimes combine inputs and button, so they need to be the exact same height)
+$btn-padding-top-default:               0.3em; // important: has to be in em's
+$btn-padding-bottom-default:            0.3em; // important: has to be in em's
+$btn-line-height-default:               1.25;
+
+// disabled button
+$btn-link-disabled-color:               $gray-light;
+
+// Allows for customizing button radius independently from global border radius
+$btn-border-radius-base:                $form-field-border-radius-default;
+$btn-border-radius-large:               $form-field-border-radius-default;
+$btn-border-radius-small:               $form-field-border-radius-default;
+
+// .btn-container (spacing between buttons)
+$btn-container-btn-spacing-xs:                      0.5em;
+$btn-container-btn-spacing-md:                      0.5em;
+$btn-container-btn-spacing-xl:                      0.5em;
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Bootstrap =Select Styles
+
+*/
+
+$select-btn-variation:                  'default'; // needs to be one of the variations defined in $btn-variations
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=File Upload Styles
+
+*/
+
+$file-upload-btn-variation:             'primary'; // needs to be one of the variations defined in $btn-variations
+$file-upload-icon:                      '\e90c';
+$file-upload-icon-size:                 0.8em;
+$file-upload-icon-spacing-right:        0.3em;
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Datepicker
+
+*/
+
+$datepicker-default-width:              100%;
+$datepicker-default-max-width:          300px;
+$datepicker-default-input-bg:           $input-bg;
+$datepicker-default-btn-width:          35px;
+$datepicker-default-btn-icon:           '\e60e';
+$datepicker-default-btn-icon-size:      0.8em;
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Dropdown
+
+*/
+
+$dropdown-border-width:                 2px;
+$dropdown-border-style:                 solid;
+$dropdown-border-color:                 #000;
+$dropdown-border-radius:                0;
+$dropdown-border-top:                   false; // boolean
+$dropdown-toggle-icon:                  '\e10f';
+$dropdown-toggle-icon-spacing-right:    1em;
+$dropdown-toggle-icon-spacing-left:     auto;
+$dropdown-toggle-padding-right:         3em;
+$dropdown-toggle-padding-left:          0.5em;
+
+// Background for the dropdown menu.
+$dropdown-bg:                           #fff;
+// Dropdown menu `border-color`.
+$dropdown-border:                       rgba(0,0,0,.15);
+// Dropdown menu `border-color` **for IE8**.
+$dropdown-fallback-border:              #ccc;
+// Divider color for between dropdown items.
+$dropdown-divider-bg:                   #e5e5e5;
+
+// Dropdown link text color.
+$dropdown-link-color:                   $input-color;
+// Hover color for dropdown links.
+$dropdown-link-hover-color:             darken($input-color, 5%);
+// Hover background for dropdown links.
+$dropdown-link-hover-bg:                $gray-lighter;
+
+// Active dropdown menu item text color.
+$dropdown-link-active-color:            $input-color;
+// Active dropdown menu item background color.
+$dropdown-link-active-bg:               $gray-light;
+
+// Disabled dropdown menu item background color.
+$dropdown-link-disabled-color:          $gray-light;
+
+// Text color for headers within dropdown menus.
+$dropdown-header-color:                 $gray-light;
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Tabs
+
+*/
+
+// container
+$custom-tabs-border-bottom-width:               2px;
+$custom-tabs-border-bottom-style:               solid;
+$custom-tabs-border-bottom-color:               #000;
+$custom-tabs-register-look-activated:           true; // creates a negative margin according to the $custom-tabs-border-bottom-width in order to achieve a 'register look'
+
+// default: uses the same distance like we have between section title and the categories
+$custom-tabs-spacing-bottom-xs:                 $content-section-heading-spacing-xs;
+$custom-tabs-spacing-bottom-md:                 $content-section-heading-spacing-md;
+$custom-tabs-spacing-bottom-xl:                 $content-section-heading-spacing-xl;
+
+// item
+$custom-tabs-item-transition:                   $default-transition;
+$custom-tabs-item-border-width:                 $custom-tabs-border-bottom-width;
+$custom-tabs-item-border-style:                 $custom-tabs-border-bottom-style;
+$custom-tabs-item-border-color:                 $custom-tabs-border-bottom-color;
+$custom-tabs-item-padding-xs:                    0.3em 1em;
+$custom-tabs-item-padding-md:                    0.5em 1.5em;
+$custom-tabs-item-bg-default:                   #000;
+$custom-tabs-item-bg-default-hover:             #000;
+$custom-tabs-item-color-default:                #fff;
+$custom-tabs-item-bg-active:                    #fff;
+$custom-tabs-item-bg-active-hover:              #fff;
+$custom-tabs-item-color-active:                 #000;
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Modal
+
+*/
+
+$modal-default-overlay-bg:                      #000;
+$modal-default-overlay-opacity:                 0.4;
+$modal-default-overlay-transition:              all 400ms ease-out;
+$modal-default-content-bg:                      #fff;
+$modal-default-close-btn-size:                  60px;
+$modal-default-close-icon:                      '\e209';
+$modal-default-close-icon-color:                #000;
+$modal-default-close-icon-color-hover:          #444;
+$modal-default-close-icon-size:                 1em;
+$modal-default-close-icon-transition:           $link-transition;
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Softpage
+
+*/
+
+$softpage-content-box-transition:               $modal-default-overlay-transition;
+$softpage-content-box-offset:                   10%; // y coordinates, any unit is fine
+$softpage-max-width:                            1000px; //
+$softpage-max-width-xxl:                        1200px; //
+// aligning button to the content (dependent of the $modal-default-close-btn-size
+$softpage-close-btn-position-right-md:          11px;
+$softpage-close-btn-position-right-xl:          11px;
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+=Swiper (=Slider)
+
+Important: The ratio's are closely linked to the thumbnail settings
+
+*/
+
+// aspect ratios (Content Plugin > Column > Gallery Plugin)
+$swiper-gallery-plugin-aspect-ratio-width-xs:   4;
+$swiper-gallery-plugin-aspect-ratio-height-xs:  3;
+
+$swiper-gallery-plugin-aspect-ratio-width-md:   4;
+$swiper-gallery-plugin-aspect-ratio-height-md:  3;
+
+$swiper-gallery-plugin-aspect-ratio-width-xl:   4;
+$swiper-gallery-plugin-aspect-ratio-height-xl:  3;
+
+// aspect ratios (App Content Plugin)
+$swiper-app-content-aspect-ratio-width-xs:      4;
+$swiper-app-content-aspect-ratio-height-xs:     3;
+
+$swiper-app-content-aspect-ratio-width-md:      2;
+$swiper-app-content-aspect-ratio-height-md:     1;
+
+$swiper-app-content-aspect-ratio-width-xl:      2;
+$swiper-app-content-aspect-ratio-height-xl:     1;
+
+// aspect ratios (App Content > Detail View Header)
+$swiper-detail-view-aspect-ratio-width-xs:      4;
+$swiper-detail-view-aspect-ratio-height-xs:     3;
+
+$swiper-detail-view-aspect-ratio-width-md:      4;
+$swiper-detail-view-aspect-ratio-height-md:     3;
+
+$swiper-detail-view-aspect-ratio-width-xl:      4;
+$swiper-detail-view-aspect-ratio-height-xl:     3;
+
+// overlay
+$swiper-default-overlay-styles-enabled:         true;
+$swiper-default-overlay-gradient-height:        60%; // percent value recommended to keep it responsive
+
+// background
+$swiper-default-bg:                             $white;
+
+// pagination
+$swiper-default-pagination-position-top-xs:     $grid-gutter-width/4;
+$swiper-default-pagination-position-bottom-xs:  auto;
+$swiper-default-pagination-position-top-md:     auto;
+$swiper-default-pagination-position-bottom-md:  $grid-gutter-width/4;
+
+// bullets
+$swiper-default-bullet-size:                    15px;
+$swiper-default-bullet-border-width:            1px;
+$swiper-default-bullet-border-style:            solid;
+$swiper-default-bullet-border-color:            #fff;
+$swiper-default-bullet-border-color-active:     transparent;
+$swiper-default-bullet-bg:                      transparent;
+$swiper-default-bullet-bg-active:               #fff;
+
+// arrows
+$swiper-default-arrows-transition:              $link-transition; // recommended to use $link-transition in order to keep it consistent
+$swiper-default-arrows-icon-previous:           '\e110';
+$swiper-default-arrows-icon-next:               '\e111';
+$swiper-default-arrows-icon-size:               2em;
+$swiper-default-arrows-opacity:                 0.8;
+$swiper-default-arrows-opacity-hover:           1;
+$swiper-default-arrows-color:                   #fff;
+$swiper-default-arrows-color-hover:             #fff;
+$swiper-default-arrows-width:                   200px; // usability tip: the clickable area fills the entire height
+// arrow offsets
+$swiper-default-arrows-offset-xs:               $grid-gutter-width/4;
+$swiper-default-arrows-offset-md:               $grid-gutter-width/2;
+$swiper-default-arrows-offset-xl:               $grid-gutter-width;
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Custom Scrollbars
+
+Used with responsive tables
+
+*/
+
+// track
+$custom-scrollbar-track-shadow:                none;
+$custom-scrollbar-track-bg:                    $gray-lighter;
+$custom-scrollbar-track-border-radius:         6px;
+// thumb (movable bar)
+$custom-scrollbar-thumb-bg:                    darken($gray-lighter,10%);
+$custom-scrollbar-thumb-border-radius:         $custom-scrollbar-track-border-radius; // recommended to be the same as $custom-scrollbar-track-border-radius
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Social Profile Icons
+
+*/
+
+$social-profile-icons: (
+    'facebook': '\e900',
+    'instagram': '\e901',
+    'pinterest': '\e907',
+    'twitter': '\e605',
+    'snapchat': '\e90a',
+    'spotify': '\e908',
+    'linkedin': '\e607',
+    'xing': '\e608',
+    'youtube': '\e601',
+    'vimeo': '\e909',
+    'googleplus': '\e90b',
+    'tripadvisor': '\e902',
+);
+
+$social-profile-icon-alignment:                 center; // horizontal values only: left, center, right
+$social-profile-icon-size:                      2em;
+$social-profile-icon-spacing:                   0.8em;
+$social-profile-icon-opacity:                   1;
+$social-profile-icon-opacity-hover:             0.85;
+$social-profile-icon-color:                     $link-inverted-color;
+$social-profile-icon-color-hover:               $link-inverted-color-hover;
+$social-profile-icon-transition:                $link-transition;
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Button / Link Plugin '.button-link-container '
+
+*/
+
+// spacing between list items
+$button-link-container-item-spacing-xs:         1em;
+$button-link-container-item-spacing-md:         1em;
+$button-link-container-item-spacing-xl:         1em;
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Site =Overlay '.site-overlay'
+
+Note: It is recommended to use a solid background color and to
+lower the opacity value, instead of using rgba().
+
+Why? Browsers can transition opacity cheaper, performance-wise.
+
+*/
+
+$site-overlay-z-index-map-key:                  'site-overlay';
+$site-overlay-bg:                               #000;
+$site-overlay-opacity-when-visible:             0.5;
+$site-overlay-transition-duration:              300ms;
+$site-overlay-transition-timing-function:       ease-in;
