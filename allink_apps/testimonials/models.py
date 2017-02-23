@@ -64,8 +64,8 @@ class Testimonial(TranslationHelperMixin, TranslatedAutoSlugifyMixin, Translatab
 
     class Meta:
         app_label = 'testimonials'
-        verbose_name = _('Testimonial')
-        verbose_name_plural = _('Testimonials')
+        verbose_name = _('Unternehmen')
+        verbose_name_plural = _('Unternehmen')
 
     @property
     def preview_image(self):
