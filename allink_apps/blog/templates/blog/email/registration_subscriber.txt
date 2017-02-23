@@ -1,6 +1,0 @@
-{% load i18n %}
-{% spaceless %}
-{% for field in form %}
-    {% if field.label != 'Terms' %}{% if forloop.counter == 1 %}{{ field.label }}: {{ event.title }}{% else %}{{ field.label }}: {{ field.value }}{% endif %}{% endif %}
-{% endfor %}
-{% endspaceless %}
