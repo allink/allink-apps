@@ -64,9 +64,13 @@
 
 	__webpack_require__(15);
 
+	__webpack_require__(84);
+
 	__webpack_require__(16);
 
 	__webpack_require__(18);
+
+	__webpack_require__(85);
 
 	__webpack_require__(19);
 
@@ -134,29 +138,7 @@
 
 	*/
 
-	(0, _jquery2.default)(function () {
-
-	    /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-	     Legacy: Calls functions which are added to window.onDocumentReady
-	     Do we need that?
-	     */
-
-	    // function callFnQueue() {
-	    //     if (window.onDocumentReady) {
-	    //         if (typeof(window.onDocumentReady) == 'function') {
-	    //             window.onDocumentReady($);
-	    //         } else if (typeof(window.onDocumentReady) == 'object') {
-	    //             for (var i = 0; i < window.onDocumentReady.length; i++) {
-	    //                 var func = window.onDocumentReady[i];
-	    //                 if (typeof(func) == 'function') {
-	    //                     func($);
-	    //                 }
-	    //             }
-	    //         }
-	    //     }
-	    // }
-
-	});
+	(0, _jquery2.default)(function () {});
 
 	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
@@ -11113,7 +11095,7 @@
 
 	Important:
 
-	Obviously, the container ID has to be unique, not just to pass the HTML validator.
+	Obviously, the container ID ("example-form-container") has to be unique, not just to pass the HTML validator.
 
 	*/
 
@@ -11122,8 +11104,19 @@
 	    // init
 	    var url = $form.attr('action');
 	    var custom_event = $form.attr('data-success-data-layer-event');
-	    var container_id_selector = '#' + $form.data('form-container-id');
+	    var success_url = $form.attr('data-success-url');
+	    var container_id = $form.attr('data-form-container-id');
 	    var postData = $form.serialize();
+
+	    // define the container in which the ajax response will be written into
+	    // 1. in case an ID is defined, select that element
+	    if (container_id) {
+	        var $form_container = $('#' + container_id);
+	    }
+	    // 2. default: use immediate parent
+	    else {
+	            var $form_container = $form.parent();
+	        }
 
 	    // AJAX magic
 	    $.ajax({
@@ -11132,7 +11125,7 @@
 	        data: postData,
 	        success: function success(data, textStatus, jqXHR) {
 	            // write response content into container
-	            $(container_id_selector).html(data);
+	            $form_container.html(data);
 
 	            // Google Tag Manager
 	            if (typeof dataLayer === 'undefined') {}
@@ -11154,6 +11147,7 @@
 	                    }
 
 	            // trigger custom events
+	            $(window).trigger('ajaxFormSuccess');
 	            $(window).trigger('initAjaxForm');
 	            $(window).trigger('initDatepicker');
 	            $(window).trigger('initFormModalClose');
@@ -11400,9 +11394,9 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
-	 * Bootstrap-select v1.12.1 (http://silviomoreto.github.io/bootstrap-select)
+	 * Bootstrap-select v1.12.2 (http://silviomoreto.github.io/bootstrap-select)
 	 *
-	 * Copyright 2013-2016 bootstrap-select
+	 * Copyright 2013-2017 bootstrap-select
 	 * Licensed under MIT (https://github.com/silviomoreto/bootstrap-select/blob/master/LICENSE)
 	 */
 
@@ -11728,7 +11722,7 @@
 	    this.init();
 	  };
 
-	  Selectpicker.VERSION = '1.12.1';
+	  Selectpicker.VERSION = '1.12.2';
 
 	  // part of this is duplicated in i18n/defaults-en_US.js. Make sure to update both.
 	  Selectpicker.DEFAULTS = {
@@ -12261,8 +12255,7 @@
 	      menuInner.appendChild(divider);
 	      if (header) menu.appendChild(header);
 	      if (search) {
-	        // create a span instead of input as creating an input element is slower
-	        var input = document.createElement('span');
+	        var input = document.createElement('input');
 	        search.className = 'bs-searchbox';
 	        input.className = 'form-control';
 	        search.appendChild(input);
@@ -12847,9 +12840,9 @@
 	          var $searchBase = that.$lis.not('.is-hidden, .divider, .dropdown-header'),
 	              $hideItems;
 	          if (that.options.liveSearchNormalize) {
-	            $hideItems = $searchBase.not(':a' + that._searchStyle() + '("' + normalizeToBase(that.$searchbox.val()) + '")');
+	            $hideItems = $searchBase.find('a').not(':a' + that._searchStyle() + '("' + normalizeToBase(that.$searchbox.val()) + '")');
 	          } else {
-	            $hideItems = $searchBase.not(':' + that._searchStyle() + '("' + that.$searchbox.val() + '")');
+	            $hideItems = $searchBase.find('a').not(':' + that._searchStyle() + '("' + that.$searchbox.val() + '")');
 	          }
 
 	          if ($hideItems.length === $searchBase.length) {
@@ -12857,7 +12850,7 @@
 	            that.$menuInner.append($no_results);
 	            that.$lis.addClass('hidden');
 	          } else {
-	            $hideItems.addClass('hidden');
+	            $hideItems.parent().addClass('hidden');
 
 	            var $lisVisible = that.$lis.not('.hidden'),
 	                $foundDiv;
@@ -13504,9 +13497,24 @@
 
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-	/*! flatpickr v2.3.4, @license MIT */
+	/*! flatpickr v2.4.3, @license MIT */
 	function Flatpickr(element, config) {
 		var self = this;
+
+		self.changeMonth = changeMonth;
+		self.changeYear = changeYear;
+		self.clear = clear;
+		self.close = close;
+		self._createElement = createElement;
+		self.destroy = destroy;
+		self.formatDate = formatDate;
+		self.isEnabled = isEnabled;
+		self.jumpToDate = jumpToDate;
+		self.open = open;
+		self.redraw = redraw;
+		self.set = set;
+		self.setDate = setDate;
+		self.toggle = toggle;
 
 		function init() {
 			if (element._flatpickr) destroy(element._flatpickr);
@@ -13515,9 +13523,9 @@
 
 			self.element = element;
 			self.instanceConfig = config || {};
+			self.parseDate = Flatpickr.prototype.parseDate.bind(self);
 
 			setupFormats();
-
 			parseConfig();
 			setupLocale();
 			setupInputs();
@@ -13525,34 +13533,12 @@
 			setupHelperFunctions();
 
 			self.isOpen = self.config.inline;
-			self.changeMonth = changeMonth;
-			self.clear = clear;
-			self.close = close;
-			self.destroy = destroy;
-			self.formatDate = formatDate;
-			self.jumpToDate = jumpToDate;
-			self.open = open;
-			self.redraw = redraw;
-			self.set = set;
-			self.setDate = setDate;
-			self.toggle = toggle;
 
 			self.isMobile = !self.config.disableMobile && !self.config.inline && self.config.mode === "single" && !self.config.disable.length && !self.config.enable.length && !self.config.weekNumbers && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
 			if (!self.isMobile) build();
 
 			bind();
-
-			if (!self.isMobile) {
-				Object.defineProperty(self, "dateIsPicked", {
-					set: function set(bool) {
-						if (bool) return self.calendarContainer.classList.add("dateIsPicked");
-						self.calendarContainer.classList.remove("dateIsPicked");
-					}
-				});
-			}
-
-			self.dateIsPicked = self.selectedDates.length > 0 || self.config.noCalendar;
 
 			if (self.selectedDates.length) {
 				if (self.config.enableTime) setHoursFromDate();
@@ -13563,7 +13549,13 @@
 				self.calendarContainer.style.width = self.days.clientWidth + self.weekWrapper.clientWidth + "px";
 			}
 
+			self.showTimeInput = self.selectedDates.length || self.config.noCalendar;
 			triggerEvent("Ready");
+		}
+
+		function bindToInstance(fn) {
+			if (fn && fn.bind) return fn.bind(self);
+			return fn;
 		}
 
 		function updateTime(e) {
@@ -13599,7 +13591,9 @@
 
 				hours = Math.max(hours, self.config.minDate.getHours());
 				if (hours === self.config.minDate.getHours()) minutes = Math.max(minutes, self.config.minDate.getMinutes());
-			} else if (self.maxDateHasTime && compareDates(self.latestSelectedDateObj, self.config.maxDate) === 0) {
+			}
+
+			if (self.maxDateHasTime && compareDates(self.latestSelectedDateObj, self.config.maxDate) === 0) {
 				hours = Math.min(hours, self.config.maxDate.getHours());
 				if (hours === self.config.maxDate.getHours()) minutes = Math.min(minutes, self.config.maxDate.getMinutes());
 			}
@@ -13630,20 +13624,26 @@
 		}
 
 		function onYearInput(event) {
-			if (event.target.value.length === 4) {
+			var year = event.target.value;
+			if (event.delta) year = (parseInt(year) + event.delta).toString();
+
+			if (year.length === 4) {
 				self.currentYearElement.blur();
-				handleYearChange(event.target.value);
-				event.target.value = self.currentYear;
+				if (!/[^\d]/.test(year)) changeYear(year);
 			}
+		}
+
+		function onMonthScroll(e) {
+			e.preventDefault();
+			self.changeMonth(Math.max(-1, Math.min(1, e.wheelDelta || -e.deltaY)));
 		}
 
 		function bind() {
 			if (self.config.wrap) {
 				["open", "close", "toggle", "clear"].forEach(function (el) {
-					try {
-						self.element.querySelector("[data-" + el + "]").addEventListener("click", self[el]);
-					} catch (e) {
-						//
+					var toggles = self.element.querySelectorAll("[data-" + el + "]");
+					for (var i = 0; i < toggles.length; i++) {
+						toggles[i].addEventListener("click", self[el]);
 					}
 				});
 			}
@@ -13663,7 +13663,7 @@
 
 			if (self.config.mode === "range" && self.days) self.days.addEventListener("mouseover", onMouseOver);
 
-			window.document.addEventListener("keydown", onKeyDown);
+			self.calendarContainer.addEventListener("keydown", onKeyDown);
 
 			if (!self.config.inline && !self.config.static) window.addEventListener("resize", self.debouncedResize);
 
@@ -13682,6 +13682,9 @@
 					return changeMonth(1);
 				});
 
+				self.currentMonthElement.addEventListener("wheel", function (e) {
+					return debounce(onMonthScroll(e), 50);
+				});
 				self.currentYearElement.addEventListener("wheel", function (e) {
 					return debounce(yearScroll(e), 50);
 				});
@@ -13736,23 +13739,27 @@
 				self.currentYear = jumpDate.getFullYear();
 				self.currentMonth = jumpDate.getMonth();
 			} catch (e) {
+				/* istanbul ignore next */
 				console.error(e.stack);
+				/* istanbul ignore next */
 				console.warn("Invalid date supplied: " + jumpDate);
 			}
 
 			self.redraw();
 		}
 
-		function incrementNumInput(e, delta) {
-			var input = e.target.parentNode.childNodes[0];
-			input.value = parseInt(input.value, 10) + delta * (input.step || 1);
+		function incrementNumInput(e, delta, inputElem) {
+			var input = inputElem || e.target.parentNode.childNodes[0];
 
-			try {
-				input.dispatchEvent(new Event("increment", { "bubbles": true }));
-			} catch (e) {
-				var ev = window.document.createEvent("CustomEvent");
-				ev.initCustomEvent("increment", true, true, {});
+			if (typeof Event !== "undefined") {
+				var ev = new Event("increment", { "bubbles": true });
+				ev.delta = delta;
 				input.dispatchEvent(ev);
+			} else {
+				var _ev = window.document.createEvent("CustomEvent");
+				_ev.initCustomEvent("increment", true, true, {});
+				_ev.delta = delta;
+				input.dispatchEvent(_ev);
 			}
 		}
 
@@ -13763,6 +13770,7 @@
 			    arrowDown = createElement("span", "arrowDown");
 
 			numInput.type = "text";
+			numInput.pattern = "\\d*";
 			wrapper.appendChild(numInput);
 			wrapper.appendChild(arrowUp);
 			wrapper.appendChild(arrowDown);
@@ -13789,7 +13797,15 @@
 
 				self.rContainer = createElement("div", "flatpickr-rContainer");
 				self.rContainer.appendChild(buildWeekdays());
-				self.rContainer.appendChild(buildDays());
+
+				if (!self.days) {
+					self.days = createElement("div", "flatpickr-days");
+					self.days.tabIndex = -1;
+				}
+
+				buildDays();
+				self.rContainer.appendChild(self.days);
+
 				self.innerContainer.appendChild(self.rContainer);
 				fragment.appendChild(self.innerContainer);
 			}
@@ -13800,14 +13816,29 @@
 
 			self.calendarContainer.appendChild(fragment);
 
+			var customAppend = self.config.appendTo && self.config.appendTo.nodeType;
+
 			if (self.config.inline || self.config.static) {
 				self.calendarContainer.classList.add(self.config.inline ? "inline" : "static");
 				positionCalendar();
 
-				if (self.config.appendTo && self.config.appendTo.nodeType) self.config.appendTo.appendChild(self.calendarContainer);else {
-					self.element.parentNode.insertBefore(self.calendarContainer, (self.altInput || self.input).nextSibling);
+				if (self.config.inline && !customAppend) {
+					return self.element.parentNode.insertBefore(self.calendarContainer, (self.altInput || self.input).nextSibling);
 				}
-			} else window.document.body.appendChild(self.calendarContainer);
+
+				if (self.config.static) {
+					var wrapper = createElement("div", "flatpickr-wrapper");
+					self.element.parentNode.insertBefore(wrapper, self.element);
+					wrapper.appendChild(self.element);
+
+					if (self.altInput) wrapper.appendChild(self.altInput);
+
+					wrapper.appendChild(self.calendarContainer);
+					return;
+				}
+			}
+
+			(customAppend ? self.config.appendTo : window.document.body).appendChild(self.calendarContainer);
 		}
 
 		function createDay(className, date, dayNumber) {
@@ -13816,17 +13847,19 @@
 
 			dayElement.dateObj = date;
 
-			if (compareDates(date, self.now) === 0) dayElement.classList.add("today");
+			toggleClass(dayElement, "today", compareDates(date, self.now) === 0);
 
 			if (dateIsEnabled) {
 				dayElement.tabIndex = 0;
 
 				if (isDateSelected(date)) {
 					dayElement.classList.add("selected");
-
+					self.selectedDateElem = dayElement;
 					if (self.config.mode === "range") {
-						dayElement.classList.add(compareDates(date, self.selectedDates[0]) === 0 ? "startRange" : "endRange");
-					} else self.selectedDateElem = dayElement;
+						toggleClass(dayElement, "startRange", compareDates(date, self.selectedDates[0]) === 0);
+
+						toggleClass(dayElement, "endRange", compareDates(date, self.selectedDates[1]) === 0);
+					}
 				}
 			} else {
 				dayElement.classList.add("disabled");
@@ -13848,27 +13881,23 @@
 			return dayElement;
 		}
 
-		function buildDays() {
-			if (!self.days) {
-				self.days = createElement("div", "flatpickr-days");
-				self.days.tabIndex = -1;
-			}
-
-			self.firstOfMonth = (new Date(self.currentYear, self.currentMonth, 1).getDay() - self.l10n.firstDayOfWeek + 7) % 7;
+		function buildDays(year, month) {
+			var firstOfMonth = (new Date(self.currentYear, self.currentMonth, 1).getDay() - self.l10n.firstDayOfWeek + 7) % 7,
+			    isRangeMode = self.config.mode === "range";
 
 			self.prevMonthDays = self.utils.getDaysinMonth((self.currentMonth - 1 + 12) % 12);
 
 			var daysInMonth = self.utils.getDaysinMonth(),
 			    days = window.document.createDocumentFragment();
 
-			var dayNumber = self.prevMonthDays + 1 - self.firstOfMonth;
+			var dayNumber = self.prevMonthDays + 1 - firstOfMonth;
 
 			if (self.config.weekNumbers && self.weekNumbers.firstChild) self.weekNumbers.textContent = "";
 
-			if (self.config.mode === "range") {
+			if (isRangeMode) {
 				// const dateLimits = self.config.enable.length || self.config.disable.length || self.config.mixDate || self.config.maxDate;
 				self.minRangeDate = new Date(self.currentYear, self.currentMonth - 1, dayNumber);
-				self.maxRangeDate = new Date(self.currentYear, self.currentMonth + 1, (42 - self.firstOfMonth) % daysInMonth);
+				self.maxRangeDate = new Date(self.currentYear, self.currentMonth + 1, (42 - firstOfMonth) % daysInMonth);
 			}
 
 			if (self.days.firstChild) self.days.textContent = "";
@@ -13884,9 +13913,15 @@
 			}
 
 			// append days from the next month
-			for (var dayNum = daysInMonth + 1; dayNum <= 42 - self.firstOfMonth; dayNum++) {
+			for (var dayNum = daysInMonth + 1; dayNum <= 42 - firstOfMonth; dayNum++) {
 				days.appendChild(createDay("nextMonthDay", new Date(self.currentYear, self.currentMonth + 1, dayNum % daysInMonth), dayNum));
 			}
+
+			if (isRangeMode && self.selectedDates.length === 1 && days.childNodes[0]) {
+				self._hidePrevMonthArrow = self._hidePrevMonthArrow || self.minRangeDate > days.childNodes[0].dateObj;
+
+				self._hideNextMonthArrow = self._hideNextMonthArrow || self.maxRangeDate < days.childNodes[41].dateObj;
+			} else updateNavigationCurrentMonth();
 
 			self.days.appendChild(days);
 			return self.days;
@@ -13900,6 +13935,7 @@
 			self.prevMonthNav.innerHTML = self.config.prevArrow;
 
 			self.currentMonthElement = createElement("span", "cur-month");
+			self.currentMonthElement.title = self.l10n.scrollTitle;
 
 			var yearInput = createNumberInput("cur-year");
 			self.currentYearElement = yearInput.childNodes[0];
@@ -13925,6 +13961,26 @@
 			monthNavFragment.appendChild(self.nextMonthNav);
 			self.monthNav.appendChild(monthNavFragment);
 
+			Object.defineProperty(self, "_hidePrevMonthArrow", {
+				get: function get() {
+					return this.__hidePrevMonthArrow;
+				},
+				set: function set(bool) {
+					if (this.__hidePrevMonthArrow !== bool) self.prevMonthNav.style.display = bool ? "none" : "block";
+					this.__hidePrevMonthArrow = bool;
+				}
+			});
+
+			Object.defineProperty(self, "_hideNextMonthArrow", {
+				get: function get() {
+					return this.__hideNextMonthArrow;
+				},
+				set: function set(bool) {
+					if (this.__hideNextMonthArrow !== bool) self.nextMonthNav.style.display = bool ? "none" : "block";
+					this.__hideNextMonthArrow = bool;
+				}
+			});
+
 			updateNavigationCurrentMonth();
 
 			return self.monthNav;
@@ -13944,7 +14000,6 @@
 			self.minuteElement = minuteInput.childNodes[0];
 
 			self.hourElement.tabIndex = self.minuteElement.tabIndex = 0;
-			self.hourElement.pattern = self.minuteElement.pattern = "\\d*";
 
 			self.hourElement.value = self.pad(self.latestSelectedDateObj ? self.latestSelectedDateObj.getHours() : self.config.defaultHour);
 
@@ -13973,7 +14028,6 @@
 				var secondInput = createNumberInput("flatpickr-second");
 				self.secondElement = secondInput.childNodes[0];
 
-				self.secondElement.pattern = self.hourElement.pattern;
 				self.secondElement.value = self.latestSelectedDateObj ? self.pad(self.latestSelectedDateObj.getSeconds()) : "00";
 
 				self.secondElement.step = self.minuteElement.step;
@@ -14022,9 +14076,20 @@
 		}
 
 		function changeMonth(value, is_offset) {
-			self.currentMonth = typeof is_offset === "undefined" || is_offset ? self.currentMonth + value : value;
+			is_offset = typeof is_offset === "undefined" || is_offset;
+			var delta = is_offset ? value : value - self.currentMonth;
 
-			handleYearChange();
+			if (delta < 0 && self._hidePrevMonthArrow || delta > 0 && self._hideNextMonthArrow) return;
+
+			self.currentMonth += delta;
+
+			if (self.currentMonth < 0 || self.currentMonth > 11) {
+				self.currentYear += self.currentMonth > 11 ? 1 : -1;
+				self.currentMonth = (self.currentMonth + 12) % 12;
+
+				triggerEvent("YearChange");
+			}
+
 			updateNavigationCurrentMonth();
 			buildDays();
 
@@ -14042,7 +14107,7 @@
 
 			self.selectedDates = [];
 			self.latestSelectedDateObj = null;
-			self.dateIsPicked = false;
+			self.showTimeInput = false;
 
 			self.redraw();
 
@@ -14066,7 +14131,6 @@
 			instance = instance || self;
 			instance.clear(false);
 
-			window.document.removeEventListener("keydown", onKeyDown);
 			window.removeEventListener("resize", instance.debouncedResize);
 
 			window.document.removeEventListener("click", documentClick);
@@ -14075,11 +14139,15 @@
 
 			if (instance.timeContainer) instance.timeContainer.removeEventListener("transitionend", positionCalendar);
 
-			if (instance.mobileInput && instance.mobileInput.parentNode) instance.mobileInput.parentNode.removeChild(instance.mobileInput);else if (instance.calendarContainer && instance.calendarContainer.parentNode) instance.calendarContainer.parentNode.removeChild(instance.calendarContainer);
+			if (instance.mobileInput) {
+				if (instance.mobileInput.parentNode) instance.mobileInput.parentNode.removeChild(instance.mobileInput);
+				delete instance.mobileInput;
+			} else if (instance.calendarContainer && instance.calendarContainer.parentNode) instance.calendarContainer.parentNode.removeChild(instance.calendarContainer);
 
 			if (instance.altInput) {
 				instance.input.type = "text";
 				if (instance.altInput.parentNode) instance.altInput.parentNode.removeChild(instance.altInput);
+				delete instance.altInput;
 			}
 
 			instance.input.type = instance.input._type;
@@ -14091,17 +14159,15 @@
 		}
 
 		function isCalendarElem(elem) {
-			var e = elem;
-			while (e) {
-				if (/flatpickr-day|flatpickr-calendar/.test(e.className)) return true;
-				e = e.parentNode;
-			}
+			if (self.config.appendTo && self.config.appendTo.contains(elem)) return true;
 
-			return false;
+			return self.calendarContainer.contains(elem);
 		}
 
 		function documentClick(e) {
-			var isInput = self.element.contains(e.target) || e.target === self.input || e.target === self.altInput || e.path && (~e.path.indexOf(self.input) || ~e.path.indexOf(self.altInput));
+			var isInput = self.element.contains(e.target) || e.target === self.input || e.target === self.altInput ||
+			// web components
+			e.path && e.path.indexOf && (~e.path.indexOf(self.input) || ~e.path.indexOf(self.altInput));
 
 			if (self.isOpen && !self.config.inline && !isCalendarElem(e.target) && !isInput) {
 				e.preventDefault();
@@ -14123,21 +14189,21 @@
 			}).join("");
 		}
 
-		function handleYearChange(newYear) {
-			if (self.currentMonth < 0 || self.currentMonth > 11) {
-				self.currentYear += self.currentMonth % 11;
-				self.currentMonth = (self.currentMonth + 12) % 12;
+		function changeYear(newYear) {
+			if (!newYear || self.currentYearElement.min && newYear < self.currentYearElement.min || self.currentYearElement.max && newYear > self.currentYearElement.max) return;
 
-				triggerEvent("YearChange");
-			} else if (newYear && (!self.currentYearElement.min || newYear >= self.currentYearElement.min) && (!self.currentYearElement.max || newYear <= self.currentYearElement.max)) {
-				self.currentYear = parseInt(newYear, 10) || self.currentYear;
+			var newYearNum = parseInt(newYear, 10),
+			    isNewYear = self.currentYear !== newYearNum;
 
-				if (self.config.maxDate && self.currentYear === self.config.maxDate.getFullYear()) {
-					self.currentMonth = Math.min(self.config.maxDate.getMonth(), self.currentMonth);
-				} else if (self.config.minDate && self.currentYear === self.config.minDate.getFullYear()) {
-					self.currentMonth = Math.max(self.config.minDate.getMonth(), self.currentMonth);
-				}
+			self.currentYear = newYearNum || self.currentYear;
 
+			if (self.config.maxDate && self.currentYear === self.config.maxDate.getFullYear()) {
+				self.currentMonth = Math.min(self.config.maxDate.getMonth(), self.currentMonth);
+			} else if (self.config.minDate && self.currentYear === self.config.minDate.getFullYear()) {
+				self.currentMonth = Math.max(self.config.minDate.getMonth(), self.currentMonth);
+			}
+
+			if (isNewYear) {
 				self.redraw();
 				triggerEvent("YearChange");
 			}
@@ -14172,7 +14238,7 @@
 		}
 
 		function onKeyDown(e) {
-			if (self.isOpen) {
+			if (e.target === (self.altInput || self.input) && e.which === 13) selectDate(e);else if (self.isOpen || self.config.inline) {
 				switch (e.which) {
 					case 13:
 						if (self.timeContainer && self.timeContainer.contains(e.target)) updateValue();else selectDate(e);
@@ -14181,40 +14247,46 @@
 
 					case 27:
 						// escape
-						self.clear();
-						self.redraw();
 						self.close();
 						break;
 
 					case 37:
-						if (e.target !== self.input & e.target !== self.altInput) changeMonth(-1);
+						if (e.target !== self.input & e.target !== self.altInput) {
+							e.preventDefault();
+							changeMonth(-1);
+							self.currentMonthElement.focus();
+						}
 						break;
 
 					case 38:
-						e.preventDefault();
-
-						if (self.timeContainer && self.timeContainer.contains(e.target)) updateTime(e);else {
+						if (!self.timeContainer || !self.timeContainer.contains(e.target)) {
+							e.preventDefault();
 							self.currentYear++;
 							self.redraw();
-						}
+						} else updateTime(e);
 
 						break;
 
 					case 39:
-						if (e.target !== self.input & e.target !== self.altInput) changeMonth(1);
+						if (e.target !== self.input & e.target !== self.altInput) {
+							e.preventDefault();
+							changeMonth(1);
+							self.currentMonthElement.focus();
+						}
 						break;
 
 					case 40:
-						e.preventDefault();
-						if (self.timeContainer && self.timeContainer.contains(e.target)) updateTime(e);else {
+						if (!self.timeContainer || !self.timeContainer.contains(e.target)) {
+							e.preventDefault();
 							self.currentYear--;
 							self.redraw();
-						}
+						} else updateTime(e);
 
 						break;
 
 					default:
 						break;
+
 				}
 			}
 		}
@@ -14235,16 +14307,20 @@
 				}
 			}
 
-			for (var timestamp = self.days.childNodes[0].dateObj.getTime(), i = 0; i < 42; i++, timestamp += self.utils.duration.DAY) {
+			var _loop = function _loop(timestamp, i) {
 				var outOfRange = timestamp < self.minRangeDate.getTime() || timestamp > self.maxRangeDate.getTime();
 
 				if (outOfRange) {
 					self.days.childNodes[i].classList.add("notAllowed");
-					self.days.childNodes[i].classList.remove("inRange", "startRange", "endRange");
-					continue;
-				} else if (containsDisabled && !outOfRange) continue;
+					["inRange", "startRange", "endRange"].forEach(function (c) {
+						self.days.childNodes[i].classList.remove(c);
+					});
+					return "continue";
+				} else if (containsDisabled && !outOfRange) return "continue";
 
-				self.days.childNodes[i].classList.remove("startRange", "inRange", "endRange", "notAllowed");
+				["startRange", "inRange", "endRange", "notAllowed"].forEach(function (c) {
+					self.days.childNodes[i].classList.remove(c);
+				});
 
 				var minRangeDate = Math.max(self.minRangeDate.getTime(), rangeStartDate),
 				    maxRangeDate = Math.min(self.maxRangeDate.getTime(), rangeEndDate);
@@ -14252,6 +14328,12 @@
 				e.target.classList.add(hoverDate < self.selectedDates[0] ? "startRange" : "endRange");
 
 				if (initialDate > hoverDate && timestamp === initialDate.getTime()) self.days.childNodes[i].classList.add("endRange");else if (initialDate < hoverDate && timestamp === initialDate.getTime()) self.days.childNodes[i].classList.add("startRange");else if (timestamp > minRangeDate && timestamp < maxRangeDate) self.days.childNodes[i].classList.add("inRange");
+			};
+
+			for (var timestamp = self.days.childNodes[0].dateObj.getTime(), i = 0; i < 42; i++, timestamp += self.utils.duration.DAY) {
+				var _ret = _loop(timestamp, i);
+
+				if (_ret === "continue") continue;
 			}
 		}
 
@@ -14292,30 +14374,53 @@
 		function minMaxDateSetter(type) {
 			return function (date) {
 				var dateObj = self.config["_" + type + "Date"] = self.parseDate(date);
+
 				var inverseDateObj = self.config["_" + (type === "min" ? "max" : "min") + "Date"];
+				var isValidDate = date && dateObj instanceof Date;
+
+				if (isValidDate) {
+					self[type + "DateHasTime"] = dateObj.getHours() || dateObj.getMinutes() || dateObj.getSeconds();
+				}
 
 				if (self.selectedDates) {
-					self.selectedDates = self.selectedDates.filter(isEnabled);
+					self.selectedDates = self.selectedDates.filter(function (d) {
+						return isEnabled(d);
+					});
+					if (!self.selectedDates.length && type === "min") setHoursFromDate(dateObj);
 					updateValue();
 				}
 
-				if (self.days) redraw();
+				if (self.days) {
+					redraw();
 
-				if (!self.currentYearElement) return;
+					if (isValidDate) self.currentYearElement[type] = dateObj.getFullYear();else self.currentYearElement.removeAttribute(type);
 
-				if (date && dateObj instanceof Date) {
-					self[type + "DateHasTime"] = dateObj.getHours() || dateObj.getMinutes() || dateObj.getSeconds();
-
-					self.currentYearElement[type] = dateObj.getFullYear();
-				} else self.currentYearElement.removeAttribute(type);
-
-				self.currentYearElement.disabled = inverseDateObj && dateObj && inverseDateObj.getFullYear() === dateObj.getFullYear();
+					self.currentYearElement.disabled = inverseDateObj && dateObj && inverseDateObj.getFullYear() === dateObj.getFullYear();
+				}
 			};
 		}
 
 		function parseConfig() {
 			var boolOpts = ["utc", "wrap", "weekNumbers", "allowInput", "clickOpens", "time_24hr", "enableTime", "noCalendar", "altInput", "shorthandCurrentMonth", "inline", "static", "enableSeconds", "disableMobile"];
+
+			var hooks = ["onChange", "onClose", "onDayCreate", "onMonthChange", "onOpen", "onParseConfig", "onReady", "onValueUpdate", "onYearChange"];
+
 			self.config = Object.create(Flatpickr.defaultConfig);
+
+			var userConfig = _extends({}, self.instanceConfig, JSON.parse(JSON.stringify(self.element.dataset || {})));
+
+			self.config.parseDate = userConfig.parseDate;
+			self.config.formatDate = userConfig.formatDate;
+
+			_extends(self.config, userConfig);
+
+			if (!userConfig.dateFormat && userConfig.enableTime) {
+				self.config.dateFormat = self.config.noCalendar ? "H:i" + (self.config.enableSeconds ? ":S" : "") : Flatpickr.defaultConfig.dateFormat + " H:i" + (self.config.enableSeconds ? ":S" : "");
+			}
+
+			if (userConfig.altInput && userConfig.enableTime && !userConfig.altFormat) {
+				self.config.altFormat = self.config.noCalendar ? "h:i" + (self.config.enableSeconds ? ":S K" : " K") : Flatpickr.defaultConfig.altFormat + (" h:i" + (self.config.enableSeconds ? ":S" : "") + " K");
+			}
 
 			Object.defineProperty(self.config, "minDate", {
 				get: function get() {
@@ -14331,19 +14436,21 @@
 				set: minMaxDateSetter("max")
 			});
 
-			var userConfig = _extends({}, self.instanceConfig, JSON.parse(JSON.stringify(self.element.dataset || {})));
-
-			_extends(self.config, userConfig);
+			self.config.minDate = userConfig.minDate;
+			self.config.maxDate = userConfig.maxDate;
 
 			for (var i = 0; i < boolOpts.length; i++) {
 				self.config[boolOpts[i]] = self.config[boolOpts[i]] === true || self.config[boolOpts[i]] === "true";
-			}if (!userConfig.dateFormat && userConfig.enableTime) {
-				self.config.dateFormat = self.config.noCalendar ? "H:i" + (self.config.enableSeconds ? ":S" : "") : Flatpickr.defaultConfig.dateFormat + " H:i" + (self.config.enableSeconds ? ":S" : "");
+			}for (var _i = 0; _i < hooks.length; _i++) {
+				self.config[hooks[_i]] = arrayify(self.config[hooks[_i]] || []).map(bindToInstance);
+			}for (var _i2 = 0; _i2 < self.config.plugins.length; _i2++) {
+				var pluginConf = self.config.plugins[_i2](self) || {};
+				for (var key in pluginConf) {
+					if (Array.isArray(self.config[key])) self.config[key] = arrayify(pluginConf[key]).map(bindToInstance).concat(self.config[key]);else if (typeof userConfig[key] === "undefined") self.config[key] = pluginConf[key];
+				}
 			}
 
-			if (userConfig.altInput && userConfig.enableTime && !userConfig.altFormat) {
-				self.config.altFormat = self.config.noCalendar ? "h:i" + (self.config.enableSeconds ? ":S K" : " K") : Flatpickr.defaultConfig.altFormat + (" h:i" + (self.config.enableSeconds ? ":S" : "") + " K");
-			}
+			triggerEvent("ParseConfig");
 		}
 
 		function setupLocale() {
@@ -14357,39 +14464,35 @@
 
 			var calendarHeight = self.calendarContainer.offsetHeight,
 			    calendarWidth = self.calendarContainer.offsetWidth,
+			    configPos = self.config.position,
 			    input = self.altInput || self.input,
 			    inputBounds = input.getBoundingClientRect(),
-			    distanceFromBottom = window.innerHeight - inputBounds.bottom + input.offsetHeight;
+			    distanceFromBottom = window.innerHeight - inputBounds.bottom + input.offsetHeight,
+			    showOnTop = configPos === "above" || configPos !== "below" && distanceFromBottom < calendarHeight + 60;
 
-			var top = void 0;
+			var top = window.pageYOffset + inputBounds.top + (!showOnTop ? input.offsetHeight + 2 : -calendarHeight - 2);
 
-			if (distanceFromBottom < calendarHeight + 60) {
-				top = window.pageYOffset - calendarHeight + inputBounds.top - 2;
-				self.calendarContainer.classList.remove("arrowTop");
-				self.calendarContainer.classList.add("arrowBottom");
+			toggleClass(self.calendarContainer, "arrowTop", !showOnTop);
+			toggleClass(self.calendarContainer, "arrowBottom", showOnTop);
+
+			if (self.config.inline) return;
+
+			var left = window.pageXOffset + inputBounds.left;
+			var right = window.document.body.offsetWidth - inputBounds.right;
+			var rightMost = left + calendarWidth > window.document.body.offsetWidth;
+
+			toggleClass(self.calendarContainer, "rightMost", rightMost);
+
+			if (self.config.static) return;
+
+			self.calendarContainer.style.top = top + "px";
+
+			if (!rightMost) {
+				self.calendarContainer.style.left = left + "px";
+				self.calendarContainer.style.right = "auto";
 			} else {
-				top = window.pageYOffset + input.offsetHeight + inputBounds.top + 2;
-				self.calendarContainer.classList.remove("arrowBottom");
-				self.calendarContainer.classList.add("arrowTop");
-			}
-
-			if (!self.config.static && !self.config.inline) {
-				self.calendarContainer.style.top = top + "px";
-
-				var left = window.pageXOffset + inputBounds.left;
-				var right = window.document.body.offsetWidth - inputBounds.right;
-
-				if (left + calendarWidth <= window.document.body.offsetWidth) {
-					self.calendarContainer.style.left = left + "px";
-					self.calendarContainer.style.right = "auto";
-
-					self.calendarContainer.classList.remove("rightMost");
-				} else {
-					self.calendarContainer.style.left = "auto";
-					self.calendarContainer.style.right = right + "px";
-
-					self.calendarContainer.classList.add("rightMost");
-				}
+				self.calendarContainer.style.left = "auto";
+				self.calendarContainer.style.right = right + "px";
 			}
 		}
 
@@ -14403,7 +14506,12 @@
 
 		function selectDate(e) {
 			e.preventDefault();
-			if (self.config.allowInput && e.which === 13 && e.target === (self.altInput || self.input)) return self.setDate((self.altInput || self.input).value), e.target.blur();
+			e.stopPropagation();
+
+			if (self.config.allowInput && e.which === 13 && e.target === (self.altInput || self.input)) {
+				self.setDate((self.altInput || self.input).value, true, e.target === self.altInput ? self.config.altFormat : self.config.dateFormat);
+				return e.target.blur();
+			}
 
 			if (!e.target.classList.contains("flatpickr-day") || e.target.classList.contains("disabled") || e.target.classList.contains("notAllowed")) return;
 
@@ -14418,7 +14526,9 @@
 				if (self.selectedDates.length === 2) self.clear();
 
 				self.selectedDates.push(selectedDate);
-				self.selectedDates.sort(function (a, b) {
+
+				// unless selecting same date twice, sort ascendingly
+				if (compareDates(selectedDate, self.selectedDates[0], true) !== 0) self.selectedDates.sort(function (a, b) {
 					return a.getTime() - b.getTime();
 				});
 			}
@@ -14426,9 +14536,13 @@
 			setHoursFromInputs();
 
 			if (selectedDate.getMonth() !== self.currentMonth && self.config.mode !== "range") {
+				var isNewYear = self.currentYear !== selectedDate.getFullYear();
 				self.currentYear = selectedDate.getFullYear();
 				self.currentMonth = selectedDate.getMonth();
-				updateNavigationCurrentMonth();
+
+				if (isNewYear) triggerEvent("YearChange");
+
+				triggerEvent("MonthChange");
 			}
 
 			buildDays();
@@ -14438,10 +14552,22 @@
 			updateValue();
 
 			setTimeout(function () {
-				return self.dateIsPicked = true;
+				return self.showTimeInput = true;
 			}, 50);
 
-			if (self.config.mode === "range" && self.selectedDates.length === 1) onMouseOver(e);
+			if (self.config.mode === "range") {
+				if (self.selectedDates.length === 1) {
+					onMouseOver(e);
+
+					self._hidePrevMonthArrow = self._hidePrevMonthArrow || self.minRangeDate > self.days.childNodes[0].dateObj;
+
+					self._hideNextMonthArrow = self._hideNextMonthArrow || self.maxRangeDate < self.days.childNodes[41].dateObj;
+				} else updateNavigationCurrentMonth();
+			}
+
+			if (e.which === 13 && self.config.enableTime) setTimeout(function () {
+				return self.hourElement.focus();
+			}, 451);
 
 			if (self.config.mode === "single" && !self.config.enableTime) self.close();
 
@@ -14454,19 +14580,26 @@
 			jumpToDate();
 		}
 
-		function setSelectedDate(inputDate) {
-			if (Array.isArray(inputDate)) self.selectedDates = inputDate.map(self.parseDate);else if (inputDate) {
+		function setSelectedDate(inputDate, format) {
+			if (Array.isArray(inputDate)) self.selectedDates = inputDate.map(function (d) {
+				return self.parseDate(d, false, format);
+			});else if (inputDate instanceof Date || !isNaN(inputDate)) self.selectedDates = [self.parseDate(inputDate)];else if (inputDate && inputDate.substring) {
 				switch (self.config.mode) {
 					case "single":
-						self.selectedDates = [self.parseDate(inputDate)];
+						self.selectedDates = [self.parseDate(inputDate, false, format)];
 						break;
 
 					case "multiple":
-						self.selectedDates = inputDate.split("; ").map(self.parseDate);
+						self.selectedDates = inputDate.split("; ").map(function (date) {
+							return self.parseDate(date, false, format);
+						});
 						break;
 
 					case "range":
-						self.selectedDates = inputDate.split(self.l10n.rangeSeparator).map(self.parseDate);
+						self.selectedDates = inputDate.split(self.l10n.rangeSeparator).map(function (date) {
+							return self.parseDate(date, false, format);
+						});
+
 						break;
 
 					default:
@@ -14483,13 +14616,13 @@
 			});
 		}
 
-		function setDate(date, triggerChange) {
+		function setDate(date, triggerChange, format) {
 			if (!date) return self.clear();
 
-			setSelectedDate(date);
+			setSelectedDate(date, format);
 
 			if (self.selectedDates.length > 0) {
-				self.dateIsPicked = true;
+				self.showTimeInput = true;
 				self.latestSelectedDateObj = self.selectedDates[0];
 			} else self.latestSelectedDateObj = null;
 
@@ -14499,7 +14632,7 @@
 			setHoursFromDate();
 			updateValue();
 
-			if (triggerChange === true) triggerEvent("Change");
+			if (triggerChange !== false) triggerEvent("Change");
 		}
 
 		function setupDates() {
@@ -14519,11 +14652,11 @@
 			self.selectedDates = [];
 			self.now = new Date();
 
-			setSelectedDate(self.config.defaultDate || self.input.value);
-
 			if (self.config.disable.length) self.config.disable = parseDateRules(self.config.disable);
 
 			if (self.config.enable.length) self.config.enable = parseDateRules(self.config.enable);
+
+			setSelectedDate(self.config.defaultDate || self.input.value);
 
 			var initialDate = self.selectedDates.length ? self.selectedDates[0] : self.config.minDate && self.config.minDate.getTime() > self.now ? self.config.minDate : self.config.maxDate && self.config.maxDate.getTime() < self.now ? self.config.maxDate : self.now;
 
@@ -14544,6 +14677,14 @@
 					self._selectedDateObj = date;
 				}
 			});
+
+			if (!self.isMobile) {
+				Object.defineProperty(self, "showTimeInput", {
+					set: function set(bool) {
+						if (self.calendarContainer) toggleClass(self.calendarContainer, "showTimeInput", bool);
+					}
+				});
+			}
 		}
 
 		function setupHelperFunctions() {
@@ -14570,107 +14711,18 @@
 
 		/* istanbul ignore next */
 		function setupFormats() {
-			self.formats = {
-				// weekday name, short, e.g. Thu
-				D: function D(date) {
-					return self.l10n.weekdays.shorthand[self.formats.w(date)];
-				},
+			["D", "F", "J", "M", "W", "l"].forEach(function (f) {
+				self.formats[f] = Flatpickr.prototype.formats[f].bind(self);
+			});
 
-				// full month name e.g. January
-				F: function F(date) {
-					return self.utils.monthToStr(self.formats.n(date) - 1, false);
-				},
-
-				// hours with leading zero e.g. 03
-				H: function H(date) {
-					return Flatpickr.prototype.pad(date.getHours());
-				},
-
-				// day (1-30) with ordinal suffix e.g. 1st, 2nd
-				J: function J(date) {
-					return date.getDate() + self.l10n.ordinal(date.getDate());
-				},
-
-				// AM/PM
-				K: function K(date) {
-					return date.getHours() > 11 ? "PM" : "AM";
-				},
-
-				// shorthand month e.g. Jan, Sep, Oct, etc
-				M: function M(date) {
-					return self.utils.monthToStr(date.getMonth(), true);
-				},
-
-				// seconds 00-59
-				S: function S(date) {
-					return Flatpickr.prototype.pad(date.getSeconds());
-				},
-
-				// unix timestamp
-				U: function U(date) {
-					return date.getTime() / 1000;
-				},
-
-				// full year e.g. 2016
-				Y: function Y(date) {
-					return date.getFullYear();
-				},
-
-				// day in month, padded (01-30)
-				d: function d(date) {
-					return Flatpickr.prototype.pad(self.formats.j(date));
-				},
-
-				// hour from 1-12 (am/pm)
-				h: function h(date) {
-					return date.getHours() % 12 ? date.getHours() % 12 : 12;
-				},
-
-				// minutes, padded with leading zero e.g. 09
-				i: function i(date) {
-					return Flatpickr.prototype.pad(date.getMinutes());
-				},
-
-				// day in month (1-30)
-				j: function j(date) {
-					return date.getDate();
-				},
-
-				// weekday name, full, e.g. Thursday
-				l: function l(date) {
-					return self.l10n.weekdays.longhand[self.formats.w(date)];
-				},
-
-				// padded month number (01-12)
-				m: function m(date) {
-					return Flatpickr.prototype.pad(self.formats.n(date));
-				},
-
-				// the month number (1-12)
-				n: function n(date) {
-					return date.getMonth() + 1;
-				},
-
-				// seconds 0-59
-				s: function s(date) {
-					return date.getSeconds();
-				},
-
-				// number of the day of the week
-				w: function w(date) {
-					return date.getDay();
-				},
-
-				// last two digits of year e.g. 16 for 2016
-				y: function y(date) {
-					return String(self.formats.Y(date)).substring(2);
-				}
-			};
+			self.revFormat.F = Flatpickr.prototype.revFormat.F.bind(self);
+			self.revFormat.M = Flatpickr.prototype.revFormat.M.bind(self);
 		}
 
 		function setupInputs() {
 			self.input = self.config.wrap ? self.element.querySelector("[data-input]") : self.element;
 
+			/* istanbul ignore next */
 			if (!self.input) return console.warn("Error: invalid input element specified", self.input);
 
 			self.input._type = self.input.type;
@@ -14682,9 +14734,9 @@
 				self.altInput = createElement(self.input.nodeName, self.input.className + " " + self.config.altInputClass);
 				self.altInput.placeholder = self.input.placeholder;
 				self.altInput.type = "text";
-
 				self.input.type = "hidden";
-				if (self.input.parentNode) self.input.parentNode.insertBefore(self.altInput, self.input.nextSibling);
+
+				if (!self.config.static && self.input.parentNode) self.input.parentNode.insertBefore(self.altInput, self.input.nextSibling);
 			}
 
 			if (!self.config.allowInput) (self.altInput || self.input).setAttribute("readonly", "readonly");
@@ -14698,6 +14750,7 @@
 			self.mobileInput.tabIndex = 1;
 			self.mobileInput.type = inputType;
 			self.mobileInput.disabled = self.input.disabled;
+			self.mobileInput.placeholder = self.input.placeholder;
 
 			self.mobileFormatStr = inputType === "datetime-local" ? "Y-m-d\\TH:i:S" : inputType === "date" ? "Y-m-d" : "H:i:S";
 
@@ -14731,11 +14784,11 @@
 		}
 
 		function triggerEvent(event, data) {
-			if (self.config["on" + event]) {
-				var hooks = Array.isArray(self.config["on" + event]) ? self.config["on" + event] : [self.config["on" + event]];
+			var hooks = self.config["on" + event];
 
+			if (hooks) {
 				for (var i = 0; i < hooks.length; i++) {
-					hooks[i](self.selectedDates, self.input.value, self, data);
+					hooks[i](self.selectedDates, self.input && self.input.value, self, data);
 				}
 			}
 
@@ -14745,11 +14798,14 @@
 
 					// many front-end frameworks bind to the input event
 					self.input.dispatchEvent(new Event("input", { "bubbles": true }));
-				} else {
-					if (window.document.createEvent !== undefined) return self.input.dispatchEvent(self.changeEvent);
-
-					self.input.fireEvent("onchange");
 				}
+
+				/* istanbul ignore next */
+				else {
+						if (window.document.createEvent !== undefined) return self.input.dispatchEvent(self.changeEvent);
+
+						self.input.fireEvent("onchange");
+					}
 			}
 		}
 
@@ -14772,17 +14828,9 @@
 			self.currentMonthElement.textContent = self.utils.monthToStr(self.currentMonth) + " ";
 			self.currentYearElement.value = self.currentYear;
 
-			if (self.config.minDate) {
-				var hidePrevMonthArrow = self.currentYear === self.config.minDate.getFullYear() ? self.currentMonth <= self.config.minDate.getMonth() : self.currentYear < self.config.minDate.getFullYear();
+			self._hidePrevMonthArrow = self.config.minDate && (self.currentYear === self.config.minDate.getFullYear() ? self.currentMonth <= self.config.minDate.getMonth() : self.currentYear < self.config.minDate.getFullYear());
 
-				self.prevMonthNav.style.display = hidePrevMonthArrow ? "none" : "block";
-			} else self.prevMonthNav.style.display = "block";
-
-			if (self.config.maxDate) {
-				var hideNextMonthArrow = self.currentYear === self.config.maxDate.getFullYear() ? self.currentMonth + 1 > self.config.maxDate.getMonth() : self.currentYear > self.config.maxDate.getFullYear();
-
-				self.nextMonthNav.style.display = hideNextMonthArrow ? "none" : "block";
-			} else self.nextMonthNav.style.display = "block";
+			self._hideNextMonthArrow = self.config.maxDate && (self.currentYear === self.config.maxDate.getFullYear() ? self.currentMonth + 1 > self.config.maxDate.getMonth() : self.currentYear > self.config.maxDate.getFullYear());
 		}
 
 		function updateValue() {
@@ -14813,7 +14861,7 @@
 			var delta = Math.max(-1, Math.min(1, e.wheelDelta || -e.deltaY)),
 			    newYear = parseInt(e.target.value, 10) + delta;
 
-			handleYearChange(newYear);
+			changeYear(newYear);
 			e.target.value = self.currentYear;
 		}
 
@@ -14827,6 +14875,16 @@
 			if (content) e.textContent = content;
 
 			return e;
+		}
+
+		function arrayify(obj) {
+			if (Array.isArray(obj)) return obj;
+			return [obj];
+		}
+
+		function toggleClass(elem, className, bool) {
+			if (bool) return elem.classList.add(className);
+			elem.classList.remove(className);
 		}
 
 		/* istanbul ignore next */
@@ -14861,41 +14919,46 @@
 
 		function timeWrapper(e) {
 			e.preventDefault();
-			if (e && ((e.target.value || e.target.textContent).length >= 2 || // typed two digits
-			e.type !== "keydown" && e.type !== "input" // scroll event
-			)) e.target.blur();
+
+			var isKeyDown = e.type === "keydown",
+			    isWheel = e.type === "wheel",
+			    isIncrement = e.type === "increment",
+			    input = e.target;
+
+			if (e.type !== "input" && !isKeyDown && (e.target.value || e.target.textContent).length >= 2 // typed two digits
+			) {
+					e.target.focus();
+					e.target.blur();
+				}
 
 			if (self.amPM && e.target === self.amPM) return e.target.textContent = ["AM", "PM"][e.target.textContent === "AM" | 0];
 
-			var min = Number(e.target.min),
-			    max = Number(e.target.max),
-			    step = Number(e.target.step),
-			    curValue = parseInt(e.target.value, 10),
-			    delta = Math.max(-1, Math.min(1, e.wheelDelta || -e.deltaY));
+			var min = Number(input.min),
+			    max = Number(input.max),
+			    step = Number(input.step),
+			    curValue = parseInt(input.value, 10),
+			    delta = e.delta || (!isKeyDown ? Math.max(-1, Math.min(1, e.wheelDelta || -e.deltaY)) || 0 : e.which === 38 ? 1 : -1);
 
-			var newValue = Number(curValue);
+			var newValue = curValue + step * delta;
 
-			switch (e.type) {
-				case "wheel":
-					newValue = curValue + step * delta;
-					break;
+			if (input.value.length === 2) {
+				var isHourElem = input === self.hourElement,
+				    isMinuteElem = input === self.minuteElement;
 
-				case "keydown":
-					newValue = curValue + step * (e.which === 38 ? 1 : -1);
-					break;
-			}
-
-			if (e.type !== "input" || e.target.value.length === 2) {
 				if (newValue < min) {
-					newValue = max + newValue + (e.target !== self.hourElement) + (e.target === self.hourElement && !self.amPM);
+					newValue = max + newValue + !isHourElem + (isHourElem && !self.amPM);
+
+					if (isMinuteElem) incrementNumInput(null, -1, self.hourElement);
 				} else if (newValue > max) {
-					newValue = e.target === self.hourElement ? newValue - max - !self.amPM : min;
+					newValue = input === self.hourElement ? newValue - max - !self.amPM : min;
+
+					if (isMinuteElem) incrementNumInput(null, 1, self.hourElement);
 				}
 
-				if (self.amPM && e.target === self.hourElement && (step === 1 ? newValue + curValue === 23 : Math.abs(newValue - curValue) > step)) self.amPM.textContent = self.amPM.textContent === "PM" ? "AM" : "PM";
+				if (self.amPM && isHourElem && (step === 1 ? newValue + curValue === 23 : Math.abs(newValue - curValue) > step)) self.amPM.textContent = self.amPM.textContent === "PM" ? "AM" : "PM";
 
-				e.target.value = self.pad(newValue);
-			} else e.target.value = newValue;
+				input.value = self.pad(newValue);
+			}
 		}
 
 		init();
@@ -14906,6 +14969,8 @@
 	Flatpickr.defaultConfig = {
 
 		mode: "single",
+
+		position: "top",
 
 		/* if true, dates will be parsed, formatted, and displayed in UTC.
 	 preloading date strings w/ timezones is recommended but not necessary */
@@ -15018,21 +15083,34 @@
 		// default locale
 		locale: "default",
 
-		// onChange callback when user selects a date or time
-		onChange: null, // function (dateObj, dateStr) {}
-
-		// called every time calendar is opened
-		onOpen: null, // function (dateObj, dateStr) {}
+		plugins: [],
 
 		// called every time calendar is closed
-		onClose: null, // function (dateObj, dateStr) {}
+		onClose: [], // function (dateObj, dateStr) {}
+
+		// onChange callback when user selects a date or time
+		onChange: [], // function (dateObj, dateStr) {}
+
+		// called for every day element
+		onDayCreate: [],
+
+		// called every time the month is changed
+		onMonthChange: [],
+
+		// called every time calendar is opened
+		onOpen: [], // function (dateObj, dateStr) {}
+
+		// called after the configuration has been parsed
+		onParseConfig: [],
 
 		// called after calendar is ready
-		onReady: null, // function (dateObj, dateStr) {}
+		onReady: [], // function (dateObj, dateStr) {}
 
-		onValueUpdate: null,
+		// called after input value updated
+		onValueUpdate: [],
 
-		onDayCreate: null
+		// called every time the year is changed
+		onYearChange: []
 	};
 
 	/* istanbul ignore next */
@@ -15078,40 +15156,231 @@
 	};
 
 	Flatpickr.prototype = {
+		formats: {
+			// get the date in UTC
+			Z: function Z(date) {
+				return date.toISOString();
+			},
+
+			// weekday name, short, e.g. Thu
+			D: function D(date) {
+				return this.l10n.weekdays.shorthand[this.formats.w(date)];
+			},
+
+			// full month name e.g. January
+			F: function F(date) {
+				return this.utils.monthToStr(this.formats.n(date) - 1, false);
+			},
+
+			// hours with leading zero e.g. 03
+			H: function H(date) {
+				return Flatpickr.prototype.pad(date.getHours());
+			},
+
+			// day (1-30) with ordinal suffix e.g. 1st, 2nd
+			J: function J(date) {
+				return date.getDate() + this.l10n.ordinal(date.getDate());
+			},
+
+			// AM/PM
+			K: function K(date) {
+				return date.getHours() > 11 ? "PM" : "AM";
+			},
+
+			// shorthand month e.g. Jan, Sep, Oct, etc
+			M: function M(date) {
+				return this.utils.monthToStr(date.getMonth(), true);
+			},
+
+			// seconds 00-59
+			S: function S(date) {
+				return Flatpickr.prototype.pad(date.getSeconds());
+			},
+
+			// unix timestamp
+			U: function U(date) {
+				return date.getTime() / 1000;
+			},
+
+			W: function W(date) {
+				return this.config.getWeek(date);
+			},
+
+			// full year e.g. 2016
+			Y: function Y(date) {
+				return date.getFullYear();
+			},
+
+			// day in month, padded (01-30)
+			d: function d(date) {
+				return Flatpickr.prototype.pad(date.getDate());
+			},
+
+			// hour from 1-12 (am/pm)
+			h: function h(date) {
+				return date.getHours() % 12 ? date.getHours() % 12 : 12;
+			},
+
+			// minutes, padded with leading zero e.g. 09
+			i: function i(date) {
+				return Flatpickr.prototype.pad(date.getMinutes());
+			},
+
+			// day in month (1-30)
+			j: function j(date) {
+				return date.getDate();
+			},
+
+			// weekday name, full, e.g. Thursday
+			l: function l(date) {
+				return this.l10n.weekdays.longhand[date.getDay()];
+			},
+
+			// padded month number (01-12)
+			m: function m(date) {
+				return Flatpickr.prototype.pad(date.getMonth() + 1);
+			},
+
+			// the month number (1-12)
+			n: function n(date) {
+				return date.getMonth() + 1;
+			},
+
+			// seconds 0-59
+			s: function s(date) {
+				return date.getSeconds();
+			},
+
+			// number of the day of the week
+			w: function w(date) {
+				return date.getDay();
+			},
+
+			// last two digits of year e.g. 16 for 2016
+			y: function y(date) {
+				return String(date.getFullYear()).substring(2);
+			}
+		},
+
+		revFormat: {
+			D: function D() {},
+			F: function F(dateObj, monthName) {
+				dateObj.setMonth(this.l10n.months.longhand.indexOf(monthName));
+			},
+			H: function H(dateObj, hour) {
+				return dateObj.setHours(parseFloat(hour));
+			},
+			J: function J(dateObj, day) {
+				return dateObj.setDate(parseFloat(day));
+			},
+			K: function K(dateObj, amPM) {
+				var hours = dateObj.getHours();
+
+				if (hours !== 12) dateObj.setHours(hours % 12 + 12 * /pm/i.test(amPM));
+			},
+			M: function M(dateObj, shortMonth) {
+				dateObj.setMonth(this.l10n.months.shorthand.indexOf(shortMonth));
+			},
+			S: function S(dateObj, seconds) {
+				return dateObj.setSeconds(seconds);
+			},
+			W: function W() {},
+			Y: function Y(dateObj, year) {
+				return dateObj.setFullYear(year);
+			},
+			Z: function Z(dateObj, ISODate) {
+				return dateObj = new Date(ISODate);
+			},
+
+			d: function d(dateObj, day) {
+				return dateObj.setDate(parseFloat(day));
+			},
+			h: function h(dateObj, hour) {
+				return dateObj.setHours(parseFloat(hour));
+			},
+			i: function i(dateObj, minutes) {
+				return dateObj.setMinutes(parseFloat(minutes));
+			},
+			j: function j(dateObj, day) {
+				return dateObj.setDate(parseFloat(day));
+			},
+			l: function l() {},
+			m: function m(dateObj, month) {
+				return dateObj.setMonth(parseFloat(month) - 1);
+			},
+			n: function n(dateObj, month) {
+				return dateObj.setMonth(parseFloat(month) - 1);
+			},
+			s: function s(dateObj, seconds) {
+				return dateObj.setSeconds(parseFloat(seconds));
+			},
+			w: function w() {},
+			y: function y(dateObj, year) {
+				return dateObj.setFullYear(2000 + parseFloat(year));
+			}
+		},
+
+		tokenRegex: {
+			D: "(\\w+)",
+			F: "(\\w+)",
+			H: "(\\d\\d|\\d)",
+			J: "(\\d\\d|\\d)\\w+",
+			K: "(\\w+)",
+			M: "(\\w+)",
+			S: "(\\d\\d|\\d)",
+			Y: "(\\d{4})",
+			Z: "(.+)",
+			d: "(\\d\\d|\\d)",
+			h: "(\\d\\d|\\d)",
+			i: "(\\d\\d|\\d)",
+			j: "(\\d\\d|\\d)",
+			l: "(\\w+)",
+			m: "(\\d\\d|\\d)",
+			n: "(\\d\\d|\\d)",
+			s: "(\\d\\d|\\d)",
+			w: "(\\d\\d|\\d)",
+			y: "(\\d{2})"
+		},
+
 		pad: function pad(number) {
 			return ("0" + number).slice(-2);
 		},
-		parseDate: function parseDate(date, timeless) {
+
+		parseDate: function parseDate(date, timeless, givenFormat) {
 			if (!date) return null;
 
-			var dateTimeRegex = /(\d+)/g,
-			    timeRegex = /^(\d{1,2})[:\s](\d\d)?[:\s]?(\d\d)?\s?(a|p)?/i,
-			    timestamp = /^(\d+)$/g,
-			    date_orig = date;
+			var date_orig = date;
 
-			if (date.toFixed || timestamp.test(date)) // timestamp
+			if (date.toFixed) // timestamp
 				date = new Date(date);else if (typeof date === "string") {
+				var format = typeof givenFormat === "string" ? givenFormat : this.config.dateFormat;
 				date = date.trim();
 
 				if (date === "today") {
 					date = new Date();
 					timeless = true;
-				} else if (this.config && this.config.parseDate) date = this.config.parseDate(date);else if (timeRegex.test(date)) {
-					// time picker
-					var m = date.match(timeRegex),
-					    hours = !m[4] ? m[1] // military time, no conversion needed
-					: m[1] % 12 + (m[4].toLowerCase() === "p" ? 12 : 0); // am/pm
+				} else if (this.config && this.config.parseDate) date = this.config.parseDate(date);else if (/Z$/.test(date) || /GMT$/.test(date)) // datestrings w/ timezone
+					date = new Date(date);else {
+					var parsedDate = this.config.noCalendar ? new Date(new Date().setHours(0, 0, 0, 0)) : new Date(new Date().getFullYear(), 0, 1, 0, 0, 0, 0);
 
-					date = new Date();
-					date.setHours(hours, m[2] || 0, m[3] || 0);
-				} else if (/Z$/.test(date) || /GMT$/.test(date)) // datestrings w/ timezone
-					date = new Date(date);else if (dateTimeRegex.test(date) && /^[0-9]/.test(date)) {
-					var d = date.match(dateTimeRegex);
-					date = new Date(d[0] + "/" + (d[1] || 1) + "/" + (d[2] || 1) + " " + (d[3] || 0) + ":" + (d[4] || 0) + ":" + (d[5] || 0));
-				} else // fallback
-					date = new Date(date);
+					var matched = false;
+
+					for (var i = 0, matchIndex = 0, regexStr = ""; i < format.length; i++) {
+						var token = format[i];
+						var isBackSlash = token === "\\";
+						var escaped = format[i - 1] === "\\" || isBackSlash;
+						if (this.tokenRegex[token] && !escaped) {
+							regexStr += this.tokenRegex[token];
+							var match = new RegExp(regexStr).exec(date);
+							if (match && (matched = true)) this.revFormat[token](parsedDate, match[++matchIndex]);
+						} else if (!isBackSlash) regexStr += "."; // don't really care
+					}
+
+					date = matched ? parsedDate : null;
+				}
 			} else if (date instanceof Date) date = new Date(date.getTime()); // create a copy
 
+			/* istanbul ignore next */
 			if (!(date instanceof Date)) {
 				console.warn("flatpickr: invalid date " + date_orig);
 				console.info(this.element);
@@ -15126,6 +15395,7 @@
 		}
 	};
 
+	/* istanbul ignore next */
 	function _flatpickr(nodeList, config) {
 		var nodes = Array.prototype.slice.call(nodeList); // static list
 		var instances = [];
@@ -15141,6 +15411,7 @@
 		return instances.length === 1 ? instances[0] : instances;
 	}
 
+	/* istanbul ignore next */
 	if (typeof HTMLElement !== "undefined") {
 		// browser env
 		HTMLCollection.prototype.flatpickr = NodeList.prototype.flatpickr = function (config) {
@@ -15152,10 +15423,12 @@
 		};
 	}
 
+	/* istanbul ignore next */
 	function flatpickr(selector, config) {
 		return _flatpickr(window.document.querySelectorAll(selector), config);
 	}
 
+	/* istanbul ignore next */
 	if (typeof jQuery !== "undefined") {
 		jQuery.fn.flatpickr = function (config) {
 			return _flatpickr(this, config);
@@ -15247,6 +15520,7 @@
 
 	Flatpickr.l10ns.de.firstDayOfWeek = 1;
 	Flatpickr.l10ns.de.weekAbbreviation = 'KW';
+	Flatpickr.l10ns.de.rangeSeparator = ' bis ';
 
 	if (true) {
 		module.exports = Flatpickr.l10ns;
@@ -15405,6 +15679,32 @@
 	$(function () {
 
 	    function initFormModifications() {
+
+	        /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+	         The maxlength attribute is being ignored on type="number" inputs. Let's make this work.
+	         */
+
+	        // find inputs with maxlength attribute
+	        var $maxlength_inputs = $('form').find('input[maxlength]');
+	        // loop elements and listen for key event
+	        $maxlength_inputs.each(function (e) {
+	            var $input = $(this);
+	            var maxlength = $input.attr('maxlength');
+	            $input.keydown(function (e) {
+	                // store key code
+	                var key_code = parseInt(e.which);
+	                var current_number_of_characters = parseInt($input.val().length);
+	                // key codes 8 until 46 are general key like space, delete, backspace, arrows, ...
+	                if (key_code >= 8 && key_code <= 46) {
+	                    // can be pressed at all times
+	                } else {
+	                    // in case it's a character, make sure we respect the limit
+	                    if (current_number_of_characters == maxlength) {
+	                        return false;
+	                    }
+	                }
+	            });
+	        });
 
 	        /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 	         Disable scroll for input type "number" to prevent Cromium browsers change the value when scrolling
@@ -19081,7 +19381,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
-	 * matchesSelector v2.0.1
+	 * matchesSelector v2.0.2
 	 * matchesSelector( element, '.selector' )
 	 * MIT license
 	 */
@@ -19107,7 +19407,7 @@
 	  'use strict';
 
 	  var matchesMethod = ( function() {
-	    var ElemProto = Element.prototype;
+	    var ElemProto = window.Element.prototype;
 	    // check for the standard method name first
 	    if ( ElemProto.matches ) {
 	      return 'matches';
@@ -20853,10 +21153,10 @@
 
 	$(function () {
 
-	    var soft_page = new _softpage2.default({
+	    var softpage = new _softpage2.default({
 	        onPageLoaded: function onPageLoaded(obj) {
 	            // scroll to top everytime a softpage is opened
-	            document.querySelector('.tingle-modal').scrollTop = 0;
+	            obj.modal.modal.scrollTop = 0;
 	            // do stuff slighty delayed, so we get all the information we need
 	            setTimeout(function () {
 	                // init page meta
@@ -20878,10 +21178,14 @@
 	                    });
 	                }
 	                // trigger custom events
+	                $(window).trigger('initSoftpageTrigger');
 	                $(window).trigger('initFormModalTrigger');
+	                $(window).trigger('initFormModifications');
 	                $(window).trigger('initOnScreen');
 	                $(window).trigger('initiSwiperInstances');
 	            }, 50);
+	            // init forms on softpage
+	            // init_softpage_in_softpage(obj);
 	        },
 	        onSoftpageClosed: function onSoftpageClosed(obj) {
 	            // hide site overlay
@@ -20890,13 +21194,17 @@
 	    });
 
 	    function initSoftpageTrigger() {
-	        (0, _helperFunctions.nodeListToArray)(document.querySelectorAll('[data-trigger-softpage] a:not([data-softpage-disabled])')).map(function (value) {
-	            value.addEventListener('click', function (event) {
+	        // init all softpage trigger links and loop
+	        // 1. Text Editor > All links that should trigger a softpage (added by e.g. button link plugin)
+	        // 2. App Content > If the Softpage option is enabled.
+	        $('a[data-trigger-softpage], [data-trigger-softpage] a:not([data-softpage-disabled])').each(function (i) {
+	            // stop multiple event listeners from firing multiple times by removing (off()) and adding (on()) the event listener
+	            $(this).off('click').on('click', function (event) {
 	                // instantly toggle site overlay (improves "felt performance")
 	                $(window).trigger('showSiteOverlay');
 	                // load softpage
 	                event.preventDefault();
-	                soft_page.loadPage(event.currentTarget.href, true);
+	                softpage.loadPage(event.currentTarget.href, true);
 	            });
 	        });
 	    }
@@ -21025,7 +21333,13 @@
 		                    isEscape = evt.keyCode == 27;
 		                }
 		                if (isEscape) {
-		                    modal_instance.close();
+		                    // only close if the "softpage modal" is opened
+		                    if (modal_instance.modal.classList.contains('tingle-modal--visible')) {
+		                        // only close if the "form modal" is NOT opened
+		                        if (document.querySelector('html').classList.contains('form-modal-visible') === false) {
+		                            modal_instance.close();
+		                        }
+		                    }
 		                }
 		            };
 
@@ -22748,17 +23062,18 @@
 
 	function initTingleModifications() {
 	    // Update button text (accessibility) and wrap with <span>
-	    var btn = document.querySelector('.tingle-modal__close');
-	    var btn_text_wrapper = document.createElement('span');
-	    btn_text_wrapper.setAttribute('lang', 'en');
-	    // set button text
-	    btn.textContent = '';
-	    btn_text_wrapper.textContent = 'Close';
-	    btn.appendChild(btn_text_wrapper);
+	    var btns = document.querySelector('.tingle-modal__close');
+	    for (var i = 0; i < btns.length; i++) {
+	        var btn_text_wrapper = document.createElement('span');
+	        btn_text_wrapper.setAttribute('lang', 'en');
+	        // set button text
+	        btn.textContent = '';
+	        btn_text_wrapper.textContent = 'Close';
+	        btn.appendChild(btn_text_wrapper);
+	    }
 	}
 
 	$(function () {
-
 	    // on page load, but delayed
 	    setTimeout(function () {
 	        initTingleModifications();
@@ -30166,6 +30481,247 @@
 	}); /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 	    
 	    Scrolls to the top of the page
+	    
+	    */
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ },
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */,
+/* 71 */,
+/* 72 */,
+/* 73 */,
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+
+	var _tingle = __webpack_require__(35);
+
+	var _tingle2 = _interopRequireDefault(_tingle);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	$(function () {
+
+	    // initialize modal
+	    var form_modal = new _tingle2.default.modal({
+	        cssClass: ['form-modal'],
+	        onClose: function onClose() {
+	            // tbd
+	            closeFormModal();
+	            // if the softpage is still open in the brackground, we have to keep the overlay, otherwise we can close it
+	            if ($('.tingle-modal.softpage').hasClass('tingle-modal--visible')) {
+	                // don't do anything
+	            } else {
+	                $(window).trigger('hideSiteOverlay');
+	            }
+	        },
+	        onOpen: function onOpen() {
+	            $(window).trigger('initFormModifications');
+	            $(window).trigger('initFormModalClose');
+	            $(window).trigger('initFormValidation');
+	        }
+	    });
+
+	    // click handler
+	    function openFormModal(element, event) {
+	        // init
+	        event.preventDefault();
+
+	        // in case we opened a form modal from within a softpage, we need to hide the softpage
+	        document.querySelector('html').classList.add('form-modal-visible');
+	        // document.querySelector('.softpage').classList.remove('tingle-modal--visible');
+
+	        // get and set content
+	        var url = element.getAttribute('href');
+
+	        $.get(url, function (data) {
+	            // set modal content and open
+	            form_modal.setContent(data);
+	            form_modal.open();
+	        });
+	    }
+
+	    function closeFormModal() {
+	        document.querySelector('html').classList.remove('form-modal-visible');
+	    }
+
+	    function initFormModalTrigger() {
+	        // init all trigger links and loop
+	        $('.toggle-form-modal').each(function (i) {
+	            // stop multiple event listeners from firing multiple times by removing (off()) and adding (on()) the event listener
+	            $(this).off('click').on('click', function (event) {
+	                // instantly toggle site overlay (improves "felt performance")
+	                $(window).trigger('showSiteOverlay');
+	                // load softpage
+	                event.preventDefault();
+	                openFormModal(this, event);
+	            });
+	        });
+	    }
+
+	    // on page load
+	    initFormModalTrigger();
+
+	    // custom event
+	    $(window).on('initFormModalTrigger', function () {
+	        initFormModalTrigger();
+	    });
+
+	    function initFormModalClose() {
+	        // prevent clicks on background to close modal
+	        // $('.tingle-modal.form-modal').each(function(i) {
+	        //     // stop multiple event listeners from firing multiple times by removing (off()) and adding (on()) the event listener
+	        //     $(this).off('click').
+	        //         on('click',
+	        //         function(event){
+	        //             // load softpage
+	        //             console.log( event );
+	        //             event.preventDefault();
+	        //             return false;
+	        //         }
+	        //     );
+	        // });
+	        // look for triggers
+	        if (document.querySelector('.close-form-modal')) {
+	            var close_form_modal = document.querySelector('.close-form-modal');
+	            close_form_modal.addEventListener('click', function (event) {
+	                event.preventDefault();
+	                form_modal.close();
+	            });
+	        }
+	    }
+
+	    // custom event
+	    $(window).on('initFormModalClose', function () {
+	        initFormModalClose();
+	    });
+	}); /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+	    
+	    Link with class '.toggle-form-modal' will trigger the form lightbox
+	    
+	    */
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ },
+/* 85 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+
+	var _tingle = __webpack_require__(35);
+
+	var _tingle2 = _interopRequireDefault(_tingle);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	$(function () {
+
+	    // initialize modal
+	    var image_modal = new _tingle2.default.modal({
+	        cssClass: ['image-modal'],
+	        onClose: function onClose() {
+	            close_image_modal_handler();
+	            // trigger custom events
+	            $(window).trigger('hideSiteOverlay');
+	        },
+	        onOpen: function onOpen() {
+	            $(window).trigger('initImageModalClose');
+	        }
+	    });
+
+	    // click handler
+	    function open_image_modal_handler(element, event) {
+	        event.preventDefault();
+	        document.querySelector('html').classList.add('image-modal-visible');
+
+	        // get and set content
+	        var url = element.getAttribute('data-href');
+	        var picture = element.getElementsByTagName("picture")[0].cloneNode(true);
+	        picture.getElementsByTagName('img')[0].setAttribute('data-srcset', url);
+
+	        image_modal.setContent(picture);
+	        image_modal.open();
+	        $(window).trigger('initImageModalClose');
+	        setTimeout(function () {
+	            $(window).trigger('initImageModalTrigger');
+	        }, 1500);
+
+	        // add functionality to close the modal with the ESCAPE key
+	        document.onkeydown = function (evt) {
+	            evt = evt || window.event;
+	            var isEscape = false;
+	            if ("key" in evt) {
+	                isEscape = evt.key == "Escape";
+	            } else {
+	                isEscape = evt.keyCode == 27;
+	            }
+	            if (isEscape) {
+	                image_modal.close();
+	            }
+	        };
+	    }
+
+	    function close_image_modal_handler() {
+	        document.querySelector('html').classList.remove('image-modal-visible');
+	    }
+
+	    function initImageModalTrigger() {
+	        if (document.querySelector('a[data-toggle-image-modal]')) {
+	            var image_modal_elements = document.querySelectorAll('a[data-toggle-image-modal]');
+	            for (var i = 0; i < image_modal_elements.length; i++) {
+	                image_modal_elements[i].addEventListener('click', function (event) {
+	                    // instantly toggle site overlay (improves "felt perimageance")
+	                    $(window).trigger('showSiteOverlay');
+	                    // open modal
+	                    open_image_modal_handler(this, event);
+	                });
+	            }
+	        }
+	    }
+
+	    // on page load
+	    initImageModalTrigger();
+
+	    // custom event
+	    $(window).on('initImageModalTrigger', function () {
+	        initImageModalTrigger();
+	    });
+
+	    function initImageModalClose() {
+	        if (document.querySelector('.close-image-modal')) {
+	            var close_image_modal = document.querySelector('.close-image-modal');
+	            close_image_modal.addEventListener('click', function (event) {
+	                event.preventDefault();
+	                image_modal.close();
+	            });
+	        }
+	    }
+
+	    // custom event
+	    $(window).on('initImageModalClose', function () {
+	        initImageModalClose();
+	    });
+	}); /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+	    
+	    Link with data attribute 'data-toggle-image-modal' will trigger the image lightbox
 	    
 	    */
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))

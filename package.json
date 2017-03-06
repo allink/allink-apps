@@ -4,7 +4,7 @@
   "description": "allink Django CMS packages",
   "main": "webpack.config.js",
   "dependencies": {
-    "allink-core-static": "git://github.com/allink/allink-core-static.git#2172618"
+    "allink-core-static": "git://github.com/allink/allink-core-static.git#5054c6c"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.7",

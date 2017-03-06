@@ -38,8 +38,10 @@ import 'allink-core-static/js/modules/btn-ajax-loader';
 import 'allink-core-static/js/modules/datepicker';
 import 'allink-core-static/js/modules/djangocms-tweaks';
 import 'allink-core-static/js/modules/form';
+import 'allink-core-static/js/modules/form-modal';
 import 'allink-core-static/js/modules/form-validation';
 import 'allink-core-static/js/modules/full-height';
+import 'allink-core-static/js/modules/image-modal';
 import 'allink-core-static/js/modules/masonry';
 import 'allink-core-static/js/modules/seo';
 import 'allink-core-static/js/modules/site-overlay';
@@ -70,28 +72,5 @@ import './modules/to-the-top';
 
 
 $(function() {
-
-    /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-
-    Legacy: Calls functions which are added to window.onDocumentReady
-
-    Do we need that?
-
-    */
-
-    // function callFnQueue() {
-    //     if (window.onDocumentReady) {
-    //         if (typeof(window.onDocumentReady) == 'function') {
-    //             window.onDocumentReady($);
-    //         } else if (typeof(window.onDocumentReady) == 'object') {
-    //             for (var i = 0; i < window.onDocumentReady.length; i++) {
-    //                 var func = window.onDocumentReady[i];
-    //                 if (typeof(func) == 'function') {
-    //                     func($);
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
 
 });
