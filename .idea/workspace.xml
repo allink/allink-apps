@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4f438c68-4e78-431b-8dc4-5b9d9e7a7e81" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/apps/allink_apps_migrations/blog/0010_auto_20170306_0949.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apps/allink_apps_migrations/blog/0010_auto_20170306_0949.py" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.in" afterPath="$PROJECT_DIR$/requirements.in" />
     </list>
     <ignored path="haus-der-farbe-allink.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,23 +27,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="0010_auto_20170306_0949.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/allink_apps_migrations/blog/0010_auto_20170306_0949.py">
+      <file leaf-file-name="requirements.in" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/requirements.in">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="54" lean-forward="true" selection-start-line="20" selection-start-column="54" selection-end-line="20" selection-end-column="54" />
-              <folding>
-                <element signature="e#24#63#0" expanded="true" />
-                <marker date="1488816262000" expanded="true" signature="329:375" ph="drop table i... " />
-                <marker date="1488816262000" expanded="true" signature="389:510" ph="delete from " />
-                <marker date="1488816262000" expanded="true" signature="443:509" ph="select id fr... django_content_type" />
-                <marker date="1488816262000" expanded="true" signature="524:646" ph="delete from " />
-                <marker date="1488816262000" expanded="true" signature="579:645" ph="select id fr... django_content_type" />
-                <marker date="1488816262000" expanded="true" signature="660:783" ph="delete from " />
-                <marker date="1488816262000" expanded="true" signature="716:782" ph="select id fr... django_content_type" />
-                <marker date="1488816262000" expanded="true" signature="797:860" ph="delete from " />
-                <marker date="1488816262000" expanded="true" signature="874:927" ph="delete from " />
-              </folding>
+            <state relative-caret-position="405">
+              <caret line="27" column="86" lean-forward="false" selection-start-line="27" selection-start-column="86" selection-end-line="27" selection-end-column="86" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -60,8 +49,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="0008_auto_20170306_0416.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="0008_auto_20170306_0416.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/allink_apps_migrations/blog/0008_auto_20170306_0416.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="19" column="46" lean-forward="true" selection-start-line="19" selection-start-column="46" selection-end-line="19" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="0007_auto_20170222_0724.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/allink_apps_migrations/blog/0007_auto_20170222_0724.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -168,8 +167,8 @@
         <option value="$PROJECT_DIR$/urls.py" />
         <option value="$PROJECT_DIR$/settings.py" />
         <option value="$PROJECT_DIR$/apps/allink_apps_migrations/blog/0009_auto_20170306_0428.py" />
-        <option value="$PROJECT_DIR$/requirements.in" />
         <option value="$PROJECT_DIR$/apps/allink_apps_migrations/blog/0010_auto_20170306_0949.py" />
+        <option value="$PROJECT_DIR$/requirements.in" />
       </list>
     </option>
   </component>
@@ -634,8 +633,8 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.326131" sideWeight="0.47140586" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32950708" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31802836" sideWeight="0.45552024" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3441034" sideWeight="0.49607182" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31802836" sideWeight="0.45552024" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3441034" sideWeight="0.49607182" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32883188" sideWeight="0.49642575" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24980143" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -726,7 +725,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/allink_core/allink_base/models/managers.py" />
     <entry file="file://$PROJECT_DIR$/allink_apps/blog/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -879,16 +877,8 @@
         <state relative-caret-position="210">
           <caret line="14" column="21" lean-forward="false" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
           <folding>
-            <element signature="e#594#623#0" expanded="true" />
+            <element signature="e#594#623#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/requirements.in">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="13" lean-forward="false" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -900,22 +890,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/allink_apps_migrations/blog/0010_auto_20170306_0949.py">
+    <entry file="file://$PROJECT_DIR$/requirements.in">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="54" lean-forward="true" selection-start-line="20" selection-start-column="54" selection-end-line="20" selection-end-column="54" />
-          <folding>
-            <element signature="e#24#63#0" expanded="true" />
-            <marker date="1488816262000" expanded="true" signature="329:375" ph="drop table i... " />
-            <marker date="1488816262000" expanded="true" signature="389:510" ph="delete from " />
-            <marker date="1488816262000" expanded="true" signature="443:509" ph="select id fr... django_content_type" />
-            <marker date="1488816262000" expanded="true" signature="524:646" ph="delete from " />
-            <marker date="1488816262000" expanded="true" signature="579:645" ph="select id fr... django_content_type" />
-            <marker date="1488816262000" expanded="true" signature="660:783" ph="delete from " />
-            <marker date="1488816262000" expanded="true" signature="716:782" ph="select id fr... django_content_type" />
-            <marker date="1488816262000" expanded="true" signature="797:860" ph="delete from " />
-            <marker date="1488816262000" expanded="true" signature="874:927" ph="delete from " />
-          </folding>
+        <state relative-caret-position="405">
+          <caret line="27" column="86" lean-forward="false" selection-start-line="27" selection-start-column="86" selection-end-line="27" selection-end-column="86" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -931,8 +910,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/allink_apps_migrations/blog/0008_auto_20170306_0416.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="19" column="46" lean-forward="true" selection-start-line="19" selection-start-column="46" selection-end-line="19" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/allink_apps_migrations/blog/0007_auto_20170222_0724.py">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/allink_apps_migrations/blog/0010_auto_20170306_0949.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding />
         </state>
       </provider>
