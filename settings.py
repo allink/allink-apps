@@ -14,7 +14,6 @@ INSTALLED_ADDONS = [
     'aldryn-common',
     'aldryn-google-tag-manager',
     'djangocms-file',
-    'djangocms-link',
     'djangocms-picture',
     'djangocms-text-ckeditor',
     'djangocms-video',
