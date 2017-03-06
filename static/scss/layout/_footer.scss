@@ -19,10 +19,8 @@ body {
     }
 
     background-color: $site-footer-bg-color;
-    // TBR
-    padding: 0;
-    // TBR
 
+    @include content-section-spacing-padding();
     @include clearfix();
 
     > .container {
@@ -52,10 +50,7 @@ body {
                 &:nth-child(1) { width: 30%; }
                 &:nth-child(2) { width: 35%; }
                 &:nth-child(3) { width: 35%; }
-                margin-top: $site-footer-elements-spacing-md;
-            }
-            @media (min-width:$screen-xl) {
-                margin-top: $site-footer-elements-spacing-xl;
+                margin-top: 0;
             }
         }
     }

@@ -9333,7 +9333,24 @@ The main site's content section
 
 .site-footer {
   background-color: #373a3c;
-  padding: 0; }
+  padding-top: 30px;
+  padding-bottom: 30px; }
+  @media (min-width: 576px) {
+    .site-footer {
+      padding-top: 45px;
+      padding-bottom: 45px; } }
+  @media (min-width: 768px) {
+    .site-footer {
+      padding-top: 45px;
+      padding-bottom: 45px; } }
+  @media (min-width: 992px) {
+    .site-footer {
+      padding-top: 60px;
+      padding-bottom: 60px; } }
+  @media (min-width: 1200px) {
+    .site-footer {
+      padding-top: 60px;
+      padding-bottom: 60px; } }
   .site-footer:before, .site-footer:after {
     content: " ";
     display: table; }
@@ -9379,16 +9396,13 @@ The main site's content section
     margin-top: 30px; }
     @media (min-width: 768px) {
       .site-footer .inner > * {
-        margin-top: 30px; }
+        margin-top: 0; }
         .site-footer .inner > *:nth-child(1) {
           width: 30%; }
         .site-footer .inner > *:nth-child(2) {
           width: 35%; }
         .site-footer .inner > *:nth-child(3) {
           width: 35%; } }
-    @media (min-width: 1200px) {
-      .site-footer .inner > * {
-        margin-top: 60px; } }
 
 .navbar-brand {
   position: absolute;

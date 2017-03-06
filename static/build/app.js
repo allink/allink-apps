@@ -24465,7 +24465,7 @@
 	        tolerance = 100;
 	    }
 	    if ($(window).width() >= 1024) {
-	        tolerance = 200;
+	        tolerance = 100;
 	    }
 
 	    var os = new _onscreen2.default({
