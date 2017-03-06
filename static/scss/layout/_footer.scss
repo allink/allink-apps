@@ -19,22 +19,16 @@ body {
     }
 
     background-color: $site-footer-bg-color;
-    // TBR
-    padding: 0;
-    // TBR
 
+    @include content-section-spacing-padding();
     @include clearfix();
 
     > .container {
         @include container-fixed();
         @include max-width();
-        // TBR
         position: relative;
         z-index: z("default");
-        // TBR
     }
-
-    // TBR
 
     .footer-text-container {
         @media (min-width:$screen-md) {
@@ -42,54 +36,23 @@ body {
         }
     }
 
+    .heading {
+        margin-bottom: 10px;
+    }
+
     .inner {
-        margin: $content-section-spacing-xs 0;
-        @media (min-width:$screen-md) {
-            position: relative;
-            width: 50%;
-            margin: $content-section-spacing-md 0;
-        }
-        @media (min-width:$screen-xl) {
-            margin: $content-section-spacing-xl 0;
-        }
+        @include clearfix();
         & > * {
-            & + * {
-                margin-top: $site-footer-elements-spacing-xs;
-                @media (min-width:$screen-md) {
-                    margin-top: $site-footer-elements-spacing-md;
-                }
-                @media (min-width:$screen-xl) {
-                    margin-top: $site-footer-elements-spacing-xl;
-                }
+            float: left;
+            width: 100%;
+            margin-top: $site-footer-elements-spacing-xs;
+            @media (min-width:$screen-md) {
+                &:nth-child(1) { width: 30%; }
+                &:nth-child(2) { width: 35%; }
+                &:nth-child(3) { width: 35%; }
+                margin-top: 0;
             }
         }
     }
-
-    .footer-social-profile-container {
-        @media (min-width:$screen-md) {
-            position: absolute;
-            top: 0;
-            right: $content-section-spacing-md;
-            margin-top: 0;
-        }
-    }
-    .map-container {
-        position: relative;
-        z-index: z("above");
-        height: 300px;
-        @media (min-width:$screen-md) {
-            float: right;
-            width: 50%;
-            height: 500px;
-            background-color: $gray;
-        }
-        .locations-map,
-        .djangocms-googlemap,
-        .djangocms-googlemap-container {
-            height: 100% !important;
-            width: 100% !important;
-        }
-    }
-    // TBR
 
 }

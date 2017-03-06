@@ -68,46 +68,48 @@
     {# end: content #}
 
     {% block footer %}
-        <footer class="site-footer" role="contentinfo" data-scroll-spy>
+        <footer class="site-footer inverted-colors" role="contentinfo" data-scroll-spy>
             <h1 class="sr-only" id="page-footer">{% trans "Sitemap" %}</h1>
 
-            {# render maps #}
-            {% static_placeholder "map" %}
-
             <div class="container">
-                <div class="inner inverted-colors">
-                    {# render footer content #}
-                    <div class="footer-text-container">
-                        {% static_placeholder "footer_content" %}
-                    </div>
 
-                    {# render social profiles #}
-                    <div class="footer-social-profile-container">
-                        {% static_placeholder "social_profiles" %}
-                    </div>
+                <div class="inner">
 
-                    {# secondary navigation #}
-                    <div class="secondary-nav">
-                        {% static_placeholder "service_navigation" %}
-                    </div>
-
-                    {% comment %}
-
-                        {# newsletter #}
-                        <div class="newsletter-container">
-                            TBD Newsletter
+                    <div class="col col-1">
+                        {# secondary navigation #}
+                        <div class="secondary-nav">
+                            {% static_placeholder "service_navigation" %}
                         </div>
+                    </div>
 
-                    {% endcomment %}
+                    <div class="col col-2">
+                        {# render footer content #}
+                        <div class="footer-text-container">
+                            {% static_placeholder "footer_content" %}
+                        </div>
+                    </div>
+
+                    <div class="col col-3">
+                        <div class="manage-spacings">
+
+                            {# newsletter #}
+                            <div class="newsletter-container">
+                                <h2 class="heading">{% trans "Sign up for our newsletter" %}</h2>
+                                <div id="mailchimp-form-container">
+                                    {% include 'allink_mailchimp/signup_form.html' %}
+                                </div>
+                            </div>
+
+                            {# render social profiles #}
+                            <div class="footer-social-profile-container">
+                                <h2 class="heading">{% trans "Follow us on social networks" %}</h2>
+                                {% static_placeholder "social_profiles" %}
+                            </div>
+
+                        </div>
+                    </div>
+
                 </div>
-                {% comment %}
-                    {% render_model_block request.current_page "changelist" %}
-                        <ul class="list-inline">
-                            <li class="pull-right"><a href="#page-top" data-spy="scroll"><span class="fa fa-left fa-arrow-up"></span>{% trans "Back to top" %}</a></li>
-                            {% show_menu_below_id "footer" 0 0 100 100 "includes/menu/navigation.html" %}
-                        </ul>
-                    {% endrender_model_block %}
-                {% endcomment %}
             </div>
 
         </footer>

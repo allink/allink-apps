@@ -16,7 +16,7 @@ export function initOnScreen() {
         tolerance = 100;
     }
     if ($(window).width() >= 1024) {
-        tolerance = 200;
+        tolerance = 100;
     }
 
     const os = new OnScreen({
