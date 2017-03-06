@@ -8,12 +8,12 @@ from .models import News, Events
 
 
 @toolbar_pool.register
-class NewsModifier(AllinkBaseModifierMixin, CMSToolbar):
+class NewsToolbar(AllinkBaseModifierMixin, CMSToolbar):
     model = News
     app_label = News._meta.app_label
 
 
 @toolbar_pool.register
-class EventsModifier(AllinkBaseModifierMixin, CMSToolbar):
+class EventsToolbar(AllinkBaseModifierMixin, CMSToolbar):
     model = Events
     app_label = Events._meta.app_label

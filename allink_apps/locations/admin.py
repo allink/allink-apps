@@ -30,6 +30,7 @@ class LocationsAdmin(AllinkBaseAdmin):
                     ('zip_code', 'place',),
                     ('street', 'street_nr',),
                     ('phone', 'mobile',),
+                    'website',
                     ('email', 'fax',),
                     ('lat', 'lng',),
                     'is_currently_open',

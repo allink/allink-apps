@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
+
+from cms.models.fields import PlaceholderField
 from adminsortable.fields import SortableForeignKey
 from parler.models import TranslatableModel, TranslatedFields
 from djangocms_text_ckeditor.fields import HTMLField
@@ -44,6 +46,9 @@ class Work(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel
             null=True,
         )
     )
+
+    header_placeholder = PlaceholderField(u'work_header', related_name='%(app_label)s_%(class)s_header_placeholder')
+    content_placeholder = PlaceholderField(u'work_content', related_name='%(app_label)s_%(class)s_content_placeholder')
 
     objects = AllinkBaseModelManager()
 

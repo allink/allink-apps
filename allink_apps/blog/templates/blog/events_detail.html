@@ -38,7 +38,7 @@
 {% block content %}
     <div class="content-section app-content-plugin detail-view container-enabled">
         <div class="container" data-scroll-spy>
-            
+
             {% if object.preview_image %}
                 <div class="image-container header-image-container">
                     {% include "slider_detail/content.html" with display_title=False title_content=object.title %}
@@ -54,25 +54,16 @@
             <div class="app-detail-col-container col-2-1">
                 <div class="col">
                     <div class="manage-spacings">
-                        <div class="text-container">
-                            {# optional: lead #}
-                            {% if object.lead %}
-                                <p class="lead">
-                                    {{object.lead|striptags}}
-                                </p>
-                            {% endif %}
-                        </div>
+                        {% if object.lead %}
+                            <div class="text-container">
+                                {# optional: lead #}
+                                    <p class="lead">
+                                        {{object.lead|striptags}}
+                                    </p>
+                            </div>
+                        {% endif %}
 
                         {% render_placeholder object.content_placeholder %}
-
-                        {% if object.events.form_enabled %}
-                        <div class="link-container">
-                            <a href="{% url 'blog:register' slug=object.slug %}" class="btn btn-default toggle-form-modal">
-                                {% trans "Anmelden" %}
-                            </a>
-                        </div>
-        {#                        {% include 'blog/events_register_detail.html' %}#}
-                        {% endif %}
                     </div>
                 </div>
 
@@ -90,12 +81,10 @@
                                     {% trans "Ort" %}
                                 </h2>
                                 <p>
-                                    {{object.events.location.title}}<br>
-                                    {% if object.events.location.street %}{{object.events.location.street}} {% if object.events.location.street_nr %}{{object.events.location.street_nr}}{% endif %}<br>{% endif %}
-                                    {% if object.events.location.zip_code %}{{object.events.location.zip_code}}{% endif %} {% if object.events.location.zip_code %}{{object.events.location.place}}<br>{% endif %}
+                                    {% include 'locations/includes/_address.html' with location=object.events.location %}
                                 </p>
                             {% endif %}
-                    {% if object.events.form_enabled %}
+                    {% if object.events.form_enabled and object.events.show_registration_form %}
                         <a href="{% url 'blog:register' slug=object.slug %}" class="btn btn-default toggle-form-modal">
                             {% trans "Anmelden" %}
                         </a>

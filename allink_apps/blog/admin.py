@@ -6,7 +6,8 @@ from adminsortable.admin import SortableTabularInline
 from allink_core.allink_base.admin import AllinkBaseAdmin
 from cms.admin.placeholderadmin import PlaceholderAdminMixin
 
-from .models import BlogImage, Blog, News, Events, EventsRegistration
+from .models import BlogImage, Blog, News, Events
+
 
 class BlogImageInline(SortableTabularInline):
     model = BlogImage
@@ -15,14 +16,14 @@ class BlogImageInline(SortableTabularInline):
     verbose_name_plural = ''
 
 
-@admin.register(Blog)
-class BlogAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
+@admin.register(News)
+class NewsAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
     inlines = [BlogImageInline, ]
 
     def formfield_for_dbfield(self, db_field, **kwargs):
         if db_field.name == 'lead':
             kwargs['widget'] = forms.Textarea
-        return super(BlogAdmin, self).formfield_for_dbfield(db_field, **kwargs)
+        return super(NewsAdmin, self).formfield_for_dbfield(db_field, **kwargs)
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = (
@@ -33,36 +34,6 @@ class BlogAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
                     'slug',
                     'created',
                     'lead',
-                    'text',
-                ),
-            }),
-        )
-
-        fieldsets += (_('Published From/To'), {
-            'classes': ('collapse',),
-            'fields': (
-                'start',
-                'end',
-            )
-        }),
-
-        fieldsets += self.get_base_fieldsets()
-
-        return fieldsets
-
-@admin.register(News)
-class NewsAdmin(BlogAdmin):
-
-    def get_fieldsets(self, request, obj=None):
-        fieldsets = (
-            (None, {
-                'fields': (
-                    'active',
-                    'title',
-                    'slug',
-                    'created',
-                    'lead',
-                    'text',
                 ),
             }),
         )
@@ -81,8 +52,14 @@ class NewsAdmin(BlogAdmin):
 
 
 @admin.register(Events)
-class EventsAdmin(BlogAdmin):
+class EventsAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
     list_display = ('title', 'get_categories', 'event_date', 'active', )
+    inlines = [BlogImageInline, ]
+
+    def formfield_for_dbfield(self, db_field, **kwargs):
+        if db_field.name == 'lead':
+            kwargs['widget'] = forms.Textarea
+        return super(EventsAdmin, self).formfield_for_dbfield(db_field, **kwargs)
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = (
@@ -93,7 +70,6 @@ class EventsAdmin(BlogAdmin):
                     'slug',
                     'created',
                     'lead',
-                    'text',
                     'location',
                     'form_enabled',
                     ('event_date', 'event_time', 'costs', )
@@ -116,3 +92,8 @@ class EventsAdmin(BlogAdmin):
 
 class EventsRegistrationAdmin(admin.ModelAdmin):
     pass
+
+
+@admin.register(Blog)
+class BlogAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
+    inlines = [BlogImageInline, ]

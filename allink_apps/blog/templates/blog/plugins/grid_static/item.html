@@ -3,7 +3,7 @@
     <div class="manage-spacings">
         {% if object.preview_image %}
             <div class="image-container">
-                {% if instance.detail_link_enabled and object.text %}
+                {% if instance.detail_link_enabled and object.content_placeholder %}
                     <a href="{{object.get_absolute_url}}">
                 {% endif %}
                     {% render_app_content_image %}
@@ -34,7 +34,7 @@
                 </p>
             </div>
         {% endif %}
-        {% if instance.detail_link_enabled and object.text %}
+        {% if instance.detail_link_enabled and object.content_placeholder %}
             <div class="link-container">
                 <a class="btn btn-default" href="{{object.get_absolute_url}}">
                     {% if instance.detail_link_text %}

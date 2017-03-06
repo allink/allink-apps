@@ -8,6 +8,6 @@ from .models import Locations
 
 
 @toolbar_pool.register
-class LocationsModifier(AllinkBaseModifierMixin, CMSToolbar):
+class LocationsToolbar(AllinkBaseModifierMixin, CMSToolbar):
     model = Locations
     app_label = Locations._meta.app_label

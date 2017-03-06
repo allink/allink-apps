@@ -24,5 +24,5 @@ class CMSPeoplePlugin(CMSAllinkBaseAppContentPlugin):
 
     """
     model = PeopleAppContentPlugin
-    name = model.data_model._meta.verbose_name_plural
+    name = model.data_model.get_verbose_name_plural()
     data_model = PeopleAppContentPlugin.data_model

@@ -23,5 +23,5 @@ class CMSTestimonialPlugin(CMSAllinkBaseAppContentPlugin):
 
     """
     model = TestimonialAppContentPlugin
-    name = model.data_model._meta.verbose_name_plural
+    name = model.data_model.get_verbose_name_plural()
     data_model = TestimonialAppContentPlugin.data_model
