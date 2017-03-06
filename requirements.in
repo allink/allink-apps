@@ -25,4 +25,4 @@ django-widget-tweaks==1.4.1
 mandrill==1.0.57
 geopy==1.11.0
 # ALLINK
-https://github.com/allink/allink-core/tarball/ce57952fe7f613e0dd6000622632e3345a4e5f91
+https://github.com/allink/allink-core/tarball/361b6e9849221adeacfda01314692cf5aac00480
