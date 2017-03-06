@@ -3,6 +3,7 @@ import phonenumbers
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from djangocms_text_ckeditor.fields import HTMLField
+
 from adminsortable.fields import SortableForeignKey
 from parler.models import TranslatableModel, TranslatedFields
 from aldryn_translation_tools.models import (
@@ -124,6 +125,11 @@ class PeopleAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugi
 
     """
 
+    FILTER_FIELD_CHOICES = (
+        ('categories', _(u'Categories')),
+        ('place', _(u'Place')),
+    )
+
     TEMPLATES = (
         (AllinkBaseAppContentPlugin.GRID_STATIC, 'Grid (Static)'),
         (AllinkBaseAppContentPlugin.LIST, 'List'),
@@ -135,7 +141,6 @@ class PeopleAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugi
         help_text=_('Select and arrange specific entries, or, leave blank to select all. (If '
                     'manual entries are selected the category filtering will be ignored.)')
     )
-
 
 class PeopleImage(AllinkBaseImage):
     people = SortableForeignKey(People,  verbose_name=_(u'Images'), help_text=_(u'The first image will be used as preview image.'), blank=True, null=True)

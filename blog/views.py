@@ -40,7 +40,7 @@ class BlogDetail(AllinkBaseDetailView):
 class EventsRegistrationView(AllinkBaseCreateView):
     model = EventsRegistration
     form_class = EventsRegistrationForm
-    template_name = 'blog/registration_detail.html'
+    template_name = 'blog/forms/registration.html'
 
     def get_context_data(self, **kwargs):
         context = super(AllinkBaseCreateView, self).get_context_data(**kwargs)

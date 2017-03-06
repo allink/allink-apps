@@ -25,7 +25,7 @@ class CMSBlogPlugin(CMSAllinkBaseAppContentPlugin):
 
     """
     model = BlogAppContentPlugin
-    name = model.data_model._meta.verbose_name_plural
+    name = model.data_model.get_verbose_name_plural()
     data_model = BlogAppContentPlugin.data_model
 
     @classmethod

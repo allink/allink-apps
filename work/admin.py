@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
 from django import forms
+
+from cms.admin.placeholderadmin import PlaceholderAdminMixin
 from adminsortable.admin import SortableTabularInline
 from allink_core.allink_base.admin import AllinkBaseAdmin
 
-from .models import WorkImage, Work, WorkAppContentPlugin
+from .models import WorkImage, Work
 
 
 class WorkImageInline(SortableTabularInline):
@@ -14,7 +16,7 @@ class WorkImageInline(SortableTabularInline):
     verbose_name_plural = ''
 
 @admin.register(Work)
-class WorkAdmin(AllinkBaseAdmin):
+class WorkAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
     inlines = [WorkImageInline, ]
     # list_filter = ('active', 'categories',)
 

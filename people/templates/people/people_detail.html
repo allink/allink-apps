@@ -69,15 +69,34 @@
                         {% render_app_content_image_detail thumbnail_url="col-1-of-3" %}
 
                         <div class="text-container">
-                            <h2 class="heading">
-                                {% trans "Kontakt" %}
-                            </h2>
+                            {% if object.email %}
+                                <h2 class="heading">
+                                    {% trans "Contact" %}
+                                </h2>
+                            {% endif %}
                             <p>
                                 {% if object.email %}
-                                    {{object.email}}<br>
+                                    <a href="mailto:{{object.email}}">
+                                        {{object.email}}
+                                    </a><br>
                                 {% endif %}
                                 {% if object.phone %}
-                                    {{object.phone}}<br>
+                                    {% trans 'Phone:' %}
+                                    <a href="tel:{{object.phone}}">
+                                        {{object.phone_formatted}}
+                                    </a><br>
+                                {% endif %}
+                                {% if object.mobile %}
+                                    {% trans 'Mobile:' %}
+                                    <a href="tel:{{object.mobile}}">
+                                        {{object.mobile_formatted}}
+                                    </a><br>
+                                {% endif %}
+                                {% if object.fax %}
+                                    {% trans 'Fax:' %}
+                                    <a href="tel:{{object.fax}}">
+                                        {{object.fax_formatted}}
+                                    </a><br>
                                 {% endif %}
                             </p>
                         </div>

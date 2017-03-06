@@ -74,6 +74,24 @@ class Members(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableMo
     def full_name(self):
         return u'{} {}'.format(self.first_name, self.last_name)
 
+    @classmethod
+    def get_verbose_name(cls):
+        from allink_core.allink_config.models import AllinkConfig
+        try:
+            field_name = cls._meta.model_name + '_verbose'
+            return getattr(AllinkConfig.get_solo(), field_name)
+        except AttributeError:
+            return cls._meta.verbose_name
+
+    @classmethod
+    def get_verbose_name_plural(cls):
+        from allink_core.allink_config.models import AllinkConfig
+        try:
+            field_name = cls._meta.model_name + '_verbose_plural'
+            return getattr(AllinkConfig.get_solo(), field_name)
+        except AttributeError:
+            return cls._meta.verbose_name_plural
+
     def save(self, **kwargs):
         if not self.pk:
             user, created = User.objects.get_or_create(

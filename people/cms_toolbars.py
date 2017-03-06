@@ -8,5 +8,5 @@ from .models import People
 
 
 @toolbar_pool.register
-class PeopleModifier(AllinkBaseModifierMixin, CMSToolbar):
+class PeopleToolbar(AllinkBaseModifierMixin, CMSToolbar):
     model = People
