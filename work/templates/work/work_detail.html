@@ -61,8 +61,8 @@
                                 {{object.lead|striptags}}
                             </p>
                         {% endif %}
-                        {# we wouldn't be here if the text was empty #}
-                        {{object.text}}
+
+                        {% render_placeholder object.content_placeholder %}
                     </div>
                 </div>{# end .col #}
 

@@ -55,15 +55,15 @@
 
                 <div class="col">
                     <div class="manage-spacings">
-                        <div class="text-container">
-                            {# optional: lead #}
-                            {% if object.lead %}
+                        {% if object.lead %}
+                            <div class="text-container">
+                                {# optional: lead #}
                                 <p class="lead">
                                     {{object.lead|striptags}}
                                 </p>
-                            {% endif %}
-                            {# we wouldn't be here if the text was empty #}
-                        </div>
+                                {# we wouldn't be here if the text was empty #}
+                            </div>
+                        {% endif %}
                         {% render_placeholder object.content_placeholder %}
                     </div>
                 </div>{# end .col #}

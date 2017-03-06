@@ -200,7 +200,8 @@ class Locations(TranslationHelperMixin, TranslatedAutoSlugifyMixin, Translatable
         """
         Returns google maps link with query of current store
         """
-        return (u"https://www.google.ch/maps?q=Chicorée+Mode+AG+%(street)s+%(zip_code)s+%(place)s" % {
+        return (u"https://www.google.ch/maps?q=%(name)s+%(street)s+%(zip_code)s+%(place)s" % {
+            'name': self.title,
             'street': u'{} {}'.format(self.street, self.street_nr),
             'zip_code': self.zip_code,
             'place': self.place
