@@ -14,6 +14,7 @@ INSTALLED_ADDONS = [
     'aldryn-common',
     'aldryn-google-tag-manager',
     'djangocms-file',
+    'djangocms-link',
     'djangocms-picture',
     'djangocms-text-ckeditor',
     'djangocms-video',
@@ -31,7 +32,7 @@ from allink_core.allink_base.utils import get_height_from_ratio
 from allink_core.allink_config.easy_thumbnail import THUMBNAIL_ALIASES
 from allink_core.allink_config.allink_settings import ALLINK_INSTALLED_APPS, \
     ALLINK_PROJECT_APP_MODEL_WITH_CATEGORY_CHOICES, ALLINK_CMS_PLACEHOLDER_CONF_PLUGINS,\
-    ALLINK_MIGRATION_MODULES, CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES
+    ALLINK_MIGRATION_MODULES, CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES, ALLINK_MIDDLEWARE_CLASSES
 from django.utils.translation import ugettext_lazy as _
 
 aldryn_addons.settings.load(locals())
@@ -61,7 +62,7 @@ MIGRATION_MODULES = ALLINK_MIGRATION_MODULES
 ####################################################################################
 
 # =Middleware
-
+MIDDLEWARE_CLASSES.extend(ALLINK_MIDDLEWARE_CLASSES)
 MIDDLEWARE_CLASSES.extend([
     # add your own middlewares here
 ])
@@ -91,6 +92,7 @@ TEMPLATES = [
                 'aldryn_boilerplates.context_processors.boilerplate',
                 'aldryn_snake.template_api.template_processor',
                 'django.template.context_processors.request',
+                'allink_core.allink_config.context_processors.allink_config',
             ],
             'loaders': [
                 'django.template.loaders.filesystem.Loader',
@@ -185,7 +187,7 @@ ALLOWED_VIDEO_EXTENSIONS = ['mp4']
 CKEDITOR_SETTINGS = {
     'contentsCss': os.path.join(STATIC_URL, 'build/style.css'),
     'bodyClass': 'editor-body',
-    'startupOutlineBlocks': 'true',
+    'startupOutlineBlocks': 'false',
     'forcePasteAsPlainText': 'true',
     'skin': 'moono',
     'height': 400,
@@ -194,16 +196,15 @@ CKEDITOR_SETTINGS = {
     'toolbar_CMS': [
         ['Undo', 'Redo'],
         ['cmsplugins', '-', 'ShowBlocks'],
-        ['Styles', 'Italic', '-', 'RemoveFormat'],
+        ['Styles', 'Bold', 'Italic', '-', 'RemoveFormat'],
         ['NumberedList', 'BulletedList'],
         ['Source'],
-        ['Link'],
     ],
     # toolbar when using the HTMLField in a models.py
     'toolbar_HTMLField': [
         ['Undo', 'Redo'],
         ['ShowBlocks'],
-        ['Styles', 'Italic', '-', 'RemoveFormat'],
+        ['Styles', 'Bold', 'Italic', '-', 'RemoveFormat'],
         ['NumberedList', 'BulletedList'],
         ['Source'],
 
@@ -278,13 +279,21 @@ CMS_PLACEHOLDER_CONF = {
         'exclude_plugins': ['InheritPlugin'],
     },
     'footer_content': {
-        "plugins": ['TextPlugin'],
+        "plugins": ['CMSAllinkContentPlugin', 'TextPlugin'],
         'exclude_plugins': ['InheritPlugin'],
     },
     'map': {
         "plugins": ['CMSLocationsPlugin'],
         'exclude_plugins': ['InheritPlugin'],
     },
+    'blog_content': {
+        "plugins": ['TextPlugin', 'CMSAllinkImagePlugin', 'VideoPlayerPlugin'],
+        'exclude_plugins': ['InheritPlugin'],
+    },
+    'blog_header': {
+        "plugins": ['CMSAllinkImagePlugin', 'CMSAllinkGalleryPlugin'],
+        'exclude_plugins': ['InheritPlugin'],
+    }
 }
 
 
@@ -304,7 +313,7 @@ MAILCHIMP_API_KEY = senv('MAILCHIMP_API_KEY')
 MAILCHIMP_DEFAULT_LIST_ID = senv('MAILCHIMP_DEFAULT_LIST_ID')
 # MAILCHIMP_SIGNUP_FORM = ''
 # MAILCHIMP_MERGE_VARS = ''
-# MAILCHIMP_DOUBLE_OPTIN = ''
+# MAILCHIMP_DOUBLE_OPTIN = '' # DEFAULT: True
 
 # =MANDRILL CONFIG
 MANDRILL_API_KEY = senv('MANDRILL_API_KEY')
@@ -321,7 +330,7 @@ GOOGLE_TAG_MANAGER_ID = senv('GOOGLE_TAG_MANAGER_ID')
 # =GOOGLE MAP API KEY
 GOOGLE_MAP_API_KEY = senv('GOOGLE_MAP_API_KEY')
 
-
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 
 ####################################################################################
 
@@ -368,7 +377,7 @@ CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSES = CMS_ALLINK_CONTENT_PLUGIN_CHILD_CLASSE
 
 CMS_ALLINK_GROUP_PLUGIN_CHILD_CLASSES = [
     # 'TextPlugin',
-    # 'PicturePlugin',
+    # 'CMSAllinkImagePlugin',
     'CMSAllinkButtonLinkContainerPlugin',
     'CMSAllinkButtonLinkPlugin',
 ]
