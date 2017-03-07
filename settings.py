@@ -278,7 +278,7 @@ CMS_PLACEHOLDER_CONF = {
         'exclude_plugins': ['InheritPlugin'],
     },
     'footer_content': {
-        "plugins": ['CMSAllinkContentPlugin', 'TextPlugin'],
+        "plugins": ALLINK_CMS_PLACEHOLDER_CONF_PLUGINS,
         'exclude_plugins': ['InheritPlugin'],
     },
     'map': {
@@ -286,19 +286,19 @@ CMS_PLACEHOLDER_CONF = {
         'exclude_plugins': ['InheritPlugin'],
     },
     'blog_content': {
-        "plugins": ['TextPlugin', 'CMSAllinkImagePlugin', 'VideoPlayerPlugin'],
+        "plugins": ALLINK_CMS_PLACEHOLDER_CONF_PLUGINS,
         'exclude_plugins': ['InheritPlugin'],
     },
     'blog_header': {
-        "plugins": ['CMSAllinkImagePlugin', 'CMSAllinkGalleryPlugin'],
+        "plugins": ALLINK_CMS_PLACEHOLDER_CONF_PLUGINS,
         'exclude_plugins': ['InheritPlugin'],
     },
     'work_content': {
-        "plugins": ['TextPlugin', 'CMSAllinkImagePlugin', 'VideoPlayerPlugin'],
+        "plugins": ALLINK_CMS_PLACEHOLDER_CONF_PLUGINS,
         'exclude_plugins': ['InheritPlugin'],
     },
     'work_header': {
-        "plugins": ['CMSAllinkImagePlugin', 'CMSAllinkGalleryPlugin'],
+        "plugins": ALLINK_CMS_PLACEHOLDER_CONF_PLUGINS,
         'exclude_plugins': ['InheritPlugin'],
     }
 }
