@@ -6,7 +6,7 @@ def delete_plugins(apps, schema_editor):
     OldPlugin = apps.get_model("cms", "cmsplugin")
 
     for old in OldPlugin.objects.filter(plugin_type='CMSAllinkGalleryImagePlugin', placeholder_id=72):
-        old.delte()
+        old.delete()
 
 class Migration(migrations.Migration):
 
