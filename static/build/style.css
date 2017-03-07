@@ -9331,6 +9331,17 @@ The main site's content section
   position: relative;
   z-index: 5; }
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Temp Quick Fix
+
+*/
+.work-plugin.detail-view .content-section .container {
+  padding: 0; }
+
+.work-plugin.detail-view .content-section .col-1 .col {
+  width: 100%; }
+
 .site-footer {
   background-color: #373a3c;
   padding-top: 30px;

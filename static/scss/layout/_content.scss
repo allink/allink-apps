@@ -10,3 +10,26 @@ The main site's content section
     z-index: z("site-content");
 
 }
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Temp Quick Fix
+
+*/
+
+.work-plugin {
+    &.detail-view {
+        .content-section {
+            // reset container
+            .container {
+                padding: 0;
+            }
+            .col-1 {
+                .col {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
