@@ -64,33 +64,31 @@
 
 	__webpack_require__(15);
 
-	__webpack_require__(84);
-
 	__webpack_require__(16);
 
 	__webpack_require__(18);
 
-	__webpack_require__(85);
+	__webpack_require__(20);
 
-	__webpack_require__(19);
+	__webpack_require__(21);
 
-	__webpack_require__(29);
+	__webpack_require__(22);
 
 	__webpack_require__(32);
 
-	__webpack_require__(33);
+	__webpack_require__(35);
 
-	__webpack_require__(41);
-
-	__webpack_require__(42);
+	__webpack_require__(36);
 
 	__webpack_require__(43);
 
-	__webpack_require__(47);
+	__webpack_require__(44);
 
-	__webpack_require__(48);
+	__webpack_require__(45);
 
 	__webpack_require__(49);
+
+	__webpack_require__(50);
 
 	__webpack_require__(51);
 
@@ -102,7 +100,9 @@
 
 	__webpack_require__(59);
 
-	__webpack_require__(62);
+	__webpack_require__(61);
+
+	__webpack_require__(64);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -15694,7 +15694,7 @@
 	                // store key code
 	                var key_code = parseInt(e.which);
 	                var current_number_of_characters = parseInt($input.val().length);
-	                // key codes 8 until 46 are general key like space, delete, backspace, arrows, ...
+	                // key codes 8 until 46 are general keys like space, delete, backspace, arrows, ...
 	                if (key_code >= 8 && key_code <= 46) {
 	                    // can be pressed at all times
 	                } else {
@@ -15789,12 +15789,132 @@
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
+	var _tingle = __webpack_require__(17);
+
+	var _tingle2 = _interopRequireDefault(_tingle);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	$(function () {
+
+	    // initialize modal
+	    var form_modal = new _tingle2.default.modal({
+	        cssClass: ['form-modal'],
+	        onClose: function onClose() {
+	            // tbd
+	            closeFormModal();
+	            // if the softpage is still open in the brackground, we have to keep the overlay, otherwise we can close it
+	            if ($('.tingle-modal.softpage').hasClass('tingle-modal--visible')) {
+	                // don't do anything
+	            } else {
+	                $(window).trigger('hideSiteOverlay');
+	            }
+	        },
+	        onOpen: function onOpen() {
+	            $(window).trigger('initFormModifications');
+	            $(window).trigger('initFormModalClose');
+	            $(window).trigger('initFormValidation');
+	        }
+	    });
+
+	    // click handler
+	    function openFormModal(element, event) {
+	        // init
+	        event.preventDefault();
+
+	        // in case we opened a form modal from within a softpage, we need to hide the softpage
+	        document.querySelector('html').classList.add('form-modal-visible');
+	        // document.querySelector('.softpage').classList.remove('tingle-modal--visible');
+
+	        // get and set content
+	        var url = element.getAttribute('href');
+
+	        $.get(url, function (data) {
+	            // set modal content and open
+	            form_modal.setContent(data);
+	            form_modal.open();
+	        });
+	    }
+
+	    function closeFormModal() {
+	        document.querySelector('html').classList.remove('form-modal-visible');
+	    }
+
+	    function initFormModalTrigger() {
+	        // init all trigger links and loop
+	        $('.toggle-form-modal').each(function (i) {
+	            // stop multiple event listeners from firing multiple times by removing (off()) and adding (on()) the event listener
+	            $(this).off('click').on('click', function (event) {
+	                // instantly toggle site overlay (improves "felt performance")
+	                $(window).trigger('showSiteOverlay');
+	                // load softpage
+	                event.preventDefault();
+	                openFormModal(this, event);
+	            });
+	        });
+	    }
+
+	    // on page load
+	    initFormModalTrigger();
+
+	    // custom event
+	    $(window).on('initFormModalTrigger', function () {
+	        initFormModalTrigger();
+	    });
+
+	    function initFormModalClose() {
+	        // prevent clicks on background to close modal
+	        // $('.tingle-modal.form-modal').each(function(i) {
+	        //     // stop multiple event listeners from firing multiple times by removing (off()) and adding (on()) the event listener
+	        //     $(this).off('click').
+	        //         on('click',
+	        //         function(event){
+	        //             // load softpage
+	        //             console.log( event );
+	        //             event.preventDefault();
+	        //             return false;
+	        //         }
+	        //     );
+	        // });
+	        // look for triggers
+	        if (document.querySelector('.close-form-modal')) {
+	            var close_form_modal = document.querySelector('.close-form-modal');
+	            close_form_modal.addEventListener('click', function (event) {
+	                event.preventDefault();
+	                form_modal.close();
+	            });
+	        }
+	    }
+
+	    // custom event
+	    $(window).on('initFormModalClose', function () {
+	        initFormModalClose();
+	    });
+	}); /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+	    
+	    Link with class '.toggle-form-modal' will trigger the form lightbox
+	    
+	    */
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ },
+/* 17 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;!function(t,o){ true?!(__WEBPACK_AMD_DEFINE_FACTORY__ = (o), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):"object"==typeof exports?module.exports=o():t.tingle=o()}(this,function(){function t(t){this.modal,this.modalCloseBtn,this.modalWrapper,this.modalBox,this.modalBoxContent,this.modalBoxFooter,this.modalContent;var o={onClose:null,onOpen:null,stickyFooter:!1,footer:!1,cssClass:[]};this.opts=c({},o,t),this.init()}function o(){this.modalBoxFooter&&(this.modalBoxFooter.style.width=this.modalBox.clientWidth+"px",this.modalBoxFooter.style.left=this.modalBox.offsetLeft+"px")}function i(){if(this.isOverflow())this.modalBox.style.top="";else{var t=window.innerHeight/2-this.modalBox.clientHeight/2;this.modalBox.style.top=t+"px"}}function e(){p(this.modal)}function n(){this.modal=B("div","tingle-modal"),this.modal.style.display="none",this.opts.cssClass.forEach(function(t){"string"==typeof t&&this.modal.classList.add(t)},this),this.modalCloseBtn=B("button","tingle-modal__close"),this.modalCloseBtn.innerHTML="×",this.modalBox=B("div","tingle-modal-box"),this.modalBoxContent=B("div","tingle-modal-box__content"),this.modalBox.appendChild(this.modalBoxContent),this.modal.appendChild(this.modalCloseBtn),this.modal.appendChild(this.modalBox)}function s(){this.modalBoxFooter=B("div","tingle-modal-box__footer"),this.modalBox.appendChild(this.modalBoxFooter)}function l(t){for(var o=t.getElementsByTagName("img"),i=[],e=0;e<o.length;e++)i.push(o[e].src)}function a(){document.querySelector(".tingle-modal")&&f(this.modal)}function d(){u(this.modalCloseBtn,"click",this.close.bind(this)),u(this.modal,"click",this.close.bind(this)),u(this.modalBox,"click",r),window.addEventListener("resize",this.resize.bind(this))}function r(t){t.stopPropagation()}function h(){x(this.modalCloseBtn,"click",this.close.bind(this)),x(this.modal,"click",this.close.bind(this)),x(this.modalBox,"click",r)}function c(){for(var t=1;t<arguments.length;t++)for(var o in arguments[t])arguments[t].hasOwnProperty(o)&&(arguments[0][o]=arguments[t][o]);return arguments[0]}function m(t){return"undefined"!=typeof t.length&&"undefined"!=typeof t.item}function p(t){document.body.insertBefore(t,document.body.firstChild)}function f(t){t.parentNode.removeChild(t)}function u(t,o,i){m(t)?[].forEach.call(t,function(t){t.addEventListener(o,i)}):t.addEventListener(o,i)}function x(t,o,i){m(t)?[].forEach.call(t,function(t){t.removeEventListener(o,i)}):t.removeEventListener(o,i)}function B(t,o){var t=document.createElement(t);return o&&t.classList.add(o),t}function y(){var t,o=document.createElement("tingle-test-transition"),i={transition:"transitionend",OTransition:"oTransitionEnd",MozTransition:"transitionend",WebkitTransition:"webkitTransitionEnd"};for(t in i)if(void 0!==o.style[t])return i[t]}var g=document.querySelector("body"),v=y();return t.prototype.init=function(){this.modal||(n.call(this),d.call(this),e.call(this),this.opts.footer&&this.addFooter())},t.prototype.open=function(t){if(this.modal.style.display="block",g.classList.add("tingle-enabled"),this.setStickyFooter(this.opts.stickyFooter),this.modal.classList.add("tingle-modal--visible"),i.call(this),"function"==typeof this.opts.onOpen){var o=this;v&&this.modal.addEventListener(v,function e(){o.opts.onOpen.call(o),o.modal.removeEventListener(v,e,!1)},!1)}},t.prototype.close=function(t){this.modal.style.display="none",g.classList.remove("tingle-enabled"),this.modal.classList.remove("tingle-modal--visible"),"function"==typeof this.opts.onClose&&this.opts.onClose.call(this)},t.prototype.destroy=function(){null!==this.modal&&(h.call(this),a.call(this),this.modal=null)},t.prototype.setContent=function(t){"string"==typeof t?this.modalBoxContent.innerHTML=t:(this.modalBoxContent.innerHTML="",this.modalBoxContent.appendChild(t)),l(this.modalBoxContent),this.resize()},t.prototype.getContent=function(){return this.modalBoxContent},t.prototype.addFooter=function(){s.call(this)},t.prototype.setFooterContent=function(t){this.modalBoxFooter.innerHTML=t},t.prototype.getFooterContent=function(){return this.modalBoxFooter},t.prototype.setStickyFooter=function(t){this.isOverflow()||(t=!1),t?this.modalBox.contains(this.modalBoxFooter)&&(this.modalBox.removeChild(this.modalBoxFooter),this.modal.appendChild(this.modalBoxFooter),this.modalBoxFooter.classList.add("tingle-modal-box__footer--sticky"),o.call(this),this.modalBoxContent.style["padding-bottom"]=this.modalBoxFooter.clientHeight+20+"px",u(this.modalBoxFooter,"click",r)):this.modalBoxFooter&&(this.modalBox.contains(this.modalBoxFooter)||(this.modal.removeChild(this.modalBoxFooter),this.modalBox.appendChild(this.modalBoxFooter),this.modalBoxFooter.style.width="auto",this.modalBoxFooter.style.left="",this.modalBoxContent.style["padding-bottom"]="",this.modalBoxFooter.classList.remove("tingle-modal-box__footer--sticky")))},t.prototype.addFooterBtn=function(t,o,i){var e=document.createElement("button");return e.innerHTML=t,e.addEventListener("click",i),"string"==typeof o&&o.length&&o.split(" ").forEach(function(t){e.classList.add(t)}),this.modalBoxFooter.appendChild(e),e},t.prototype.resize=function(){this.modal.classList.contains("tingle-modal--visible")&&(i.call(this),!this.isOverflow()&&this.opts.stickyFooter?this.setStickyFooter(!1):this.isOverflow()&&this.opts.stickyFooter&&(o.call(this),this.setStickyFooter(!0)))},t.prototype.isOverflow=function(){var t=window.innerHeight,o=this.modalBox.clientHeight,i=t>o?!1:!0;return i},{modal:t}});
+
+/***/ },
+/* 18 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 	exports.initFormValidation = initFormValidation;
 
-	var _jqueryValidation = __webpack_require__(17);
+	var _jqueryValidation = __webpack_require__(19);
 
 	var _jqueryValidation2 = _interopRequireDefault(_jqueryValidation);
 
@@ -15884,7 +16004,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 17 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -17463,7 +17583,7 @@
 	}));
 
 /***/ },
-/* 18 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
@@ -17570,7 +17690,113 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 19 */
+/* 21 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+
+	var _tingle = __webpack_require__(17);
+
+	var _tingle2 = _interopRequireDefault(_tingle);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	$(function () {
+
+	    // initialize modal
+	    var image_modal = new _tingle2.default.modal({
+	        cssClass: ['image-modal'],
+	        onClose: function onClose() {
+	            close_image_modal_handler();
+	            // trigger custom events
+	            $(window).trigger('hideSiteOverlay');
+	        },
+	        onOpen: function onOpen() {
+	            $(window).trigger('initImageModalClose');
+	        }
+	    });
+
+	    // click handler
+	    function open_image_modal_handler(element, event) {
+	        event.preventDefault();
+	        document.querySelector('html').classList.add('image-modal-visible');
+
+	        // get and set content
+	        var url = element.getAttribute('data-href');
+	        var picture = element.getElementsByTagName("picture")[0].cloneNode(true);
+	        picture.getElementsByTagName('img')[0].setAttribute('data-srcset', url);
+
+	        image_modal.setContent(picture);
+	        image_modal.open();
+	        $(window).trigger('initImageModalClose');
+	        setTimeout(function () {
+	            $(window).trigger('initImageModalTrigger');
+	        }, 1500);
+
+	        // add functionality to close the modal with the ESCAPE key
+	        document.onkeydown = function (evt) {
+	            evt = evt || window.event;
+	            var isEscape = false;
+	            if ("key" in evt) {
+	                isEscape = evt.key == "Escape";
+	            } else {
+	                isEscape = evt.keyCode == 27;
+	            }
+	            if (isEscape) {
+	                image_modal.close();
+	            }
+	        };
+	    }
+
+	    function close_image_modal_handler() {
+	        document.querySelector('html').classList.remove('image-modal-visible');
+	    }
+
+	    function initImageModalTrigger() {
+	        if (document.querySelector('a[data-toggle-image-modal]')) {
+	            var image_modal_elements = document.querySelectorAll('a[data-toggle-image-modal]');
+	            for (var i = 0; i < image_modal_elements.length; i++) {
+	                image_modal_elements[i].addEventListener('click', function (event) {
+	                    // instantly toggle site overlay (improves "felt perimageance")
+	                    $(window).trigger('showSiteOverlay');
+	                    // open modal
+	                    open_image_modal_handler(this, event);
+	                });
+	            }
+	        }
+	    }
+
+	    // on page load
+	    initImageModalTrigger();
+
+	    // custom event
+	    $(window).on('initImageModalTrigger', function () {
+	        initImageModalTrigger();
+	    });
+
+	    function initImageModalClose() {
+	        if (document.querySelector('.close-image-modal')) {
+	            var close_image_modal = document.querySelector('.close-image-modal');
+	            close_image_modal.addEventListener('click', function (event) {
+	                event.preventDefault();
+	                image_modal.close();
+	            });
+	        }
+	    }
+
+	    // custom event
+	    $(window).on('initImageModalClose', function () {
+	        initImageModalClose();
+	    });
+	}); /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+	    
+	    Link with data attribute 'data-toggle-image-modal' will trigger the image lightbox
+	    
+	    */
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ },
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
@@ -17580,13 +17806,13 @@
 	});
 	exports.initMasonry = initMasonry;
 
-	var _masonryLayout = __webpack_require__(20);
+	var _masonryLayout = __webpack_require__(23);
 
 	var _masonryLayout2 = _interopRequireDefault(_masonryLayout);
 
-	var _helperFunctions = __webpack_require__(27);
+	var _helperFunctions = __webpack_require__(30);
 
-	var _ajaxLoadItems = __webpack_require__(28);
+	var _ajaxLoadItems = __webpack_require__(31);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -17651,7 +17877,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 20 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -17668,8 +17894,8 @@
 	  if ( true ) {
 	    // AMD
 	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [
-	        __webpack_require__(21),
-	        __webpack_require__(23)
+	        __webpack_require__(24),
+	        __webpack_require__(26)
 	      ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	  } else if ( typeof module == 'object' && module.exports ) {
 	    // CommonJS
@@ -17861,7 +18087,7 @@
 
 
 /***/ },
-/* 21 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -17877,10 +18103,10 @@
 	  if ( true ) {
 	    // AMD - RequireJS
 	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [
-	        __webpack_require__(22),
-	        __webpack_require__(23),
-	        __webpack_require__(24),
-	        __webpack_require__(26)
+	        __webpack_require__(25),
+	        __webpack_require__(26),
+	        __webpack_require__(27),
+	        __webpack_require__(29)
 	      ], __WEBPACK_AMD_DEFINE_RESULT__ = function( EvEmitter, getSize, utils, Item ) {
 	        return factory( window, EvEmitter, getSize, utils, Item);
 	      }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -18804,7 +19030,7 @@
 
 
 /***/ },
-/* 22 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -18919,7 +19145,7 @@
 
 
 /***/ },
-/* 23 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -19134,7 +19360,7 @@
 
 
 /***/ },
-/* 24 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -19151,7 +19377,7 @@
 	  if ( true ) {
 	    // AMD
 	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [
-	      __webpack_require__(25)
+	      __webpack_require__(28)
 	    ], __WEBPACK_AMD_DEFINE_RESULT__ = function( matchesSelector ) {
 	      return factory( window, matchesSelector );
 	    }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -19377,7 +19603,7 @@
 
 
 /***/ },
-/* 25 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -19436,7 +19662,7 @@
 
 
 /***/ },
-/* 26 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -19449,8 +19675,8 @@
 	  if ( true ) {
 	    // AMD - RequireJS
 	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [
-	        __webpack_require__(22),
-	        __webpack_require__(23)
+	        __webpack_require__(25),
+	        __webpack_require__(26)
 	      ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	  } else if ( typeof module == 'object' && module.exports ) {
 	    // CommonJS - Browserify, Webpack
@@ -19993,7 +20219,7 @@
 
 
 /***/ },
-/* 27 */
+/* 30 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -20090,7 +20316,7 @@
 	};
 
 /***/ },
-/* 28 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
@@ -20348,16 +20574,16 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 29 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
-	var _scrollDepth = __webpack_require__(30);
+	var _scrollDepth = __webpack_require__(33);
 
 	var _scrollDepth2 = _interopRequireDefault(_scrollDepth);
 
-	var _riveted = __webpack_require__(31);
+	var _riveted = __webpack_require__(34);
 
 	var _riveted2 = _interopRequireDefault(_riveted);
 
@@ -20395,7 +20621,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 30 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -20721,7 +20947,7 @@
 	}));
 
 /***/ },
-/* 31 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -21024,7 +21250,7 @@
 
 
 /***/ },
-/* 32 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
@@ -21117,16 +21343,16 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 33 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
-	var _softpage = __webpack_require__(34);
+	var _softpage = __webpack_require__(37);
 
 	var _softpage2 = _interopRequireDefault(_softpage);
 
-	var _helperFunctions = __webpack_require__(27);
+	var _helperFunctions = __webpack_require__(30);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21219,12 +21445,12 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 34 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function webpackUniversalModuleDefinition(root, factory) {
 		if(true)
-			module.exports = factory(__webpack_require__(35), __webpack_require__(36));
+			module.exports = factory(__webpack_require__(17), __webpack_require__(38));
 		else if(typeof define === 'function' && define.amd)
 			define(["tingle.js", "superagent"], factory);
 		else if(typeof exports === 'object')
@@ -21399,13 +21625,7 @@
 	;
 
 /***/ },
-/* 35 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;!function(t,o){ true?!(__WEBPACK_AMD_DEFINE_FACTORY__ = (o), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):"object"==typeof exports?module.exports=o():t.tingle=o()}(this,function(){function t(t){this.modal,this.modalCloseBtn,this.modalWrapper,this.modalBox,this.modalBoxContent,this.modalBoxFooter,this.modalContent;var o={onClose:null,onOpen:null,stickyFooter:!1,footer:!1,cssClass:[]};this.opts=c({},o,t),this.init()}function o(){this.modalBoxFooter&&(this.modalBoxFooter.style.width=this.modalBox.clientWidth+"px",this.modalBoxFooter.style.left=this.modalBox.offsetLeft+"px")}function i(){if(this.isOverflow())this.modalBox.style.top="";else{var t=window.innerHeight/2-this.modalBox.clientHeight/2;this.modalBox.style.top=t+"px"}}function e(){p(this.modal)}function n(){this.modal=B("div","tingle-modal"),this.modal.style.display="none",this.opts.cssClass.forEach(function(t){"string"==typeof t&&this.modal.classList.add(t)},this),this.modalCloseBtn=B("button","tingle-modal__close"),this.modalCloseBtn.innerHTML="×",this.modalBox=B("div","tingle-modal-box"),this.modalBoxContent=B("div","tingle-modal-box__content"),this.modalBox.appendChild(this.modalBoxContent),this.modal.appendChild(this.modalCloseBtn),this.modal.appendChild(this.modalBox)}function s(){this.modalBoxFooter=B("div","tingle-modal-box__footer"),this.modalBox.appendChild(this.modalBoxFooter)}function l(t){for(var o=t.getElementsByTagName("img"),i=[],e=0;e<o.length;e++)i.push(o[e].src)}function a(){document.querySelector(".tingle-modal")&&f(this.modal)}function d(){u(this.modalCloseBtn,"click",this.close.bind(this)),u(this.modal,"click",this.close.bind(this)),u(this.modalBox,"click",r),window.addEventListener("resize",this.resize.bind(this))}function r(t){t.stopPropagation()}function h(){x(this.modalCloseBtn,"click",this.close.bind(this)),x(this.modal,"click",this.close.bind(this)),x(this.modalBox,"click",r)}function c(){for(var t=1;t<arguments.length;t++)for(var o in arguments[t])arguments[t].hasOwnProperty(o)&&(arguments[0][o]=arguments[t][o]);return arguments[0]}function m(t){return"undefined"!=typeof t.length&&"undefined"!=typeof t.item}function p(t){document.body.insertBefore(t,document.body.firstChild)}function f(t){t.parentNode.removeChild(t)}function u(t,o,i){m(t)?[].forEach.call(t,function(t){t.addEventListener(o,i)}):t.addEventListener(o,i)}function x(t,o,i){m(t)?[].forEach.call(t,function(t){t.removeEventListener(o,i)}):t.removeEventListener(o,i)}function B(t,o){var t=document.createElement(t);return o&&t.classList.add(o),t}function y(){var t,o=document.createElement("tingle-test-transition"),i={transition:"transitionend",OTransition:"oTransitionEnd",MozTransition:"transitionend",WebkitTransition:"webkitTransitionEnd"};for(t in i)if(void 0!==o.style[t])return i[t]}var g=document.querySelector("body"),v=y();return t.prototype.init=function(){this.modal||(n.call(this),d.call(this),e.call(this),this.opts.footer&&this.addFooter())},t.prototype.open=function(t){if(this.modal.style.display="block",g.classList.add("tingle-enabled"),this.setStickyFooter(this.opts.stickyFooter),this.modal.classList.add("tingle-modal--visible"),i.call(this),"function"==typeof this.opts.onOpen){var o=this;v&&this.modal.addEventListener(v,function e(){o.opts.onOpen.call(o),o.modal.removeEventListener(v,e,!1)},!1)}},t.prototype.close=function(t){this.modal.style.display="none",g.classList.remove("tingle-enabled"),this.modal.classList.remove("tingle-modal--visible"),"function"==typeof this.opts.onClose&&this.opts.onClose.call(this)},t.prototype.destroy=function(){null!==this.modal&&(h.call(this),a.call(this),this.modal=null)},t.prototype.setContent=function(t){"string"==typeof t?this.modalBoxContent.innerHTML=t:(this.modalBoxContent.innerHTML="",this.modalBoxContent.appendChild(t)),l(this.modalBoxContent),this.resize()},t.prototype.getContent=function(){return this.modalBoxContent},t.prototype.addFooter=function(){s.call(this)},t.prototype.setFooterContent=function(t){this.modalBoxFooter.innerHTML=t},t.prototype.getFooterContent=function(){return this.modalBoxFooter},t.prototype.setStickyFooter=function(t){this.isOverflow()||(t=!1),t?this.modalBox.contains(this.modalBoxFooter)&&(this.modalBox.removeChild(this.modalBoxFooter),this.modal.appendChild(this.modalBoxFooter),this.modalBoxFooter.classList.add("tingle-modal-box__footer--sticky"),o.call(this),this.modalBoxContent.style["padding-bottom"]=this.modalBoxFooter.clientHeight+20+"px",u(this.modalBoxFooter,"click",r)):this.modalBoxFooter&&(this.modalBox.contains(this.modalBoxFooter)||(this.modal.removeChild(this.modalBoxFooter),this.modalBox.appendChild(this.modalBoxFooter),this.modalBoxFooter.style.width="auto",this.modalBoxFooter.style.left="",this.modalBoxContent.style["padding-bottom"]="",this.modalBoxFooter.classList.remove("tingle-modal-box__footer--sticky")))},t.prototype.addFooterBtn=function(t,o,i){var e=document.createElement("button");return e.innerHTML=t,e.addEventListener("click",i),"string"==typeof o&&o.length&&o.split(" ").forEach(function(t){e.classList.add(t)}),this.modalBoxFooter.appendChild(e),e},t.prototype.resize=function(){this.modal.classList.contains("tingle-modal--visible")&&(i.call(this),!this.isOverflow()&&this.opts.stickyFooter?this.setStickyFooter(!1):this.isOverflow()&&this.opts.stickyFooter&&(o.call(this),this.setStickyFooter(!0)))},t.prototype.isOverflow=function(){var t=window.innerHeight,o=this.modalBox.clientHeight,i=t>o?!1:!0;return i},{modal:t}});
-
-/***/ },
-/* 36 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -21422,9 +21642,9 @@
 	  root = this;
 	}
 
-	var Emitter = __webpack_require__(37);
-	var requestBase = __webpack_require__(38);
-	var isObject = __webpack_require__(39);
+	var Emitter = __webpack_require__(39);
+	var requestBase = __webpack_require__(40);
+	var isObject = __webpack_require__(41);
 
 	/**
 	 * Noop.
@@ -21436,7 +21656,7 @@
 	 * Expose `request`.
 	 */
 
-	var request = module.exports = __webpack_require__(40).bind(null, Request);
+	var request = module.exports = __webpack_require__(42).bind(null, Request);
 
 	/**
 	 * Determine XHR.
@@ -22387,7 +22607,7 @@
 
 
 /***/ },
-/* 37 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -22556,13 +22776,13 @@
 
 
 /***/ },
-/* 38 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Module of mixed-in functions shared between node and client code
 	 */
-	var isObject = __webpack_require__(39);
+	var isObject = __webpack_require__(41);
 
 	/**
 	 * Clear previous timeout.
@@ -22934,7 +23154,7 @@
 
 
 /***/ },
-/* 39 */
+/* 41 */
 /***/ function(module, exports) {
 
 	/**
@@ -22953,7 +23173,7 @@
 
 
 /***/ },
-/* 40 */
+/* 42 */
 /***/ function(module, exports) {
 
 	// The node and browser modules expose versions of this with the
@@ -22991,7 +23211,7 @@
 
 
 /***/ },
-/* 41 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
@@ -23049,7 +23269,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 42 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
@@ -23062,13 +23282,18 @@
 
 	function initTingleModifications() {
 	    // Update button text (accessibility) and wrap with <span>
-	    var btns = document.querySelector('.tingle-modal__close');
+	    var btns = document.querySelectorAll('.tingle-modal__close');
 	    for (var i = 0; i < btns.length; i++) {
+	        // init
+	        var btn = btns[i];
+	        // create and set elements lang attribute
 	        var btn_text_wrapper = document.createElement('span');
 	        btn_text_wrapper.setAttribute('lang', 'en');
-	        // set button text
+	        // remove button text
 	        btn.textContent = '';
+	        // set the created span
 	        btn_text_wrapper.textContent = 'Close';
+	        // and append it
 	        btn.appendChild(btn_text_wrapper);
 	    }
 	}
@@ -23078,16 +23303,21 @@
 	    setTimeout(function () {
 	        initTingleModifications();
 	    }, 150);
+
+	    // custom event
+	    $(window).on('initTingleModifications', function () {
+	        initTingleModifications();
+	    });
 	});
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 43 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
-	var _iphoneInlineVideo = __webpack_require__(44);
+	var _iphoneInlineVideo = __webpack_require__(46);
 
 	var _iphoneInlineVideo2 = _interopRequireDefault(_iphoneInlineVideo);
 
@@ -23258,7 +23488,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 44 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*! npm.im/iphone-inline-video */
@@ -23266,8 +23496,8 @@
 
 	function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-	var Symbol = _interopDefault(__webpack_require__(45));
-	var intervalometer = __webpack_require__(46);
+	var Symbol = _interopDefault(__webpack_require__(47));
+	var intervalometer = __webpack_require__(48);
 
 	function preventEvent(element, eventName, toggleProperty, preventWithProperty) {
 		function handler(e) {
@@ -23591,7 +23821,7 @@
 	module.exports = enableInlineVideo;
 
 /***/ },
-/* 45 */
+/* 47 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -23603,7 +23833,7 @@
 	module.exports = index;
 
 /***/ },
-/* 46 */
+/* 48 */
 /***/ function(module, exports) {
 
 	/*! npm.im/intervalometer */
@@ -23650,12 +23880,12 @@
 	exports.timerIntervalometer = timerIntervalometer;
 
 /***/ },
-/* 47 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
-	var _helperFunctions = __webpack_require__(27);
+	var _helperFunctions = __webpack_require__(30);
 
 	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
@@ -23710,14 +23940,14 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 48 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
-	var _ajaxLoadItems = __webpack_require__(28);
+	var _ajaxLoadItems = __webpack_require__(31);
 
-	var _masonry = __webpack_require__(19);
+	var _masonry = __webpack_require__(22);
 
 	$(function () {
 
@@ -23732,12 +23962,12 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 49 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
-	var _triggerClassOnScroll = __webpack_require__(50);
+	var _triggerClassOnScroll = __webpack_require__(52);
 
 	$(function () {
 
@@ -23780,7 +24010,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 50 */
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23790,7 +24020,7 @@
 	});
 	exports.triggerClassOnScroll = triggerClassOnScroll;
 
-	var _helperFunctions = __webpack_require__(27);
+	var _helperFunctions = __webpack_require__(30);
 
 	function triggerClassOnScroll(options) {
 	    if (!options.element) {
@@ -23820,12 +24050,12 @@
 	}
 
 /***/ },
-/* 51 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
-	var _map = __webpack_require__(52);
+	var _map = __webpack_require__(54);
 
 	$(function () {
 
@@ -23838,7 +24068,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 52 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
@@ -23848,7 +24078,7 @@
 	});
 	exports.initMap = undefined;
 
-	var _helperFunctions = __webpack_require__(27);
+	var _helperFunctions = __webpack_require__(30);
 
 	var initMap = exports.initMap = function initMap(options) {
 
@@ -24060,12 +24290,12 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 53 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
-	__webpack_require__(54);
+	__webpack_require__(56);
 
 	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
@@ -24222,7 +24452,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 54 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(jQuery) {/* ========================================================================
@@ -24441,7 +24671,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 55 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
@@ -24451,7 +24681,7 @@
 	});
 	exports.initOnScreen = initOnScreen;
 
-	var _onscreen = __webpack_require__(56);
+	var _onscreen = __webpack_require__(58);
 
 	var _onscreen2 = _interopRequireDefault(_onscreen);
 
@@ -24500,7 +24730,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 56 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function (global, factory) {
@@ -24879,12 +25109,12 @@
 
 
 /***/ },
-/* 57 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
-	var _parallax = __webpack_require__(58);
+	var _parallax = __webpack_require__(60);
 
 	$(function () {
 
@@ -24903,7 +25133,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 58 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
@@ -24983,12 +25213,12 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 59 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
-	var _swiper = __webpack_require__(60);
+	var _swiper = __webpack_require__(62);
 
 	$(function () {
 
@@ -25015,7 +25245,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 60 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
@@ -25025,7 +25255,7 @@
 	});
 	exports.initiSwiperInstances = initiSwiperInstances;
 
-	var _swiper = __webpack_require__(61);
+	var _swiper = __webpack_require__(63);
 
 	var _swiper2 = _interopRequireDefault(_swiper);
 
@@ -25104,7 +25334,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 61 */
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(jQuery) {/**
@@ -30444,12 +30674,12 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 62 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
-	var _triggerClassOnScroll = __webpack_require__(50);
+	var _triggerClassOnScroll = __webpack_require__(52);
 
 	$(function () {
 
@@ -30481,247 +30711,6 @@
 	}); /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 	    
 	    Scrolls to the top of the page
-	    
-	    */
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
-
-/***/ },
-/* 63 */,
-/* 64 */,
-/* 65 */,
-/* 66 */,
-/* 67 */,
-/* 68 */,
-/* 69 */,
-/* 70 */,
-/* 71 */,
-/* 72 */,
-/* 73 */,
-/* 74 */,
-/* 75 */,
-/* 76 */,
-/* 77 */,
-/* 78 */,
-/* 79 */,
-/* 80 */,
-/* 81 */,
-/* 82 */,
-/* 83 */,
-/* 84 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function($) {'use strict';
-
-	var _tingle = __webpack_require__(35);
-
-	var _tingle2 = _interopRequireDefault(_tingle);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	$(function () {
-
-	    // initialize modal
-	    var form_modal = new _tingle2.default.modal({
-	        cssClass: ['form-modal'],
-	        onClose: function onClose() {
-	            // tbd
-	            closeFormModal();
-	            // if the softpage is still open in the brackground, we have to keep the overlay, otherwise we can close it
-	            if ($('.tingle-modal.softpage').hasClass('tingle-modal--visible')) {
-	                // don't do anything
-	            } else {
-	                $(window).trigger('hideSiteOverlay');
-	            }
-	        },
-	        onOpen: function onOpen() {
-	            $(window).trigger('initFormModifications');
-	            $(window).trigger('initFormModalClose');
-	            $(window).trigger('initFormValidation');
-	        }
-	    });
-
-	    // click handler
-	    function openFormModal(element, event) {
-	        // init
-	        event.preventDefault();
-
-	        // in case we opened a form modal from within a softpage, we need to hide the softpage
-	        document.querySelector('html').classList.add('form-modal-visible');
-	        // document.querySelector('.softpage').classList.remove('tingle-modal--visible');
-
-	        // get and set content
-	        var url = element.getAttribute('href');
-
-	        $.get(url, function (data) {
-	            // set modal content and open
-	            form_modal.setContent(data);
-	            form_modal.open();
-	        });
-	    }
-
-	    function closeFormModal() {
-	        document.querySelector('html').classList.remove('form-modal-visible');
-	    }
-
-	    function initFormModalTrigger() {
-	        // init all trigger links and loop
-	        $('.toggle-form-modal').each(function (i) {
-	            // stop multiple event listeners from firing multiple times by removing (off()) and adding (on()) the event listener
-	            $(this).off('click').on('click', function (event) {
-	                // instantly toggle site overlay (improves "felt performance")
-	                $(window).trigger('showSiteOverlay');
-	                // load softpage
-	                event.preventDefault();
-	                openFormModal(this, event);
-	            });
-	        });
-	    }
-
-	    // on page load
-	    initFormModalTrigger();
-
-	    // custom event
-	    $(window).on('initFormModalTrigger', function () {
-	        initFormModalTrigger();
-	    });
-
-	    function initFormModalClose() {
-	        // prevent clicks on background to close modal
-	        // $('.tingle-modal.form-modal').each(function(i) {
-	        //     // stop multiple event listeners from firing multiple times by removing (off()) and adding (on()) the event listener
-	        //     $(this).off('click').
-	        //         on('click',
-	        //         function(event){
-	        //             // load softpage
-	        //             console.log( event );
-	        //             event.preventDefault();
-	        //             return false;
-	        //         }
-	        //     );
-	        // });
-	        // look for triggers
-	        if (document.querySelector('.close-form-modal')) {
-	            var close_form_modal = document.querySelector('.close-form-modal');
-	            close_form_modal.addEventListener('click', function (event) {
-	                event.preventDefault();
-	                form_modal.close();
-	            });
-	        }
-	    }
-
-	    // custom event
-	    $(window).on('initFormModalClose', function () {
-	        initFormModalClose();
-	    });
-	}); /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-	    
-	    Link with class '.toggle-form-modal' will trigger the form lightbox
-	    
-	    */
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
-
-/***/ },
-/* 85 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function($) {'use strict';
-
-	var _tingle = __webpack_require__(35);
-
-	var _tingle2 = _interopRequireDefault(_tingle);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	$(function () {
-
-	    // initialize modal
-	    var image_modal = new _tingle2.default.modal({
-	        cssClass: ['image-modal'],
-	        onClose: function onClose() {
-	            close_image_modal_handler();
-	            // trigger custom events
-	            $(window).trigger('hideSiteOverlay');
-	        },
-	        onOpen: function onOpen() {
-	            $(window).trigger('initImageModalClose');
-	        }
-	    });
-
-	    // click handler
-	    function open_image_modal_handler(element, event) {
-	        event.preventDefault();
-	        document.querySelector('html').classList.add('image-modal-visible');
-
-	        // get and set content
-	        var url = element.getAttribute('data-href');
-	        var picture = element.getElementsByTagName("picture")[0].cloneNode(true);
-	        picture.getElementsByTagName('img')[0].setAttribute('data-srcset', url);
-
-	        image_modal.setContent(picture);
-	        image_modal.open();
-	        $(window).trigger('initImageModalClose');
-	        setTimeout(function () {
-	            $(window).trigger('initImageModalTrigger');
-	        }, 1500);
-
-	        // add functionality to close the modal with the ESCAPE key
-	        document.onkeydown = function (evt) {
-	            evt = evt || window.event;
-	            var isEscape = false;
-	            if ("key" in evt) {
-	                isEscape = evt.key == "Escape";
-	            } else {
-	                isEscape = evt.keyCode == 27;
-	            }
-	            if (isEscape) {
-	                image_modal.close();
-	            }
-	        };
-	    }
-
-	    function close_image_modal_handler() {
-	        document.querySelector('html').classList.remove('image-modal-visible');
-	    }
-
-	    function initImageModalTrigger() {
-	        if (document.querySelector('a[data-toggle-image-modal]')) {
-	            var image_modal_elements = document.querySelectorAll('a[data-toggle-image-modal]');
-	            for (var i = 0; i < image_modal_elements.length; i++) {
-	                image_modal_elements[i].addEventListener('click', function (event) {
-	                    // instantly toggle site overlay (improves "felt perimageance")
-	                    $(window).trigger('showSiteOverlay');
-	                    // open modal
-	                    open_image_modal_handler(this, event);
-	                });
-	            }
-	        }
-	    }
-
-	    // on page load
-	    initImageModalTrigger();
-
-	    // custom event
-	    $(window).on('initImageModalTrigger', function () {
-	        initImageModalTrigger();
-	    });
-
-	    function initImageModalClose() {
-	        if (document.querySelector('.close-image-modal')) {
-	            var close_image_modal = document.querySelector('.close-image-modal');
-	            close_image_modal.addEventListener('click', function (event) {
-	                event.preventDefault();
-	                image_modal.close();
-	            });
-	        }
-	    }
-
-	    // custom event
-	    $(window).on('initImageModalClose', function () {
-	        initImageModalClose();
-	    });
-	}); /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-	    
-	    Link with data attribute 'data-toggle-image-modal' will trigger the image lightbox
 	    
 	    */
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
