@@ -9336,11 +9336,14 @@ The main site's content section
 Temp Quick Fix
 
 */
-.work-plugin.detail-view .content-section .container {
-  padding: 0; }
-
-.work-plugin.detail-view .content-section .col-1 .col {
-  width: 100%; }
+.work-plugin.detail-view .content-section {
+  opacity: 1; }
+  .work-plugin.detail-view .content-section .container {
+    padding: 0; }
+  .work-plugin.detail-view .content-section .col-1 .col {
+    width: 100%; }
+  .work-plugin.detail-view .content-section .col-1-1 .col {
+    width: 50%; }
 
 .site-footer {
   background-color: #373a3c;

@@ -20,6 +20,7 @@ Temp Quick Fix
 .work-plugin {
     &.detail-view {
         .content-section {
+            opacity: 1;
             // reset container
             .container {
                 padding: 0;
@@ -27,6 +28,11 @@ Temp Quick Fix
             .col-1 {
                 .col {
                     width: 100%;
+                }
+            }
+            .col-1-1 {
+                .col {
+                    width: 50%;
                 }
             }
         }
