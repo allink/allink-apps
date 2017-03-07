@@ -292,6 +292,14 @@ CMS_PLACEHOLDER_CONF = {
     'blog_header': {
         "plugins": ['CMSAllinkImagePlugin', 'CMSAllinkGalleryPlugin'],
         'exclude_plugins': ['InheritPlugin'],
+    },
+    'work_content': {
+        "plugins": ['TextPlugin', 'CMSAllinkImagePlugin', 'VideoPlayerPlugin'],
+        'exclude_plugins': ['InheritPlugin'],
+    },
+    'work_header': {
+        "plugins": ['CMSAllinkImagePlugin', 'CMSAllinkGalleryPlugin'],
+        'exclude_plugins': ['InheritPlugin'],
     }
 }
 

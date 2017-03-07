@@ -12,7 +12,7 @@
   </component>
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$" />
-    <orderEntry type="jdk" jdkName="Remote Python 2.7.11 Docker Compose (web at /Users/florian/aldryn_projects/boilerplate-allink)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Remote Python 2.7.11 Docker Compose (web at [/Users/florian/aldryn_projects/hr-campus-allink/docker-compose.yml])" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TemplatesService">
