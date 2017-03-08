@@ -9,11 +9,11 @@ config = MandrillConfig()
 
 
 def send_registration_email(form, event):
-    subject = render_to_string('blog/email/registration_subject_internal.txt')
+    subject = render_to_string('events/email/registration_subject_internal.txt')
     template_content = [{}]
 
     r = '<br />'
-    subscriber = render_to_string('blog/email/registration_subscriber.txt', {'form': form, 'event': event})
+    subscriber = render_to_string('events/email/registration_subscriber.txt', {'form': form, 'event': event})
     subscriber = subscriber.replace('\r\n', r).replace('\n\r', r).replace('\r', r).replace('\n', r)
     subscriber = subscriber.encode('utf-8')
 
@@ -23,7 +23,7 @@ def send_registration_email(form, event):
         'from_email': config.default_from_email,
         'from_name': config.get_default_from_name(),
         'global_merge_vars': [
-            {'name': 'detail_link', 'content': u'{}{}'.format(base_url, event.get_absolute_url())},
+            {'name': 'detail_link', 'content': u'{}{}'.format(base_url(), event.get_absolute_url())},
             {'name': 'subscriber', 'content': subscriber}
         ],
         'headers': {'Reply-To': config.default_from_email},
@@ -46,9 +46,8 @@ def send_registration_email(form, event):
 
 
 def send_registration_confirmation_email(form, event):
-    subject = render_to_string('blog/email/registration_subject.txt')
+    subject = render_to_string('events/email/registration_subject.txt')
     template_content = [{}]
-    salutation = u'Guten Tag {}'.format(form.data.get('first_name'))
 
     message = {
         'auto_html': None,
@@ -56,8 +55,9 @@ def send_registration_confirmation_email(form, event):
         'from_email': config.default_from_email,
         'from_name': config.get_default_from_name(),
         'global_merge_vars': [
-            {'name': 'salutation', 'content': salutation},
-            {'name': 'detail_link', 'content': '{}{}'.format(base_url, event.get_absolute_url())},
+            {'name': 'first_name', 'content': form.data.get('first_name')},
+            {'name': 'last_name', 'content': form.data.get('last_name')},
+            {'name': 'detail_link', 'content': '{}{}'.format(base_url(), event.get_absolute_url())},
         ],
         'google_analytics_campaign': 'Event Registration',
         'google_analytics_domains': [config.get_google_analytics_domains()],

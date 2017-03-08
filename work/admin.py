@@ -4,7 +4,7 @@ from django import forms
 
 from cms.admin.placeholderadmin import PlaceholderAdminMixin
 from adminsortable.admin import SortableTabularInline
-from allink_core.allink_base.admin import AllinkBaseAdmin
+from allink_core.allink_base.admin import AllinkBaseAdminSortable
 
 from .models import WorkImage, Work
 
@@ -15,8 +15,9 @@ class WorkImageInline(SortableTabularInline):
     verbose_name = 'IMAGES'
     verbose_name_plural = ''
 
+
 @admin.register(Work)
-class WorkAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
+class WorkAdmin(PlaceholderAdminMixin, AllinkBaseAdminSortable):
     inlines = [WorkImageInline, ]
     # list_filter = ('active', 'categories',)
 
@@ -28,7 +29,6 @@ class WorkAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
                     'title',
                     'slug',
                     'lead',
-                    'text',
                 ),
             }),
         )

@@ -4,6 +4,7 @@ from django.db import models
 
 from cms.models.fields import PlaceholderField
 from adminsortable.fields import SortableForeignKey
+from adminsortable.models import SortableMixin
 from parler.models import TranslatableModel, TranslatedFields
 from djangocms_text_ckeditor.fields import HTMLField
 
@@ -18,7 +19,7 @@ from allink_core.allink_base.models import AllinkBaseModelManager
 from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin
 
 
-class Work(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, AllinkBaseModel):
+class Work(SortableMixin, TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, AllinkBaseModel):
 
     slug_source_field_name = 'title'
 
@@ -47,6 +48,12 @@ class Work(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel
         )
     )
 
+    sort_order = models.PositiveIntegerField(
+       default=0,
+       editable=False,
+       db_index=True
+    )
+
     header_placeholder = PlaceholderField(u'work_header', related_name='%(app_label)s_%(class)s_header_placeholder')
     content_placeholder = PlaceholderField(u'work_content', related_name='%(app_label)s_%(class)s_content_placeholder')
 
@@ -54,6 +61,7 @@ class Work(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel
 
     class Meta:
         app_label = 'work'
+        ordering = ('sort_order',)
         verbose_name = _('Projekt/ Referenz')
         verbose_name_plural = _('Projekte/ Referenzen')
 

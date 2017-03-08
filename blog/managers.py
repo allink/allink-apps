@@ -30,7 +30,7 @@ class AllinkEventsQuerySet(AllinkBaseModelQuerySet, PolymorphicQuerySet):
     def latest(self):
         return self.order_by('event_date', 'id').distinct('event_date', 'id')
 
-    def oldest(self):
+    def earliest(self):
         return self.order_by('-event_date', 'id').distinct('event_date', 'id')
 
 

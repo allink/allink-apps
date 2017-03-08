@@ -70,21 +70,21 @@
                 <div class="col">
                     <div class="manage-spacings">
                        <div class="text-container">
-                            {% if object.events.event_date %}
+                            {% if object.event_date %}
                                 <h2 class="heading">
                                     {% trans "Datum" %}
                                 </h2>
-                                <p>{{object.events.event_date|date:"l, j.n.Y"}}{% if object.events.event_time%}{{object.events.event_time|time:", G:i"}} {% trans 'Uhr' %}<br>{% endif %}</p>
+                                <p>{{object.event_date|date:"l, j.n.Y"}}{% if object.event_time%}{{object.event_time|time:", G:i"}} {% trans 'Uhr' %}<br>{% endif %}</p>
                             {% endif %}
-                            {% if object.events.location.title %}
+                            {% if object.location.title %}
                                 <h2 class="heading">
                                     {% trans "Ort" %}
                                 </h2>
                                 <p>
-                                    {% include 'locations/includes/_address.html' with location=object.events.location %}
+                                    {% include 'locations/includes/_address.html' with location=object.location %}
                                 </p>
                             {% endif %}
-                    {% if object.events.form_enabled and object.events.show_registration_form %}
+                    {% if object.form_enabled and object.show_registration_form %}
                         <a href="{% url 'blog:register' slug=object.slug %}" class="btn btn-default toggle-form-modal">
                             {% trans "Anmelden" %}
                         </a>

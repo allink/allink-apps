@@ -168,6 +168,34 @@ class BlogAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin)
                     'manual entries are selected the category filtering will be ignored.)')
     )
 
+    def get_render_queryset_for_display(self, category=None, filter=None):
+        """
+         returns all data_model objects distinct to id which are in the selected categories
+          - category: category instance
+          - filter: list tuple with model fields and value
+            -> adds additional query
+
+        -> Is also defined in  AllinkManualEntriesMixin to handel manual entries !!
+        """
+        if self.categories.count() > 0 or category:
+            """
+             category selection
+            """
+            if category:
+                #  TODO how can we automatically apply the manager of the subclass?
+                if category.name == 'Events':
+                    queryset = Events.objects.filter_by_category(category)
+                else:
+                    queryset = self.data_model.objects.filter_by_category(category)
+            else:
+                queryset = self.data_model.objects.filter_by_categories(self.categories)
+
+            return self._apply_ordering_to_queryset_for_display(queryset)
+
+        else:
+            queryset = self.data_model.active()
+            return queryset
+
 
 class BlogImage(AllinkBaseImage):
     blog = SortableForeignKey(Blog, verbose_name=_(u'Images'), help_text=_(u'The first image will be used as preview image.'), blank=True, null=True)
