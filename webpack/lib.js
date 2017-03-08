@@ -9,7 +9,8 @@ const path = require('path');
 exports.production = function() {
     return {
         output: {
-        	filename: '[name].min.[hash].js'
+            filename: '[name].js'
+        	// filename: '[name].min.[hash].js'
         },
         plugins: [
             new BundleTracker({filename: './webpack-stats.json'}),
@@ -21,7 +22,8 @@ exports.production = function() {
                     comments: false,
                 },
             }),
-            new ExtractTextPlugin('[name].min.[hash].css'),
+            new ExtractTextPlugin('[name].css'),
+            // new ExtractTextPlugin('[name].min.[hash].css'),
             // new CopyWebpackPlugin([
             //     {
             //         from: path.join(BUILD_FOLDER, 'djangocms*.css'),
