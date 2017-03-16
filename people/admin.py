@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
-from django.utils.translation import ugettext_lazy as _
+from cms.admin.placeholderadmin import PlaceholderAdminMixin
 from adminsortable.admin import SortableTabularInline
 from allink_core.allink_base.admin import AllinkBaseAdmin
 from allink_core.allink_base.admin.forms import AllinkBaseAdminForm
-from .models import PeopleImage, People, PeopleAppContentPlugin
+from .models import PeopleImage, People
 
 class PeopleImageInline(SortableTabularInline):
     model = PeopleImage
@@ -14,7 +14,7 @@ class PeopleImageInline(SortableTabularInline):
 
 
 @admin.register(People)
-class PeopleAdmin(AllinkBaseAdmin):
+class PeopleAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
     inlines = [PeopleImageInline, ]
 
     form = AllinkBaseAdminForm

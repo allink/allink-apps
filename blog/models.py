@@ -17,7 +17,7 @@ from aldryn_translation_tools.models import (
 from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 
 from allink_core.allink_base.models.mixins import AllinkManualEntriesMixin
-from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin, AllinkBaseRegistration
+from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin, AllinkAddressFieldsModel, AllinkSimpleRegistrationFieldsModel
 from allink_core.allink_terms.models import AllinkTerms
 from allink_apps.locations.models import Locations
 
@@ -146,7 +146,9 @@ class Events(Blog):
         return reverse(app, kwargs={'slug': self.slug})
 
     def show_registration_form(self):
-        if self.event_date > datetime.now().date():
+        if self.event_date < datetime.now().date():
+            return False
+        if self.form_enabled:
             return True
         else:
             return False
@@ -193,7 +195,7 @@ class BlogAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin)
             return self._apply_ordering_to_queryset_for_display(queryset)
 
         else:
-            queryset = self.data_model.active()
+            queryset = self.data_model.objects.active()
             return queryset
 
 
@@ -201,7 +203,7 @@ class BlogImage(AllinkBaseImage):
     blog = SortableForeignKey(Blog, verbose_name=_(u'Images'), help_text=_(u'The first image will be used as preview image.'), blank=True, null=True)
 
 
-class EventsRegistration(AllinkBaseRegistration):
+class EventsRegistration(AllinkAddressFieldsModel, AllinkSimpleRegistrationFieldsModel):
 
     event = models.ForeignKey(Events)
 

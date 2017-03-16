@@ -21,11 +21,10 @@
                         </h1>
                     </header>
                 {% endif %}
-                {% if instance.detail_link_enabled and object.text %}
                     <div class="text-container">
                         {{ object.text }}
+                        {% render_placeholder object.content_placeholder %}
                     </div>
-                {% endif %}
             </div>
         </div>
     </div>

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin, messages
+from cms.admin.placeholderadmin import PlaceholderAdminMixin
 from adminsortable.admin import SortableTabularInline
 from django.utils.translation import ugettext_lazy as _
 from allink_core.allink_base.admin import AllinkBaseAdmin
@@ -14,7 +15,7 @@ class LocationsImageInline(SortableTabularInline):
     verbose_name_plural = ''
 
 @admin.register(Locations)
-class LocationsAdmin(AllinkBaseAdmin):
+class LocationsAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
     inlines = [LocationsImageInline, ]
     exclude = ('lead', )
     readonly_fields = ('is_currently_open', )

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
 from django import forms
+from cms.admin.placeholderadmin import PlaceholderAdminMixin
 from adminsortable.admin import SortableTabularInline
 from allink_core.allink_base.admin import AllinkBaseAdmin
 
@@ -14,7 +15,7 @@ class TestimonialImageInline(SortableTabularInline):
     verbose_name_plural = ''
 
 @admin.register(Testimonial)
-class TestimonialAdmin(AllinkBaseAdmin):
+class TestimonialAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
     search_fields = ('translations__firstname', 'translations__lastname',)
     list_display = ('firstname', 'lastname', 'get_categories', 'active', 'created', 'modified')
 

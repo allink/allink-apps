@@ -2,6 +2,8 @@
 import datetime
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
+
+from cms.models.fields import PlaceholderField
 from adminsortable.fields import SortableForeignKey
 from parler.models import TranslatableModel, TranslatedFields
 from djangocms_text_ckeditor.fields import HTMLField
@@ -71,8 +73,8 @@ class Locations(TranslationHelperMixin, TranslatedAutoSlugifyMixin, Translatable
     sat_afternoon = models.CharField(_(u'Saturday  morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break', blank=True, max_length=100)
     sun_afternoon = models.CharField(_(u'Sunday mo morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break', blank=True, max_length=100)
 
-    # TODO:
-    #  page = LINK to CMS Page (or Link to detail view from location app!)
+    header_placeholder = PlaceholderField(u'locations_header', related_name='%(app_label)s_%(class)s_header_placeholder')
+    content_placeholder = PlaceholderField(u'locations_content', related_name='%(app_label)s_%(class)s_content_placeholder')
 
     objects = AllinkBaseModelManager()
 

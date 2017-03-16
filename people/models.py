@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-import phonenumbers
+
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from djangocms_text_ckeditor.fields import HTMLField
-
+from cms.models.fields import PlaceholderField
 from adminsortable.fields import SortableForeignKey
 from parler.models import TranslatableModel, TranslatedFields
 from aldryn_translation_tools.models import (
@@ -82,6 +82,9 @@ class People(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableMod
 
     # location = models.ManyToManyField(Locations, blank=True, null=True, related_name='people')
 
+    header_placeholder = PlaceholderField(u'people_header', related_name='%(app_label)s_%(class)s_header_placeholder')
+    content_placeholder = PlaceholderField(u'people_content', related_name='%(app_label)s_%(class)s_content_placeholder')
+
     objects = AllinkPeopleManager()
 
     class Meta:
@@ -124,9 +127,9 @@ class PeopleAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugi
     )
 
     """
-
+    #  TODO: only works with one filter!
     FILTER_FIELD_CHOICES = (
-        ('categories', _(u'Categories')),
+        # ('categories', _(u'Categories')),
         ('place', _(u'Place')),
     )
 

@@ -2,7 +2,6 @@
 from __future__ import unicode_literals
 
 from allink_core.allink_base.views import AllinkBasePluginLoadMoreView, AllinkBaseDetailView, AllinkBaseCreateView
-from allink_core.allink_categories.models import AllinkCategory
 from allink_core.allink_mandrill.config import MandrillConfig
 from allink_core.allink_terms.models import AllinkTerms
 

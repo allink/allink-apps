@@ -6,7 +6,7 @@ from adminsortable.admin import SortableTabularInline
 from allink_core.allink_base.admin import AllinkBaseAdmin
 from cms.admin.placeholderadmin import PlaceholderAdminMixin
 
-from .models import BlogImage, Blog, News, Events
+from .models import BlogImage, Blog, News, Events, EventsRegistration
 
 
 class BlogImageInline(SortableTabularInline):
@@ -89,7 +89,7 @@ class EventsAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
 
         return fieldsets
 
-
+@admin.register(EventsRegistration)
 class EventsRegistrationAdmin(admin.ModelAdmin):
     pass
 

@@ -1,6 +1,6 @@
 {% extends base_template|default:"base.html" %}
 
-{% load cms_tags sekizai_tags i18n thumbnail %}
+{% load cms_tags allink_cms_tags sekizai_tags i18n thumbnail %}
 
 {# META Tag #}
 {% if object.title %}
@@ -47,7 +47,7 @@
 
             <header class="section-heading">
                 <h1 class="heading">
-                    {% render_model object "title" %}
+                    {% render_model_ajax object "title" %}
                 </h1>
             </header>
 
@@ -66,6 +66,7 @@
                         {% endif %}
                         {# we wouldn't be here if the text was empty #}
                         {{object.text}}
+                        {% render_placeholder object.content_placeholder %}
                     </div>
                 </div>{# end .col #}
 

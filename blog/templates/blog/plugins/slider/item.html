@@ -1,4 +1,4 @@
-{% load cms_tags sekizai_tags i18n thumbnail %}
+{% load cms_tags allink_cms_tags sekizai_tags i18n thumbnail %}
 
 <div class="swiper-slide swiper-slide-{{object.id}}">
 
@@ -13,7 +13,7 @@
                 {% if object.title %}
                     <div class="heading-container">
                         <h2 class="heading">
-                            {% render_model object "title" %}
+                            {% render_model_ajax object "title" %}
                         </h2>
                     </div>
                 {% endif %}
@@ -31,7 +31,7 @@
                         </p>
                     </div>
                 {% endif %}
-                {% if instance.detail_link_enabled and object.content_placeholder %}
+                {% if instance.detail_link_enabled and object.show_detail_link %}
                     <div class="link-container">
                         <a class="btn btn-default" href="{{object.get_absolute_url}}">
                             {% if instance.detail_link_text %}

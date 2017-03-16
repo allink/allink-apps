@@ -1,6 +1,6 @@
 {% extends base_template|default:"base.html" %}
 
-{% load cms_tags sekizai_tags i18n thumbnail %}
+{% load cms_tags allink_cms_tags sekizai_tags i18n thumbnail %}
 
 {# META Tag #}
 {% if object.title %}
@@ -47,7 +47,7 @@
 
             <header class="section-heading">
                 <h1 class="heading">
-                    {% render_model object "title" %}
+                    {% render_model_ajax object "title" %}
                 </h1>
             </header>
 
@@ -62,7 +62,8 @@
                                     </p>
                             </div>
                         {% endif %}
-
+                    </div>
+                    <div class="app-detail-content-container">
                         {% render_placeholder object.content_placeholder %}
                     </div>
                 </div>
@@ -84,7 +85,7 @@
                                     {% include 'locations/includes/_address.html' with location=object.location %}
                                 </p>
                             {% endif %}
-                    {% if object.form_enabled and object.show_registration_form %}
+                    {% if object.show_registration_form %}
                         <a href="{% url 'blog:register' slug=object.slug %}" class="btn btn-default toggle-form-modal">
                             {% trans "Anmelden" %}
                         </a>

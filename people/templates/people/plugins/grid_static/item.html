@@ -1,16 +1,16 @@
-{% load cms_tags sekizai_tags i18n thumbnail allink_image_tags %}
+{% load cms_tags allink_cms_tags allink_cms_tags allink_cms_tags sekizai_tags i18n thumbnail allink_image_tags %}
 
 <div class="grid-item {% if appended %}appended{% endif %}">
     <div class="manage-spacings">
         {% if object.preview_image %}
             <div class="image-container">
-                {% if instance.detail_link_enabled and object.text %}
+                {% if instance.detail_link_enabled and object.show_detail_link %}
                     <a href="{{object.get_absolute_url}}">
                 {% endif %}
 
                     {% render_app_content_image %}
 
-                {% if instance.detail_link_enabled and object.text %}
+                {% if instance.detail_link_enabled and object.show_detail_link %}
                     </a>
                 {% endif %}
             </div>
@@ -18,7 +18,7 @@
         {% if object.title %}
             <div class="heading-container">
                 <h2 class="heading">
-                    {% render_model object "title" %}
+                    {% render_model_ajax object "title" %}
                 </h2>
             </div>
         {% endif %}
@@ -26,10 +26,10 @@
             <div class="text-container">
                 <p>
                     {% if object.job_title %}
-                        {% render_model object "job_title" %}<br>
+                        {% render_model_ajax object "job_title" %}<br>
                     {% endif %}
                     {% if object.job_function %}
-                        {% render_model object "job_function" %}
+                        {% render_model_ajax object "job_function" %}
                     {% endif %}
                 </p>
                 {% if object.email %}
@@ -41,7 +41,7 @@
                 {% endif %}
             </div>
         {% endif %}
-        {% if instance.detail_link_enabled and object.text %}
+        {% if instance.detail_link_enabled and object.show_detail_link %}
             <div class="link-container">
                 <a class="btn btn-default" href="{{object.get_absolute_url}}">
                     {% if instance.detail_link_text %}
