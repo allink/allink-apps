@@ -24,7 +24,7 @@ class CMSLocationsPlugin(CMSAllinkBaseAppContentPlugin):
 
     """
     model = LocationsAppContentPlugin
-    name = model.data_model._meta.verbose_name_plural
+    name = model.data_model.get_verbose_name_plural()
     data_model = LocationsAppContentPlugin.data_model
 
     def get_fieldsets(self, request, obj=None):

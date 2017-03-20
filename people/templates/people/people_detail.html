@@ -1,6 +1,6 @@
 {% extends base_template|default:"base.html" %}
 
-{% load cms_tags sekizai_tags i18n thumbnail %}
+{% load cms_tags allink_cms_tags sekizai_tags i18n allink_image_tags thumbnail %}
 
 {# META Tag #}
 {% if object.title %}
@@ -33,21 +33,15 @@
 
 
 {# Page Title - Required for Softpage (Google Tag Manager) #}
-{% block softpage_title %}{{ object.title }} | {{ request.site.name }}{% endblock softpage_title %}
+{% block softpage_title %}{{ object.title }} | {% if allink_config.default_base_title %}{{ allink_config.default_base_title }}{% else %}{{ request.site.name }}{% endif %}{% endblock softpage_title %}
 
 {% block content %}
     <div class="content-section app-content-plugin people-plugin detail-view container-enabled">
         <div class="container" data-scroll-spy>
 
-            {% if object.preview_image %}
-                <div class="image-container header-image-container">
-                    {% include "slider_detail/content.html" with display_title=False title_content=object.title %}
-                </div>
-            {% endif %}
-
             <header class="section-heading">
                 <h1 class="heading">
-                    {% render_model object "title" %}
+                    {% render_model_ajax object "title" %}
                 </h1>
             </header>
 
@@ -56,14 +50,14 @@
                 <div class="col">
                     <div class="text-container">
                         {# optional: lead #}
-                        {% if object.job_title or object.job_function %}
-                            <p class="lead">
-                                {% if object.job_title %}
-                                    {{object.job_title}}<br>
-                                {% endif %}
-                                {{object.job_function}}
-                            </p>
-                        {% endif %}
+{#                        {% if object.job_title or object.job_function %}#}
+{#                            <p class="lead">#}
+{#                                {% if object.job_title %}#}
+{#                                    {{object.job_title}}<br>#}
+{#                                {% endif %}#}
+{#                                {{object.job_function}}#}
+{#                            </p>#}
+{#                        {% endif %}#}
                         {# we wouldn't be here if the text was empty #}
                         {{object.text}}
                     </div>
@@ -71,16 +65,38 @@
 
                 <div class="col">
                     <div class="manage-spacings">
+
+                        {% render_app_content_image_detail thumbnail_url="col-1-of-3" %}
+
                         <div class="text-container">
-                            <h2 class="heading">
-                                {% trans "Kontakt" %}
-                            </h2>
+                            {% if object.email %}
+                                <h2 class="heading">
+                                    {% trans "Contact" %}
+                                </h2>
+                            {% endif %}
                             <p>
                                 {% if object.email %}
-                                    {{object.email}}<br>
+                                    <a href="mailto:{{object.email}}">
+                                        {{object.email}}
+                                    </a><br>
                                 {% endif %}
                                 {% if object.phone %}
-                                    {{object.phone}}<br>
+                                    {% trans 'Phone:' %}
+                                    <a href="tel:{{object.phone}}">
+                                        {{object.phone_formatted}}
+                                    </a><br>
+                                {% endif %}
+                                {% if object.mobile %}
+                                    {% trans 'Mobile:' %}
+                                    <a href="tel:{{object.mobile}}">
+                                        {{object.mobile_formatted}}
+                                    </a><br>
+                                {% endif %}
+                                {% if object.fax %}
+                                    {% trans 'Fax:' %}
+                                    <a href="tel:{{object.fax}}">
+                                        {{object.fax_formatted}}
+                                    </a><br>
                                 {% endif %}
                             </p>
                         </div>

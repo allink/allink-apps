@@ -1,6 +1,6 @@
 {% extends base_template|default:"base.html" %}
 
-{% load cms_tags sekizai_tags i18n thumbnail %}
+{% load cms_tags allink_cms_tags sekizai_tags i18n thumbnail %}
 
 {# META Tag #}
 {% if object.title %}
@@ -33,7 +33,7 @@
 
 
 {# Page Title - Required for Softpage (Google Tag Manager) #}
-{% block softpage_title %}{{ object.title }} | {{ request.site.name }}{% endblock softpage_title %}
+{% block softpage_title %}{{ object.title }}    | {% if allink_config.default_base_title %}{{ allink_config.default_base_title }}{% else %}{{ request.site.name }}{% endif %}{% endblock softpage_title %}
 
 {% block content %}
     <div class="content-section app-content-plugin detail-view container-enabled">
@@ -47,7 +47,7 @@
 
             <header class="section-heading">
                 <h1 class="heading">
-                    {% render_model object "title" %}
+                    {% render_model_ajax object "title" %}
                 </h1>
             </header>
 
@@ -61,8 +61,9 @@
                                 {{object.lead|striptags}}
                             </p>
                         {% endif %}
-                        {# we wouldn't be here if the text was empty #}
-                        {{object.text}}
+                    </div>
+                    <div class="app-detail-content-container">
+                        {% render_placeholder object.content_placeholder %}
                     </div>
                 </div>{# end .col #}
 

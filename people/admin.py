@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
-from django.utils.translation import ugettext_lazy as _
+from cms.admin.placeholderadmin import PlaceholderAdminMixin
 from adminsortable.admin import SortableTabularInline
 from allink_core.allink_base.admin import AllinkBaseAdmin
 from allink_core.allink_base.admin.forms import AllinkBaseAdminForm
-from .models import PeopleImage, People, PeopleAppContentPlugin
+from .models import PeopleImage, People
 
 class PeopleImageInline(SortableTabularInline):
     model = PeopleImage
@@ -14,13 +14,12 @@ class PeopleImageInline(SortableTabularInline):
 
 
 @admin.register(People)
-class PeopleAdmin(AllinkBaseAdmin):
+class PeopleAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
     inlines = [PeopleImageInline, ]
 
     form = AllinkBaseAdminForm
-    search_fields = ('firstname', 'lastname',)
+    search_fields = ('translations__firstname', 'translations__lastname',)
     list_display = ('firstname', 'lastname', 'get_categories', 'active', 'created', 'modified')
-    list_filter = ('active',)
 
     exclude = ('images',)
 
@@ -32,8 +31,10 @@ class PeopleAdmin(AllinkBaseAdmin):
                     ('firstname', 'lastname', 'gender'),
                     ('job_title', 'job_function'),
                     ('email', 'website'),
-                    ('company_name', 'place'),
+                    'company_name',
                     ('phone', 'mobile', 'fax'),
+                    ('street', 'street_nr'),
+                    ('place', 'zip_code'),
                     'text',
                     'slug',
                 ),
@@ -43,8 +44,3 @@ class PeopleAdmin(AllinkBaseAdmin):
         fieldsets += self.get_base_fieldsets()
 
         return fieldsets
-
-
-@admin.register(PeopleAppContentPlugin)
-class PeopleAppContentPluginAdmin(admin.ModelAdmin):
-    pass

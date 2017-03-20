@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
+from datetime import datetime
 from django.utils.translation import ugettext_lazy as _
-from django.utils.encoding import python_2_unicode_compatible
+
 from django.db import models
 
-from adminsortable.models import SortableMixin
 from adminsortable.fields import SortableForeignKey
 from parler.models import TranslatableModel, TranslatedFields
 from djangocms_text_ckeditor.fields import HTMLField
+from cms.models.fields import PlaceholderField
 from model_utils.models import TimeFramedModel
 
 from aldryn_translation_tools.models import (
@@ -16,14 +17,17 @@ from aldryn_translation_tools.models import (
 from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 
 from allink_core.allink_base.models.mixins import AllinkManualEntriesMixin
-from allink_core.allink_base.models import AllinkBaseModelManager
-from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin
-from allink_apps.people.models import People
+from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin, AllinkAddressFieldsModel, AllinkSimpleRegistrationFieldsModel
+from allink_core.allink_terms.models import AllinkTerms
 from allink_apps.locations.models import Locations
+
+from polymorphic.models import PolymorphicModel
+
+from .managers import AllinkEventsManager, AllinkBlogManager
 
 
 #  Blog Parent class
-class Blog(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, TimeFramedModel, AllinkBaseModel):
+class Blog(PolymorphicModel, TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, TimeFramedModel, AllinkBaseModel):
     """
     Translations
      feel free to add app specific fields)
@@ -58,7 +62,10 @@ class Blog(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel
         )
     )
 
-    objects = AllinkBaseModelManager()
+    header_placeholder = PlaceholderField(u'blog_header', related_name='%(app_label)s_%(class)s_header_placeholder')
+    content_placeholder = PlaceholderField(u'blog_content', related_name='%(app_label)s_%(class)s_content_placeholder')
+
+    objects = AllinkBlogManager()
 
     class Meta:
         app_label = 'blog'
@@ -77,15 +84,23 @@ class Blog(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel
 
 # News
 class News(Blog):
-    objects = AllinkBaseModelManager()
+    objects = AllinkBlogManager()
 
     class Meta:
         app_label = 'blog'
         verbose_name = _('News entry')
         verbose_name_plural = _('News')
 
+    def get_absolute_url(self):
+        from django.core.urlresolvers import reverse
+        app = 'blog:detail'.format(self._meta.model_name)
+        return reverse(app, kwargs={'slug': self.slug})
+
+
 # Events
 class Events(Blog):
+
+    objects = AllinkEventsManager()
 
     translations_events = TranslatedFields(
         costs=models.CharField(
@@ -94,6 +109,11 @@ class Events(Blog):
             blank=True,
             null=True,
         )
+    )
+
+    form_enabled = models.BooleanField(
+        _(u'Event Form enabled'),
+        default=True
     )
 
     event_date = models.DateField(
@@ -102,98 +122,40 @@ class Events(Blog):
         null=True,
     )
 
-    event_time = models.CharField(
-        max_length=255,
-        help_text=_(u'Event Time'),
+    event_time = models.TimeField(
+        _(u'Event Time'),
         blank=True,
         null=True,
     )
 
-    # location = models.ForeignKey(Location)
-
-    objects = AllinkBaseModelManager()
+    location = models.ForeignKey(
+        Locations,
+        blank=True,
+        null=True,
+        related_name='events'
+    )
 
     class Meta:
         app_label = 'blog'
         verbose_name = _('Event')
         verbose_name_plural = _('Events')
 
+    def get_absolute_url(self):
+        from django.core.urlresolvers import reverse
+        app = 'blog:detail'.format(self._meta.model_name)
+        return reverse(app, kwargs={'slug': self.slug})
 
-# Courses/ Workshops
-class Courses(Blog):
-
-    translations_events = TranslatedFields(
-        costs=models.CharField(
-            max_length=255,
-            help_text=_(u'Costs'),
-            blank=True,
-            null=True,
-        )
-    )
-
-    duration = models.CharField(
-        max_length=255,
-        help_text=_(u'Duration'),
-        blank=True,
-        null=True,
-    )
-
-    location = models.ForeignKey(Locations, blank=True, null=True)
-
-    objects = AllinkBaseModelManager()
-
-    class Meta:
-        app_label = 'blog'
-        verbose_name = _('Courses/ Workshops')
-        verbose_name_plural = _('Courses/ Workshops')
-
-
-
-@python_2_unicode_compatible
-class Teachers(SortableMixin):
-
-    sort_order = models.PositiveIntegerField(
-        default=0,
-        editable=False,
-        db_index=True
-    )
-    internal = models.ForeignKey(
-        People,
-        verbose_name=_(u'Intern teacher'),
-        blank=True,
-        null=True
-    )
-    external = models.CharField(
-        verbose_name=_(u'External teacher'),
-        max_length=255,
-        help_text=_(u'Intern teacher will override this field.'),
-        blank=True,
-        null=True
-    )
-    website = models.URLField(
-        verbose_name=_(u'Link'),
-        help_text=_(u'Only used when extern teacher is filled.'),
-        blank=True,
-        null=True
-    )
-    courses = SortableForeignKey(Courses, blank=True, null=True)
-
-    class Meta:
-        ordering = ('sort_order',)
-
-    def __str__(self):
-        if self.internal:
-            return unicode(self.internal)
-        elif self.external:
-            return unicode(self.external)
+    def show_registration_form(self):
+        if self.event_date < datetime.now().date():
+            return False
+        if self.form_enabled:
+            return True
         else:
-            return _(u'Teacher')
+            return False
 
 
 # APP CONTENT PLUGIN
 class BlogAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin):
-    """
-    """
 
     TEMPLATES = (
         (AllinkBaseAppContentPlugin.GRID_STATIC, 'Grid (Static)'),
@@ -208,6 +170,48 @@ class BlogAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin)
                     'manual entries are selected the category filtering will be ignored.)')
     )
 
+    def get_render_queryset_for_display(self, category=None, filter=None):
+        """
+         returns all data_model objects distinct to id which are in the selected categories
+          - category: category instance
+          - filter: list tuple with model fields and value
+            -> adds additional query
+
+        -> Is also defined in  AllinkManualEntriesMixin to handel manual entries !!
+        """
+        if self.categories.count() > 0 or category:
+            """
+             category selection
+            """
+            if category:
+                #  TODO how can we automatically apply the manager of the subclass?
+                if category.name == 'Events':
+                    queryset = Events.objects.filter_by_category(category)
+                else:
+                    queryset = self.data_model.objects.filter_by_category(category)
+            else:
+                queryset = self.data_model.objects.filter_by_categories(self.categories)
+
+            return self._apply_ordering_to_queryset_for_display(queryset)
+
+        else:
+            queryset = self.data_model.objects.active()
+            return queryset
+
 
 class BlogImage(AllinkBaseImage):
-    blog = SortableForeignKey(Blog,  verbose_name=_(u'Images'), help_text=_(u'The first image will be used as preview image.'), blank=True, null=True)
+    blog = SortableForeignKey(Blog, verbose_name=_(u'Images'), help_text=_(u'The first image will be used as preview image.'), blank=True, null=True)
+
+
+class EventsRegistration(AllinkAddressFieldsModel, AllinkSimpleRegistrationFieldsModel):
+
+    event = models.ForeignKey(Events)
+
+    job = models.TextField(
+        _(u'Education/ Job')
+    )
+    terms = models.ForeignKey(
+        AllinkTerms,
+        verbose_name=_(u'I have read and accept the terms and conditions.'),
+        null=True
+    )

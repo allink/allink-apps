@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
+import datetime
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
+
+from cms.models.fields import PlaceholderField
 from adminsortable.fields import SortableForeignKey
 from parler.models import TranslatableModel, TranslatedFields
 from djangocms_text_ckeditor.fields import HTMLField
-from phonenumber_field.modelfields import PhoneNumberField
 
 from aldryn_translation_tools.models import (
     TranslatedAutoSlugifyMixin,
@@ -14,10 +16,10 @@ from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 
 from allink_core.allink_base.models.mixins import AllinkManualEntriesMixin
 from allink_core.allink_base.models.managers import AllinkBaseModelManager
-from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin, AllinkContactFieldsModel
+from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin, AllinkContactFieldsModel, AllinkAddressFieldsModel
 
 
-class Locations(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, AllinkContactFieldsModel, AllinkBaseModel):
+class Locations(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, AllinkContactFieldsModel, AllinkAddressFieldsModel, AllinkBaseModel):
     """
     Translations
      feel free to add app specific fields)
@@ -28,33 +30,15 @@ class Locations(TranslationHelperMixin, TranslatedAutoSlugifyMixin, Translatable
     slug_source_field_name = 'title'
 
     translations = TranslatedFields(
-        title = models.CharField(
+        title=models.CharField(
             max_length=255
         ),
-        text = HTMLField(
+        text=HTMLField(
             _(u'Text'),
             blank=True,
             null=True
         ),
-        zip = models.CharField(
-            _(u'ZIP Code'),
-            max_length=4,
-            blank=True,
-            null=True,
-        ),
-        city = models.CharField(
-            _(u'City'),
-            max_length=127,
-            blank=True,
-            null=True,
-        ),
-        street = models.CharField(
-            _(u'Street'),
-            max_length=255,
-            blank=True,
-            null=True,
-        ),
-        slug = models.SlugField(
+        slug=models.SlugField(
             _(u'Slug'),
             max_length=255,
             default='',
@@ -65,13 +49,32 @@ class Locations(TranslationHelperMixin, TranslatedAutoSlugifyMixin, Translatable
 
     lat = models.FloatField(
         _(u'Latitude'),
+        blank=True,
+        null=True
     )
     lng = models.FloatField(
         _(u'Longitude'),
+        blank=True,
+        null=True
     )
 
-    # TODO:
-    #  page = LINK to CMS Page (or Link to detail view from location app!)
+    mon = models.CharField(_(u'Monday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
+    tue = models.CharField(_(u'Tuesday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
+    wed = models.CharField(_(u'Wednesday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
+    thu = models.CharField(_(u'Thursday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
+    fri = models.CharField(_(u'Friday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
+    sat = models.CharField(_(u'Saturday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
+    sun = models.CharField(_(u'Sunday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
+    mon_afternoon = models.CharField(_(u'Monday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break', blank=True, max_length=100)
+    tue_afternoon = models.CharField(_(u'Tuesday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break', blank=True, max_length=100)
+    wed_afternoon = models.CharField(_(u'Wednesday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break', blank=True, max_length=100)
+    thu_afternoon = models.CharField(_(u'Thursday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break', blank=True, max_length=100)
+    fri_afternoon = models.CharField(_(u'Friday mo morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break', blank=True, max_length=100)
+    sat_afternoon = models.CharField(_(u'Saturday  morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break', blank=True, max_length=100)
+    sun_afternoon = models.CharField(_(u'Sunday mo morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break', blank=True, max_length=100)
+
+    header_placeholder = PlaceholderField(u'locations_header', related_name='%(app_label)s_%(class)s_header_placeholder')
+    content_placeholder = PlaceholderField(u'locations_content', related_name='%(app_label)s_%(class)s_content_placeholder')
 
     objects = AllinkBaseModelManager()
 
@@ -88,6 +91,123 @@ class Locations(TranslationHelperMixin, TranslatedAutoSlugifyMixin, Translatable
     @property
     def images(self):
         return self.locationsimage_set.all()
+
+    def value_has_changed_for_fields(instance, fields):
+        """
+        Did any field values change since the last time they were saved?
+        """
+        if not instance.pk:  # if new
+            return True
+        old_values = instance.__class__._default_manager.filter(pk=instance.pk).values().get()
+        for f in fields:
+            if not getattr(instance, f) == old_values[f]:
+                return True
+        return False
+
+    def geocode_location(self):
+        """
+        Update lat and lng fields based on address
+        """
+        from geopy import geocoders
+        g = geocoders.GoogleV3()
+        try:
+            place, (lat, lng) = g.geocode((u'%s %s %s %s, Schweiz' % (self.street, self.street_nr, self.zip_code, self.place)).encode("utf-8"))
+        except Exception as e:
+            return "%s: %s" % (self, e)
+        else:
+            self.lat = lat
+            self.lng = lng
+        return True
+
+    def is_currently_open(self):
+        opening_times = [
+            (self.mon, self.mon_afternoon),
+            (self.tue, self.tue_afternoon),
+            (self.wed, self.wed_afternoon),
+            (self.thu, self.thu_afternoon),
+            (self.fri, self.fri_afternoon),
+            (self.sat, self.sat_afternoon),
+            (self.sun, self.sun_afternoon)
+        ]
+        return self.opening_info(opening_times[datetime.date.today().weekday()])
+    is_currently_open.boolean = True
+    is_currently_open.short_description = _(u'Now open_(u')
+
+    def opening_info(self, times):
+        """
+        For the given times attr and the current time,
+        is our store open?
+        """
+        morning = times[0]
+        afternoon = times[1]
+
+        try:
+            current_time = datetime.datetime.today().time()
+            morning_splited = morning.split('-')
+
+            start_morning = morning_splited[0]
+            end_morning = morning_splited[1]
+
+            start_time = datetime.datetime.strptime(start_morning, '%H:%M').time()
+            end_time = datetime.datetime.strptime(end_morning, '%H:%M').time()
+
+            if start_time < current_time and end_time > current_time:
+                return True
+
+            elif afternoon:
+                afternoon_splited = afternoon.split('-')
+
+                start_afternoon = afternoon_splited[0]
+                end_afternoon = afternoon_splited[1]
+
+                start_time_afternoon = datetime.datetime.strptime(start_afternoon, '%H:%M').time()
+                end_time_afternoon = datetime.datetime.strptime(end_afternoon, '%H:%M').time()
+
+                if start_time_afternoon < current_time and end_time_afternoon > current_time:
+                    return True
+                else:
+                    return False
+            else:
+                return False
+        except:
+            return False
+
+    def has_opening_info(self):
+        """
+        Returns whether store has any filled in opening info
+        If all fields are empty, returns False, else True
+        """
+        return reduce(
+            lambda x, y: x or y,
+            [
+                self.mon,
+                self.mon_afternoon,
+                self.tue,
+                self.tue_afternoon,
+                self.wed,
+                self.wed_afternoon,
+                self.thu,
+                self.thu_afternoon,
+                self.fri,
+                self.fri_afternoon,
+                self.sat,
+                self.sat_afternoon,
+                self.sun,
+                self.sun_afternoon
+            ],
+            False
+        )
+
+    def gmaps_link(self):
+        """
+        Returns google maps link with query of current store
+        """
+        return (u"https://www.google.ch/maps?q=%(name)s+%(street)s+%(zip_code)s+%(place)s" % {
+            'name': self.title,
+            'street': u'{} {}'.format(self.street, self.street_nr),
+            'zip_code': self.zip_code,
+            'place': self.place
+        }).replace(' ', '+')
 
 
 # APP CONTENT PLUGIN

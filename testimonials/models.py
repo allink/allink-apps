@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
+from cms.models.fields import PlaceholderField
 from adminsortable.fields import SortableForeignKey
 from parler.models import TranslatableModel, TranslatedFields
 from djangocms_text_ckeditor.fields import HTMLField
@@ -13,11 +14,12 @@ from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 
 from allink_core.allink_base.models.mixins import AllinkManualEntriesMixin
 from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin
+from allink_core.allink_base.models import AllinkAddressFieldsModel
 
 from .managers import AllinkTestimonialManager
 
 
-class Testimonial(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, AllinkBaseModel):
+class Testimonial(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, AllinkAddressFieldsModel, AllinkBaseModel):
     """
     Translations
      feel free to add app specific fields)
@@ -58,6 +60,9 @@ class Testimonial(TranslationHelperMixin, TranslatedAutoSlugifyMixin, Translatab
             null=True,
         )
     )
+
+    header_placeholder = PlaceholderField(u'testimonial_header', related_name='%(app_label)s_%(class)s_header_placeholder')
+    content_placeholder = PlaceholderField(u'testimonial_content', related_name='%(app_label)s_%(class)s_content_placeholder')
 
     objects = AllinkTestimonialManager()
 

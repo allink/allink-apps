@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-import phonenumbers
+
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from djangocms_text_ckeditor.fields import HTMLField
+from cms.models.fields import PlaceholderField
 from adminsortable.fields import SortableForeignKey
 from parler.models import TranslatableModel, TranslatedFields
 from aldryn_translation_tools.models import (
@@ -12,14 +13,14 @@ from aldryn_translation_tools.models import (
 from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 
 from allink_core.allink_base.models.choices import GENDER_CHOICES
-from allink_core.allink_base.models import AllinkBaseModelManager
 from allink_core.allink_base.models.mixins import AllinkManualEntriesMixin
-from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin, AllinkContactFieldsModel
+from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin, AllinkContactFieldsModel, AllinkAddressFieldsModel
+
 
 from .managers import AllinkPeopleManager
 
 
-class People(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, AllinkContactFieldsModel, AllinkBaseModel):
+class People(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, AllinkContactFieldsModel, AllinkAddressFieldsModel, AllinkBaseModel):
     """
     Translations
      feel free to add app specific fields)
@@ -73,18 +74,16 @@ class People(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableMod
         null=True
     )
 
-    place = models.CharField(
-        _(u'Place'),
-        max_length=255,
-        blank=True,
-        null=True
-    )
-
     gender = models.IntegerField(
         _(u'Gender'),
         choices=GENDER_CHOICES,
         null=True
     )
+
+    # location = models.ManyToManyField(Locations, blank=True, null=True, related_name='people')
+
+    header_placeholder = PlaceholderField(u'people_header', related_name='%(app_label)s_%(class)s_header_placeholder')
+    content_placeholder = PlaceholderField(u'people_content', related_name='%(app_label)s_%(class)s_content_placeholder')
 
     objects = AllinkPeopleManager()
 
@@ -128,6 +127,11 @@ class PeopleAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugi
     )
 
     """
+    #  TODO: only works with one filter!
+    FILTER_FIELD_CHOICES = (
+        # ('categories', _(u'Categories')),
+        ('place', _(u'Place')),
+    )
 
     TEMPLATES = (
         (AllinkBaseAppContentPlugin.GRID_STATIC, 'Grid (Static)'),
@@ -140,7 +144,6 @@ class PeopleAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugi
         help_text=_('Select and arrange specific entries, or, leave blank to select all. (If '
                     'manual entries are selected the category filtering will be ignored.)')
     )
-
 
 class PeopleImage(AllinkBaseImage):
     people = SortableForeignKey(People,  verbose_name=_(u'Images'), help_text=_(u'The first image will be used as preview image.'), blank=True, null=True)

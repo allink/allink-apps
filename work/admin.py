@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
 from django import forms
-from adminsortable.admin import SortableTabularInline
-from allink_core.allink_base.admin import AllinkBaseAdmin
 
-from .models import WorkImage, Work, WorkAppContentPlugin
+from cms.admin.placeholderadmin import PlaceholderAdminMixin
+from adminsortable.admin import SortableTabularInline
+from allink_core.allink_base.admin import AllinkBaseAdminSortable
+
+from .models import WorkImage, Work
 
 
 class WorkImageInline(SortableTabularInline):
@@ -13,9 +15,11 @@ class WorkImageInline(SortableTabularInline):
     verbose_name = 'IMAGES'
     verbose_name_plural = ''
 
+
 @admin.register(Work)
-class WorkAdmin(AllinkBaseAdmin):
+class WorkAdmin(PlaceholderAdminMixin, AllinkBaseAdminSortable):
     inlines = [WorkImageInline, ]
+    # list_filter = ('active', 'categories',)
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = (
@@ -25,7 +29,6 @@ class WorkAdmin(AllinkBaseAdmin):
                     'title',
                     'slug',
                     'lead',
-                    'text',
                 ),
             }),
         )
@@ -38,8 +41,3 @@ class WorkAdmin(AllinkBaseAdmin):
         if db_field.name == 'lead':
             kwargs['widget'] = forms.Textarea
         return super(WorkAdmin, self).formfield_for_dbfield(db_field, **kwargs)
-
-
-@admin.register(WorkAppContentPlugin)
-class WorkAppContentPluginAdmin(admin.ModelAdmin):
-    pass

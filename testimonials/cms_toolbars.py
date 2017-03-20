@@ -8,6 +8,6 @@ from .models import Testimonial
 
 
 @toolbar_pool.register
-class TestimonialModifier(AllinkBaseModifierMixin, CMSToolbar):
+class TestimonialToolbar(AllinkBaseModifierMixin, CMSToolbar):
     model = Testimonial
     app_label = Testimonial._meta.app_label
