@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
+
+from cms.models.fields import PlaceholderField
 from adminsortable.fields import SortableForeignKey
+from adminsortable.models import SortableMixin
 from parler.models import TranslatableModel, TranslatedFields
 from djangocms_text_ckeditor.fields import HTMLField
 
@@ -16,14 +19,8 @@ from allink_core.allink_base.models import AllinkBaseModelManager
 from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin
 
 
-class Work(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, AllinkBaseModel):
-    """
-    Translations
-     feel free to add app specific fields)
-     to override slug generation:
-     slug_source_field_name = 'title'
+class Work(SortableMixin, TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, AllinkBaseModel):
 
-    """
     slug_source_field_name = 'title'
 
     translations = TranslatedFields(
@@ -51,10 +48,20 @@ class Work(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel
         )
     )
 
+    sort_order = models.PositiveIntegerField(
+       default=0,
+       editable=False,
+       db_index=True
+    )
+
+    header_placeholder = PlaceholderField(u'work_header', related_name='%(app_label)s_%(class)s_header_placeholder')
+    content_placeholder = PlaceholderField(u'work_content', related_name='%(app_label)s_%(class)s_content_placeholder')
+
     objects = AllinkBaseModelManager()
 
     class Meta:
         app_label = 'work'
+        ordering = ('sort_order',)
         verbose_name = _('Projekt/ Referenz')
         verbose_name_plural = _('Projekte/ Referenzen')
 
@@ -70,8 +77,7 @@ class Work(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel
 
 # APP CONTENT PLUGIN
 class WorkAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin):
-    """
-    """
+
     data_model = Work
 
     manual_entries = SortedM2MModelField(

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
 from django import forms
+from cms.admin.placeholderadmin import PlaceholderAdminMixin
 from adminsortable.admin import SortableTabularInline
 from allink_core.allink_base.admin import AllinkBaseAdmin
 
@@ -14,8 +15,8 @@ class TestimonialImageInline(SortableTabularInline):
     verbose_name_plural = ''
 
 @admin.register(Testimonial)
-class TestimonialAdmin(AllinkBaseAdmin):
-    search_fields = ('firstname', 'lastname',)
+class TestimonialAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
+    search_fields = ('translations__firstname', 'translations__lastname',)
     list_display = ('firstname', 'lastname', 'get_categories', 'active', 'created', 'modified')
 
     inlines = [TestimonialImageInline, ]
@@ -26,9 +27,12 @@ class TestimonialAdmin(AllinkBaseAdmin):
                 'fields': (
                     'active',
                     ('firstname','lastname'),
-                    'slug',
+                    ('street', 'street_nr'),
+                    ('place', 'zip_code'),
                     'lead',
                     'text',
+                    'slug',
+                    'created',
                 ),
             }),
         )
@@ -41,8 +45,3 @@ class TestimonialAdmin(AllinkBaseAdmin):
         if db_field.name == 'lead':
             kwargs['widget'] = forms.Textarea
         return super(TestimonialAdmin, self).formfield_for_dbfield(db_field, **kwargs)
-
-
-@admin.register(TestimonialAppContentPlugin)
-class TestimonialAppContentPluginAdmin(admin.ModelAdmin):
-    pass

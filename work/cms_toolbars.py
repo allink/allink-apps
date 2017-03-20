@@ -8,6 +8,6 @@ from .models import Work
 
 
 @toolbar_pool.register
-class WorkModifier(AllinkBaseModifierMixin, CMSToolbar):
+class WorkToolbar(AllinkBaseModifierMixin, CMSToolbar):
     model = Work
     app_label = Work._meta.app_label

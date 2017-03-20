@@ -1,6 +1,6 @@
 {% extends base_template|default:"base.html" %}
 
-{% load cms_tags sekizai_tags i18n thumbnail %}
+{% load cms_tags allink_cms_tags sekizai_tags i18n thumbnail %}
 
 {# META Tag #}
 {% if object.title %}
@@ -33,7 +33,7 @@
 
 
 {# Page Title - Required for Softpage (Google Tag Manager) #}
-{% block softpage_title %}{{ object.title }} | {{ request.site.name }}{% endblock softpage_title %}
+{% block softpage_title %}{{ object.title }} | {% if allink_config.default_base_title %}{{ allink_config.default_base_title }}{% else %}{{ request.site.name }}{% endif %}{% endblock softpage_title %}
 
 {% block content %}
     <div class="content-section app-content-plugin detail-view container-enabled">
@@ -47,30 +47,34 @@
 
             <header class="section-heading">
                 <h1 class="heading">
-                    {% render_model object "title" %}
+                    {% render_model_ajax object "title" %}
                 </h1>
             </header>
 
             <div class="app-detail-col-container col-2-1">
 
                 <div class="col">
-                    <div class="text-container">
-                        {# optional: lead #}
+                    <div class="manage-spacings">
                         {% if object.lead %}
-                            <p class="lead">
-                                {{object.lead|striptags}}
-                            </p>
+                            <div class="text-container">
+                                {# optional: lead #}
+                                <p class="lead">
+                                    {{object.lead|striptags}}
+                                </p>
+                                {# we wouldn't be here if the text was empty #}
+                            </div>
                         {% endif %}
-                        {# we wouldn't be here if the text was empty #}
-                        {{object.text}}
+                    </div>
+                    <div class="app-detail-content-container">
+                        {% render_placeholder object.content_placeholder %}
                     </div>
                 </div>{# end .col #}
 
                 <div class="col">
                     <div class="manage-spacings">
-                       {{object.events.costs}}
-                       {{object.events.duration}}
-                       {{object.events.location}}
+                       {{object.costs}}
+                       {{object.duration}}
+                       {{object.location}}
                     </div>
                 </div>{# end .col #}
 
