@@ -14,8 +14,7 @@ from aldryn_translation_tools.models import (
 )
 from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 
-from allink_core.allink_base.models.mixins import AllinkManualEntriesMixin
-from allink_core.allink_base.models import AllinkBaseModelManager
+from allink_core.allink_base.models import AllinkManualEntriesMixin, AllinkBaseModelManager
 from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin
 
 
