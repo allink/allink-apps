@@ -145,5 +145,6 @@ class PeopleAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugi
                     'manual entries are selected the category filtering will be ignored.)')
     )
 
+
 class PeopleImage(AllinkBaseImage):
-    people = SortableForeignKey(People,  verbose_name=_(u'Images'), help_text=_(u'The first image will be used as preview image.'), blank=True, null=True)
+    people = SortableForeignKey(People, verbose_name=_(u'Images'), help_text=_(u'The first image will be used as preview image.'), blank=True, null=True)
