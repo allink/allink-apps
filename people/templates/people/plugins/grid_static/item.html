@@ -28,28 +28,16 @@
                     {% if object.job_title %}
                         {% render_model_ajax object "job_title" %}<br>
                     {% endif %}
-<<<<<<< HEAD
-                    {% if object.job_title %}
-                        {% render_model object "job_function" %}<br>
+                    {% if object.job_function %}
+                        {% render_model_ajax object "job_function" %}<br>
                     {% endif %}
                     {% if object.email %}
                         <a href="mailto:{{object.email}}">{% render_model object "email" %}</a><br>
                     {% endif %}
                     {% if object.phone %}
                         <a href="tel:{{object.phone}}">{% render_model object "phone" %}</a><br>
-=======
-                    {% if object.job_function %}
-                        {% render_model_ajax object "job_function" %}
->>>>>>> d2b4a3a1b23589518a73a64a3713e58e6a577eb7
                     {% endif %}
                 </p>
-                {% if object.email %}
-                    <p>
-                        <a href="mailto:{{object.email}}" target="_blank">
-                            {{object.email}}
-                        </a>
-                    </p>
-                {% endif %}
             </div>
         {% endif %}
         {% if instance.detail_link_enabled and object.show_detail_link %}
