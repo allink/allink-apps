@@ -14,7 +14,7 @@ Each release is divided into the following main categories:
 
 ### NEW
 
-- TBD
+- When creating a new News or Event entry the category News or Events is set as an initial value in the form.
 
 ### FIXES
 
