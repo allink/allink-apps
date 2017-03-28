@@ -17,15 +17,10 @@ class WorkImageInline(SortableTabularInline):
     verbose_name = ''
     verbose_name_plural = _(u'Preview Image')
 
-class WorkArchitonicImageInline(SortableTabularInline):
-    model = WorkArchitonicImage
-    extra = 1
-    verbose_name = ''
-    verbose_name_plural = _(u'Architonic Images')
 
 @admin.register(Work)
 class WorkAdmin(PlaceholderAdminMixin, AllinkBaseAdminSortable):
-    inlines = [WorkImageInline, WorkArchitonicImageInline ]
+    inlines = [WorkImageInline, ]
     # list_filter = ('active', 'categories',)
 
     def get_fieldsets(self, request, obj=None):

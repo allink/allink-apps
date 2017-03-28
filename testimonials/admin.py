@@ -12,7 +12,7 @@ from .models import TestimonialImage, Testimonial, TestimonialAppContentPlugin
 
 class TestimonialImageInline(SortableTabularInline):
     model = TestimonialImage
-    extra =
+    extra = 0
     max_num = 1
     verbose_name = ''
     verbose_name_plural = _(u'Preview Image')

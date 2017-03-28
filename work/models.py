@@ -104,19 +104,3 @@ class WorkAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin)
 
 class WorkImage(AllinkBaseImage):
     work = SortableForeignKey(Work,  verbose_name=_(u'Images'), help_text=_(u'The first image will be used as preview image.'), blank=True, null=True)
-
-class ArchitonicImageBase(AllinkBaseImage):
-    link = models.URLField(
-        _(u'Link'),
-        help_text=_(u'Link to iframe architonic. Get it here: https://vsr.architonic.com/cms/'),
-        blank=True,
-        null=True
-    )
-    class Meta:
-        abstract = True
-
-class WorkArchitonicImage(ArchitonicImageBase):
-    work = SortableForeignKey(Work, verbose_name=_(u'Architonic Images'), blank=True, null=True)
-
-    class Meta:
-        ordering = ('sort_order',)
