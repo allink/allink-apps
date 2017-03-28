@@ -55,6 +55,7 @@ class Work(SortableMixin, TranslationHelperMixin, TranslatedAutoSlugifyMixin, Tr
 
     header_placeholder = PlaceholderField(u'work_header', related_name='%(app_label)s_%(class)s_header_placeholder')
     content_placeholder = PlaceholderField(u'work_content', related_name='%(app_label)s_%(class)s_content_placeholder')
+    content_additional_placeholder = PlaceholderField(u'work_content_additional',related_name='%(app_label)s_%(class)s_content_additional_placeholder')
 
     objects = AllinkBaseModelManager()
 
