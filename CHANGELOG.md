@@ -31,6 +31,7 @@ The version numbers referring to the version in [allink_core](git@github.com/all
 - allink_locations: text field removed and lead added. (migrate location text)
 
 ### NEW
+- When creating a new News or Event entry the category News or Events is set as an initial value in the form.
 
 ### FIXES
 

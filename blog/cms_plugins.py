@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
-from django.template.loader import get_template
-from django.template import TemplateDoesNotExist
 from cms.plugin_pool import plugin_pool
 from allink_core.allink_base.admin.cms_plugins import CMSAllinkBaseAppContentPlugin
-from .models import BlogAppContentPlugin
+from allink_apps.blog.models import BlogAppContentPlugin
 
 
 @plugin_pool.register_plugin
