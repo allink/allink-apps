@@ -53,10 +53,11 @@ class People(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableMod
             max_length=255,
             default=''
         ),
-        text=HTMLField(
-            _(u'Text'),
+        lead=HTMLField(
+            _(u'Lead Text'),
+            help_text=_(u'Teaser text that in some cases is used in the list view and/or in the detail view.'),
             blank=True,
-            null=True
+            null=True,
         ),
         slug=models.SlugField(
             _(u'Slug'),
@@ -77,6 +78,7 @@ class People(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableMod
     gender = models.IntegerField(
         _(u'Gender'),
         choices=GENDER_CHOICES,
+        blank=True,
         null=True
     )
 

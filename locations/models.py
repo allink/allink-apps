@@ -33,10 +33,11 @@ class Locations(TranslationHelperMixin, TranslatedAutoSlugifyMixin, Translatable
         title=models.CharField(
             max_length=255
         ),
-        text=HTMLField(
-            _(u'Text'),
+        lead=HTMLField(
+            _(u'Lead Text'),
+            help_text=_(u'Teaser text that in some cases is used in the list view and/or in the detail view.'),
             blank=True,
-            null=True
+            null=True,
         ),
         slug=models.SlugField(
             _(u'Slug'),
@@ -45,6 +46,20 @@ class Locations(TranslationHelperMixin, TranslatedAutoSlugifyMixin, Translatable
             blank=True,
             help_text=_(u'Leave blank to auto-generate a unique slug.')
         ),
+    )
+
+    email_work = models.EmailField(
+        _(u'Email Work'),
+        help_text=_(u'Used as "to adress" in form.'),
+        blank=True,
+        default=''
+    )
+
+    email_home = models.EmailField(
+        _(u'Email Home'),
+        help_text=_(u'Used as "to adress" in form.'),
+        blank=True,
+        default=''
     )
 
     lat = models.FloatField(
