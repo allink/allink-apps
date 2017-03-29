@@ -131,8 +131,14 @@ class PeopleAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugi
     """
     #  TODO: only works with one filter!
     FILTER_FIELD_CHOICES = (
-        # ('categories', _(u'Categories')),
-        ('place', _(u'Place')),
+        ('categories', {
+            'verbose': _(u'Location'),
+            'query_filter': {},
+        }),
+        ('job_function', {
+            'verbose': _(u'Job Function'),
+            'query_filter': {},
+        }),
     )
 
     TEMPLATES = (

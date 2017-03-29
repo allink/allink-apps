@@ -170,7 +170,7 @@ class BlogAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin)
                     'manual entries are selected the category filtering will be ignored.)')
     )
 
-    def get_render_queryset_for_display(self, category=None, filter=None):
+    def get_render_queryset_for_display(self, category=None, filters={}):
         """
          returns all data_model objects distinct to id which are in the selected categories
           - category: category instance
@@ -179,6 +179,10 @@ class BlogAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin)
 
         -> Is also defined in  AllinkManualEntriesMixin to handel manual entries !!
         """
+
+        # apply filters from request
+        queryset = self.data_model.objects.filter(**filters)
+
         if self.categories.count() > 0 or category:
             """
              category selection
