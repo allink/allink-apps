@@ -8,13 +8,13 @@ from cms.api import add_plugin
 from cms.models import Placeholder
 from cms.plugin_rendering import ContentRenderer
 
-import allink_core.djangocms_Workicon as app
+import allink_apps.work as app
 from allink_apps.work.cms_plugins import CMSWorkPlugin
 
 APP_NAME = 'work'
 TEMPLATE_DIR = os.path.join(os.path.dirname(app.__file__), 'templates', APP_NAME)
 
-
+#
 # class CMSWorkluginTest(TestCase):
 #
 #     def test_plugin_html(self):

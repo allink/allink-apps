@@ -86,11 +86,6 @@ class Work(SortableMixin, TranslationHelperMixin, TranslatedAutoSlugifyMixin, Tr
         else:
             return None
 
-    @property
-    def architonic_images(self):
-        return self.workarchitonicimage_set.all()
-
-
 # APP CONTENT PLUGIN
 class WorkAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin):
 
