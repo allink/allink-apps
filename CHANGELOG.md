@@ -28,6 +28,7 @@ The version numbers referring to the version in [allink_core](git@github.com/all
 ###### REQUIREMENTS
 
 ###### DATA MIGRATIONS
+- people: firstname and lastname are not translated anymore.
 - allink_locations: text field removed and lead added. (migrate location text)
 
 ### NEW

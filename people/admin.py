@@ -8,6 +8,7 @@ from allink_core.allink_base.admin import AllinkBaseAdmin
 from allink_core.allink_base.admin.forms import AllinkBaseAdminForm
 from .models import PeopleImage, People
 
+
 class PeopleImageInline(SortableTabularInline):
     model = PeopleImage
     extra = 1
@@ -21,7 +22,7 @@ class PeopleAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
     inlines = [PeopleImageInline, ]
 
     form = AllinkBaseAdminForm
-    search_fields = ('translations__firstname', 'translations__lastname',)
+    search_fields = ('firstname', 'lastname',)
     list_display = ('firstname', 'lastname', 'get_categories', 'active', 'created', 'modified')
 
     exclude = ('images',)
