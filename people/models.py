@@ -28,17 +28,28 @@ class People(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableMod
      slug_source_field_name = 'full_name'
 
     """
-
-
     slug_source_field_name = 'full_name'
 
+    firstname = models.CharField(
+        _(u'Firstname'),
+        max_length=255,
+        default=''
+    )
+    lastname = models.CharField(
+        _(u'Lastname'),
+        max_length=255,
+        default=''
+    )
+
     translations = TranslatedFields(
-        firstname=models.CharField(
+        # to be removed in release 0.0.8
+        old_firstname=models.CharField(
             _(u'Firstname'),
             max_length=255,
             default=''
         ),
-        lastname=models.CharField(
+        # to be removed in release 0.0.8
+        old_lastname=models.CharField(
             _(u'Lastname'),
             max_length=255,
             default=''
