@@ -21,7 +21,7 @@ The version numbers referring to the version in [allink_core](git@github.com/all
 ###### SETTINGS
 
 ###### TEMPLATES
-- allink_locations: text field removed and lead adde.
+- allink_locations: text field removed and lead added.
 
 ###### URLS
 
