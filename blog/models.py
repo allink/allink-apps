@@ -11,10 +11,9 @@ from cms.models.fields import PlaceholderField
 from model_utils.models import TimeFramedModel
 
 from aldryn_translation_tools.models import TranslationHelperMixin
-
 from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 
-from allink_core.allink_base.models.mixins import AllinkManualEntriesMixin, AllinkTranslatedAutoSlugifyMixin
+from allink_core.allink_base.models import AllinkManualEntriesMixin, AllinkTranslatedAutoSlugifyMixin
 from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin, AllinkAddressFieldsModel, AllinkSimpleRegistrationFieldsModel
 from allink_core.allink_terms.models import AllinkTerms
 from allink_apps.locations.models import Locations

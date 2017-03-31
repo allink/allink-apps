@@ -10,7 +10,7 @@ from aldryn_translation_tools.models import TranslationHelperMixin
 
 from allink_core.allink_mailchimp.config import MailChimpConfig
 from allink_core.allink_mailchimp.helpers import list_members_delete, list_members_put, get_status_if_new
-from allink_core.allink_base.models.mixins import AllinkTranslatedAutoSlugifyMixin
+from allink_core.allink_base.models import AllinkTranslatedAutoSlugifyMixin
 
 config = MailChimpConfig()
 

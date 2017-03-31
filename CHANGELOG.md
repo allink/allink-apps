@@ -37,6 +37,7 @@ The version numbers referring to the version in [allink_core](git@github.com/all
 - When creating a new News or Event entry the category News or Events is set as an initial value in the form.
 
 ### FIXES
+- Replaced TranslatedAutoSlugifyMixin by AllinkTranslatedAutoSlugifyMixin in all apps. This tries not to use default slugs.
 
 
 ## v0.0.6

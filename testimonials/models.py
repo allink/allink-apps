@@ -10,9 +10,9 @@ from aldryn_translation_tools.models import TranslationHelperMixin
 
 from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 
-from allink_core.allink_base.models.mixins import AllinkManualEntriesMixin, AllinkTranslatedAutoSlugifyMixin
+from allink_core.allink_base.models.mixins import AllinkManualEntriesMixin
 from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin
-from allink_core.allink_base.models import AllinkAddressFieldsModel
+from allink_core.allink_base.models import AllinkAddressFieldsModel, AllinkTranslatedAutoSlugifyMixin
 
 from .managers import AllinkTestimonialManager
 
