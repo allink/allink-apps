@@ -29,6 +29,11 @@ class Locations(TranslationHelperMixin, TranslatedAutoSlugifyMixin, Translatable
     """
     slug_source_field_name = 'title'
 
+    # Is used to auto generate Category
+    # AllinkBaseModel sets a default
+    # category_name_field = u'title'
+    category_name_field = u'title'
+
     translations = TranslatedFields(
         title=models.CharField(
             max_length=255

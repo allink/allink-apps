@@ -134,7 +134,7 @@ class PeopleAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugi
     FILTER_FIELD_CHOICES = (
         ('categories', {
             'verbose': _(u'Location'),
-            'query_filter': {},
+            'query_filter': {'tag': 'locations'},
         }),
         ('job_function', {
             'verbose': _(u'Job Function'),
