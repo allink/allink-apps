@@ -29,6 +29,8 @@ The version numbers referring to the version in [allink_core](git@github.com/all
 
 ###### DATA MIGRATIONS
 - people: firstname and lastname are not translated anymore.
+    - migration "0019_migrate_firstname_lastname.py", including datamigration for this change can be found in "allink_apps.data_migrations". Ajust number for projects.
+    - The fields old_lastname and old_firstname can be removed in a next release
 - allink_locations: text field removed and lead added. (migrate location text)
 
 ### NEW
@@ -55,3 +57,4 @@ The version numbers referring to the version in [allink_core](git@github.com/all
 - header_placeholder added to all apps
 
 ### FIXES
+

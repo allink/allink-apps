@@ -28,7 +28,6 @@ class People(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableMod
      slug_source_field_name = 'full_name'
 
     """
-
     slug_source_field_name = 'full_name'
 
     firstname = models.CharField(
@@ -36,7 +35,6 @@ class People(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableMod
         max_length=255,
         default=''
     )
-
     lastname = models.CharField(
         _(u'Lastname'),
         max_length=255,
@@ -44,6 +42,18 @@ class People(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableMod
     )
 
     translations = TranslatedFields(
+        # to be removed in release 0.0.8
+        old_firstname=models.CharField(
+            _(u'Firstname'),
+            max_length=255,
+            default=''
+        ),
+        # to be removed in release 0.0.8
+        old_lastname=models.CharField(
+            _(u'Lastname'),
+            max_length=255,
+            default=''
+        ),
         job_title=models.CharField(
             _(u'Job Title'),
             max_length=255,
@@ -54,11 +64,10 @@ class People(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableMod
             max_length=255,
             default=''
         ),
-        lead=HTMLField(
-            _(u'Lead Text'),
-            help_text=_(u'Teaser text that in some cases is used in the list view and/or in the detail view.'),
+        text=HTMLField(
+            _(u'Text'),
             blank=True,
-            null=True,
+            null=True
         ),
         slug=models.SlugField(
             _(u'Slug'),
@@ -79,7 +88,6 @@ class People(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableMod
     gender = models.IntegerField(
         _(u'Gender'),
         choices=GENDER_CHOICES,
-        blank=True,
         null=True
     )
 
@@ -130,7 +138,7 @@ class PeopleAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugi
     )
 
     """
-    #  TODO: only works with one filter!
+
     FILTER_FIELD_CHOICES = (
         ('categories', {
             'verbose': _(u'Location'),
