@@ -8,18 +8,15 @@ from adminsortable.fields import SortableForeignKey
 from parler.models import TranslatableModel, TranslatedFields
 from djangocms_text_ckeditor.fields import HTMLField
 
-from aldryn_translation_tools.models import (
-    TranslatedAutoSlugifyMixin,
-    TranslationHelperMixin,
-)
+from aldryn_translation_tools.models import TranslationHelperMixin
 from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 
-from allink_core.allink_base.models.mixins import AllinkManualEntriesMixin
+from allink_core.allink_base.models.mixins import AllinkManualEntriesMixin, AllinkTranslatedAutoSlugifyMixin
 from allink_core.allink_base.models.managers import AllinkBaseModelManager
 from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin, AllinkContactFieldsModel, AllinkAddressFieldsModel
 
 
-class Locations(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, AllinkContactFieldsModel, AllinkAddressFieldsModel, AllinkBaseModel):
+class Locations(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, TranslatableModel, AllinkContactFieldsModel, AllinkAddressFieldsModel, AllinkBaseModel):
     """
     Translations
      feel free to add app specific fields)
@@ -280,6 +277,7 @@ class LocationsAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPl
         choices=ZOOM_LEVEL_CHOICES,
         default=14
     )
+
 
 class LocationsImage(AllinkBaseImage):
     location = SortableForeignKey(

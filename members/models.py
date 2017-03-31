@@ -6,18 +6,17 @@ from django.conf import settings
 from django.utils.encoding import python_2_unicode_compatible
 from parler.models import TranslatableModel, TranslatedFields
 from model_utils.models import TimeStampedModel
-from aldryn_translation_tools.models import (
-    TranslatedAutoSlugifyMixin,
-    TranslationHelperMixin,
-)
+from aldryn_translation_tools.models import TranslatedAutoSlugifyMixin
+
 from allink_core.allink_mailchimp.config import MailChimpConfig
 from allink_core.allink_mailchimp.helpers import list_members_delete, list_members_put, get_status_if_new
+from allink_core.allink_base.models.mixins import AllinkTranslatedAutoSlugifyMixin
 
 config = MailChimpConfig()
 
 
 @python_2_unicode_compatible
-class Members(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, TimeStampedModel):
+class Members(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, TranslatableModel, TimeStampedModel):
     slug_source_field_name = 'full_name'
 
     translations = TranslatedFields(

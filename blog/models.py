@@ -10,13 +10,11 @@ from djangocms_text_ckeditor.fields import HTMLField
 from cms.models.fields import PlaceholderField
 from model_utils.models import TimeFramedModel
 
-from aldryn_translation_tools.models import (
-    TranslatedAutoSlugifyMixin,
-    TranslationHelperMixin,
-)
+from aldryn_translation_tools.models import TranslationHelperMixin
+
 from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 
-from allink_core.allink_base.models.mixins import AllinkManualEntriesMixin
+from allink_core.allink_base.models.mixins import AllinkManualEntriesMixin, AllinkTranslatedAutoSlugifyMixin
 from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin, AllinkAddressFieldsModel, AllinkSimpleRegistrationFieldsModel
 from allink_core.allink_terms.models import AllinkTerms
 from allink_apps.locations.models import Locations
@@ -27,7 +25,7 @@ from .managers import AllinkEventsManager, AllinkBlogManager
 
 
 #  Blog Parent class
-class Blog(PolymorphicModel, TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, TimeFramedModel, AllinkBaseModel):
+class Blog(PolymorphicModel, TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, TranslatableModel, TimeFramedModel, AllinkBaseModel):
     """
     Translations
      feel free to add app specific fields)

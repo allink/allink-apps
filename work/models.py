@@ -8,17 +8,15 @@ from adminsortable.models import SortableMixin
 from parler.models import TranslatableModel, TranslatedFields
 from djangocms_text_ckeditor.fields import HTMLField
 
-from aldryn_translation_tools.models import (
-    TranslatedAutoSlugifyMixin,
-    TranslationHelperMixin,
-)
+from aldryn_translation_tools.models import TranslationHelperMixin
 from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 
 from allink_core.allink_base.models import AllinkManualEntriesMixin, AllinkBaseModelManager
 from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin
+from allink_core.allink_base.models.mixins import AllinkTranslatedAutoSlugifyMixin
 
 
-class Work(SortableMixin, TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, AllinkBaseModel):
+class Work(SortableMixin, TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, TranslatableModel, AllinkBaseModel):
 
     slug_source_field_name = 'title'
 
@@ -48,14 +46,14 @@ class Work(SortableMixin, TranslationHelperMixin, TranslatedAutoSlugifyMixin, Tr
     )
 
     sort_order = models.PositiveIntegerField(
-       default=0,
-       editable=False,
-       db_index=True
+        default=0,
+        editable=False,
+        db_index=True
     )
 
     header_placeholder = PlaceholderField(u'work_header', related_name='%(app_label)s_%(class)s_header_placeholder')
     content_placeholder = PlaceholderField(u'work_content', related_name='%(app_label)s_%(class)s_content_placeholder')
-    content_additional_placeholder = PlaceholderField(u'work_content_additional',related_name='%(app_label)s_%(class)s_content_additional_placeholder')
+    content_additional_placeholder = PlaceholderField(u'work_content_additional', related_name='%(app_label)s_%(class)s_content_additional_placeholder')
 
     objects = AllinkBaseModelManager()
 
@@ -86,6 +84,7 @@ class Work(SortableMixin, TranslationHelperMixin, TranslatedAutoSlugifyMixin, Tr
         else:
             return None
 
+
 # APP CONTENT PLUGIN
 class WorkAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin):
 
@@ -99,4 +98,4 @@ class WorkAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin)
 
 
 class WorkImage(AllinkBaseImage):
-    work = SortableForeignKey(Work,  verbose_name=_(u'Images'), help_text=_(u'The first image will be used as preview image.'), blank=True, null=True)
+    work = SortableForeignKey(Work, verbose_name=_(u'Images'), help_text=_(u'The first image will be used as preview image.'), blank=True, null=True)
