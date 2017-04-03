@@ -352,7 +352,13 @@ PROJECT_APP_MODEL_WITH_CATEGORY_CHOICES.extend([
     # ('courses', 'Courses'),
 ])
 
-
+# all models which can be used as tag for categories.
+# all categories with the same tag can be used
+# in a filter on a plugin.
+# the value has to be equal to "_meta.model_name"
+PROJECT_APP_MODEL_CATEGORY_TAG_CHOICES = [
+    ('locations', 'Locations'),
+]
 
 ####################################################################################
 
