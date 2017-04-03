@@ -1,0 +1,9 @@
+.blog-plugin {
+    &.list-view {
+        .lead-container {
+            @media (max-width:400px) {
+                display: none;
+            }
+        }
+    }
+}
