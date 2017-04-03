@@ -28,16 +28,18 @@
             <div class="text-container">
                 <p>
                     {{object.lead|striptags}}
-                    {% if instance.detail_link_enabled and object.show_detail_link %}
-                    <a class="" href="{{object.get_absolute_url}}">
-                        {% if instance.detail_link_text %}
-                        {{ instance.detail_link_text }}
-                        {% else %}
-                        {% trans "More" %}
-                        {% endif %}
-                    </a>
-                    {% endif %}
                 </p>
+                {% if instance.detail_link_enabled and object.show_detail_link %}
+                    <p>
+                        <a class="" href="{{object.get_absolute_url}}">
+                            {% if instance.detail_link_text %}
+                            {{ instance.detail_link_text }}
+                            {% else %}
+                            {% trans "More" %}
+                            {% endif %}
+                        </a>
+                    </p>
+                {% endif %}
             </div>
         {% endif %}
     </div>
