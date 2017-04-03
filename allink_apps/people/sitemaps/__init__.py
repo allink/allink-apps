@@ -1,1 +1,0 @@
-from sitemaps import PeopleSitemap

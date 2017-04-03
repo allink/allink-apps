@@ -1,2 +1,0 @@
-{% load i18n %}
-{% blocktrans %}Mitglied hat E-Mail Adresse mutiert{% endblocktrans %}
