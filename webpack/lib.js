@@ -3,14 +3,11 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const BundleTracker = require('webpack-bundle-tracker');
 const path = require('path');
 
-// const CopyWebpackPlugin = require('copy-webpack-plugin');
-// const BUILD_FOLDER = path.join(__dirname, 'static/build/');
-
 exports.production = function() {
     return {
         output: {
+            // filename: '[name].min.[hash].js'
             filename: '[name].js'
-        	// filename: '[name].min.[hash].js'
         },
         plugins: [
             new BundleTracker({filename: './webpack-stats.json'}),
@@ -22,17 +19,8 @@ exports.production = function() {
                     comments: false,
                 },
             }),
-            new ExtractTextPlugin('[name].css'),
             // new ExtractTextPlugin('[name].min.[hash].css'),
-            // new CopyWebpackPlugin([
-            //     {
-            //         from: path.join(BUILD_FOLDER, 'djangocms*.css'),
-            //         to: path.join(BUILD_FOLDER, 'test.css'),
-            //     },
-            //     {
-            //         copyUnmodified: true,
-            //     },
-            // ]),
+            new ExtractTextPlugin('[name].css'),
         ]
     };
 };
@@ -44,6 +32,14 @@ exports.development = function() {
         },
         plugins: [
             new BundleTracker({filename: './webpack-stats.json'}),
+            // new webpack.optimize.UglifyJsPlugin({
+            //     compress: {
+            //         warnings: false,
+            //     },
+            //     output: {
+            //         comments: false,
+            //     },
+            // }),
             new ExtractTextPlugin('[name].css'),
         ]
     };

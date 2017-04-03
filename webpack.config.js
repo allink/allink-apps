@@ -28,9 +28,10 @@ const common = {
         djangocms_custom_admin_scripts: PATHS.djangocms_custom_admin_scripts,
     },
     output: {
-    	path: path.resolve(PATHS.build),
+        path: path.resolve(PATHS.build),
         publicPath: '/static/build/',
     },
+    devtool: "source-map",
     module: {
         loaders: [
             {
@@ -43,12 +44,12 @@ const common = {
                 }
             },
             {
-            	test: /\.scss?$/,
-                loader: ExtractTextPlugin.extract('style-loader', 'css-loader?-mergeLonghand!postcss-loader!sass-loader')
+                test: /\.scss?$/,
+                loader: ExtractTextPlugin.extract('style-loader', 'css-loader?sourceMap&-mergeLonghand!postcss-loader!sass-loader?sourceMap')
             },
             {
-            	test: /\.css?$/,
-            	loader: ExtractTextPlugin.extract('style-loader', 'css-loader?-mergeLonghand!postcss-loader')
+                test: /\.css?$/,
+                loader: ExtractTextPlugin.extract('style-loader', 'css-loader?sourceMap&-mergeLonghand!postcss-loader')
             },
             {
                 test: /\.(gif|png)$/,
