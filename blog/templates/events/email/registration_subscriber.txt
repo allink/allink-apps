@@ -1,0 +1,7 @@
+{% load i18n %}
+{% spaceless %}
+    {% for label, value in data %}
+        {{ label }}:
+        {{ value }}{% endfor %}
+
+{% endspaceless %}

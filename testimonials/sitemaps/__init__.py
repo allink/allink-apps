@@ -1,0 +1,1 @@
+from sitemaps import TestimonialSitemap

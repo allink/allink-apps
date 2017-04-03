@@ -1,0 +1,8 @@
+{% load i18n %}
+{% blocktrans %}
+Guten Tag,
+
+Das Mitglied {{ member_nr }} hat neu die E-Mail Adresse: {{ member_email }}.
+Bitte aktualisieren Sie die E-Mail Adresse in den anderen Systemen (Flightnet, FileMaker Datenbank).
+
+{% endblocktrans %}
