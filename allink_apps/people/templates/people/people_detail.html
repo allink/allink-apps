@@ -1,6 +1,6 @@
 {% extends base_template|default:"base.html" %}
 
-{% load cms_tags allink_cms_tags sekizai_tags i18n allink_image_tags thumbnail %}
+{% load cms_tags sekizai_tags i18n allink_image_tags thumbnail %}
 
 {# META Tag #}
 {% if object.title %}
@@ -41,7 +41,7 @@
 
             <header class="section-heading">
                 <h1 class="heading">
-                    {% render_model_ajax object "title" %}
+                    {% render_model object "title" %}
                 </h1>
             </header>
 

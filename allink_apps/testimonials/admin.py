@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
 from django import forms
-from django.utils.translation import ugettext_lazy as _
-
-from cms.admin.placeholderadmin import PlaceholderAdminMixin
 from adminsortable.admin import SortableTabularInline
 from allink_core.allink_base.admin import AllinkBaseAdmin
 
@@ -12,13 +9,12 @@ from .models import TestimonialImage, Testimonial, TestimonialAppContentPlugin
 
 class TestimonialImageInline(SortableTabularInline):
     model = TestimonialImage
-    extra = 0
-    max_num = 1
-    verbose_name = ''
-    verbose_name_plural = _(u'Preview Image')
+    extra = 1
+    verbose_name = 'IMAGES'
+    verbose_name_plural = ''
 
 @admin.register(Testimonial)
-class TestimonialAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
+class TestimonialAdmin(AllinkBaseAdmin):
     search_fields = ('translations__firstname', 'translations__lastname',)
     list_display = ('firstname', 'lastname', 'get_categories', 'active', 'created', 'modified')
 

@@ -1,6 +1,6 @@
 {% extends base_template|default:"base.html" %}
 
-{% load cms_tags allink_cms_tags sekizai_tags i18n thumbnail %}
+{% load cms_tags sekizai_tags i18n thumbnail %}
 
 {# META Tag #}
 {% if object.title %}
@@ -39,17 +39,15 @@
     <div class="content-section app-content-plugin testimonial-plugin detail-view container-enabled">
         <div class="container" data-scroll-spy>
 
-            {% if object.images %}
+            {% if object.preview_image %}
                 <div class="image-container header-image-container">
                     {% include "slider_detail/content.html" with display_title=False title_content=object.title %}
                 </div>
             {% endif %}
 
-            {% render_placeholder object.header_placeholder %}
-
             <header class="section-heading">
                 <h1 class="heading">
-                    {% render_model_ajax object "title" %}
+                    {% render_model object "title" %}
                 </h1>
             </header>
 
@@ -68,7 +66,6 @@
                         {% endif %}
                         {# we wouldn't be here if the text was empty #}
                         {{object.text}}
-                        {% render_placeholder object.content_placeholder %}
                     </div>
                 </div>{# end .col #}
 

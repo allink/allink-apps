@@ -8,7 +8,7 @@ from allink_core.allink_base.models.managers import AllinkBaseModelQuerySet, All
 
 class AllinkBlogQuerySet(AllinkBaseModelQuerySet, PolymorphicQuerySet):
     def active_entries(self):
-        '''
+        ''' 
          entries which are active
         '''
         today = date.today()
@@ -21,7 +21,7 @@ class AllinkBlogManager(PolymorphicManager, AllinkBaseModelManager):
 
 class AllinkEventsQuerySet(AllinkBaseModelQuerySet, PolymorphicQuerySet):
     def active_entries(self):
-        '''
+        ''' 
          entries which are active
         '''
         today = date.today()
@@ -30,7 +30,7 @@ class AllinkEventsQuerySet(AllinkBaseModelQuerySet, PolymorphicQuerySet):
     def latest(self):
         return self.order_by('event_date', 'id').distinct('event_date', 'id')
 
-    def earliest(self):
+    def oldest(self):
         return self.order_by('-event_date', 'id').distinct('event_date', 'id')
 
 

@@ -10,11 +10,14 @@ from djangocms_text_ckeditor.fields import HTMLField
 from cms.models.fields import PlaceholderField
 from model_utils.models import TimeFramedModel
 
-from aldryn_translation_tools.models import TranslationHelperMixin
+from aldryn_translation_tools.models import (
+    TranslatedAutoSlugifyMixin,
+    TranslationHelperMixin,
+)
 from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 
-from allink_core.allink_base.models import AllinkManualEntriesMixin, AllinkTranslatedAutoSlugifyMixin
-from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin, AllinkAddressFieldsModel, AllinkSimpleRegistrationFieldsModel
+from allink_core.allink_base.models.mixins import AllinkManualEntriesMixin
+from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin, AllinkBaseRegistration
 from allink_core.allink_terms.models import AllinkTerms
 from allink_apps.locations.models import Locations
 
@@ -24,7 +27,7 @@ from .managers import AllinkEventsManager, AllinkBlogManager
 
 
 #  Blog Parent class
-class Blog(PolymorphicModel, TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, TranslatableModel, TimeFramedModel, AllinkBaseModel):
+class Blog(PolymorphicModel, TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, TimeFramedModel, AllinkBaseModel):
     """
     Translations
      feel free to add app specific fields)
@@ -143,9 +146,7 @@ class Events(Blog):
         return reverse(app, kwargs={'slug': self.slug})
 
     def show_registration_form(self):
-        if self.event_date < datetime.now().date():
-            return False
-        if self.form_enabled:
+        if self.event_date > datetime.now().date():
             return True
         else:
             return False
@@ -167,50 +168,12 @@ class BlogAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin)
                     'manual entries are selected the category filtering will be ignored.)')
     )
 
-    def get_render_queryset_for_display(self, category=None, filters={}):
-        """
-         returns all data_model objects distinct to id which are in the selected categories
-          - category: category instance
-          - filter: list tuple with model fields and value
-            -> adds additional query
-
-        -> Is also defined in  AllinkManualEntriesMixin to handel manual entries !!
-        """
-
-        # apply filters from request
-        queryset = self.data_model.objects.filter(**filters)
-
-        if self.categories.count() > 0 or category:
-            """
-             category selection
-            """
-            if category:
-                #  TODO how can we automatically apply the manager of the subclass?
-                if category.name == 'Events':
-                    queryset = Events.objects.filter_by_category(category)
-                    if self.categories_and.count() > 0:
-                        queryset = queryset.filter(categories=self.categories_and.all())
-                else:
-                    queryset = self.data_model.objects.filter_by_category(category)
-                    if self.categories_and.count() > 0:
-                        queryset = queryset.filter(categories=self.categories_and.all())
-            else:
-                queryset = self.data_model.objects.filter_by_categories(self.categories)
-                if self.categories_and.count() > 0:
-                    queryset = queryset.filter(categories=self.categories_and.all())
-
-            return self._apply_ordering_to_queryset_for_display(queryset)
-
-        else:
-            queryset = self.data_model.objects.active()
-            return queryset
-
 
 class BlogImage(AllinkBaseImage):
     blog = SortableForeignKey(Blog, verbose_name=_(u'Images'), help_text=_(u'The first image will be used as preview image.'), blank=True, null=True)
 
 
-class EventsRegistration(AllinkAddressFieldsModel, AllinkSimpleRegistrationFieldsModel):
+class EventsRegistration(AllinkBaseRegistration):
 
     event = models.ForeignKey(Events)
 

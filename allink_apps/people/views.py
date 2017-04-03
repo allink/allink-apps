@@ -8,5 +8,5 @@ class PeoplePluginLoadMore(AllinkBasePluginLoadMoreView):
     model = People
     plugin_model = PeopleAppContentPlugin
 
-# class PeopleDetail(AllinkBaseDetailView):
-#     model = People
+class PeopleDetail(AllinkBaseDetailView):
+    model = People

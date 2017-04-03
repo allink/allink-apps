@@ -22,8 +22,9 @@ def send_welcome_email(request, member):
                                key=temp_key))
     link = build_absolute_uri(request, path)
 
+    logourl = 'https://mfgz-allink-stage.eu.aldryn.io/static/images/branding/mfgz-logo-web.svg'
     subject = render_to_string('members/email/welcome_subject.txt')
-
+    salutation = 'Liebes MFGZ-Mitglied'
     text = render_to_string('members/email/welcome_text.txt', {'set_password_link': link})
     r = '<br />'
     text = text.replace('\r\n', r).replace('\n\r', r).replace('\r', r).replace('\n', r)
@@ -44,8 +45,8 @@ def send_welcome_email(request, member):
         'from_email': config.default_from_email,
         'from_name': 'MFGZ',
         'global_merge_vars': [
-            {'name': 'first_name', 'content': member.first_name},
-            {'name': 'last_name', 'content': member.last_name},
+            # {'name': 'logourl', 'content': logourl},
+            {'name': 'salutation', 'content': salutation},
             {'name': 'text', 'content': text},
         ],
         # 'google_analytics_campaign': 'Member welcome email',
@@ -98,6 +99,7 @@ def send_member_modified_email(member):
 
     logourl = 'https://mfgz-allink-stage.eu.aldryn.io/static/images/branding/mfgz-logo-web.svg'
     subject = render_to_string('members/email/member_modified_subject.txt')
+    salutation = 'Guten Tag'
     text = render_to_string('members/email/member_modified_text.txt', {'member_nr': member.member_nr, 'member_email': member.email})
     r = '<br />'
     text = text.replace('\r\n', r).replace('\n\r', r).replace('\r', r).replace('\n', r)
@@ -119,6 +121,7 @@ def send_member_modified_email(member):
         # 'from_name': config.default_from_name,
         'global_merge_vars': [
             {'name': 'logourl', 'content': logourl},
+            {'name': 'salutation', 'content': salutation},
             {'name': 'text', 'content': text},
         ],
         # 'google_analytics_campaign': 'Member welcome email',

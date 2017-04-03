@@ -14,4 +14,3 @@ class AllinkPeopleQuerySet(AllinkBaseModelQuerySet):
 
 class AllinkPeopleManager(AllinkBaseModelManager):
     queryset_class = AllinkPeopleQuerySet
-    use_for_related_fields = True

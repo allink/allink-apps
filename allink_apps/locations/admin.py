@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin, messages
-from django.utils.translation import ugettext_lazy as _
-
-from cms.admin.placeholderadmin import PlaceholderAdminMixin
 from adminsortable.admin import SortableTabularInline
 from django.utils.translation import ugettext_lazy as _
 from allink_core.allink_base.admin import AllinkBaseAdmin
@@ -13,12 +10,11 @@ from .models import LocationsImage, Locations, LocationsAppContentPlugin
 class LocationsImageInline(SortableTabularInline):
     model = LocationsImage
     extra = 1
-    max_num = 1
-    verbose_name = ''
-    verbose_name_plural = _(u'Preview Image')
+    verbose_name = 'IMAGES'
+    verbose_name_plural = ''
 
 @admin.register(Locations)
-class LocationsAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
+class LocationsAdmin(AllinkBaseAdmin):
     inlines = [LocationsImageInline, ]
     exclude = ('lead', )
     readonly_fields = ('is_currently_open', )
@@ -30,6 +26,7 @@ class LocationsAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
                     'active',
                     'title',
                     'slug',
+                    'text',
                     ('zip_code', 'place',),
                     ('street', 'street_nr',),
                     ('phone', 'mobile',),

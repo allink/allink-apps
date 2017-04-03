@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from allink_core.allink_base.views import AllinkBasePluginLoadMoreView, AllinkBaseDetailView, AllinkBaseCreateView
+from allink_core.allink_categories.models import AllinkCategory
 from allink_core.allink_mandrill.config import MandrillConfig
 from allink_core.allink_terms.models import AllinkTerms
 
@@ -28,14 +29,18 @@ class BlogDetail(AllinkBaseDetailView):
         else:
             name = self.object._meta.model_name
 
-        names.append("%s/%s%s.html" % (name, name, self.template_name_suffix))
+        names.append("%s/%s%s.html" % (
+            self.object._meta.app_label,
+            name,
+            self.template_name_suffix
+        ))
         return names
 
 
 class EventsRegistrationView(AllinkBaseCreateView):
     model = EventsRegistration
     form_class = EventsRegistrationForm
-    template_name = 'events/forms/registration.html'
+    template_name = 'blog/forms/registration.html'
 
     def get_context_data(self, **kwargs):
         context = super(AllinkBaseCreateView, self).get_context_data(**kwargs)
@@ -45,10 +50,10 @@ class EventsRegistrationView(AllinkBaseCreateView):
         return context
 
     def get_initial(self):
-        self.item = Events.objects.get(translations__slug=self.kwargs.get('slug', None))
+        self.event = Events.objects.get(translations__slug=self.kwargs.get('slug', None))
         initial = super(EventsRegistrationView, self).get_initial()
         initial = initial.copy()
-        initial['event'] = self.item
+        initial['event'] = self.event
         initial['terms'] = AllinkTerms.objects.get_published()
         return initial
 
@@ -58,5 +63,5 @@ class EventsRegistrationView(AllinkBaseCreateView):
         return response
 
     def send_mail(self):
-        send_registration_email(self.get_form(), self.item)
-        send_registration_confirmation_email(self.get_form(), self.item)
+        send_registration_email(self.get_form(), self.event)
+        send_registration_confirmation_email(self.get_form(), self.event)

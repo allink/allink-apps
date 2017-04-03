@@ -1,25 +1,22 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
 from django import forms
-from django.utils.translation import ugettext_lazy as _
 
 from cms.admin.placeholderadmin import PlaceholderAdminMixin
 from adminsortable.admin import SortableTabularInline
-from allink_core.allink_base.admin import AllinkBaseAdminSortable
+from allink_core.allink_base.admin import AllinkBaseAdmin
 
 from .models import WorkImage, Work
 
 
 class WorkImageInline(SortableTabularInline):
     model = WorkImage
-    extra = 0
-    max_num = 1
-    verbose_name = ''
-    verbose_name_plural = _(u'Preview Image')
-
+    extra = 1
+    verbose_name = 'IMAGES'
+    verbose_name_plural = ''
 
 @admin.register(Work)
-class WorkAdmin(PlaceholderAdminMixin, AllinkBaseAdminSortable):
+class WorkAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
     inlines = [WorkImageInline, ]
     # list_filter = ('active', 'categories',)
 
@@ -31,6 +28,7 @@ class WorkAdmin(PlaceholderAdminMixin, AllinkBaseAdminSortable):
                     'title',
                     'slug',
                     'lead',
+                    'text',
                 ),
             }),
         )

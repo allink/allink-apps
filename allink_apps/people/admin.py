@@ -1,28 +1,24 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
-from cms.admin.placeholderadmin import PlaceholderAdminMixin
 from adminsortable.admin import SortableTabularInline
-
 from allink_core.allink_base.admin import AllinkBaseAdmin
 from allink_core.allink_base.admin.forms import AllinkBaseAdminForm
-from .models import PeopleImage, People
-
+from .models import PeopleImage, People, PeopleAppContentPlugin
 
 class PeopleImageInline(SortableTabularInline):
     model = PeopleImage
     extra = 1
-    max_num = 1
     verbose_name = None
-    verbose_name_plural = _(u'Preview Image')
+    verbose_name_plural = ''
 
 
 @admin.register(People)
-class PeopleAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
+class PeopleAdmin(AllinkBaseAdmin):
     inlines = [PeopleImageInline, ]
 
     form = AllinkBaseAdminForm
-    search_fields = ('firstname', 'lastname',)
+    search_fields = ('translations__firstname', 'translations__lastname',)
     list_display = ('firstname', 'lastname', 'get_categories', 'active', 'created', 'modified')
 
     exclude = ('images',)
@@ -32,13 +28,14 @@ class PeopleAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
             (None, {
                 'fields': (
                     'active',
-                    ('firstname', 'lastname'),
+                    ('firstname', 'lastname', 'gender'),
                     ('job_title', 'job_function'),
                     ('email', 'website'),
                     'company_name',
                     ('phone', 'mobile', 'fax'),
                     ('street', 'street_nr'),
                     ('place', 'zip_code'),
+                    'text',
                     'slug',
                 ),
             }),

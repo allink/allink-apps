@@ -1,9 +1,9 @@
-{% load cms_tags allink_cms_tags allink_cms_tags allink_cms_tags sekizai_tags i18n thumbnail allink_image_tags %}
+{% load cms_tags sekizai_tags i18n thumbnail allink_image_tags %}
 
 <tr class="{% if appended %}appended{% endif %}">
     <td>
         {% if object.title %}
-            {% render_model_ajax object "title" %}
+            {% render_model object "title" %}
         {% endif %}
     </td>
     <td>
@@ -11,7 +11,7 @@
             <a href="{{object.website}}" target="_blank" data-softpage-disabled>
         {% endif %}
             {% if object.company_name %}
-                {% render_model_ajax object "company_name" %}
+                {% render_model object "company_name" %}
             {% endif %}
         {% if object.website %}
             </a>
@@ -19,7 +19,7 @@
     </td>
     <td>
         {% if object.place %}
-            {% render_model_ajax object "place" %}
+            {% render_model object "place" %}
         {% endif %}
     </td>
     <td>

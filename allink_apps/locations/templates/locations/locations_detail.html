@@ -9,14 +9,11 @@
     <div class="content-section app-content-plugin locations-plugin detail-view container-enabled">
         <div class="container" data-scroll-spy>
             <div class="manage-spacings">
-                {% if object.images %}
+                {% if object.preview_image %}
                     <div class="image-container">
                        {% include "slider_detail/content.html" with display_title=False title_content=object.title %}
                     </div>
                 {% endif %}
-
-                {% render_placeholder object.header_placeholder %}
-
                 {% if object.title %}
                     <header class="heading-container">
                         <h1 class="heading">
@@ -24,15 +21,11 @@
                         </h1>
                     </header>
                 {% endif %}
+                {% if instance.detail_link_enabled and object.text %}
                     <div class="text-container">
-                        {# optional: lead #}
-                        {% if object.lead %}
-                            <p class="lead">
-                                {{object.lead|striptags}}
-                            </p>
-                        {% endif %}
-                        {% render_placeholder object.content_placeholder %}
+                        {{ object.text }}
                     </div>
+                {% endif %}
             </div>
         </div>
     </div>
