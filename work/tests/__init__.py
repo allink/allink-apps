@@ -21,8 +21,8 @@ from cms.test_utils.testcases import BaseCMSTestCase
 from cms.utils import get_cms_setting
 from cms.utils.i18n import get_language_list, force_language
 
-from .utils import create_user
-from ..models import Work
+from allink_apps.work.tests.utils import create_user
+from allink_apps.work.models import Work
 
 
 APP_MODULE = 'allink_apps.work.cms_app'
@@ -161,10 +161,7 @@ class DefaultSetupMixin(object):
         return page.reload()
 
 
-class BaseWorkTest(DefaultSetupMixin,
-                     CleanUpMixin,
-                     BaseCMSTestCase,
-                     TestCase):
+class BaseWorkTest(DefaultSetupMixin, CleanUpMixin, BaseCMSTestCase, TestCase):
 
     @staticmethod
     def reload(obj, language=None):

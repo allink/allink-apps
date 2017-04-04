@@ -13,7 +13,6 @@ from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 
 from allink_core.allink_base.models import AllinkManualEntriesMixin, AllinkBaseModelManager, AllinkTranslatedAutoSlugifyMixin
 from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin
-from allink_core.allink_base.models.mixins import AllinkTranslatedAutoSlugifyMixin
 
 
 class Work(SortableMixin, TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, TranslatableModel, AllinkBaseModel):

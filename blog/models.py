@@ -20,7 +20,7 @@ from allink_apps.locations.models import Locations
 
 from polymorphic.models import PolymorphicModel
 
-from .managers import AllinkEventsManager, AllinkBlogManager
+from allink_apps.blog.managers import AllinkEventsManager, AllinkBlogManager
 
 
 #  Blog Parent class

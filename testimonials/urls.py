@@ -1,6 +1,6 @@
 # # -*- coding: utf-8 -*-
 from django.conf.urls import url
-from .views import TestimonialPluginLoadMore, TestimonialDetail
+from allink_apps.testimonials.views import TestimonialPluginLoadMore, TestimonialDetail
 
 
 urlpatterns = [

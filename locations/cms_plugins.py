@@ -2,7 +2,7 @@
 from cms.plugin_pool import plugin_pool
 from django.utils.translation import ugettext_lazy as _
 from allink_core.allink_base.admin.cms_plugins import CMSAllinkBaseAppContentPlugin
-from .models import LocationsAppContentPlugin
+from allink_apps.locations.models import LocationsAppContentPlugin
 
 
 @plugin_pool.register_plugin

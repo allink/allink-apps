@@ -2,7 +2,7 @@
 
 from __future__ import unicode_literals
 from django.contrib.sitemaps import Sitemap
-from ..models import People
+from allink_apps.people.models import People
 
 
 class PeopleSitemap(Sitemap):

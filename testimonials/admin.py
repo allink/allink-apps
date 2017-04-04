@@ -7,7 +7,7 @@ from cms.admin.placeholderadmin import PlaceholderAdminMixin
 from adminsortable.admin import SortableTabularInline
 from allink_core.allink_base.admin import AllinkBaseAdmin
 
-from .models import TestimonialImage, Testimonial, TestimonialAppContentPlugin
+from allink_apps.testimonials.models import TestimonialImage, Testimonial
 
 
 class TestimonialImageInline(SortableTabularInline):
@@ -16,6 +16,7 @@ class TestimonialImageInline(SortableTabularInline):
     max_num = 1
     verbose_name = ''
     verbose_name_plural = _(u'Preview Image')
+
 
 @admin.register(Testimonial)
 class TestimonialAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
@@ -29,7 +30,7 @@ class TestimonialAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
             (None, {
                 'fields': (
                     'active',
-                    ('firstname','lastname'),
+                    ('firstname', 'lastname'),
                     ('street', 'street_nr'),
                     ('place', 'zip_code'),
                     'lead',

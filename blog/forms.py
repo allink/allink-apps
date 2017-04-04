@@ -6,7 +6,7 @@ from django.utils.safestring import mark_safe
 from allink_core.allink_base.forms import AllinkBaseModelForm
 from allink_core.allink_terms.models import AllinkTerms
 
-from .models import EventsRegistration
+from allink_apps.blog.models import EventsRegistration
 
 
 class EventsRegistrationForm(AllinkBaseModelForm):

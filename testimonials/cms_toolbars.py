@@ -4,7 +4,7 @@ from cms.toolbar_base import CMSToolbar
 
 from allink_core.allink_base.utils import AllinkBaseModifierMixin
 
-from .models import Testimonial
+from allink_apps.testimonials.models import Testimonial
 
 
 @toolbar_pool.register

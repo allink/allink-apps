@@ -7,7 +7,7 @@ from cms.cms_toolbars import ADMIN_MENU_IDENTIFIER, ADMIN_SITES_BREAK
 from cms.toolbar_pool import toolbar_pool
 from cms.toolbar_base import CMSToolbar
 
-from .models import Members
+from allink_apps.members.models import Members
 
 
 @toolbar_pool.register
@@ -26,4 +26,3 @@ class MembersToolbar(CMSToolbar):
 
         url = reverse('admin:{}_{}_changelist'.format(self.model._meta.app_label, self.model._meta.model_name))
         allink_menu.add_sideframe_item(self.model.get_verbose_name_plural(), url=url)
-

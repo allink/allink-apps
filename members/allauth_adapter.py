@@ -2,7 +2,6 @@ from allauth.account.adapter import DefaultAccountAdapter
 from cms.models import Page
 
 
-
 class AccountAdapter(DefaultAccountAdapter):
     def get_login_redirect_url(self, request):
         # Redirects to the one page which has

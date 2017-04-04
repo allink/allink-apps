@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from cms.plugin_pool import plugin_pool
 from allink_core.allink_base.admin.cms_plugins import CMSAllinkBaseAppContentPlugin
-from .models import WorkAppContentPlugin
+from allink_apps.work.models import WorkAppContentPlugin
 
 
 @plugin_pool.register_plugin

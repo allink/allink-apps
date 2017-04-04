@@ -4,7 +4,7 @@ from cms.toolbar_base import CMSToolbar
 
 from allink_core.allink_base.utils import AllinkBaseModifierMixin
 
-from .models import Locations
+from allink_apps.locations.models import Locations
 
 
 @toolbar_pool.register

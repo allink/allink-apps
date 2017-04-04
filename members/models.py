@@ -113,7 +113,6 @@ class Members(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, Translat
             self.user.save()
         super(Members, self).save(**kwargs)
 
-
     def delete(self, *args, **kwargs):
         if self.user:
             self.user.delete()
@@ -183,4 +182,3 @@ class MembersLog(models.Model):
 
     def __str__(self):
         return self.log
-

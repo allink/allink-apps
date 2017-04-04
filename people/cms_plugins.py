@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
-from django.utils.translation import ugettext_lazy as _
 from cms.plugin_pool import plugin_pool
 from allink_core.allink_base.admin.cms_plugins import CMSAllinkBaseAppContentPlugin
-from .models import People, PeopleAppContentPlugin
+from allink_apps.people.models import PeopleAppContentPlugin
 
 
 @plugin_pool.register_plugin

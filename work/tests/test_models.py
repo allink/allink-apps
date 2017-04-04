@@ -5,17 +5,12 @@ from __future__ import unicode_literals
 from django.test import TransactionTestCase
 from django.utils.translation import override, force_text
 
-from ..models import Work
+from allink_apps.work.models import Work
 
-from . import (
-    DefaultSetupMixin, DefaultApphookMixin, CleanUpMixin, BaseWorkTest,
-)
+from allink_apps.work.tests import DefaultSetupMixin, DefaultApphookMixin, CleanUpMixin, BaseWorkTest
 
 
-class TestBasicWorkModels(DefaultSetupMixin,
-                            DefaultApphookMixin,
-                            CleanUpMixin,
-                            TransactionTestCase):
+class TestBasicWorkModels(DefaultSetupMixin, DefaultApphookMixin, CleanUpMixin, TransactionTestCase):
 
     def setUp(self):
         super(TestBasicWorkModels, self).setUp()

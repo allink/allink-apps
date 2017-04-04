@@ -6,7 +6,7 @@ from adminsortable.admin import SortableTabularInline
 
 from allink_core.allink_base.admin import AllinkBaseAdmin
 from allink_core.allink_base.admin.forms import AllinkBaseAdminForm
-from .models import PeopleImage, People
+from allink_apps.people.models import PeopleImage, People
 
 
 class PeopleImageInline(SortableTabularInline):

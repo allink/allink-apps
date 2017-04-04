@@ -2,7 +2,7 @@
 
 from __future__ import unicode_literals
 from django.contrib.sitemaps import Sitemap
-from ..models import Blog
+from allink_apps.blog.models import Blog
 
 
 class BlogSitemap(Sitemap):

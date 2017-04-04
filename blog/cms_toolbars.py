@@ -7,7 +7,7 @@ from cms.toolbar_base import CMSToolbar
 
 from allink_core.allink_base.utils import AllinkBaseModifierMixin
 
-from .models import News, Events, EventsRegistration
+from allink_apps.blog.models import News, Events, EventsRegistration
 
 
 @toolbar_pool.register
@@ -34,4 +34,3 @@ class EventsRegistrationToolbar(CMSToolbar):
 
         url = reverse('admin:{}_{}_changelist'.format(self.model._meta.app_label, self.model._meta.model_name))
         menu.add_sideframe_item(self.model._meta.verbose_name_plural, url=url)
-

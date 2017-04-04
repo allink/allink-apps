@@ -1,6 +1,6 @@
 # # -*- coding: utf-8 -*-
 from django.conf.urls import url
-from .views import LocationsPluginLoadMore, LocationsDetail
+from allink_apps.locations.views import LocationsPluginLoadMore, LocationsDetail
 
 
 urlpatterns = [

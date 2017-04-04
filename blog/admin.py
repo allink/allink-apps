@@ -102,6 +102,7 @@ class EventsAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
 
         return fieldsets
 
+
 @admin.register(EventsRegistration)
 class EventsRegistrationAdmin(admin.ModelAdmin):
     pass

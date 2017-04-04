@@ -35,11 +35,10 @@ class ContactRequestBase(AllinkAddressFieldsModel, AllinkSimpleRegistrationField
 
     @property
     def contact_details(self):
-        """ 
+        """
         Returns either the email address or the telephone number, depending on contact_type field
         """
         return self.phone if self.contact_type == self.CONTACT_PHONE else self.email
-
 
 
 class ContactRequest(ContactRequestBase):

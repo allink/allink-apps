@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 import os
-from django.test import TestCase
-from django.test.client import RequestFactory
-from django.template.loader import render_to_string
+# from django.test import TestCase
+# from django.test.client import RequestFactory
+# from django.template.loader import render_to_string
 
-from cms.api import add_plugin
-from cms.models import Placeholder
-from cms.plugin_rendering import ContentRenderer
+# from cms.api import add_plugin
+# from cms.models import Placeholder
+# from cms.plugin_rendering import ContentRenderer
 
 import allink_apps.work as app
-from allink_apps.work.cms_plugins import CMSWorkPlugin
+# from allink_apps.work.cms_plugins import CMSWorkPlugin
 
 APP_NAME = 'work'
 TEMPLATE_DIR = os.path.join(os.path.dirname(app.__file__), 'templates', APP_NAME)

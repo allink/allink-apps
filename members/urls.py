@@ -1,6 +1,6 @@
 # # -*- coding: utf-8 -*-
 from django.conf.urls import url
-from .views import MembersIndex, MembersProfileEdit
+from allink_apps.members.views import MembersIndex, MembersProfileEdit
 
 
 urlpatterns = [

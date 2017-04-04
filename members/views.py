@@ -2,13 +2,9 @@
 from django.views.generic import TemplateView, FormView
 from django.http import JsonResponse
 from django.template.loader import render_to_string
-try:
-    from django.contrib.sites.shortcuts import get_current_site
-except ImportError:
-    from django.contrib.sites.models import get_current_site
 
-from .forms import MembersProfileEditForm
-from .email import send_member_modified_email
+from allink_apps.members.forms import MembersProfileEditForm
+from allink_apps.members.email import send_member_modified_email
 
 
 class MembersIndex(TemplateView):
