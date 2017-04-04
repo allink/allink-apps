@@ -1,7 +1,5 @@
 # Changelog
 
-# Test
-
 Each release is divided into the following main categories:
 
 - IMPORTANT: These changes might not be backward compatible and require updating existing code. (If not applied correctly your update will fail)
