@@ -15,7 +15,7 @@ from allink_core.allink_base.models import AllinkManualEntriesMixin, AllinkBaseM
 from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin
 from allink_core.allink_base.models.mixins import AllinkTranslatedAutoSlugifyMixin
 
-#  TEST
+
 class Work(SortableMixin, TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, TranslatableModel, AllinkBaseModel):
 
     slug_source_field_name = 'title'
