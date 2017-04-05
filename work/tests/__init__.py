@@ -21,11 +21,12 @@ from cms.test_utils.testcases import BaseCMSTestCase
 from cms.utils import get_cms_setting
 from cms.utils.i18n import get_language_list, force_language
 
-from allink_apps.work.tests.utils import create_user
-from allink_apps.work.models import Work
+from djangocms_helper.utils import create_user
+from ..models import Work
+from allink_core.allink_categories.models import AllinkCategory
 
 
-APP_MODULE = 'allink_apps.work.cms_app'
+APP_MODULE = 'work.cms_apps'
 DEFAULT_WORK_NAMESPACE = 'work'
 
 
@@ -109,21 +110,33 @@ class DefaultSetupMixin(object):
         'work1': {
             'en': {'title': 'work1', 'slug': 'work1',
                    'lead': 'text1'},
-            'de': {'name': 'mensch1', 'slug': 'mensch1',
-                   'function': 'Funktion1', 'description': 'Beschreibung-de'},
+            'de': {'title': 'work2', 'slug': 'work2',
+                   'lead': 'text2'},
         },
         'work2': {
             # This should *not* have a EN translation
-            'de': {'name': 'work2-de', 'slug': 'work2-de',
-                   'lead': 'text1-de'},
+            'de': {'title': 'work2-de', 'slug': 'work2-de',
+                   'lead': 'text2-de'},
         },
+        # this category is only supposed to be used in work model
+        'category1': {'name': 'Test Category 1', 'slug': 'test-category-1',
+                      'model_names': ['work'],
+                      },
+        # this category is supposed to be used in work model and the people model
+        'category2': {'name': 'Test Category 2', 'slug': 'test-category-2',
+                      'model_names': ['work', 'people'],
+                      },
+        # this category is not supposed to be used in work
+        'category3': {'name': 'Test Category 3', 'slug': 'test-category-3',
+                      'model_names': ['work', 'people'],
+                      },
     }
 
     def setUp(self):
         self.template = get_cms_setting('TEMPLATES')[0][0]
         self.language = settings.LANGUAGES[0][0]
         self.page = api.create_page(
-            'page', self.template, self.language, published=True)
+            'page one en', self.template, self.language, published=True)
         api.create_title('de', 'page de', self.page)
         self.page.publish('de')
         self.placeholder = self.page.placeholders.all()[0]
@@ -151,7 +164,7 @@ class DefaultSetupMixin(object):
                 title='Work en', template=self.template, language='en',
                 published=True,
                 parent=self.page,
-                apphook='WorkApp',
+                apphook='WorkApphook',
                 apphook_namespace=DEFAULT_WORK_NAMESPACE,
             )
         page.publish('en')
@@ -161,7 +174,10 @@ class DefaultSetupMixin(object):
         return page.reload()
 
 
-class BaseWorkTest(DefaultSetupMixin, CleanUpMixin, BaseCMSTestCase, TestCase):
+class BaseWorkTest(DefaultSetupMixin,
+                   CleanUpMixin,
+                   BaseCMSTestCase,
+                   TestCase):
 
     @staticmethod
     def reload(obj, language=None):
@@ -198,9 +214,24 @@ class BaseWorkTest(DefaultSetupMixin, CleanUpMixin, BaseCMSTestCase, TestCase):
         super(BaseWorkTest, self).setUp()
         with override('en'):
             self.work1 = Work(**self.data['work1']['en'])
-        self.work1.name = 'work1'
+        self.work1.title = 'work1'
         self.work1.slug = 'work1-slug'
         self.work1.save()
+
+        # Create categories
+        self.rootcategory1 = AllinkCategory.add_root(name='root 1')
+        self.rootcategory1.model_names = self.data['category1']['model_names']
+        self.rootcategory1.save()
+        self.category1 = self.rootcategory1.add_child(name=self.data['category1']['name'])
+        self.category1.save()
+
+        self.rootcategory2 = AllinkCategory.add_root(name='root 2')
+        self.rootcategory2.model_names = self.data['category2']['model_names']
+        self.rootcategory2.save()
+        self.category2 = self.rootcategory2.add_child(name=self.data['category2']['name'])
+        self.category2.save()
+        self.category3 = self.rootcategory2.add_child(name=self.data['category3']['name'])
+        self.category3.save()
 
         # Add a DE translation for work1
         self.mktranslation(self.work1, 'de', **self.data['work1']['de'])
@@ -210,7 +241,7 @@ class BaseWorkTest(DefaultSetupMixin, CleanUpMixin, BaseCMSTestCase, TestCase):
             self.work2 = Work(**self.data['work2']['de'])
         self.work2.save()
 
-    def set_defalut_person_objects_current_language(self, language):
+    def set_default_work_objects_current_language(self, language):
         """
         Make sure parler active language is set to language.
         :param language: language_code
