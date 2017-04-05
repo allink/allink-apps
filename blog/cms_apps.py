@@ -11,4 +11,5 @@ class BlogApphook(CMSApp):
     def get_urls(self, page=None, language=None, **kwargs):
         return ['allink_apps.blog.urls']
 
+
 apphook_pool.register(BlogApphook)

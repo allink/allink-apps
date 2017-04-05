@@ -13,7 +13,7 @@ from allink_core.allink_base.models.choices import GENDER_CHOICES
 from allink_core.allink_base.models import AllinkManualEntriesMixin, AllinkTranslatedAutoSlugifyMixin, AllinkContactFieldsModel
 from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin, AllinkAddressFieldsModel
 
-from .managers import AllinkPeopleManager
+from allink_apps.people.managers import AllinkPeopleManager
 
 
 class People(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, TranslatableModel, AllinkContactFieldsModel, AllinkAddressFieldsModel, AllinkBaseModel):

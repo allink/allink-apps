@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from allink_core.allink_base.views import AllinkBasePluginLoadMoreView, AllinkBaseDetailView
-from .models import Testimonial, TestimonialAppContentPlugin
+from allink_apps.testimonials.models import Testimonial, TestimonialAppContentPlugin
 
 
 class TestimonialPluginLoadMore(AllinkBasePluginLoadMoreView):
@@ -11,4 +11,3 @@ class TestimonialPluginLoadMore(AllinkBasePluginLoadMoreView):
 
 class TestimonialDetail(AllinkBaseDetailView):
     model = Testimonial
-

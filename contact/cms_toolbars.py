@@ -5,7 +5,8 @@ from django.core.urlresolvers import reverse
 from cms.toolbar_pool import toolbar_pool
 from cms.toolbar_base import CMSToolbar
 
-from .models import ContactRequest
+from allink_apps.contact.models import ContactRequest
+
 
 @toolbar_pool.register
 class ContactToolbar(CMSToolbar):
@@ -19,4 +20,3 @@ class ContactToolbar(CMSToolbar):
 
         url = reverse('admin:{}_{}_changelist'.format(self.model._meta.app_label, self.model._meta.model_name))
         menu.add_sideframe_item(self.model._meta.verbose_name_plural, url=url)
-

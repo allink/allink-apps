@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from import_export import resources
-from .models import Members
+from allink_apps.members.models import Members
 
 
 class MembersResource(resources.ModelResource):

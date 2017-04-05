@@ -13,6 +13,26 @@ Each release is divided into the following main categories:
 
 The version numbers referring to the version in [allink_core](git@github.com/allink/allink-core.git).
 
+## v0.0.8
+
+### IMPORTANT
+
+###### SETTINGS
+
+###### TEMPLATES
+
+###### URLS
+
+###### REQUIREMENTS
+
+###### DATA MIGRATIONS
+
+### NEW
+
+- config: New app added in allink_apps to store project specific settings. A migrations folder (`allink_apps_migrations.config`) is necessary in every project after this version.
+
+### FIXES
+
 
 ## v0.0.7
 
@@ -21,7 +41,7 @@ The version numbers referring to the version in [allink_core](git@github.com/all
 ###### SETTINGS
 
 ###### TEMPLATES
-- allink_locations: text field removed and lead adde.
+- allink_locations: text field removed and lead added.
 
 ###### URLS
 
@@ -35,6 +55,7 @@ The version numbers referring to the version in [allink_core](git@github.com/all
 
 ### NEW
 - When creating a new News or Event entry the category News or Events is set as an initial value in the form.
+- App Plugins now support AND operator for filtering categories
 
 ### FIXES
 - Replaced TranslatedAutoSlugifyMixin by AllinkTranslatedAutoSlugifyMixin in all apps. This tries not to use default slugs.
@@ -58,4 +79,3 @@ The version numbers referring to the version in [allink_core](git@github.com/all
 - header_placeholder added to all apps
 
 ### FIXES
-

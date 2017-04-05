@@ -2,20 +2,16 @@
 
 from __future__ import unicode_literals
 
-from django.test import TransactionTestCase
+from django.test import TransactionTestCase, override_settings
 from django.utils.translation import override, force_text
 
-from ..models import Work
+from allink_core.allink_categories.models import AllinkCategory
+from allink_apps.work.models import Work
 
-from . import (
-    DefaultSetupMixin, DefaultApphookMixin, CleanUpMixin, BaseWorkTest,
-)
+from allink_apps.work.tests import DefaultSetupMixin, DefaultApphookMixin, CleanUpMixin, BaseWorkTest
 
 
-class TestBasicWorkModels(DefaultSetupMixin,
-                            DefaultApphookMixin,
-                            CleanUpMixin,
-                            TransactionTestCase):
+class TestBasicWorkModels(DefaultSetupMixin, DefaultApphookMixin, CleanUpMixin, TransactionTestCase):
 
     def setUp(self):
         super(TestBasicWorkModels, self).setUp()
@@ -39,7 +35,8 @@ class TestBasicWorkModels(DefaultSetupMixin,
     def test_str(self):
         title = 'Work Str'
         work = Work.objects.create(title=title)
-        self.assertEqual(force_text(work), title)
+        created_str = work.created.strftime('%d.%m.%Y')
+        self.assertEqual(force_text(work), title + ' - ' + created_str)
 
     def test_absolute_url(self):
         slug = 'work-slug'
@@ -51,12 +48,6 @@ class TestBasicWorkModels(DefaultSetupMixin,
             self.assertEqual(
                 work.get_absolute_url(),
                 '{0}{1}/'.format(app_hook_url, slug)
-            )
-            # Now test that it will work when there's no slug too.
-            work.slug = ''
-            self.assertEqual(
-                work.get_absolute_url(),
-                '{0}{1}/'.format(app_hook_url, work.pk),
             )
 
     def test_auto_slugify(self):
@@ -106,3 +97,57 @@ class TestWorkModelTranslation(BaseWorkTest):
             work1.lead,
             self.data['work1']['de']['lead']
         )
+
+
+class TestWorkModelCategories(BaseWorkTest):
+
+    def test_get_relevant_categories(self):
+        """
+        work is tagged with only one category
+        two root categories with tottaly 3 relevant category for model_name "work"
+        """
+        work1 = self.reload(self.work1, 'en')
+        work1.categories.add(self.category1)
+        category1 = self.reload(self.category1)
+        category2 = self.reload(self.category2)
+        category3 = self.reload(self.category3)
+        # categories has only one defined category
+        self.assertListEqual(
+            list(work1.get_relevant_categories()),
+            [category1, category2, category3]
+        )
+
+    def test_get_relevant_categories_multiple_categories(self):
+        """
+        work is tagged with two categories
+        two root categories with each a relevant category for model_name "work"
+        one root categories with a relevant category for model_name "people"
+        """
+        work1 = self.reload(self.work1, 'en')
+        work1.categories.add(self.category1)
+        work1.categories.add(self.category3)
+        category1 = self.reload(self.category1)
+        category2 = self.reload(self.category2)
+        category3 = self.reload(self.category3)
+        self.assertListEqual(
+            list(work1.get_relevant_categories()),
+            [category1, category2, category3]
+        )
+
+    @override_settings(PROJECT_APP_MODEL_CATEGORY_TAG_CHOICES=[('work', 'Work'), ])
+    def test_auto_create_category(self):
+        work1 = Work.objects.create(title='Test Work with category')
+        work1.save()
+
+        cat1 = AllinkCategory.objects.get(id=work1.auto_generated_category.id)
+        self.assertEquals(work1.auto_generated_category, cat1)\
+
+    @override_settings(PROJECT_APP_MODEL_CATEGORY_TAG_CHOICES=[])
+    def test_auto_not_create_category(self):
+        work1 = Work.objects.create(title='Test Work with category')
+        work1.save()
+        temp_cat_count = AllinkCategory.objects.all().count()
+
+        self.assertEquals(work1.auto_generated_category, None)
+        # no category has been created
+        self.assertEquals(AllinkCategory.objects.all().count(), temp_cat_count)

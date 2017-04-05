@@ -14,7 +14,7 @@ from allink_core.allink_base.models.mixins import AllinkManualEntriesMixin
 from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin
 from allink_core.allink_base.models import AllinkAddressFieldsModel, AllinkTranslatedAutoSlugifyMixin
 
-from .managers import AllinkTestimonialManager
+from allink_apps.testimonials.managers import AllinkTestimonialManager
 
 
 class Testimonial(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, TranslatableModel, AllinkAddressFieldsModel, AllinkBaseModel):

@@ -1,6 +1,6 @@
 # # -*- coding: utf-8 -*-
 from django.conf.urls import url
-from .views import BlogPluginLoadMore, BlogDetail, EventsRegistrationView
+from allink_apps.blog.views import BlogPluginLoadMore, BlogDetail, EventsRegistrationView
 
 
 urlpatterns = [

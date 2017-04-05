@@ -5,7 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from allink_core.allink_base.forms import AllinkBaseModelForm
 
-from .models import ContactRequest
+from allink_apps.contact.models import ContactRequest
 
 
 class ContactRequestBaseForm(forms.ModelForm):
@@ -60,6 +60,3 @@ class ContactRequestForm(AllinkBaseModelForm):
         for key in self.fields:
             if key != 'message' and key != 'type' and key != 'date' and key != 'time':
                 self.fields[key].required = True
-
-
-

@@ -4,10 +4,9 @@ from django.utils.translation import ugettext_lazy as _
 
 from cms.admin.placeholderadmin import PlaceholderAdminMixin
 from adminsortable.admin import SortableTabularInline
-from django.utils.translation import ugettext_lazy as _
 from allink_core.allink_base.admin import AllinkBaseAdmin
 
-from .models import LocationsImage, Locations, LocationsAppContentPlugin
+from allink_apps.locations.models import LocationsImage, Locations
 
 
 class LocationsImageInline(SortableTabularInline):
@@ -16,6 +15,7 @@ class LocationsImageInline(SortableTabularInline):
     max_num = 1
     verbose_name = ''
     verbose_name_plural = _(u'Preview Image')
+
 
 @admin.register(Locations)
 class LocationsAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):

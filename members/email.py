@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import mandrill
-from django.utils.translation import ugettext_lazy as _
 from django.template.loader import render_to_string
 from django.contrib.auth.tokens import default_token_generator
 
@@ -13,6 +11,7 @@ from allink_core.allink_mandrill.config import MandrillConfig
 from allink_core.allink_mandrill.helpers import send_transactional_email
 
 config = MandrillConfig()
+
 
 def send_welcome_email(request, member):
     # generate reset password url

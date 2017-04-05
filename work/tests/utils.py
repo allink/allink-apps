@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, print_function, unicode_literals
 
+
 def create_user(username, email, password, is_staff=False, is_superuser=False,
                 base_cms_permissions=False, permissions=None):
     from django.contrib.auth.models import Permission

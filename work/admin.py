@@ -7,7 +7,7 @@ from cms.admin.placeholderadmin import PlaceholderAdminMixin
 from adminsortable.admin import SortableTabularInline
 from allink_core.allink_base.admin import AllinkBaseAdminSortable
 
-from .models import WorkImage, Work
+from allink_apps.work.models import WorkImage, Work
 
 
 class WorkImageInline(SortableTabularInline):

@@ -1,1 +1,1 @@
-from sitemaps import WorkSitemap
+from allink_apps.work.sitemaps.sitemaps import WorkSitemap  # noqa

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
-from .models import ContactRequest
+from allink_apps.contact.models import ContactRequest
 
 
 class ContactRequestAdmin(admin.ModelAdmin):

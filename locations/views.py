@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from allink_core.allink_base.views import AllinkBasePluginLoadMoreView, AllinkBaseDetailView
-from .models import Locations, LocationsAppContentPlugin
+from allink_apps.locations.models import Locations, LocationsAppContentPlugin
 
 
 class LocationsPluginLoadMore(AllinkBasePluginLoadMoreView):
@@ -11,4 +11,3 @@ class LocationsPluginLoadMore(AllinkBasePluginLoadMoreView):
 
 class LocationsDetail(AllinkBaseDetailView):
     model = Locations
-
