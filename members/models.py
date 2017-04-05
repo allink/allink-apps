@@ -147,12 +147,6 @@ class Members(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, Translat
         # delete member
         data = {
             'email_address': self.email,
-            'status': 'subscribed',
-            'language': self.language,
-            'merge_fields': {
-                'FNAME': self.first_name,
-                'LNAME': self.last_name
-            }
         }
         if config.merge_vars:
             data = data.append(config.merge_vars)
