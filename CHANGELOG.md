@@ -36,6 +36,7 @@ The version numbers referring to the version in [allink_core](git@github.com/all
 - config: New app added in allink_apps to store project specific settings. A migrations folder (`allink_apps_migrations.config`) is necessary in every project after this version.
 
 ### FIXES
+- people: manager was still looking for field "lastname". is now looking for it correctly on the main table.
 
 
 ## v0.0.7
