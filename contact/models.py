@@ -40,6 +40,24 @@ class ContactRequestBase(AllinkAddressFieldsModel, AllinkSimpleRegistrationField
         """
         return self.phone if self.contact_type == self.CONTACT_PHONE else self.email
 
+    @classmethod
+    def get_verbose_name(cls):
+        from allink_core.allink_config.models import AllinkConfig
+        try:
+            field_name = cls._meta.model_name + '_verbose'
+            return getattr(AllinkConfig.get_solo(), field_name)
+        except AttributeError:
+            return cls._meta.verbose_name
+
+    @classmethod
+    def get_verbose_name_plural(cls):
+        from allink_core.allink_config.models import AllinkConfig
+        try:
+            field_name = cls._meta.model_name + '_verbose_plural'
+            return getattr(AllinkConfig.get_solo(), field_name)
+        except AttributeError:
+            return cls._meta.verbose_name_plural
+
 
 class ContactRequest(ContactRequestBase):
 
