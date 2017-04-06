@@ -36,16 +36,11 @@
 {% block softpage_title %}{{ object.title }} | {% if allink_config.default_base_title %}{{ allink_config.default_base_title }}{% else %}{{ request.site.name }}{% endif %}{% endblock softpage_title %}
 
 {% block content %}
+
+    {% render_placeholder object.header_placeholder %}
+
     <div class="content-section app-content-plugin detail-view work-plugin container-enabled">
-        <div class="container" data-scroll-spy>
-
-            {% if object.images %}
-                <div class="image-container header-image-container">
-                    {% include "slider_detail/content.html" with display_title=False title_content=object.title %}
-                </div>
-            {% endif %}
-
-            {% render_placeholder object.header_placeholder %}
+        <div class="container">
 
             <header class="section-heading">
                 <h1 class="heading">
