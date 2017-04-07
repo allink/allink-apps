@@ -28,10 +28,14 @@ The version numbers referring to the version in [allink_core](git@github.com/all
 
 ###### DATA MIGRATIONS
 
+- when making migrations on projects it's important, that the field "active" on each model gets renamed to "is_active".
+  The field must not be deleted and created as new, else data gets lost
+
 ### NEW
 
 ### FIXES
 
+- field "active" renamed to "is_active" on all models
 
 ## v0.0.8
 
