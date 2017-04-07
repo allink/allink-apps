@@ -19,11 +19,11 @@ def make_not_translated(apps, schema_editor):
         t.save(update_fields=['firstname', 'lastname'])
 
 
-def _get_translation(object, PeopleTranslation):
-    translations = PeopleTranslation.objects.filter(master_id=object.pk)
+def _get_translation(object, TestimonialTranslation):
+    translations = TestimonialTranslation.objects.filter(master_id=object.pk)
     try:
         return translations.get(language_code='de')
-    except PeopleTranslation.ObjectDoesNotExist:
+    except TestimonialTranslation.ObjectDoesNotExist:
         return translations.get()
 
 

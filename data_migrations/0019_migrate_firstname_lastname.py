@@ -27,6 +27,9 @@ def _get_translation(object, PeopleTranslation):
         return translations.get()
 
 
+
+
+
 class Migration(migrations.Migration):
 
     dependencies = [
