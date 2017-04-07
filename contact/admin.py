@@ -5,7 +5,7 @@ from allink_apps.contact.models import ContactRequest
 
 
 class ContactRequestAdmin(admin.ModelAdmin):
-    list_display = ('__unicode__', 'created', 'modified', 'nicer_contact_type', 'date', 'time', 'message',)
+    list_display = ('__str__', 'created', 'modified', 'nicer_contact_type', 'date', 'time', 'message',)
     list_filter = ('contact_type', 'modified', )
 
     def nicer_contact_type(self, obj):
