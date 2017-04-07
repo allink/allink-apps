@@ -27,11 +27,16 @@ The version numbers referring to the version in [allink_core](git@github.com/all
 
 ###### DATA MIGRATIONS
 
+- testemonials: firstname and lastname are not translated anymore.
+    - migration "0000_testemonials_migrate_firstname_lastname.py", including datamigration for this change can be found in "allink_apps.data_migrations". Ajust number for projects.
+    - The fields old_lastname and old_firstname can be removed in a next release
+
 ### NEW
 
 - config: New app added in allink_apps to store project specific settings. A migrations folder (`allink_apps_migrations.config`) is necessary in every project after this version.
 
 ### FIXES
+- people: manager was still looking for field "lastname". is now looking for it correctly on the main table.
 
 
 ## v0.0.7

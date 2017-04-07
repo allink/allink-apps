@@ -30,7 +30,7 @@ class ContactRequestBase(AllinkAddressFieldsModel, AllinkSimpleRegistrationField
     class Meta:
         abstract = True
 
-    def __unicode__(self):
+    def __str__(self):
         return u'%s %s' % (self.date, self.time)
 
     @property

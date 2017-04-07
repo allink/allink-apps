@@ -88,10 +88,8 @@ class News(Blog):
         verbose_name = _('News entry')
         verbose_name_plural = _('News')
 
-    def get_absolute_url(self):
-        from django.core.urlresolvers import reverse
-        app = 'blog:detail'.format(self._meta.model_name)
-        return reverse(app, kwargs={'slug': self.slug})
+    def get_detail_view(self):
+        'blog:detail'.format(self._meta.model_name)
 
 
 # Events
@@ -137,10 +135,8 @@ class Events(Blog):
         verbose_name = _('Event')
         verbose_name_plural = _('Events')
 
-    def get_absolute_url(self):
-        from django.core.urlresolvers import reverse
-        app = 'blog:detail'.format(self._meta.model_name)
-        return reverse(app, kwargs={'slug': self.slug})
+    def get_detail_view(self):
+        'blog:detail'.format(self._meta.model_name)
 
     def show_registration_form(self):
         if self.event_date < datetime.now().date():

@@ -100,7 +100,7 @@ class Members(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, Translat
                 first_name=self.first_name,
                 last_name=self.last_name
             )
-            group = Group.objects.get_or_create(name='Miglieder')
+            group = Group.objects.get_or_create(name='Mitglieder')
             user.groups.add(group[0])
             self.language = get_language()
             self.user = user
@@ -147,12 +147,6 @@ class Members(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, Translat
         # delete member
         data = {
             'email_address': self.email,
-            'status': 'subscribed',
-            'language': self.language,
-            'merge_fields': {
-                'FNAME': self.first_name,
-                'LNAME': self.last_name
-            }
         }
         if config.merge_vars:
             data = data.append(config.merge_vars)

@@ -38,13 +38,13 @@ class People(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, Translata
     )
 
     translations = TranslatedFields(
-        # to be removed in release 0.0.8
+        # to be removed in release 0.0.8, or when all old projects are up to date
         old_firstname=models.CharField(
             _(u'Firstname'),
             max_length=255,
             default=''
         ),
-        # to be removed in release 0.0.8
+        # to be removed in release 0.0.8, or when all old projects are up to date
         old_lastname=models.CharField(
             _(u'Lastname'),
             max_length=255,
