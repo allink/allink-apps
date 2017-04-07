@@ -100,7 +100,7 @@ class Members(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, Translat
                 first_name=self.first_name,
                 last_name=self.last_name
             )
-            group = Group.objects.get_or_create(name='Miglieder')
+            group = Group.objects.get_or_create(name='Mitglieder')
             user.groups.add(group[0])
             self.language = get_language()
             self.user = user

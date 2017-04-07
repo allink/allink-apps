@@ -103,7 +103,6 @@ class News(Blog):
         verbose_name = _('News entry')
         verbose_name_plural = _('News')
 
-
 # Events
 class Events(Blog):
 
