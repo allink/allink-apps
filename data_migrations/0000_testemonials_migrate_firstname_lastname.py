@@ -14,45 +14,25 @@ def make_not_translated(apps, schema_editor):
 
     for t in Testimonial.objects.all():
         translation = _get_translation(t, TestimonialTranslation)
-        t.firstname = translation.firstname
-        t.lastname = translation.lastname
+        t.firstname = translation.old_firstname
+        t.lastname = translation.old_lastname
         t.save(update_fields=['firstname', 'lastname'])
 
 
-def _get_translation(object, PeopleTranslation):
-    translations = PeopleTranslation.objects.filter(master_id=object.pk)
+def _get_translation(object, TestimonialTranslation):
+    translations = TestimonialTranslation.objects.filter(master_id=object.pk)
     try:
         return translations.get(language_code='de')
-    except PeopleTranslation.ObjectDoesNotExist:
+    except TestimonialTranslation.ObjectDoesNotExist:
         return translations.get()
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('testimonials', '0016_auto_20170403_0409'),
+        ('testimonials', '0009_auto_20170407_0256'),
     ]
 
     operations = [
-        migrations.RenameField(
-            model_name='testimonialtranslation',
-            old_name='firstname',
-            new_name='old_firstname',
-        ),
-        migrations.RenameField(
-            model_name='testimonialtranslation',
-            old_name='lastname',
-            new_name='old_lastname',
-        ),
-        migrations.AddField(
-            model_name='testimonial',
-            name='firstname',
-            field=models.CharField(default=b'', max_length=255, verbose_name='Firstname'),
-        ),
-        migrations.AddField(
-            model_name='testimonial',
-            name='lastname',
-            field=models.CharField(default=b'', max_length=255, verbose_name='Lastname'),
-        ),
         migrations.RunPython(make_not_translated),
     ]
