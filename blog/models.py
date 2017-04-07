@@ -90,6 +90,9 @@ class Blog(PolymorphicModel, TranslationHelperMixin, AllinkTranslatedAutoSlugify
         else:
             return None
 
+    def get_detail_view(self):
+        'blog:detail'.format(self._meta.model_name)
+
 
 # News
 class News(Blog):
@@ -99,9 +102,6 @@ class News(Blog):
         app_label = 'blog'
         verbose_name = _('News entry')
         verbose_name_plural = _('News')
-
-    def get_detail_view(self):
-        'blog:detail'.format(self._meta.model_name)
 
 
 # Events
@@ -146,9 +146,6 @@ class Events(Blog):
         app_label = 'blog'
         verbose_name = _('Event')
         verbose_name_plural = _('Events')
-
-    def get_detail_view(self):
-        'blog:detail'.format(self._meta.model_name)
 
     def show_registration_form(self):
         if self.event_date < datetime.now().date():

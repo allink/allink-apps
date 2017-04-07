@@ -30,7 +30,7 @@ def _get_translation(object, PeopleTranslation):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('people', 'latest'),
+        ('people', '__latest__'),
     ]
 
     operations = [

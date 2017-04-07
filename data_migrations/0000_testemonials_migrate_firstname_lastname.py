@@ -30,7 +30,7 @@ def _get_translation(object, TestimonialTranslation):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('testimonials', '0009_auto_20170407_0256'),
+        ('testimonials', '__latest__'),
     ]
 
     operations = [
