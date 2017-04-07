@@ -13,6 +13,26 @@ Each release is divided into the following main categories:
 
 The version numbers referring to the version in [allink_core](git@github.com/allink/allink-core.git).
 
+
+## v0.0.9 (under development)
+
+### IMPORTANT
+
+###### SETTINGS
+
+###### TEMPLATES
+
+###### URLS
+
+###### REQUIREMENTS
+
+###### DATA MIGRATIONS
+
+### NEW
+
+### FIXES
+
+
 ## v0.0.8
 
 ### IMPORTANT
@@ -35,6 +55,7 @@ The version numbers referring to the version in [allink_core](git@github.com/all
 ### NEW
 
 - config: New app added in allink_apps to store project specific settings. A migrations folder (`allink_apps_migrations.config`) is necessary in every project after this version.
+- python 3 compatibility
 
 
 ### FIXES
