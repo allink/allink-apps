@@ -33,29 +33,9 @@ def _get_translation(object, PeopleTranslation):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('people', 'latest'),
+        ('people', '__latest__'),
     ]
 
     operations = [
-        migrations.RenameField(
-            model_name='peopletranslation',
-            old_name='firstname',
-            new_name='new_firstname',
-        ),
-        migrations.RenameField(
-            model_name='peopletranslation',
-            old_name='lastname',
-            new_name='new_lastname',
-        ),
-        migrations.AddField(
-            model_name='people',
-            name='firstname',
-            field=models.CharField(default=b'', max_length=255, verbose_name='Firstname'),
-        ),
-        migrations.AddField(
-            model_name='people',
-            name='lastname',
-            field=models.CharField(default=b'', max_length=255, verbose_name='Lastname'),
-        ),
         migrations.RunPython(make_not_translated),
     ]

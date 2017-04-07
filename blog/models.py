@@ -76,7 +76,22 @@ class Blog(PolymorphicModel, TranslationHelperMixin, AllinkTranslatedAutoSlugify
 
     @property
     def images(self):
-        return self.blogimage_set.all()
+        """
+        backward compatibility:
+        either the images on the app are set
+        or we handle galleries with the gallery plugin in the header placeholder
+        """
+        try:
+            plugins = self.header_placeholder.get_plugins_list()
+        except:
+            plugins = None
+        if not plugins and self.preview_image:
+            return self.testimonialimage_set.all()
+        else:
+            return None
+
+    def get_detail_view(self):
+        'blog:detail'.format(self._meta.model_name)
 
 
 # News
@@ -87,10 +102,6 @@ class News(Blog):
         app_label = 'blog'
         verbose_name = _('News entry')
         verbose_name_plural = _('News')
-
-    def get_detail_view(self):
-        'blog:detail'.format(self._meta.model_name)
-
 
 # Events
 class Events(Blog):
@@ -134,9 +145,6 @@ class Events(Blog):
         app_label = 'blog'
         verbose_name = _('Event')
         verbose_name_plural = _('Events')
-
-    def get_detail_view(self):
-        'blog:detail'.format(self._meta.model_name)
 
     def show_registration_form(self):
         if self.event_date < datetime.now().date():
@@ -218,3 +226,21 @@ class EventsRegistration(AllinkAddressFieldsModel, AllinkSimpleRegistrationField
         verbose_name=_(u'I have read and accept the terms and conditions.'),
         null=True
     )
+
+    @classmethod
+    def get_verbose_name(cls):
+        from allink_core.allink_config.models import AllinkConfig
+        try:
+            field_name = cls._meta.model_name + '_verbose'
+            return getattr(AllinkConfig.get_solo(), field_name)
+        except AttributeError:
+            return cls._meta.verbose_name
+
+    @classmethod
+    def get_verbose_name_plural(cls):
+        from allink_core.allink_config.models import AllinkConfig
+        try:
+            field_name = cls._meta.model_name + '_verbose_plural'
+            return getattr(AllinkConfig.get_solo(), field_name)
+        except AttributeError:
+            return cls._meta.verbose_name_plural

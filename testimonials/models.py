@@ -89,7 +89,19 @@ class Testimonial(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, Tran
 
     @property
     def images(self):
-        return self.testimonialimage_set.all()
+        """
+        backward compatibility:
+        either the images on the app are set
+        or we handle galleries with the gallery plugin in the header placeholder
+        """
+        try:
+            plugins = self.header_placeholder.get_plugins_list()
+        except:
+            plugins = None
+        if not plugins and self.preview_image:
+            return self.testimonialimage_set.all()
+        else:
+            return None
 
     @property
     def full_name(self):
