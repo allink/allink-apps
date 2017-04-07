@@ -23,7 +23,7 @@ class PeopleAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
 
     form = AllinkBaseAdminForm
     search_fields = ('firstname', 'lastname',)
-    list_display = ('firstname', 'lastname', 'get_categories', 'active', 'created', 'modified')
+    list_display = ('firstname', 'lastname', 'get_categories', 'is_active', 'created', 'modified')
 
     exclude = ('images',)
 
@@ -31,7 +31,7 @@ class PeopleAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
         fieldsets = (
             (None, {
                 'fields': (
-                    'active',
+                    'is_active',
                     ('firstname', 'lastname'),
                     ('job_title', 'job_function'),
                     ('email', 'website'),
