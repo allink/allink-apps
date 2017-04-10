@@ -86,7 +86,7 @@ class Blog(PolymorphicModel, TranslationHelperMixin, AllinkTranslatedAutoSlugify
         except:
             plugins = None
         if not plugins and self.preview_image:
-            return self.testimonialimage_set.all()
+            return self.blogimage_set.all()
         else:
             return None
 
@@ -146,8 +146,9 @@ class Events(Blog):
         verbose_name_plural = _('Events')
 
     def show_registration_form(self):
-        if self.event_date < datetime.now().date():
-            return False
+        if getattr(self, 'event_date'):
+            if self.event_date < datetime.now().date():
+                return False
         if self.form_enabled:
             return True
         else:
