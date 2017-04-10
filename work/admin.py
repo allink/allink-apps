@@ -1,31 +1,33 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
 from django import forms
+from django.utils.translation import ugettext_lazy as _
 
 from cms.admin.placeholderadmin import PlaceholderAdminMixin
 from adminsortable.admin import SortableTabularInline
 from allink_core.allink_base.admin import AllinkBaseAdminSortable
 
-from .models import WorkImage, Work
+from allink_apps.work.models import WorkImage, Work
 
 
 class WorkImageInline(SortableTabularInline):
     model = WorkImage
-    extra = 1
-    verbose_name = 'IMAGES'
-    verbose_name_plural = ''
+    extra = 0
+    max_num = 1
+    verbose_name = ''
+    verbose_name_plural = _(u'Preview Image')
 
 
 @admin.register(Work)
 class WorkAdmin(PlaceholderAdminMixin, AllinkBaseAdminSortable):
     inlines = [WorkImageInline, ]
-    # list_filter = ('active', 'categories',)
+    # list_filter = ('is_active', 'categories',)
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = (
             (None, {
                 'fields': (
-                    'active',
+                    'is_active',
                     'title',
                     'slug',
                     'lead',

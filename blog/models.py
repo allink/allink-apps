@@ -10,24 +10,21 @@ from djangocms_text_ckeditor.fields import HTMLField
 from cms.models.fields import PlaceholderField
 from model_utils.models import TimeFramedModel
 
-from aldryn_translation_tools.models import (
-    TranslatedAutoSlugifyMixin,
-    TranslationHelperMixin,
-)
+from aldryn_translation_tools.models import TranslationHelperMixin
 from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 
-from allink_core.allink_base.models.mixins import AllinkManualEntriesMixin
+from allink_core.allink_base.models import AllinkManualEntriesMixin, AllinkTranslatedAutoSlugifyMixin
 from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin, AllinkAddressFieldsModel, AllinkSimpleRegistrationFieldsModel
 from allink_core.allink_terms.models import AllinkTerms
 from allink_apps.locations.models import Locations
 
 from polymorphic.models import PolymorphicModel
 
-from .managers import AllinkEventsManager, AllinkBlogManager
+from allink_apps.blog.managers import AllinkEventsManager, AllinkBlogManager
 
 
 #  Blog Parent class
-class Blog(PolymorphicModel, TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, TimeFramedModel, AllinkBaseModel):
+class Blog(PolymorphicModel, TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, TranslatableModel, TimeFramedModel, AllinkBaseModel):
     """
     Translations
      feel free to add app specific fields)
@@ -79,7 +76,22 @@ class Blog(PolymorphicModel, TranslationHelperMixin, TranslatedAutoSlugifyMixin,
 
     @property
     def images(self):
-        return self.blogimage_set.all()
+        """
+        backward compatibility:
+        either the images on the app are set
+        or we handle galleries with the gallery plugin in the header placeholder
+        """
+        try:
+            plugins = self.header_placeholder.get_plugins_list()
+        except:
+            plugins = None
+        if not plugins and self.preview_image:
+            return self.testimonialimage_set.all()
+        else:
+            return None
+
+    def get_detail_view(self):
+        'blog:detail'.format(self._meta.model_name)
 
 
 # News
@@ -90,12 +102,6 @@ class News(Blog):
         app_label = 'blog'
         verbose_name = _('News entry')
         verbose_name_plural = _('News')
-
-    def get_absolute_url(self):
-        from django.core.urlresolvers import reverse
-        app = 'blog:detail'.format(self._meta.model_name)
-        return reverse(app, kwargs={'slug': self.slug})
-
 
 # Events
 class Events(Blog):
@@ -140,11 +146,6 @@ class Events(Blog):
         verbose_name = _('Event')
         verbose_name_plural = _('Events')
 
-    def get_absolute_url(self):
-        from django.core.urlresolvers import reverse
-        app = 'blog:detail'.format(self._meta.model_name)
-        return reverse(app, kwargs={'slug': self.slug})
-
     def show_registration_form(self):
         if self.event_date < datetime.now().date():
             return False
@@ -170,7 +171,7 @@ class BlogAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin)
                     'manual entries are selected the category filtering will be ignored.)')
     )
 
-    def get_render_queryset_for_display(self, category=None, filter=None):
+    def get_render_queryset_for_display(self, category=None, filters={}):
         """
          returns all data_model objects distinct to id which are in the selected categories
           - category: category instance
@@ -179,6 +180,10 @@ class BlogAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin)
 
         -> Is also defined in  AllinkManualEntriesMixin to handel manual entries !!
         """
+
+        # apply filters from request
+        queryset = self.data_model.objects.filter(**filters)
+
         if self.categories.count() > 0 or category:
             """
              category selection
@@ -187,10 +192,16 @@ class BlogAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin)
                 #  TODO how can we automatically apply the manager of the subclass?
                 if category.name == 'Events':
                     queryset = Events.objects.filter_by_category(category)
+                    if self.categories_and.count() > 0:
+                        queryset = queryset.filter(categories=self.categories_and.all())
                 else:
                     queryset = self.data_model.objects.filter_by_category(category)
+                    if self.categories_and.count() > 0:
+                        queryset = queryset.filter(categories=self.categories_and.all())
             else:
                 queryset = self.data_model.objects.filter_by_categories(self.categories)
+                if self.categories_and.count() > 0:
+                    queryset = queryset.filter(categories=self.categories_and.all())
 
             return self._apply_ordering_to_queryset_for_display(queryset)
 
@@ -215,3 +226,21 @@ class EventsRegistration(AllinkAddressFieldsModel, AllinkSimpleRegistrationField
         verbose_name=_(u'I have read and accept the terms and conditions.'),
         null=True
     )
+
+    @classmethod
+    def get_verbose_name(cls):
+        from allink_core.allink_config.models import AllinkConfig
+        try:
+            field_name = cls._meta.model_name + '_verbose'
+            return getattr(AllinkConfig.get_solo(), field_name)
+        except AttributeError:
+            return cls._meta.verbose_name
+
+    @classmethod
+    def get_verbose_name_plural(cls):
+        from allink_core.allink_config.models import AllinkConfig
+        try:
+            field_name = cls._meta.model_name + '_verbose_plural'
+            return getattr(AllinkConfig.get_solo(), field_name)
+        except AttributeError:
+            return cls._meta.verbose_name_plural

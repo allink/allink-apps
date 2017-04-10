@@ -6,20 +6,18 @@ from adminsortable.fields import SortableForeignKey
 from parler.models import TranslatableModel, TranslatedFields
 from djangocms_text_ckeditor.fields import HTMLField
 
-from aldryn_translation_tools.models import (
-    TranslatedAutoSlugifyMixin,
-    TranslationHelperMixin,
-)
+from aldryn_translation_tools.models import TranslationHelperMixin
+
 from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 
 from allink_core.allink_base.models.mixins import AllinkManualEntriesMixin
 from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin
-from allink_core.allink_base.models import AllinkAddressFieldsModel
+from allink_core.allink_base.models import AllinkAddressFieldsModel, AllinkTranslatedAutoSlugifyMixin
 
-from .managers import AllinkTestimonialManager
+from allink_apps.testimonials.managers import AllinkTestimonialManager
 
 
-class Testimonial(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, AllinkAddressFieldsModel, AllinkBaseModel):
+class Testimonial(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, TranslatableModel, AllinkAddressFieldsModel, AllinkBaseModel):
     """
     Translations
      feel free to add app specific fields)
@@ -29,13 +27,26 @@ class Testimonial(TranslationHelperMixin, TranslatedAutoSlugifyMixin, Translatab
     """
     slug_source_field_name = 'full_name'
 
+    firstname = models.CharField(
+        _(u'Firstname'),
+        max_length=255,
+        default=''
+    )
+    lastname = models.CharField(
+        _(u'Lastname'),
+        max_length=255,
+        default=''
+    )
+
     translations = TranslatedFields(
-        firstname=models.CharField(
+        # to be removed in release 0.0.9, or when all old projects are up to date
+        old_firstname=models.CharField(
             _(u'Firstname'),
             max_length=255,
             default=''
         ),
-        lastname=models.CharField(
+        # to be removed in release 0.0.9, or when all old projects are up to date
+        old_lastname=models.CharField(
             _(u'Lastname'),
             max_length=255,
             default=''
@@ -78,7 +89,19 @@ class Testimonial(TranslationHelperMixin, TranslatedAutoSlugifyMixin, Translatab
 
     @property
     def images(self):
-        return self.testimonialimage_set.all()
+        """
+        backward compatibility:
+        either the images on the app are set
+        or we handle galleries with the gallery plugin in the header placeholder
+        """
+        try:
+            plugins = self.header_placeholder.get_plugins_list()
+        except:
+            plugins = None
+        if not plugins and self.preview_image:
+            return self.testimonialimage_set.all()
+        else:
+            return None
 
     @property
     def full_name(self):

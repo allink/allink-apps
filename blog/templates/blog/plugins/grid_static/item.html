@@ -23,6 +23,15 @@
             <div class="text-container">
                 <p>
                     {{object.lead|striptags}}
+                    {% if instance.detail_link_enabled and object.show_detail_link %}
+                    <a class="" href="{{object.get_absolute_url}}">
+                        {% if instance.detail_link_text %}
+                        {{ instance.detail_link_text }}
+                        {% else %}
+                        {% trans "More" %}
+                        {% endif %}
+                    </a>
+                    {% endif %}
                 </p>
             </div>
         {% endif %}
@@ -32,17 +41,6 @@
                     {{object.events.event_date|date:"l, j.n.Y"}}{% if object.events.event_time%}{{object.events.event_time|time:", G:i"}} {% trans 'Uhr' %}<br>{% endif %}
                     {% if object.events.location %}{{object.events.location.title}}{% endif %}
                 </p>
-            </div>
-        {% endif %}
-        {% if instance.detail_link_enabled and object.show_detail_link %}
-            <div class="link-container">
-                <a class="btn btn-default" href="{{object.get_absolute_url}}">
-                    {% if instance.detail_link_text %}
-                        {{ instance.detail_link_text }}
-                    {% else %}
-                        {% trans "More" %}
-                    {% endif %}
-                </a>
             </div>
         {% endif %}
     </div>

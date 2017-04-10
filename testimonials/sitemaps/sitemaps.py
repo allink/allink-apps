@@ -2,7 +2,7 @@
 
 from __future__ import unicode_literals
 from django.contrib.sitemaps import Sitemap
-from ..models import Testimonial
+from allink_apps.testimonials.models import Testimonial
 
 
 class TestimonialSitemap(Sitemap):

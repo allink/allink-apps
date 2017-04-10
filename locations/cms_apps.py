@@ -11,4 +11,5 @@ class LocationsApphook(CMSApp):
     def get_urls(self, page=None, language=None, **kwargs):
         return ['allink_apps.locations.urls']
 
+
 apphook_pool.register(LocationsApphook)

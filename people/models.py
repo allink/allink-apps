@@ -6,21 +6,17 @@ from djangocms_text_ckeditor.fields import HTMLField
 from cms.models.fields import PlaceholderField
 from adminsortable.fields import SortableForeignKey
 from parler.models import TranslatableModel, TranslatedFields
-from aldryn_translation_tools.models import (
-    TranslatedAutoSlugifyMixin,
-    TranslationHelperMixin,
-)
+from aldryn_translation_tools.models import TranslationHelperMixin
 from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 
 from allink_core.allink_base.models.choices import GENDER_CHOICES
-from allink_core.allink_base.models.mixins import AllinkManualEntriesMixin
-from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin, AllinkContactFieldsModel, AllinkAddressFieldsModel
+from allink_core.allink_base.models import AllinkManualEntriesMixin, AllinkTranslatedAutoSlugifyMixin, AllinkContactFieldsModel
+from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin, AllinkAddressFieldsModel
+
+from allink_apps.people.managers import AllinkPeopleManager
 
 
-from .managers import AllinkPeopleManager
-
-
-class People(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, AllinkContactFieldsModel, AllinkAddressFieldsModel, AllinkBaseModel):
+class People(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, TranslatableModel, AllinkContactFieldsModel, AllinkAddressFieldsModel, AllinkBaseModel):
     """
     Translations
      feel free to add app specific fields)
@@ -28,17 +24,28 @@ class People(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableMod
      slug_source_field_name = 'full_name'
 
     """
-
-
     slug_source_field_name = 'full_name'
 
+    firstname = models.CharField(
+        _(u'Firstname'),
+        max_length=255,
+        default=''
+    )
+    lastname = models.CharField(
+        _(u'Lastname'),
+        max_length=255,
+        default=''
+    )
+
     translations = TranslatedFields(
-        firstname=models.CharField(
+        # to be removed in release 0.0.8, or when all old projects are up to date
+        old_firstname=models.CharField(
             _(u'Firstname'),
             max_length=255,
             default=''
         ),
-        lastname=models.CharField(
+        # to be removed in release 0.0.8, or when all old projects are up to date
+        old_lastname=models.CharField(
             _(u'Lastname'),
             max_length=255,
             default=''
@@ -103,7 +110,19 @@ class People(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableMod
 
     @property
     def images(self):
-        return self.peopleimage_set.all()
+        """
+        backward compatibility:
+        either the images on the app are set
+        or we handle galleries with the gallery plugin in the header placeholder
+        """
+        try:
+            plugins = self.header_placeholder.get_plugins_list()
+        except:
+            plugins = None
+        if not plugins and self.preview_image:
+            return self.peopleimage_set.all()
+        else:
+            return None
 
     @property
     def title(self):
@@ -127,10 +146,16 @@ class PeopleAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugi
     )
 
     """
-    #  TODO: only works with one filter!
+
     FILTER_FIELD_CHOICES = (
-        # ('categories', _(u'Categories')),
-        ('place', _(u'Place')),
+        ('categories', {
+            'verbose': _(u'Location'),
+            'query_filter': {'tag': 'locations'},
+        }),
+        ('job_function', {
+            'verbose': _(u'Job Function'),
+            'query_filter': {},
+        }),
     )
 
     TEMPLATES = (

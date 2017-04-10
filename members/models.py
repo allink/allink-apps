@@ -6,18 +6,17 @@ from django.conf import settings
 from django.utils.encoding import python_2_unicode_compatible
 from parler.models import TranslatableModel, TranslatedFields
 from model_utils.models import TimeStampedModel
-from aldryn_translation_tools.models import (
-    TranslatedAutoSlugifyMixin,
-    TranslationHelperMixin,
-)
+from aldryn_translation_tools.models import TranslationHelperMixin
+
 from allink_core.allink_mailchimp.config import MailChimpConfig
 from allink_core.allink_mailchimp.helpers import list_members_delete, list_members_put, get_status_if_new
+from allink_core.allink_base.models import AllinkTranslatedAutoSlugifyMixin
 
 config = MailChimpConfig()
 
 
 @python_2_unicode_compatible
-class Members(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, TimeStampedModel):
+class Members(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, TranslatableModel, TimeStampedModel):
     slug_source_field_name = 'full_name'
 
     translations = TranslatedFields(
@@ -101,7 +100,7 @@ class Members(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableMo
                 first_name=self.first_name,
                 last_name=self.last_name
             )
-            group = Group.objects.get_or_create(name='Miglieder')
+            group = Group.objects.get_or_create(name='Mitglieder')
             user.groups.add(group[0])
             self.language = get_language()
             self.user = user
@@ -113,7 +112,6 @@ class Members(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableMo
             self.user.first_name = self.first_name
             self.user.save()
         super(Members, self).save(**kwargs)
-
 
     def delete(self, *args, **kwargs):
         if self.user:
@@ -149,12 +147,6 @@ class Members(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableMo
         # delete member
         data = {
             'email_address': self.email,
-            'status': 'subscribed',
-            'language': self.language,
-            'merge_fields': {
-                'FNAME': self.first_name,
-                'LNAME': self.last_name
-            }
         }
         if config.merge_vars:
             data = data.append(config.merge_vars)
@@ -184,4 +176,3 @@ class MembersLog(models.Model):
 
     def __str__(self):
         return self.log
-

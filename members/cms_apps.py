@@ -11,4 +11,5 @@ class MembersApphook(CMSApp):
     def get_urls(self, page=None, language=None, **kwargs):
         return ['allink_apps.members.urls']
 
+
 apphook_pool.register(MembersApphook)

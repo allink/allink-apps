@@ -7,10 +7,10 @@ from aldryn_translation_tools.admin import AllTranslationsMixin
 from import_export.formats import base_formats
 from allink_core.allink_mailchimp.config import MailChimpConfig
 
-from .models import Members, MembersLog
-from .resources import MembersResource
-from .email import send_welcome_email
-from .forms import MembersAdminForm
+from allink_apps.members.models import Members, MembersLog
+from allink_apps.members.resources import MembersResource
+from allink_apps.members.email import send_welcome_email
+from allink_apps.members.forms import MembersAdminForm
 
 
 config = MailChimpConfig()
@@ -32,17 +32,25 @@ def delete_members(modeladmin, request, queryset):
     for member in queryset:
         member.delete_from_mailchimp_list()
         member.user.delete()
+
+
 delete_members.short_description = _(u'Delete selected Members (and corresponding Users/ also removes member from mailchimplist)')
+
 
 def subscribe_members_to_mailchimp(modeladmin, request, queryset):
     for member in queryset:
         member.put_to_mailchimp_list()
         member.log('subscribed_to_mailchimp', u'Member subscribed to Mailchimp-List')
+
+
 delete_members.subscribe_members_to_mailchimp = _(u'Subscribe member to mailchimplist)')
+
 
 def send_password_create_email(modeladmin, request, queryset):
     for member in queryset:
         send_welcome_email(request, member)
+
+
 send_password_create_email.short_description = _(u'Send welcome email')
 
 
@@ -79,7 +87,6 @@ class MembersAdmin(ImportExportMixin, AllTranslationsMixin, TranslatableAdmin):
 
     def get_import_formats(self):
         return [base_formats.XLS]
-
 
 
 admin.site.register(Members, MembersAdmin)

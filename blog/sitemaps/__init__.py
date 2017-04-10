@@ -1,1 +1,1 @@
-from sitemaps import BlogSitemap
+from allink_apps.blog.sitemaps.sitemaps import BlogSitemap  # noqa

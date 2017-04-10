@@ -8,11 +8,11 @@ from allink_core.allink_base.models.managers import AllinkBaseModelQuerySet, All
 
 class AllinkBlogQuerySet(AllinkBaseModelQuerySet, PolymorphicQuerySet):
     def active_entries(self):
-        ''' 
+        '''
          entries which are active
         '''
         today = date.today()
-        return self.filter(Q(active=True) & (Q(start__isnull=True) & Q(end__isnull=True)) | ((Q(start__lte=today) & Q(end__isnull=True)) | (Q(start__isnull=True) & Q(end__gte=today))) | (Q(start__lte=today) & Q(end__gte=today)))
+        return self.filter(Q(is_active=True) & (Q(start__isnull=True) & Q(end__isnull=True)) | ((Q(start__lte=today) & Q(end__isnull=True)) | (Q(start__isnull=True) & Q(end__gte=today))) | (Q(start__lte=today) & Q(end__gte=today)))
 
 
 class AllinkBlogManager(PolymorphicManager, AllinkBaseModelManager):
@@ -21,11 +21,11 @@ class AllinkBlogManager(PolymorphicManager, AllinkBaseModelManager):
 
 class AllinkEventsQuerySet(AllinkBaseModelQuerySet, PolymorphicQuerySet):
     def active_entries(self):
-        ''' 
+        '''
          entries which are active
         '''
         today = date.today()
-        return self.filter(Q(active=True) & (Q(start__isnull=True) & Q(end__isnull=True)) | ((Q(start__lte=today) & Q(end__isnull=True)) | (Q(start__isnull=True) & Q(end__gte=today))) | (Q(start__lte=today) & Q(end__gte=today)))
+        return self.filter(Q(is_active=True) & (Q(start__isnull=True) & Q(end__isnull=True)) | ((Q(start__lte=today) & Q(end__isnull=True)) | (Q(start__isnull=True) & Q(end__gte=today))) | (Q(start__lte=today) & Q(end__gte=today)))
 
     def latest(self):
         return self.order_by('event_date', 'id').distinct('event_date', 'id')

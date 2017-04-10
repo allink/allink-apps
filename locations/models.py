@@ -8,18 +8,15 @@ from adminsortable.fields import SortableForeignKey
 from parler.models import TranslatableModel, TranslatedFields
 from djangocms_text_ckeditor.fields import HTMLField
 
-from aldryn_translation_tools.models import (
-    TranslatedAutoSlugifyMixin,
-    TranslationHelperMixin,
-)
+from aldryn_translation_tools.models import TranslationHelperMixin
 from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 
-from allink_core.allink_base.models.mixins import AllinkManualEntriesMixin
+from allink_core.allink_base.models.mixins import AllinkManualEntriesMixin, AllinkTranslatedAutoSlugifyMixin
 from allink_core.allink_base.models.managers import AllinkBaseModelManager
 from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin, AllinkContactFieldsModel, AllinkAddressFieldsModel
 
 
-class Locations(TranslationHelperMixin, TranslatedAutoSlugifyMixin, TranslatableModel, AllinkContactFieldsModel, AllinkAddressFieldsModel, AllinkBaseModel):
+class Locations(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, TranslatableModel, AllinkContactFieldsModel, AllinkAddressFieldsModel, AllinkBaseModel):
     """
     Translations
      feel free to add app specific fields)
@@ -29,14 +26,20 @@ class Locations(TranslationHelperMixin, TranslatedAutoSlugifyMixin, Translatable
     """
     slug_source_field_name = 'title'
 
+    # Is used to auto generate Category
+    # AllinkBaseModel sets a default
+    # category_name_field = u'title'
+    category_name_field = u'title'
+
     translations = TranslatedFields(
         title=models.CharField(
             max_length=255
         ),
-        text=HTMLField(
-            _(u'Text'),
+        lead=HTMLField(
+            _(u'Lead Text'),
+            help_text=_(u'Teaser text that in some cases is used in the list view and/or in the detail view.'),
             blank=True,
-            null=True
+            null=True,
         ),
         slug=models.SlugField(
             _(u'Slug'),
@@ -45,6 +48,20 @@ class Locations(TranslationHelperMixin, TranslatedAutoSlugifyMixin, Translatable
             blank=True,
             help_text=_(u'Leave blank to auto-generate a unique slug.')
         ),
+    )
+
+    email_work = models.EmailField(
+        _(u'Email Work'),
+        help_text=_(u'Used as "to adress" in form.'),
+        blank=True,
+        default=''
+    )
+
+    email_home = models.EmailField(
+        _(u'Email Home'),
+        help_text=_(u'Used as "to adress" in form.'),
+        blank=True,
+        default=''
     )
 
     lat = models.FloatField(
@@ -90,7 +107,19 @@ class Locations(TranslationHelperMixin, TranslatedAutoSlugifyMixin, Translatable
 
     @property
     def images(self):
-        return self.locationsimage_set.all()
+        """
+        backward compatibility:
+        either the images on the app are set
+        or we handle galleries with the gallery plugin in the header placeholder
+        """
+        try:
+            plugins = self.header_placeholder.get_plugins_list()
+        except:
+            plugins = None
+        if not plugins and self.preview_image:
+            return self.locationsimage_set.all()
+        else:
+            return None
 
     def value_has_changed_for_fields(instance, fields):
         """
@@ -260,6 +289,7 @@ class LocationsAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPl
         choices=ZOOM_LEVEL_CHOICES,
         default=14
     )
+
 
 class LocationsImage(AllinkBaseImage):
     location = SortableForeignKey(

@@ -5,11 +5,12 @@ from allink_core.allink_base.views import AllinkBasePluginLoadMoreView, AllinkBa
 from allink_core.allink_mandrill.config import MandrillConfig
 from allink_core.allink_terms.models import AllinkTerms
 
-from .models import Blog, BlogAppContentPlugin, EventsRegistration, Events
-from .forms import EventsRegistrationForm
-from .email import send_registration_confirmation_email, send_registration_email
+from allink_apps.blog.models import Blog, BlogAppContentPlugin, EventsRegistration, Events
+from allink_apps.blog.forms import EventsRegistrationForm
+from allink_apps.blog.email import send_registration_confirmation_email, send_registration_email
 
 config = MandrillConfig()
+
 
 class BlogPluginLoadMore(AllinkBasePluginLoadMoreView):
     model = Blog
