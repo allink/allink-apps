@@ -13,6 +13,30 @@ Each release is divided into the following main categories:
 
 The version numbers referring to the version in [allink_core](git@github.com/allink/allink-core.git).
 
+
+## v0.0.9 (under development)
+
+### IMPORTANT
+
+###### SETTINGS
+
+###### TEMPLATES
+
+###### URLS
+
+###### REQUIREMENTS
+
+###### DATA MIGRATIONS
+
+- when making migrations on projects it's important, that the field "active" on each model gets renamed to "is_active".
+  The field must not be deleted and created as new, else data gets lost
+
+### NEW
+
+### FIXES
+
+- field "active" renamed to "is_active" on all models
+
 ## v0.0.8
 
 ### IMPORTANT
@@ -35,6 +59,8 @@ The version numbers referring to the version in [allink_core](git@github.com/all
 ### NEW
 
 - config: New app added in allink_apps to store project specific settings. A migrations folder (`allink_apps_migrations.config`) is necessary in every project after this version.
+- python 3 compatibility
+
 
 
 ### FIXES
