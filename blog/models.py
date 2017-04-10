@@ -93,7 +93,6 @@ class Blog(PolymorphicModel, TranslationHelperMixin, AllinkTranslatedAutoSlugify
     def get_detail_view(self):
         return 'blog:detail'.format(self._meta.model_name)
 
-
 # News
 class News(Blog):
     objects = AllinkBlogManager()
