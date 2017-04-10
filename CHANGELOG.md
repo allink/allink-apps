@@ -34,8 +34,8 @@ The version numbers referring to the version in [allink_core](git@github.com/all
 ### NEW
 
 ### FIXES
-
 - field "active" renamed to "is_active" on all models
+- category nav in case no categories are selected fixed
 
 ## v0.0.8
 
