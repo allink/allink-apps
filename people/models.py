@@ -156,6 +156,10 @@ class PeopleAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugi
             'verbose': _(u'Job Function'),
             'query_filter': {},
         }),
+        ('job_title', {
+            'verbose': _(u'Job Title'),
+            'query_filter': {},
+        }),
     )
 
     TEMPLATES = (
