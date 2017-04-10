@@ -91,7 +91,7 @@ class Blog(PolymorphicModel, TranslationHelperMixin, AllinkTranslatedAutoSlugify
             return None
 
     def get_detail_view(self):
-        'blog:detail'.format(self._meta.model_name)
+        return 'blog:detail'.format(self._meta.model_name)
 
 
 # News
