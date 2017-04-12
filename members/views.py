@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
+from django.conf import settings
 from django.views.generic import TemplateView, FormView
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.template.loader import render_to_string
+from django.utils.translation import ugettext_lazy as _
 
 from allink_apps.members.forms import MembersProfileEditForm
 from allink_apps.members.email import send_member_modified_email
+
+from allauth.account.views import LoginView, AjaxCapableProcessFormViewMixin, PasswordChangeView, PasswordResetView
 
 
 class MembersIndex(TemplateView):
@@ -54,3 +58,53 @@ class MembersProfileEdit(FormView):
                 self.get_context_data(form=form),
                 request=self.request)
         }, status=400)
+
+
+class AllinkAccountsAjaxCapableProcessFormViewMixin(AjaxCapableProcessFormViewMixin):
+
+    def post(self, request, *args, **kwargs):
+        if request.is_ajax:
+            form_class = self.get_form_class()
+            form = self.get_form(form_class)
+            if form.is_valid():
+                response = super(AllinkAccountsAjaxCapableProcessFormViewMixin, self).post(request, *args, **kwargs)
+                # handle views with success url
+                if self.get_success_url() and hasattr(response, 'url') and response.url:
+                    return JsonResponse({'success_url': response.url})
+
+                context = super(AllinkAccountsAjaxCapableProcessFormViewMixin, self).get_context_data()
+                try:
+                    html = render_to_string(self.confirmation_template, context)
+                    return HttpResponse(html)
+                # TODO Handel error correctly
+                except:
+                    # sentry is not configured on localhost
+                    if not settings.RAVEN_CONFIG.get('dns'):
+                        raise
+                    form.add_error(None, _(u'Something went wrong with your subscription. Please try again later.'))
+                    return self.render_to_response(self.get_context_data(form=form), status=206)
+            else:
+                return self.render_to_response(self.get_context_data(form=form), status=206)
+        else:
+            return super(AllinkAccountsAjaxCapableProcessFormViewMixin, self).post(request, *args, **kwargs)
+
+    def get_success_url(self):
+        success_url = super(AllinkAccountsAjaxCapableProcessFormViewMixin, self).get_success_url()
+        from django.core.urlresolvers import reverse, NoReverseMatch
+        try:
+            return reverse(success_url)
+        except NoReverseMatch:
+            return success_url
+
+
+class AllinkLoginView(AllinkAccountsAjaxCapableProcessFormViewMixin, LoginView):
+    confirmation_template = 'members/login/confirmation.html'
+    success_url = 'members:index'
+
+
+class AllinkPasswordChangeView(AllinkAccountsAjaxCapableProcessFormViewMixin, PasswordChangeView):
+    pass
+
+
+class AllinkPasswordResetView(AllinkAccountsAjaxCapableProcessFormViewMixin, PasswordResetView):
+    pass
