@@ -69,8 +69,8 @@ class AllinkAccountsAjaxCapableProcessFormViewMixin(AjaxCapableProcessFormViewMi
             if form.is_valid():
                 response = super(AllinkAccountsAjaxCapableProcessFormViewMixin, self).post(request, *args, **kwargs)
                 # handle views with success url
-                if self.get_success_url() and hasattr(response, 'url') and response.url:
-                    return JsonResponse({'success_url': response.url})
+                if self.get_success_url():
+                    return JsonResponse({'success_url': self.get_success_url()})
 
                 context = super(AllinkAccountsAjaxCapableProcessFormViewMixin, self).get_context_data()
                 try:
