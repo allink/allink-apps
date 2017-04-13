@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.conf import settings
 from django.views.generic import TemplateView, FormView
-from django.http import JsonResponse, HttpResponse
 from django.template.loader import render_to_string
+from django.http import JsonResponse, HttpResponse
 from django.utils.translation import ugettext_lazy as _
 
 from allink_apps.members.forms import MembersProfileEditForm
