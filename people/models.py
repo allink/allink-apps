@@ -51,7 +51,7 @@ class People(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, Translata
             default=''
         ),
         job_title=models.CharField(
-            _(u'Job Title'),
+            _(u'Unit'),
             max_length=255,
             default=''
         ),
@@ -157,7 +157,7 @@ class PeopleAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugi
             'query_filter': {},
         }),
         ('job_title', {
-            'verbose': _(u'Job Title'),
+            'verbose': _(u'Unit'),
             'query_filter': {},
         }),
     )
