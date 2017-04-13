@@ -34,6 +34,9 @@ The version numbers referring to the version in [allink_core](git@github.com/all
 ### NEW
 
 ### FIXES
+
+- members: allauth account views return success url or renderd template
+    - needs testing in project with member app
 - field "active" renamed to "is_active" on all models
 - category nav in case no categories are selected fixed
 - Clases inherting from Base Model: Separated filter and categories fieldsets, applied default ordering on querysets
