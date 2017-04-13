@@ -36,6 +36,7 @@ The version numbers referring to the version in [allink_core](git@github.com/all
 ### FIXES
 - field "active" renamed to "is_active" on all models
 - category nav in case no categories are selected fixed
+- Clases inherting from Base Model: Separated filter and categories fieldsets, applied default ordering on querysets
 
 ## v0.0.8
 
