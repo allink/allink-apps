@@ -27,7 +27,7 @@ class LocationsAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
         fieldsets = (
             (None, {
                 'fields': (
-                    'active',
+                    'is_active',
                     'title',
                     'slug',
                     ('zip_code', 'place',),

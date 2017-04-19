@@ -21,7 +21,7 @@ class TestimonialImageInline(SortableTabularInline):
 @admin.register(Testimonial)
 class TestimonialAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
     search_fields = ('translations__firstname', 'translations__lastname',)
-    list_display = ('firstname', 'lastname', 'get_categories', 'active', 'created', 'modified')
+    list_display = ('firstname', 'lastname', 'get_categories', 'is_active', 'created', 'modified')
 
     inlines = [TestimonialImageInline, ]
 
@@ -29,7 +29,7 @@ class TestimonialAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
         fieldsets = (
             (None, {
                 'fields': (
-                    'active',
+                    'is_active',
                     ('firstname', 'lastname'),
                     ('street', 'street_nr'),
                     ('place', 'zip_code'),

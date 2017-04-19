@@ -21,13 +21,13 @@ class WorkImageInline(SortableTabularInline):
 @admin.register(Work)
 class WorkAdmin(PlaceholderAdminMixin, AllinkBaseAdminSortable):
     inlines = [WorkImageInline, ]
-    # list_filter = ('active', 'categories',)
+    # list_filter = ('is_active', 'categories',)
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = (
             (None, {
                 'fields': (
-                    'active',
+                    'is_active',
                     'title',
                     'slug',
                     'lead',
