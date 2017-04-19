@@ -41,7 +41,7 @@ class NewsAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
         fieldsets = (
             (None, {
                 'fields': (
-                    'active',
+                    'is_active',
                     'title',
                     'slug',
                     'created',
@@ -66,7 +66,7 @@ class NewsAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
 @admin.register(Events)
 class EventsAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
     form = BlogContentAdminForm
-    list_display = ('title', 'get_categories', 'event_date', 'active', )
+    list_display = ('title', 'get_categories', 'event_date', 'is_active', )
     inlines = [BlogImageInline, ]
 
     def formfield_for_dbfield(self, db_field, **kwargs):
@@ -78,7 +78,7 @@ class EventsAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
         fieldsets = (
             (None, {
                 'fields': (
-                    'active',
+                    'is_active',
                     'title',
                     'slug',
                     'created',

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.core.exceptions import ObjectDoesNotExist
 from allink_core.allink_base.views import AllinkBasePluginLoadMoreView, AllinkBaseDetailView, AllinkBaseCreateView
 from allink_core.allink_mandrill.config import MandrillConfig
 from allink_core.allink_terms.models import AllinkTerms
@@ -22,11 +23,14 @@ class BlogDetail(AllinkBaseDetailView):
 
     def get_template_names(self):
         names = []
-        if hasattr(self.object, 'events'):
+        try:
             name = self.object.events._meta.model_name
-        elif hasattr(self.object, 'news'):
-            name = self.object.news._meta.model_name
-        else:
+        except ObjectDoesNotExist:
+            pass
+
+        try:
+            name = self.object.events._meta.model_name
+        except ObjectDoesNotExist:
             name = self.object._meta.model_name
 
         names.append("%s/%s%s.html" % (name, name, self.template_name_suffix))
