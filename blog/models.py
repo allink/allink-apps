@@ -206,8 +206,8 @@ class BlogAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin)
             return self._apply_ordering_to_queryset_for_display(queryset)
 
         else:
-            queryset = self.data_model.objects.active()
-            return queryset
+            queryset = self.data_model.objects.active().distinct()
+            return self._apply_ordering_to_queryset_for_display(queryset)
 
 
 class BlogImage(AllinkBaseImage):
