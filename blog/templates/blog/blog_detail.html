@@ -1,6 +1,6 @@
 {% extends base_template|default:"base.html" %}
 
-{% load cms_tags allink_cms_tags sekizai_tags i18n thumbnail %}
+{% load cms_tags allink_cms_tags sekizai_tags i18n allink_image_tags thumbnail %}
 
 {# META Tag #}
 {% if object.title %}
@@ -33,53 +33,41 @@
 
 
 {# Page Title - Required for Softpage (Google Tag Manager) #}
-{% block softpage_title %}{{ object.title }}    | {% if allink_config.default_base_title %}{{ allink_config.default_base_title }}{% else %}{{ request.site.name }}{% endif %}{% endblock softpage_title %}
+{% block softpage_title %}{{ object.title }} | {% if allink_config.default_base_title %}{{ allink_config.default_base_title }}{% else %}{{ request.site.name }}{% endif %}{% endblock softpage_title %}
 
 {% block content %}
-    <div class="content-section app-content-plugin detail-view container-enabled" data-scroll-spy>
+
+    <div class="content-section content-plugin container-enabled no-spacings" data-scroll-spy>
         <div class="container">
-
-        mmmm
-
-            {% if object.images %}
-                <div class="image-container header-image-container">
-                    {% include "slider_detail/content.html" with display_title=False title_content=object.title %}
+            <div class="inner">
+                <div class="col-1-1">
+                    <div class="col-container">
+                        <div class="col-container-inner">
+                            <div class="col align-v-desktop-middle">
+                                <div class="text-container">
+                                    <h2>{% render_model_ajax object "title" %}</h2>
+                                    {% if object.lead %}
+                                        <p class="lead">
+                                            {{object.lead}}
+                                        </p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col">
+                                {% if object.preview_image %}
+                                    <div class="image-container">
+                                        {% render_app_content_image_detail thumbnail_url="col-2" %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            {% endif %}
-
-            {% render_placeholder object.header_placeholder %}
-
-            <header class="app-detail-heading">
-                <h1 class="heading">
-                    {% render_model_ajax object "title" %}
-                </h1>
-            </header>
-
-            <div class="app-detail-col-container col-2-1">
-
-                <div class="col">
-                    <div class="text-container">
-                        {# optional: lead #}
-                        {% if object.lead %}
-                            <p class="lead">
-                                {{object.lead|striptags}}
-                            </p>
-                        {% endif %}
-                    </div>
-                    <div class="app-detail-content-container">
-                        {% render_placeholder object.content_placeholder %}
-                    </div>
-                </div>{# end .col #}
-
-                <div class="col">
-                    <div class="manage-spacings">
-                       {{object.costs}}
-                       {{object.duration}}
-                       {{object.location}}
-                    </div>
-                </div>{# end .col #}
-
-            </div>{# end .col-container #}
+            </div>
         </div>
     </div>
+
+    {# content #}
+    {% render_placeholder object.content_placeholder %}
+
 {% endblock %}

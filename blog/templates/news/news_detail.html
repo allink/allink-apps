@@ -1,6 +1,6 @@
 {% extends base_template|default:"base.html" %}
 
-{% load cms_tags allink_cms_tags sekizai_tags i18n thumbnail %}
+{% load cms_tags allink_cms_tags sekizai_tags i18n allink_image_tags thumbnail %}
 
 {# META Tag #}
 {% if object.title %}
@@ -37,35 +37,37 @@
 
 {% block content %}
 
-<div class="content-section content-plugin container-enabled no-spacings" data-scroll-spy>
-    <div class="container">
-        <div class="col-1-1">
-            <div class="col-container">
-                <div class="col-container-inner">
-                    <div class="col align-v-desktop-middle">
-                        <div class="text-container">
-                            <h2>{% render_model_ajax object "title" %}</h2>
-                            {% if object.lead %}
-                                <p class="lead">
-                                    {{object.lead}}
-                                </p>
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div class="col">
-                        {% if object.preview_image %}
-                            <div class="image-container">
-                                {% render_app_content_image_detail thumbnail_url="col-2" %}
+    <div class="content-section content-plugin container-enabled no-spacings" data-scroll-spy>
+        <div class="container">
+            <div class="inner">
+                <div class="col-1-1">
+                    <div class="col-container">
+                        <div class="col-container-inner">
+                            <div class="col align-v-desktop-middle">
+                                <div class="text-container">
+                                    <h2>{% render_model_ajax object "title" %}</h2>
+                                    {% if object.lead %}
+                                        <p class="lead">
+                                            {{object.lead}}
+                                        </p>
+                                    {% endif %}
+                                </div>
                             </div>
-                        {% endif %}
+                            <div class="col">
+                                {% if object.preview_image %}
+                                    <div class="image-container">
+                                        {% render_app_content_image_detail thumbnail_url="col-2" %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-{# content #}
-{% render_placeholder object.content_placeholder %}
+    {# content #}
+    {% render_placeholder object.content_placeholder %}
 
 {% endblock %}

@@ -1,6 +1,6 @@
 {% extends base_template|default:"base.html" %}
 
-{% load cms_tags allink_cms_tags sekizai_tags i18n thumbnail %}
+{% load cms_tags allink_cms_tags sekizai_tags i18n allink_image_tags thumbnail %}
 
 {# META Tag #}
 {% if object.title %}
@@ -36,65 +36,38 @@
 {% block softpage_title %}{{ object.title }} | {% if allink_config.default_base_title %}{{ allink_config.default_base_title }}{% else %}{{ request.site.name }}{% endif %}{% endblock softpage_title %}
 
 {% block content %}
-    <div class="content-section app-content-plugin detail-view container-enabled">
-        <div class="container" data-scroll-spy>
 
-            {% if object.images %}
-                <div class="image-container header-image-container">
-                    {% include "slider_detail/content.html" with display_title=False title_content=object.title %}
-                </div>
-            {% endif %}
-
-            {% render_placeholder object.header_placeholder %}
-
-            <header class="section-heading">
-                <h1 class="heading">
-                    {% render_model_ajax object "title" %}
-                </h1>
-            </header>
-
-            <div class="app-detail-col-container col-2-1">
-                <div class="col">
-                    <div class="manage-spacings">
-                        {% if object.lead %}
-                            <div class="text-container">
-                                {# optional: lead #}
-                                    <p class="lead">
-                                        {{object.lead|striptags}}
-                                    </p>
+    <div class="content-section content-plugin container-enabled no-spacings" data-scroll-spy>
+        <div class="container">
+            <div class="inner">
+                <div class="col-1-1">
+                    <div class="col-container">
+                        <div class="col-container-inner">
+                            <div class="col align-v-desktop-middle">
+                                <div class="text-container">
+                                    <h2>{% render_model_ajax object "title" %}</h2>
+                                    {% if object.lead %}
+                                        <p class="lead">
+                                            {{object.lead}}
+                                        </p>
+                                    {% endif %}
+                                </div>
                             </div>
-                        {% endif %}
-                    </div>
-                    <div class="app-detail-content-container">
-                        {% render_placeholder object.content_placeholder %}
+                            <div class="col">
+                                {% if object.preview_image %}
+                                    <div class="image-container">
+                                        {% render_app_content_image_detail thumbnail_url="col-2" %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="col">
-                    <div class="manage-spacings">
-                       <div class="text-container">
-                            {% if object.event_date %}
-                                <h2 class="heading">
-                                    {% trans "Datum" %}
-                                </h2>
-                                <p>{{object.event_date|date:"l, j.n.Y"}}{% if object.event_time%}{{object.event_time|time:", G:i"}} {% trans 'Uhr' %}<br>{% endif %}</p>
-                            {% endif %}
-                            {% if object.location.title %}
-                                <h2 class="heading">
-                                    {% trans "Ort" %}
-                                </h2>
-                                <p>
-                                    {% include 'locations/includes/_address.html' with location=object.location %}
-                                </p>
-                            {% endif %}
-                    {% if object.show_registration_form %}
-                        <a href="{% url 'blog:register' slug=object.slug %}" class="btn btn-default toggle-form-modal">
-                            {% trans "Anmelden" %}
-                        </a>
-                    {% endif %}
-                    </div>
-                </div>{# end .col #}
-            </div>{# end .col-container #}
+            </div>
         </div>
     </div>
+
+    {# content #}
+    {% render_placeholder object.content_placeholder %}
+
 {% endblock %}
