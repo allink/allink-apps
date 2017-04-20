@@ -30,6 +30,7 @@ class LocationsAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
                     'is_active',
                     'title',
                     'slug',
+                    'subtitle',
                     ('zip_code', 'place',),
                     ('street', 'street_nr',),
                     'street_additional',
