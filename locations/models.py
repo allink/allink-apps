@@ -35,6 +35,12 @@ class Locations(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, Transl
         title=models.CharField(
             max_length=255
         ),
+        subtitle=models.CharField(
+            _(u'Subtitle'),
+            max_length=255,
+            blank=True,
+            null=True,
+        ),
         lead=HTMLField(
             _(u'Lead Text'),
             help_text=_(u'Teaser text that in some cases is used in the list view and/or in the detail view.'),
