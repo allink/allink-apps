@@ -1,6 +1,6 @@
 {% extends base_template|default:"base.html" %}
 
-{% load cms_tags allink_cms_tags sekizai_tags i18n thumbnail %}
+{% load cms_tags allink_cms_tags sekizai_tags i18n allink_image_tags thumbnail %}
 
 {# META Tag #}
 {% if object.title %}
@@ -36,8 +36,9 @@
 {% block softpage_title %}{{ object.title }} | {% if allink_config.default_base_title %}{{ allink_config.default_base_title }}{% else %}{{ request.site.name }}{% endif %}{% endblock softpage_title %}
 
 {% block content %}
-    <div class="content-section app-content-plugin detail-view container-enabled">
-        <div class="container" data-scroll-spy>
+
+    <div class="content-section app-content-plugin detail-view container-enabled" data-scroll-spy>
+        <div class="container">
 
             {% if object.images %}
                 <div class="image-container header-image-container">
