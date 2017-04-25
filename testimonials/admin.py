@@ -32,6 +32,7 @@ class TestimonialAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
                     'is_active',
                     ('firstname', 'lastname'),
                     ('street', 'street_nr'),
+                    'street_additional',
                     ('place', 'zip_code'),
                     'lead',
                     'text',

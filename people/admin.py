@@ -38,6 +38,7 @@ class PeopleAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
                     'company_name',
                     ('phone', 'mobile', 'fax'),
                     ('street', 'street_nr'),
+                    'street_additional',
                     ('place', 'zip_code'),
                     'slug',
                 ),
