@@ -1,0 +1,120 @@
+{% load i18n %}
+
+{% block form_container %}
+    <form
+        class="form-default validate-form {% if not no_ajax %}ajax-form{% endif %} {{ class }} {% block form_additional_classes %}{% endblock form_additional_classes %}"
+        method="{{ method|default:"POST" }}"
+        novalidate="novalidate"
+        {% if action %}action="{{ action }}"{% endif %}
+        {% if includes_files %}enctype="multipart/form-data"{% endif %}
+        {% block form_additional_attributes %}{% endblock form_additional_attributes %}
+        >
+
+        {# utility classes #}
+        {% block form_inner_before %}{% endblock form_inner_before %}
+
+        {% block csrf_token_container %}
+            {% if not method == "get" %}{% csrf_token %}{% endif %}
+        {% endblock csrf_token_container %}
+
+        <div class="heading-container">
+            <h2 class="heading">
+                {% trans 'Kostenlosen Termin vereinbaren' %}
+            </h2>
+        </div>
+
+        {% comment %}
+            Default Loop:
+            {% block form_fields_container %}
+                {% include 'includes/forms/form_fields.html' with nolabel=nolabel|default:False %}
+            {% endblock form_fields_container %}
+        {% endcomment %}
+
+        {% for field in form.visible_fields %}
+            {% if field.name != 'date' and field.name != 'time' and field.name != 'date_from' and field.name != 'date_to'%}
+                {% include "includes/forms/form_field.html" with style='stacked' %}
+            {% endif %}
+            {% if field.name == 'date_from' %}
+                <div class="form-group date-time-selection">
+                    <label class="control-label">Datum Von</label>
+                    <div class="row">
+                        <div class="col-sm-12 {% if form.date_from.errors %}has-error{% endif %}">
+                        <label for="{{ form.date_from.id_for_label }}" class="sr-only">
+                            {% trans "Datum auswählen" %}
+                        </label>
+                            <div class="datepicker-container">
+                                <div class="datepicker">
+                                    {{ form.date_from }}
+                                    <span class="input-btn" data-toggle><i class="icomoon-calendar"></i></span>
+                                </div>
+                            </div>
+                            {{ form.date_from.errors }}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% if field.name == 'date_to' %}
+                <div class="form-group date-time-selection">
+                    <label class="control-label">Datum Bis</label>
+                    <div class="row">
+                        <div class="col-sm-12 {% if form.date_to.errors %}has-error{% endif %}">
+                        <label for="{{ form.date_to.id_for_label }}" class="sr-only">
+                            {% trans "Datum auswählen" %}
+                        </label>
+                            <div class="datepicker-container">
+                                <div class="datepicker">
+                                    {{ form.date_to }}
+                                    <span class="input-btn" data-toggle><i class="icomoon-calendar"></i></span>
+                                </div>
+                            </div>
+                            {{ form.date_to.errors }}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        {% if not request.GET.no_date  %}
+            <div class="form-group date-time-selection">
+                <label class="control-label">Wann sollen wir Sie anrufen?</label>
+                <div class="row">
+                    <div class="col-sm-12 {% if form.date.errors %}has-error{% endif %}">
+                    <label for="{{ form.date.id_for_label }}" class="sr-only">
+                        {% trans "Datum auswählen" %}
+                    </label>
+                        <div class="datepicker-container">
+                            <div class="datepicker">
+                                {{ form.date }}
+                                <span class="input-btn" data-toggle><i class="icomoon-calendar"></i></span>
+                            </div>
+                        </div>
+                        {{ form.date.errors }}
+                    </div>
+                    <div class="col-sm-12 {% if form.time.errors %}has-error{% endif %}">
+                        <label for="{{ form.date.id_for_label }}" class="sr-only">
+                            {% trans "Zeitraum auswählen" %}
+                        </label>
+                        <div class="custom-select">
+                            {{ form.time }}
+                        </div>
+                        {{ form.time.errors }}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        {% block form_btn_container %}
+            <div class="form-group btn-container">
+                {# utility classes #}
+                {% block form_btn_container_before %}{% endblock form_btn_container_before %}
+                <button class="{% block form_submit_btn_classes_container %}btn btn-{% block form_submit_btn_variation %}primary{% endblock form_submit_btn_variation %}{% endblock form_submit_btn_classes_container %}" name="submit" type="submit">{{ cta|default:"Submit" }}</button>
+                <button class="{% block form_close_btn_classes_container %}btn btn-{% block form_close_btn_variation %}primary{% endblock form_close_btn_variation %}{% endblock form_close_btn_classes_container %}" name="submit" type="submit" data-close-form-modal>{% trans "Close" %}</button>
+                {# utility classes #}
+                {% block form_btn_container_after %}{% endblock form_btn_container_after %}
+            </div>
+        {% endblock form_btn_container %}
+
+        {# utility classes #}
+        {% block form_inner_after %}{% endblock form_inner_after %}
+
+    </form>
+{% endblock form_container %}
