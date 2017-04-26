@@ -22,5 +22,5 @@ class ContactRequestView(AllinkBaseCreateView):
         return response
 
     def send_mail(self):
-        send_request_email(self.get_form(), self.event)
-        send_request_confirmation_email(self.get_form(), self.event)
+        send_request_email(self.get_form())
+        send_request_confirmation_email(self.get_form())

@@ -9,7 +9,16 @@ from allink_apps.contact.models import ContactRequest
 
 
 class ContactRequestBaseForm(forms.ModelForm):
-    date = forms.DateField(widget=forms.TextInput(attrs={'class': 'datepicker', 'placeholder': _(u'Please choose a date.')}), required=False)
+
+    date = forms.DateField(
+            widget=forms.TextInput(
+                attrs={
+                    'class': 'datepicker',
+                    'placeholder': _(u'Please choose a date.')
+                    }
+                ),
+            required=False
+            )
 
     class Meta:
         model = None
@@ -47,11 +56,11 @@ class ContactRequestBaseForm(forms.ModelForm):
         return time
 
 
-class ContactRequestForm(AllinkBaseModelForm):
+class ContactRequestForm(ContactRequestBaseForm):
 
     class Meta:
         model = ContactRequest
-        fields = ('first_name', 'last_name', 'email', 'message', 'contact_type', 'date', 'time')
+        fields = ('first_name', 'last_name', 'company_name', 'email', 'message', 'contact_type', 'date', 'time')
 
     def __init__(self, *args, **kwargs):
         super(ContactRequestForm, self).__init__(*args, **kwargs)

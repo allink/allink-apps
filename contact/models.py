@@ -23,9 +23,28 @@ class ContactRequestBase(AllinkAddressFieldsModel, AllinkSimpleRegistrationField
         (CONTACT_EMAIL, _(u'Email')),
     )
 
-    contact_type = models.IntegerField(_(u'Please contact me via'), choices=CONTACT_CHOICES, default=None)
-    date = models.DateField(_(u'Date'), blank=True, null=True)
-    time = models.IntegerField(_(u'Time'), choices=TIME_CHOICES, blank=True, null=True)
+    company_name = models.CharField(
+        _(u'Company'),
+        max_length=255,
+        blank=True,
+        null=True
+    )
+    contact_type = models.IntegerField(
+        _(u'Please contact me via'),
+        choices=CONTACT_CHOICES,
+        default=None
+    )
+    date = models.DateField(
+        _(u'Date'),
+        blank=True,
+        null=True
+    )
+    time = models.IntegerField(
+        _(u'Time'),
+        choices=TIME_CHOICES,
+        blank=True,
+        null=True
+    )
 
     class Meta:
         abstract = True

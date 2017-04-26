@@ -65,3 +65,11 @@ class EventsRegistrationView(AllinkBaseCreateView):
     def send_mail(self):
         send_registration_email(self.get_form(), self.item)
         send_registration_confirmation_email(self.get_form(), self.item)
+
+    def get_confirmation_template(self):
+        template = '{}/forms/confirmation.html'.format(self.item._meta.model_name)
+        try:
+            get_template(template)
+        except TemplateDoesNotExist:
+            template = 'includes/forms/confirmation.html'
+        return template
