@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.template.loader import render_to_string
 
+from allink_core.allink_base.utils import get_display
 from allink_core.allink_base.utils import base_url
 from allink_core.allink_mandrill.config import MandrillConfig
 from allink_core.allink_mandrill.helpers import send_transactional_email
@@ -13,9 +14,18 @@ def send_request_email(form):
     template_content = [{}]
 
     r = '<br />'
-    subscriber = render_to_string('contact/email/request_subscriber.txt', {'form': form})
+    data = []
+    for field in form.fields:
+        if field != 'terms' and field != 'terms_accepted':
+            if form.data.get(field):
+                if hasattr(form.fields.get(field), 'choices'):
+                    data.append((form.fields.get(field).label, get_display(form.data.get(field), form.fields.get(field).choices)))
+                else:
+                    data.append((form.fields.get(field).label, form.data.get(field)))
+
+    subscriber = render_to_string('contact/email/request_subscriber.txt', {'data': data})
     subscriber = subscriber.replace('\r\n', r).replace('\n\r', r).replace('\r', r).replace('\n', r)
-    subscriber = subscriber.encode('utf-8')
+    # subscriber = subscriber.encode('utf-8')
 
     message = {
         'auto_html': None,
@@ -23,6 +33,7 @@ def send_request_email(form):
         'from_email': config.default_from_email,
         'from_name': config.get_default_from_name(),
         'global_merge_vars': [
+            {'name': 'detail_link', 'content': u'hello'},
             {'name': 'subscriber', 'content': subscriber}
         ],
         'headers': {'Reply-To': config.default_from_email},
@@ -41,13 +52,28 @@ def send_request_email(form):
         'track_clicks': True,
         'track_opens': True
     }
-    send_transactional_email(message=message, template_name='hdf_request_internal', template_content=template_content)
+    send_transactional_email(message=message, template_name='hdf_registration_internal', template_content=template_content)
 
 
 def send_request_confirmation_email(form):
     subject = render_to_string('contact/email/request_subject.txt')
     template_content = [{}]
-    salutation = u'Guten Tag {}'.format(form.data.get('first_name'))
+
+    r = '<br />'
+    data = []
+    for field in form.fields:
+        if field != 'terms' and field != 'terms_accepted':
+            if form.data.get(field):
+                if hasattr(form.fields.get(field), 'choices'):
+                    data.append((form.fields.get(field).label,
+                                 get_display(form.data.get(field), form.fields.get(field).choices)))
+                else:
+                    data.append((form.fields.get(field).label, form.data.get(field)))
+
+    subscriber = render_to_string('contact/email/request_subscriber.txt', {'data': data})
+    subscriber = subscriber.replace('\r\n', r).replace('\n\r', r).replace('\r', r).replace('\n', r)
+
+    message = str(form.fields.get('message')).replace('\r\n', r).replace('\n\r', r).replace('\r', r).replace('\n', r)
 
     message = {
         'auto_html': None,
@@ -55,7 +81,10 @@ def send_request_confirmation_email(form):
         'from_email': config.default_from_email,
         'from_name': config.get_default_from_name(),
         'global_merge_vars': [
-            {'name': 'salutation', 'content': salutation},
+            {'name': 'first_name', 'content': form.data.get('first_name')},
+            {'name': 'last_name', 'content': form.data.get('last_name')},
+            {'name': 'subscriber', 'content': subscriber},
+            {'name': 'message', 'content': message}
         ],
         'google_analytics_campaign': 'Contact Request',
         'google_analytics_domains': [config.get_google_analytics_domains()],

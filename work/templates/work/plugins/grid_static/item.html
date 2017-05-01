@@ -20,10 +20,12 @@
                 </h2>
             </div>
         {% endif %}
-        {% for cat in object.categories_set.all %}
-            hell
-                {{ cat.title }}
-        {% endfor %}
+        {% comment %}
+            {% for cat in object.categories_set.all %}
+                hell
+                    {{ cat.title }}
+            {% endfor %}
+        {% endcomment %}
         {% if object.lead %}
             <div class="text-container">
                 <p>

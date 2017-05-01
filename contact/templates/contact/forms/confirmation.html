@@ -1,5 +1,10 @@
 {% load i18n %}
 
-<div class="alert alert-success">
-    {% trans "Thanks for your request." %}
+<div class="text-container">
+    <p>{% trans "Thanks for your request." %}</p>
+    <p>
+        <a href="#" class="btn btn-default" data-close-form-modal>
+            {% trans "Close window" %}
+        </a>
+    </p>
 </div>

@@ -54,6 +54,12 @@ class Locations(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, Transl
             blank=True,
             help_text=_(u'Leave blank to auto-generate a unique slug.')
         ),
+        opening_hours_display = HTMLField(
+            _(u'Opening hours'),
+            help_text=_(u'This Text will be used to show the Opening hours on the location detail page. If provided, the detailed opening hours will be overriden.'),
+            blank=True,
+            null=True,
+        )
     )
 
     email_work = models.EmailField(

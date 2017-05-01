@@ -1,0 +1,139 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-29 06:03-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: allink_apps/people/admin.py:17
+msgid "Preview Image"
+msgstr ""
+
+#: allink_apps/people/cms_apps.py:8
+msgid "People Apphook"
+msgstr ""
+
+#: allink_apps/people/models.py:30 allink_apps/people/models.py:43
+msgid "Firstname"
+msgstr ""
+
+#: allink_apps/people/models.py:35 allink_apps/people/models.py:49
+msgid "Lastname"
+msgstr ""
+
+#: allink_apps/people/models.py:54 allink_apps/people/models.py:160
+msgid "Unit"
+msgstr ""
+
+#: allink_apps/people/models.py:59
+msgid "Function"
+msgstr ""
+
+#: allink_apps/people/models.py:64
+msgid "Text"
+msgstr ""
+
+#: allink_apps/people/models.py:69
+msgid "Slug"
+msgstr ""
+
+#: allink_apps/people/models.py:73
+msgid "Leave blank to auto-generate a unique slug."
+msgstr ""
+
+#: allink_apps/people/models.py:78
+msgid "Company Name"
+msgstr ""
+
+#: allink_apps/people/models.py:85
+msgid "Gender"
+msgstr ""
+
+#: allink_apps/people/models.py:99
+msgid "Person"
+msgstr ""
+
+#: allink_apps/people/models.py:100
+msgid "People"
+msgstr ""
+
+#: allink_apps/people/models.py:152
+msgid "Location"
+msgstr ""
+
+#: allink_apps/people/models.py:156
+msgid "Job Function"
+msgstr ""
+
+#: allink_apps/people/models.py:173
+msgid ""
+"Select and arrange specific entries, or, leave blank to select all. (If "
+"manual entries are selected the category filtering will be ignored.)"
+msgstr ""
+
+#: allink_apps/people/models.py:179
+msgid "Images"
+msgstr ""
+
+#: allink_apps/people/models.py:179
+msgid "The first image will be used as preview image."
+msgstr ""
+
+#: allink_apps/people/templates/people/people_detail.html:74
+msgid "Contact"
+msgstr ""
+
+#: allink_apps/people/templates/people/people_detail.html:84
+msgid "Phone:"
+msgstr ""
+
+#: allink_apps/people/templates/people/people_detail.html:90
+msgid "Mobile:"
+msgstr ""
+
+#: allink_apps/people/templates/people/people_detail.html:96
+msgid "Fax:"
+msgstr ""
+
+#: allink_apps/people/templates/people/plugins/grid_static/item.html:49
+#: allink_apps/people/templates/people/plugins/table_2/item.html:32
+msgid "More"
+msgstr ""
+
+#: allink_apps/people/templates/people/plugins/table/content.html:9
+#: allink_apps/people/templates/people/plugins/table_2/content.html:11
+msgid "Name"
+msgstr ""
+
+#: allink_apps/people/templates/people/plugins/table/content.html:10
+msgid "Firmenname/Beruf"
+msgstr ""
+
+#: allink_apps/people/templates/people/plugins/table/content.html:11
+msgid "Ort"
+msgstr ""
+
+#: allink_apps/people/templates/people/plugins/table/content.html:12
+msgid "Kontakt"
+msgstr ""
+
+#: allink_apps/people/templates/people/plugins/table_2/content.html:12
+msgid "Beruf"
+msgstr ""
+
+#: allink_apps/people/templates/people/plugins/table_2/content.html:13
+msgid "Website"
+msgstr ""

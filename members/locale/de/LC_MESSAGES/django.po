@@ -1,0 +1,134 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-29 06:03-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: allink_apps/members/admin.py:37
+msgid ""
+"Delete selected Members (and corresponding Users/ also removes member from "
+"mailchimplist)"
+msgstr ""
+
+#: allink_apps/members/admin.py:46
+msgid "Subscribe member to mailchimplist)"
+msgstr ""
+
+#: allink_apps/members/admin.py:54
+msgid "Send welcome email"
+msgstr ""
+
+#: allink_apps/members/cms_apps.py:8
+msgid "Members Apphook"
+msgstr ""
+
+#: allink_apps/members/cms_toolbars.py:24
+msgid "Allink"
+msgstr ""
+
+#: allink_apps/members/models.py:24
+msgid "Slug"
+msgstr ""
+
+#: allink_apps/members/models.py:28
+msgid "Leave blank to auto-generate a unique slug."
+msgstr ""
+
+#: allink_apps/members/models.py:33
+msgid "Member Number"
+msgstr ""
+
+#: allink_apps/members/models.py:40
+msgid "Email"
+msgstr ""
+
+#: allink_apps/members/models.py:44
+msgid "Firstname"
+msgstr ""
+
+#: allink_apps/members/models.py:51
+msgid "Lastname"
+msgstr ""
+
+#: allink_apps/members/models.py:57
+msgid "Language"
+msgstr ""
+
+#: allink_apps/members/models.py:66 allink_apps/members/models.py:67
+msgid "Members"
+msgstr ""
+
+#: allink_apps/members/models.py:159
+msgid "Log"
+msgstr ""
+
+#: allink_apps/members/models.py:164
+msgid "Description"
+msgstr ""
+
+#: allink_apps/members/templates/members/email/member_modified_subject.txt:2
+msgid "Mitglied hat E-Mail Adresse mutiert"
+msgstr ""
+
+#: allink_apps/members/templates/members/email/member_modified_text.txt:2
+#, python-format
+msgid ""
+"\n"
+"Guten Tag,\n"
+"\n"
+"Das Mitglied %(member_nr)s hat neu die E-Mail Adresse: %(member_email)s.\n"
+"Bitte aktualisieren Sie die E-Mail Adresse in den anderen Systemen "
+"(Flightnet, FileMaker Datenbank).\n"
+"\n"
+msgstr ""
+
+#: allink_apps/members/templates/members/email/welcome_subject.txt:2
+msgid "Zugang Downloadbereich neue MFGZ Website"
+msgstr ""
+
+#: allink_apps/members/templates/members/email/welcome_text.txt:2
+#, python-format
+msgid ""
+"\n"
+"Die MFGZ Website wurde überarbeitet und auch der Download Bereich wurde neu "
+"gestaltet.\n"
+"\n"
+"Bitte klicken Sie hier, um ein neues Passwort zu setzen:\n"
+"%(set_password_link)s\n"
+"\n"
+"Das Passwort wird verschlüsselt abgelegt, die Kommunikation erfolgt über "
+"eine sichere Verbindung mittels SSL.\n"
+"\n"
+"Freundliche Grüsse\n"
+"MFGZ Team\n"
+msgstr ""
+
+#: allink_apps/members/templates/members/login/confirmation.html:4
+msgid "Your login was successful."
+msgstr ""
+
+#: allink_apps/members/templates/members/profile_edit.html:4
+msgid "Change Password"
+msgstr ""
+
+#: allink_apps/members/templates/members/profile_edit.html:10
+msgid "Save"
+msgstr ""
+
+#: allink_apps/members/views.py:84
+msgid "Something went wrong with your subscription. Please try again later."
+msgstr ""

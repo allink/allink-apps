@@ -6,10 +6,14 @@ from allink_core.allink_base.models.managers import AllinkBaseModelQuerySet, All
 class AllinkPeopleQuerySet(AllinkBaseModelQuerySet):
 
     def title_asc(self):
-        return self.translated().order_by('lastname', 'id').distinct('lastname', 'id')
+        return self.active_entries()\
+            .order_by('lastname', 'id')\
+            .distinct('lastname', 'id')
 
     def title_desc(self):
-        return self.translated().order_by('-lastname', 'id').distinct('lastname', 'id')
+        return self.active_entries()\
+            .order_by('-lastname', 'id')\
+            .distinct('lastname', 'id')
 
 
 class AllinkPeopleManager(AllinkBaseModelManager):
