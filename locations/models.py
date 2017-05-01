@@ -87,13 +87,6 @@ class Locations(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, Transl
         null=True
     )
 
-    opening_hours_display = HTMLField(
-        _(u'Opening hours'),
-        help_text=_(u'This Text will be used to show the Opening hours on the location detail page. If provided, the detailed opening hours will be overriden.'),
-        blank=True,
-        null=True,
-    )
-
     mon = models.CharField(_(u'Monday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
     tue = models.CharField(_(u'Tuesday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
     wed = models.CharField(_(u'Wednesday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)

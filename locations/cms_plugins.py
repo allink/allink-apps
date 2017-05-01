@@ -42,22 +42,3 @@ class CMSLocationsPlugin(CMSAllinkBaseAppContentPlugin):
             )
         }),
         return fieldsets
-
-    def get_render_template(self, context, instance, placeholder, file='content'):
-        if self.get_is_empty_result(context) and file != '_no_results':
-            file = 'no_results'
-
-        template = '{}/plugins/{}/{}.html'.format(self.data_model._meta.app_label, instance.template, file)
-
-        # check if project specific template
-        try:
-            get_template(template)
-        except TemplateDoesNotExist:
-            try:
-                template = 'app_content/plugins/{}/{}.html'.format(instance.template, file)
-                get_template(template)
-            except TemplateDoesNotExist:
-                # we can't guess all possible custom templates
-                # so this is a fallback for all custom plugins
-                template = 'app_content/plugins/{}/{}.html'.format('grid_static', file)
-        return template
