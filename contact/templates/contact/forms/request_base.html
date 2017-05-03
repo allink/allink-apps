@@ -7,6 +7,7 @@
         method="{{ method|default:"POST" }}"
         novalidate="novalidate"
         action="{% url "contact:request" %}"
+        data-success-data-layer-event="contact-form.sent"
         {% block form_additional_attributes %}{% endblock form_additional_attributes %}
         >
 

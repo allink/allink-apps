@@ -33,6 +33,7 @@ The version numbers referring to the version in [allink_core](git@github.com/all
 
 ### NEW
 
+- Contact Form: The dataLayer event `contact-form.sent` has been added for Google Tag Manager.
 - Forms: The `form.html` template is not extended from `form_base.html` (which of course has various `blocks`) for easier project specific changes.
 
 ### FIXES
