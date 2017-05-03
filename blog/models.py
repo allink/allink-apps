@@ -71,24 +71,11 @@ class Blog(PolymorphicModel, TranslationHelperMixin, AllinkTranslatedAutoSlugify
 
     @property
     def preview_image(self):
-        if self.blogimage_set.count() > 0:
-            return self.blogimage_set.first().image
+        return getattr(self.blogimage_set.select_related().first(), 'image', None)
 
     @property
     def images(self):
-        """
-        backward compatibility:
-        either the images on the app are set
-        or we handle galleries with the gallery plugin in the header placeholder
-        """
-        try:
-            plugins = self.header_placeholder.get_plugins_list()
-        except:
-            plugins = None
-        if not plugins and self.preview_image:
-            return self.blogimage_set.all()
-        else:
-            return None
+        return None
 
     def get_detail_view(self):
         return 'blog:detail'.format(self._meta.model_name)

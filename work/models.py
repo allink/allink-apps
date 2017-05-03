@@ -65,25 +65,11 @@ class Work(SortableMixin, TranslationHelperMixin, AllinkTranslatedAutoSlugifyMix
 
     @property
     def preview_image(self):
-        if self.workimage_set.count() > 0:
-            return self.workimage_set.first().image
+        return getattr(self.workimage_set.select_related().first(), 'image', None)
 
     @property
     def images(self):
-        """
-        backward compatibility:
-        either the images on the app are set
-        or we handle galleries with the gallery plugin in the header placeholder
-        """
-        try:
-            plugins = self.header_placeholder.get_plugins_list()
-        except:
-            plugins = None
-        if not plugins and self.preview_image:
-            return self.workimage_set.all()
-        else:
-            return None
-
+        return None
 
 # APP CONTENT PLUGIN
 class WorkAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin):
