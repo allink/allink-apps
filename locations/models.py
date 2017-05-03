@@ -35,6 +35,12 @@ class Locations(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, Transl
         title=models.CharField(
             max_length=255
         ),
+        subtitle=models.CharField(
+            _(u'Subtitle'),
+            max_length=255,
+            blank=True,
+            null=True,
+        ),
         lead=HTMLField(
             _(u'Lead Text'),
             help_text=_(u'Teaser text that in some cases is used in the list view and/or in the detail view.'),
@@ -48,6 +54,12 @@ class Locations(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, Transl
             blank=True,
             help_text=_(u'Leave blank to auto-generate a unique slug.')
         ),
+        opening_hours_display = HTMLField(
+            _(u'Opening hours'),
+            help_text=_(u'This Text will be used to show the Opening hours on the location detail page. If provided, the detailed opening hours will be overriden.'),
+            blank=True,
+            null=True,
+        )
     )
 
     email_work = models.EmailField(
@@ -140,7 +152,7 @@ class Locations(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, Transl
         from geopy import geocoders
         g = geocoders.GoogleV3()
         try:
-            place, (lat, lng) = g.geocode((u'%s %s %s %s, Schweiz' % (self.street, self.street_nr, self.zip_code, self.place)).encode("utf-8"))
+            place, (lat, lng) = g.geocode((u'%s %s %s %s %s, Schweiz' % (self.street, self.street_nr, self.street_additional, self.zip_code, self.place)).encode("utf-8"))
         except Exception as e:
             return "%s: %s" % (self, e)
         else:
@@ -233,7 +245,7 @@ class Locations(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, Transl
         """
         return (u"https://www.google.ch/maps?q=%(name)s+%(street)s+%(zip_code)s+%(place)s" % {
             'name': self.title,
-            'street': u'{} {}'.format(self.street, self.street_nr),
+            'street': u'{} {} {}'.format(self.street, self.street_nr, self.street_additional),
             'zip_code': self.zip_code,
             'place': self.place
         }).replace(' ', '+')

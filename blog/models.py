@@ -182,32 +182,23 @@ class BlogAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin)
         """
 
         # apply filters from request
-        queryset = self.data_model.objects.filter(**filters)
+        queryset = self.data_model.objects.active().filter(**filters)
 
-        if self.categories.count() > 0 or category:
-            """
-             category selection
-            """
+        if self.categories.exists() or category:
             if category:
                 #  TODO how can we automatically apply the manager of the subclass?
                 if category.name == 'Events':
-                    queryset = Events.objects.filter_by_category(category)
-                    if self.categories_and.count() > 0:
-                        queryset = queryset.filter(categories=self.categories_and.all())
+                    queryset = Events.objects.active().filter_by_category(category)
                 else:
-                    queryset = self.data_model.objects.filter_by_category(category)
-                    if self.categories_and.count() > 0:
-                        queryset = queryset.filter(categories=self.categories_and.all())
+                    queryset = queryset.filter_by_category(category)
             else:
-                queryset = self.data_model.objects.filter_by_categories(self.categories)
-                if self.categories_and.count() > 0:
-                    queryset = queryset.filter(categories=self.categories_and.all())
+                queryset = queryset.filter_by_categories(categories=self.categories.all())
 
-            return self._apply_ordering_to_queryset_for_display(queryset)
+            if self.categories_and.exists():
+                queryset = queryset.filter_by_categories(categories=self.categories_and.all())
 
-        else:
-            queryset = self.data_model.objects.active()
-            return self._apply_ordering_to_queryset_for_display(queryset)
+        return self._apply_ordering_to_queryset_for_display(queryset)
+
 
 
 class BlogImage(AllinkBaseImage):

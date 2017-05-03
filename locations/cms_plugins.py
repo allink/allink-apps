@@ -5,6 +5,9 @@ from allink_core.allink_base.admin.cms_plugins import CMSAllinkBaseAppContentPlu
 from allink_apps.locations.models import LocationsAppContentPlugin
 
 
+from django.template.loader import get_template
+from django.template import TemplateDoesNotExist
+
 @plugin_pool.register_plugin
 class CMSLocationsPlugin(CMSAllinkBaseAppContentPlugin):
     """

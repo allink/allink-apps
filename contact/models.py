@@ -3,11 +3,13 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from allink_core.allink_base.models import AllinkAddressFieldsModel, AllinkSimpleRegistrationFieldsModel
+from allink_core.allink_base.models.choices import SALUTATION_CHOICES
 
 
-class ContactRequestBase(AllinkAddressFieldsModel, AllinkSimpleRegistrationFieldsModel):
+class ContactRequestBase(AllinkSimpleRegistrationFieldsModel):
 
     TIME_CHOICES = (
+        (None, _(u'-- between --')),
         (1, u'08:00-10:00'),
         (2, u'10:00-12:00'),
         (3, u'12:00-14:00'),
@@ -19,19 +21,48 @@ class ContactRequestBase(AllinkAddressFieldsModel, AllinkSimpleRegistrationField
     CONTACT_EMAIL = 20
 
     CONTACT_CHOICES = (
+        (None, _(u'-- please choose --')),
         (CONTACT_PHONE, _(u'Phone')),
         (CONTACT_EMAIL, _(u'Email')),
     )
-
-    contact_type = models.IntegerField(_(u'Please contact me via'), choices=CONTACT_CHOICES, default=None)
-    date = models.DateField(_(u'Date'), blank=True, null=True)
-    time = models.IntegerField(_(u'Time'), choices=TIME_CHOICES, blank=True, null=True)
+    salutation = models.IntegerField(
+        _(u'Salutation'),
+        choices=SALUTATION_CHOICES,
+        null=True
+    )
+    company_name = models.CharField(
+        _(u'Company'),
+        max_length=255,
+        blank=True,
+        null=True
+    )
+    contact_type = models.IntegerField(
+        _(u'Please contact me via'),
+        choices=CONTACT_CHOICES,
+    )
+    phone = models.CharField(
+        _(u'Phone'),
+        max_length=30,
+        blank=True,
+        null=True
+    )
+    date = models.DateField(
+        _(u'Date'),
+        blank=True,
+        null=True
+    )
+    time = models.IntegerField(
+        _(u'Time'),
+        choices=TIME_CHOICES,
+        blank=True,
+        null=True
+    )
 
     class Meta:
         abstract = True
 
     def __str__(self):
-        return u'%s %s' % (self.date, self.time)
+        return u'%s %s' % (self.first_name, self.last_name)
 
     @property
     def contact_details(self):
