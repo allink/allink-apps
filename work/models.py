@@ -7,6 +7,7 @@ from adminsortable.fields import SortableForeignKey
 from adminsortable.models import SortableMixin
 from parler.models import TranslatableModel, TranslatedFields
 from djangocms_text_ckeditor.fields import HTMLField
+from filer.fields.image import FilerImageField
 
 from aldryn_translation_tools.models import TranslationHelperMixin
 from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
@@ -44,7 +45,13 @@ class Work(SortableMixin, TranslationHelperMixin, AllinkTranslatedAutoSlugifyMix
             null=True,
         )
     )
-
+    preview_image = FilerImageField(
+        verbose_name=_(u'Preview Image'),
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='%(app_label)s_%(class)s_preview_image',
+    )
     sort_order = models.PositiveIntegerField(
         default=0,
         editable=False,
@@ -63,9 +70,9 @@ class Work(SortableMixin, TranslationHelperMixin, AllinkTranslatedAutoSlugifyMix
         verbose_name = _('Projekt/ Referenz')
         verbose_name_plural = _('Projekte/ Referenzen')
 
-    @property
-    def preview_image(self):
-        return getattr(self.workimage_set.select_related().first(), 'image', None)
+    # @property
+    # def preview_image(self):
+    #     return getattr(self.workimage_set.select_related().first(), 'image', None)
 
     @property
     def images(self):

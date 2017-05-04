@@ -10,17 +10,17 @@ from allink_core.allink_base.admin import AllinkBaseAdminSortable
 from allink_apps.work.models import WorkImage, Work
 
 
-class WorkImageInline(SortableTabularInline):
-    model = WorkImage
-    extra = 0
-    max_num = 1
-    verbose_name = ''
-    verbose_name_plural = _(u'Preview Image')
+# class WorkImageInline(SortableTabularInline):
+#     model = WorkImage
+#     extra = 0
+#     max_num = 1
+#     verbose_name = ''
+#     verbose_name_plural = _(u'Preview Image')
 
 
 @admin.register(Work)
 class WorkAdmin(PlaceholderAdminMixin, AllinkBaseAdminSortable):
-    inlines = [WorkImageInline, ]
+    # inlines = [WorkImageInline, ]
     # list_filter = ('is_active', 'categories',)
 
     def get_fieldsets(self, request, obj=None):
@@ -31,6 +31,7 @@ class WorkAdmin(PlaceholderAdminMixin, AllinkBaseAdminSortable):
                     'title',
                     'slug',
                     'lead',
+                    'preview_image_3'
                 ),
             }),
         )
