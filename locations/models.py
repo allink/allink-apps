@@ -3,6 +3,7 @@ import datetime
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
 
+from filer.fields.image import FilerImageField
 from cms.models.fields import PlaceholderField
 from adminsortable.fields import SortableForeignKey
 from parler.models import TranslatableModel, TranslatedFields
@@ -62,6 +63,14 @@ class Locations(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, Transl
         )
     )
 
+    preview_image = FilerImageField(
+        verbose_name=_(u'Preview Image'),
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='%(app_label)s_%(class)s_preview_image',
+    )
+
     email_work = models.EmailField(
         _(u'Email Work'),
         help_text=_(u'Used as "to adress" in form.'),
@@ -111,14 +120,6 @@ class Locations(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, Transl
         app_label = 'locations'
         verbose_name = _('Location')
         verbose_name_plural = _('Locations')
-
-    @property
-    def preview_image(self):
-        return getattr(self.locationsimage_set.select_related().first(), 'image', None)
-
-    @property
-    def images(self):
-        return None
 
     def value_has_changed_for_fields(instance, fields):
         """

@@ -8,18 +8,8 @@ from allink_core.allink_base.admin import AllinkBaseAdmin
 
 from allink_apps.locations.models import LocationsImage, Locations
 
-
-class LocationsImageInline(SortableTabularInline):
-    model = LocationsImage
-    extra = 1
-    max_num = 1
-    verbose_name = ''
-    verbose_name_plural = _(u'Preview Image')
-
-
 @admin.register(Locations)
 class LocationsAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
-    inlines = [LocationsImageInline, ]
     exclude = ('lead', )
     readonly_fields = ('is_currently_open', )
 
@@ -31,6 +21,7 @@ class LocationsAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
                     'title',
                     'slug',
                     'subtitle',
+                    'preview_image',
                     ('zip_code', 'place',),
                     ('street', 'street_nr',),
                     'street_additional',

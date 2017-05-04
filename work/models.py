@@ -12,7 +12,7 @@ from filer.fields.image import FilerImageField
 from aldryn_translation_tools.models import TranslationHelperMixin
 from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 
-from allink_core.allink_base.models import AllinkManualEntriesMixin, AllinkBaseModelManager, AllinkTranslatedAutoSlugifyMixin
+from allink_core.allink_base.models import AllinkManualEntriesMixin, AllinkBaseModelManager
 from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin
 from allink_core.allink_base.models.mixins import AllinkTranslatedAutoSlugifyMixin
 
@@ -70,13 +70,7 @@ class Work(SortableMixin, TranslationHelperMixin, AllinkTranslatedAutoSlugifyMix
         verbose_name = _('Projekt/ Referenz')
         verbose_name_plural = _('Projekte/ Referenzen')
 
-    # @property
-    # def preview_image(self):
-    #     return getattr(self.workimage_set.select_related().first(), 'image', None)
 
-    @property
-    def images(self):
-        return None
 
 # APP CONTENT PLUGIN
 class WorkAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin):

@@ -10,20 +10,10 @@ from allink_core.allink_base.admin import AllinkBaseAdmin
 from allink_apps.testimonials.models import TestimonialImage, Testimonial
 
 
-class TestimonialImageInline(SortableTabularInline):
-    model = TestimonialImage
-    extra = 0
-    max_num = 1
-    verbose_name = ''
-    verbose_name_plural = _(u'Preview Image')
-
-
 @admin.register(Testimonial)
 class TestimonialAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
     search_fields = ('translations__firstname', 'translations__lastname',)
     list_display = ('firstname', 'lastname', 'get_categories', 'is_active', 'created', 'modified')
-
-    inlines = [TestimonialImageInline, ]
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = (
@@ -38,6 +28,7 @@ class TestimonialAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
                     'text',
                     'slug',
                     'created',
+                    'preview_image',
                 ),
             }),
         )

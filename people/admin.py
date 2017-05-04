@@ -8,18 +8,8 @@ from allink_core.allink_base.admin import AllinkBaseAdmin
 from allink_core.allink_base.admin.forms import AllinkBaseAdminForm
 from allink_apps.people.models import PeopleImage, People
 
-
-class PeopleImageInline(SortableTabularInline):
-    model = PeopleImage
-    extra = 1
-    max_num = 1
-    verbose_name = None
-    verbose_name_plural = _(u'Preview Image')
-
-
 @admin.register(People)
 class PeopleAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
-    inlines = [PeopleImageInline, ]
 
     form = AllinkBaseAdminForm
     search_fields = ('firstname', 'lastname',)
@@ -41,6 +31,7 @@ class PeopleAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
                     'street_additional',
                     ('place', 'zip_code'),
                     'slug',
+                    'preview_image',
                 ),
             }),
         )
