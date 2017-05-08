@@ -71,6 +71,24 @@ class Work(SortableMixin, TranslationHelperMixin, AllinkTranslatedAutoSlugifyMix
         verbose_name_plural = _('Projekte/ Referenzen')
 
 
+class Highlights(SortableMixin):
+    text = models.CharField(max_length=80),
+    work = SortableForeignKey(
+        Work,
+        verbose_name=_(u'Highlights'),
+        blank=True,
+        null=True
+    )
+
+    sort_order = models.PositiveIntegerField(
+        default=0,
+        editable=False,
+        db_index=True
+    )
+
+    class Meta:
+        ordering = ('sort_order',)
+
 
 # APP CONTENT PLUGIN
 class WorkAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin):

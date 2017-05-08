@@ -1,15 +1,26 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
 from django import forms
+from django.utils.translation import ugettext_lazy as _
 
+from adminsortable.admin import SortableTabularInline
 from cms.admin.placeholderadmin import PlaceholderAdminMixin
 from allink_core.allink_base.admin import AllinkBaseAdminSortable
 
-from allink_apps.work.models import Work
+from allink_apps.work.models import Work, Highlights
+
+
+class HighlightsInline(SortableTabularInline):
+    model = Highlights
+    extra = 0
+    max_num = 10
+    verbose_name = _(u'Highlight')
+    verbose_name_plural = _(u'Highlights')
 
 
 @admin.register(Work)
 class WorkAdmin(PlaceholderAdminMixin, AllinkBaseAdminSortable):
+    inlines = [HighlightsInline, ]
     # list_filter = ('is_active', 'categories',)
 
     def get_fieldsets(self, request, obj=None):
