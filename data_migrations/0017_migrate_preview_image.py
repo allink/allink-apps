@@ -7,20 +7,14 @@ from django.db import migrations
 # migrate work to allink djangocms_image
 def migrate_images(apps, schema_editor):
     activate('de')
-# WORK
-    Work = apps.get_model("work", "work")
-    WorkImage = apps.get_model("work", "workImage")
-
-    for work in Work.objects.all():
-        preview_image = WorkImage.objects.filter(work=work).first()
-        Work.objects.filter(id=work.id).update(preview_image=preview_image.image)
-# BLOG
+    # BLOG
     Blog = apps.get_model("blog", "Blog")
     BlogImage = apps.get_model("blog", "BlogImage")
 
     for blog in Blog.objects.all():
         preview_image = BlogImage.objects.filter(blog=blog).first()
-        Blog.objects.filter(id=blog.id).update(preview_image=preview_image.image)
+        if preview_image:
+            Blog.objects.filter(id=blog.id).update(preview_image=preview_image.image)
 
 # LOCATIONS
     Locations = apps.get_model("locations", "Locations")
@@ -28,7 +22,8 @@ def migrate_images(apps, schema_editor):
 
     for location in Locations.objects.all():
         preview_image = LocationsImage.objects.filter(location=location).first()
-        Locations.objects.filter(id=location.id).update(preview_image=preview_image.image)
+        if preview_image:
+            Locations.objects.filter(id=location.id).update(preview_image=preview_image.image)
 
 # PEOPLE
     People = apps.get_model("people", "People")
@@ -36,7 +31,8 @@ def migrate_images(apps, schema_editor):
 
     for people in People.objects.all():
         preview_image = PeopleImage.objects.filter(people=people).first()
-        People.objects.filter(id=people.id).update(preview_image=preview_image.image)
+        if preview_image:
+            People.objects.filter(id=people.id).update(preview_image=preview_image.image)
 
 # TESTIMONIAL
     Testimonial = apps.get_model("testimonials", "Testimonial")
@@ -44,7 +40,8 @@ def migrate_images(apps, schema_editor):
 
     for testimonial in Testimonial.objects.all():
         preview_image = TestimonialImage.objects.filter(testimonial=testimonial).first()
-        Testimonial.objects.filter(id=testimonial.id).update(preview_image=preview_image.image)
+        if preview_image:
+            Testimonial.objects.filter(id=testimonial.id).update(preview_image=preview_image.image)
 
 # SERVICES
     Services = apps.get_model("services", "Services")
@@ -52,7 +49,8 @@ def migrate_images(apps, schema_editor):
 
     for services in Services.objects.all():
         preview_image = ServicesImage.objects.filter(services=services).first()
-        Services.objects.filter(id=services.id).update(preview_image=preview_image.image)
+        if preview_image:
+            Services.objects.filter(id=services.id).update(preview_image=preview_image.image)
 
 # TOPICS
     Topics = apps.get_model("topics", "Topics")
@@ -60,7 +58,8 @@ def migrate_images(apps, schema_editor):
 
     for topics in Topics.objects.all():
         preview_image = TopicsImage.objects.filter(topics=topics).first()
-        Topics.objects.filter(id=topics.id).update(preview_image=preview_image.image)
+        if preview_image:
+            Topics.objects.filter(id=topics.id).update(preview_image=preview_image.image)
 
 
 def do_nothing(apps, schema_editor):
