@@ -19,18 +19,9 @@ class BlogContentAdminForm(AllinkBaseAdminForm):
         self.fields['categories'].initial = AllinkCategory.objects.not_root().filter(translations__name__iexact=self._meta.model._meta.model_name)
 
 
-class BlogImageInline(SortableTabularInline):
-    model = BlogImage
-    extra = 1
-    max_num = 1
-    verbose_name = ''
-    verbose_name_plural = _(u'Preview Image')
-
-
 @admin.register(News)
 class NewsAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
     form = BlogContentAdminForm
-    inlines = [BlogImageInline, ]
 
     def formfield_for_dbfield(self, db_field, **kwargs):
         if db_field.name == 'lead':
@@ -45,6 +36,7 @@ class NewsAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
                     'title',
                     'slug',
                     'created',
+                    'preview_image',
                     'lead',
                 ),
             }),
@@ -59,7 +51,6 @@ class NewsAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
         }),
 
         fieldsets += self.get_base_fieldsets()
-
         return fieldsets
 
 
@@ -67,7 +58,6 @@ class NewsAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
 class EventsAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
     form = BlogContentAdminForm
     list_display = ('title', 'get_categories', 'event_date', 'is_active', )
-    inlines = [BlogImageInline, ]
 
     def formfield_for_dbfield(self, db_field, **kwargs):
         if db_field.name == 'lead':
@@ -82,6 +72,7 @@ class EventsAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
                     'title',
                     'slug',
                     'created',
+                    'preview_image',
                     'lead',
                     'location',
                     'form_enabled',
@@ -110,4 +101,4 @@ class EventsRegistrationAdmin(admin.ModelAdmin):
 
 @admin.register(Blog)
 class BlogAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
-    inlines = [BlogImageInline, ]
+    pass

@@ -7,11 +7,12 @@ from adminsortable.fields import SortableForeignKey
 from adminsortable.models import SortableMixin
 from parler.models import TranslatableModel, TranslatedFields
 from djangocms_text_ckeditor.fields import HTMLField
+from filer.fields.image import FilerImageField
 
 from aldryn_translation_tools.models import TranslationHelperMixin
 from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 
-from allink_core.allink_base.models import AllinkManualEntriesMixin, AllinkBaseModelManager, AllinkTranslatedAutoSlugifyMixin
+from allink_core.allink_base.models import AllinkManualEntriesMixin, AllinkBaseModelManager
 from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin
 from allink_core.allink_base.models.mixins import AllinkTranslatedAutoSlugifyMixin
 
@@ -44,7 +45,13 @@ class Work(SortableMixin, TranslationHelperMixin, AllinkTranslatedAutoSlugifyMix
             null=True,
         )
     )
-
+    preview_image = FilerImageField(
+        verbose_name=_(u'Preview Image'),
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='%(app_label)s_%(class)s_preview_image',
+    )
     sort_order = models.PositiveIntegerField(
         default=0,
         editable=False,
@@ -63,26 +70,6 @@ class Work(SortableMixin, TranslationHelperMixin, AllinkTranslatedAutoSlugifyMix
         verbose_name = _('Projekt/ Referenz')
         verbose_name_plural = _('Projekte/ Referenzen')
 
-    @property
-    def preview_image(self):
-        if self.workimage_set.count() > 0:
-            return self.workimage_set.first().image
-
-    @property
-    def images(self):
-        """
-        backward compatibility:
-        either the images on the app are set
-        or we handle galleries with the gallery plugin in the header placeholder
-        """
-        try:
-            plugins = self.header_placeholder.get_plugins_list()
-        except:
-            plugins = None
-        if not plugins and self.preview_image:
-            return self.workimage_set.all()
-        else:
-            return None
 
 
 # APP CONTENT PLUGIN

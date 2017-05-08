@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
 from django.utils.translation import ugettext_lazy as _
-
 from django.db import models
 
+from filer.fields.image import FilerImageField
 from adminsortable.fields import SortableForeignKey
 from parler.models import TranslatableModel, TranslatedFields
 from djangocms_text_ckeditor.fields import HTMLField
@@ -59,6 +59,14 @@ class Blog(PolymorphicModel, TranslationHelperMixin, AllinkTranslatedAutoSlugify
         )
     )
 
+    preview_image = FilerImageField(
+        verbose_name=_(u'Preview Image'),
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='%(app_label)s_%(class)s_preview_image',
+    )
+
     header_placeholder = PlaceholderField(u'blog_header', related_name='%(app_label)s_%(class)s_header_placeholder')
     content_placeholder = PlaceholderField(u'blog_content', related_name='%(app_label)s_%(class)s_content_placeholder')
 
@@ -68,27 +76,6 @@ class Blog(PolymorphicModel, TranslationHelperMixin, AllinkTranslatedAutoSlugify
         app_label = 'blog'
         verbose_name = _('Blog entry')
         verbose_name_plural = _('Blog entries')
-
-    @property
-    def preview_image(self):
-        if self.blogimage_set.count() > 0:
-            return self.blogimage_set.first().image
-
-    @property
-    def images(self):
-        """
-        backward compatibility:
-        either the images on the app are set
-        or we handle galleries with the gallery plugin in the header placeholder
-        """
-        try:
-            plugins = self.header_placeholder.get_plugins_list()
-        except:
-            plugins = None
-        if not plugins and self.preview_image:
-            return self.blogimage_set.all()
-        else:
-            return None
 
     def get_detail_view(self):
         return 'blog:detail'.format(self._meta.model_name)

@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
+
 from cms.models.fields import PlaceholderField
 from adminsortable.fields import SortableForeignKey
 from parler.models import TranslatableModel, TranslatedFields
 from djangocms_text_ckeditor.fields import HTMLField
+from filer.fields.image import FilerImageField
 
 from aldryn_translation_tools.models import TranslationHelperMixin
-
 from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 
 from allink_core.allink_base.models.mixins import AllinkManualEntriesMixin
@@ -36,6 +37,13 @@ class Testimonial(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, Tran
         _(u'Lastname'),
         max_length=255,
         default=''
+    )
+    preview_image = FilerImageField(
+        verbose_name=_(u'Preview Image'),
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='%(app_label)s_%(class)s_preview_image',
     )
 
     translations = TranslatedFields(
@@ -81,27 +89,6 @@ class Testimonial(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, Tran
         app_label = 'testimonials'
         verbose_name = _('Testimonial')
         verbose_name_plural = _('Testimonials')
-
-    @property
-    def preview_image(self):
-        if self.testimonialimage_set.count() > 0:
-            return self.testimonialimage_set.first().image
-
-    @property
-    def images(self):
-        """
-        backward compatibility:
-        either the images on the app are set
-        or we handle galleries with the gallery plugin in the header placeholder
-        """
-        try:
-            plugins = self.header_placeholder.get_plugins_list()
-        except:
-            plugins = None
-        if not plugins and self.preview_image:
-            return self.testimonialimage_set.all()
-        else:
-            return None
 
     @property
     def full_name(self):
