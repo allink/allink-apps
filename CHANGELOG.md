@@ -13,8 +13,27 @@ Each release is divided into the following main categories:
 
 The version numbers referring to the version in [allink_core](git@github.com/allink/allink-core.git).
 
+## v0.0.10 (under development)
 
-## v0.0.9 (under development)
+### IMPORTANT
+
+###### SETTINGS
+
+###### TEMPLATES
+
+###### URLS
+
+###### REQUIREMENTS
+
+###### DATA MIGRATIONS
+- update with caution in projects whcih still use inline images to display galleries (hdf, mfgz, ..?) we added a field preview_image (not a property anymore) the galleries are now added as a plugin inside the content_palceholder
+ -> and if you update make sure you migrate the images! (see data_migrations/0017_migrate_preview_image.py)
+
+### NEW
+
+### FIXES
+
+## v0.0.9
 
 ### IMPORTANT
 
