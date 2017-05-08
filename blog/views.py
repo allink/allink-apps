@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.template.loader import get_template
+from django.template import TemplateDoesNotExist
 from django.core.exceptions import ObjectDoesNotExist
+
 from allink_core.allink_base.views import AllinkBasePluginLoadMoreView, AllinkBaseDetailView, AllinkBaseCreateView
 from allink_core.allink_mandrill.config import MandrillConfig
 from allink_core.allink_terms.models import AllinkTerms
@@ -54,7 +57,7 @@ class EventsRegistrationView(AllinkBaseCreateView):
         initial = super(EventsRegistrationView, self).get_initial()
         initial = initial.copy()
         initial['event'] = self.item
-        initial['terms'] = AllinkTerms.objects.get_published()
+        # initial['terms'] = AllinkTerms.objects.get_published()
         return initial
 
     def form_valid(self, form):

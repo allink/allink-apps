@@ -194,16 +194,29 @@ class BlogImage(AllinkBaseImage):
 
 class EventsRegistration(AllinkAddressFieldsModel, AllinkSimpleRegistrationFieldsModel):
 
+    require_terms = False
+
     event = models.ForeignKey(Events)
 
     job = models.TextField(
         _(u'Education/ Job')
     )
-    terms = models.ForeignKey(
-        AllinkTerms,
-        verbose_name=_(u'I have read and accept the terms and conditions.'),
+
+    phone = models.CharField(
+        _(u'Phone'),
+        max_length=30,
+        blank=True,
         null=True
     )
+
+    # terms = models.ForeignKey(
+    #     AllinkTerms,
+    #     verbose_name=_(u'I have read and accept the terms and conditions.'),
+    #     null=True
+    # )
+
+    def __str__(self):
+        return u'%s %s' % (self.first_name, self.last_name)
 
     @classmethod
     def get_verbose_name(cls):

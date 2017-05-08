@@ -96,7 +96,8 @@ class EventsAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
 
 @admin.register(EventsRegistration)
 class EventsRegistrationAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('__str__', 'email', 'created', 'event', 'message',)
+    list_filter = ('event', )
 
 
 @admin.register(Blog)

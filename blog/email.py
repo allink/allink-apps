@@ -23,7 +23,6 @@ def send_registration_email(form, event):
 
     subscriber = render_to_string('events/email/registration_subscriber.txt', {'data': data})
     subscriber = subscriber.replace('\r\n', r).replace('\n\r', r).replace('\r', r).replace('\n', r)
-    subscriber = subscriber.encode('utf-8')
 
     message = {
         'auto_html': None,
@@ -50,7 +49,7 @@ def send_registration_email(form, event):
         'track_clicks': True,
         'track_opens': True
     }
-    send_transactional_email(message=message, template_name='hdf_registration_internal', template_content=template_content)
+    send_transactional_email(message=message, template_name='hrcampus_registration_internal', template_content=template_content)
 
 
 def send_registration_confirmation_email(form, event):
@@ -85,4 +84,4 @@ def send_registration_confirmation_email(form, event):
         'track_clicks': True,
         'track_opens': True
     }
-    send_transactional_email(message=message, template_name='hdf_event_confirmation', translated=True, template_content=template_content)
+    send_transactional_email(message=message, template_name='hrcampus_event_confirmation', translated=True, template_content=template_content)
