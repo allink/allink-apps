@@ -28,14 +28,8 @@ class Testimonial(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, Tran
     """
     slug_source_field_name = 'full_name'
 
-    title = models.CharField(
-        _(u'Name'),
-        max_length=255,
-        default=''
-    )
-
     firstname = models.CharField(
-        _(u'Firstname'),
+        _(u'Name'),
         max_length=255,
         default=''
     )

@@ -14,14 +14,14 @@ from allink_apps.testimonials.models import TestimonialImage, Testimonial
 class TestimonialAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
     search_fields = ('translations__firstname', 'translations__lastname',)
     # list_display = ('firstname', 'lastname', 'get_categories', 'is_active', 'created', 'modified')
-    list_display = ('title', 'get_categories', 'is_active', 'created', 'modified')
+    list_display = ('firstname', 'get_categories', 'is_active', 'created', 'modified')
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = (
             (None, {
                 'fields': (
                     'is_active',
-                    'title',
+                    'firstname',
                     # ('firstname', 'lastname'),
                     # ('street', 'street_nr'),
                     # 'street_additional',
