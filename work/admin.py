@@ -10,9 +10,9 @@ from allink_core.allink_base.admin import AllinkBaseAdminSortable
 from allink_apps.work.models import Work, Highlights
 
 
-class HighlightsInline(SortableTabularInline):
+class HighlightsInline(admin.TabularInline):
     model = Highlights
-    extra = 0
+    extra = 1
     max_num = 10
     verbose_name = _(u'Highlight')
     verbose_name_plural = _(u'Highlights')

@@ -86,6 +86,9 @@ class Highlights(SortableMixin):
         db_index=True
     )
 
+    def __str__(self):
+        return str(self.text)
+
     class Meta:
         ordering = ('sort_order',)
 
