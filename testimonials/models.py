@@ -28,6 +28,12 @@ class Testimonial(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, Tran
     """
     slug_source_field_name = 'full_name'
 
+    title = models.CharField(
+        _(u'Name'),
+        max_length=255,
+        default=''
+    )
+
     firstname = models.CharField(
         _(u'Firstname'),
         max_length=255,
@@ -67,7 +73,7 @@ class Testimonial(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, Tran
             help_text=_(u'Leave blank to auto-generate a unique slug.')
         ),
         lead=HTMLField(
-            _(u'Testimonial Text'),
+            _(u'Lead text'),
             help_text=_(u'Teaser text that in some cases is used in the list view and/or in the detail view.'),
             blank=True,
             null=True,
