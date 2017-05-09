@@ -72,7 +72,7 @@ class Work(SortableMixin, TranslationHelperMixin, AllinkTranslatedAutoSlugifyMix
 
 
 class Highlights(SortableMixin):
-    text = models.CharField(max_length=80),
+    text = models.CharField(max_length=80)
     work = SortableForeignKey(
         Work,
         verbose_name=_(u'Highlights'),

@@ -10,7 +10,7 @@ from allink_core.allink_base.admin import AllinkBaseAdminSortable
 from allink_apps.work.models import Work, Highlights
 
 
-class HighlightsInline(admin.TabularInline):
+class HighlightsInline(SortableTabularInline):
     model = Highlights
     extra = 1
     max_num = 10
@@ -21,7 +21,7 @@ class HighlightsInline(admin.TabularInline):
 @admin.register(Work)
 class WorkAdmin(PlaceholderAdminMixin, AllinkBaseAdminSortable):
     inlines = [HighlightsInline, ]
-    # list_filter = ('is_active', 'categories',)
+    list_filter = ('is_active', 'categories',)
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = (
