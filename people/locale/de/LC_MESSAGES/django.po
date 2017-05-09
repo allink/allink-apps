@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-29 06:03-0500\n"
+"POT-Creation-Date: 2017-05-09 01:03-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,77 +18,77 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: allink_apps/people/admin.py:17
-msgid "Preview Image"
-msgstr ""
-
 #: allink_apps/people/cms_apps.py:8
 msgid "People Apphook"
 msgstr ""
 
-#: allink_apps/people/models.py:30 allink_apps/people/models.py:43
+#: allink_apps/people/models.py:31 allink_apps/people/models.py:51
 msgid "Firstname"
 msgstr ""
 
-#: allink_apps/people/models.py:35 allink_apps/people/models.py:49
+#: allink_apps/people/models.py:36 allink_apps/people/models.py:57
 msgid "Lastname"
 msgstr ""
 
-#: allink_apps/people/models.py:54 allink_apps/people/models.py:160
+#: allink_apps/people/models.py:41
+msgid "Preview Image"
+msgstr ""
+
+#: allink_apps/people/models.py:62 allink_apps/people/models.py:147
 msgid "Unit"
 msgstr ""
 
-#: allink_apps/people/models.py:59
+#: allink_apps/people/models.py:67
 msgid "Function"
 msgstr ""
 
-#: allink_apps/people/models.py:64
+#: allink_apps/people/models.py:72
 msgid "Text"
 msgstr ""
 
-#: allink_apps/people/models.py:69
+#: allink_apps/people/models.py:77
 msgid "Slug"
 msgstr ""
 
-#: allink_apps/people/models.py:73
+#: allink_apps/people/models.py:81
 msgid "Leave blank to auto-generate a unique slug."
 msgstr ""
 
-#: allink_apps/people/models.py:78
+#: allink_apps/people/models.py:86
 msgid "Company Name"
 msgstr ""
 
-#: allink_apps/people/models.py:85
+#: allink_apps/people/models.py:93
 msgid "Gender"
 msgstr ""
 
-#: allink_apps/people/models.py:99
+#: allink_apps/people/models.py:107
 msgid "Person"
 msgstr ""
 
-#: allink_apps/people/models.py:100
+#: allink_apps/people/models.py:108
 msgid "People"
 msgstr ""
 
-#: allink_apps/people/models.py:152
+#: allink_apps/people/models.py:139
 msgid "Location"
 msgstr ""
 
-#: allink_apps/people/models.py:156
+#: allink_apps/people/models.py:143
 msgid "Job Function"
 msgstr ""
 
-#: allink_apps/people/models.py:173
+#: allink_apps/people/models.py:160
 msgid ""
 "Select and arrange specific entries, or, leave blank to select all. (If "
 "manual entries are selected the category filtering will be ignored.)"
 msgstr ""
 
-#: allink_apps/people/models.py:179
+#: allink_apps/people/models.py:166
 msgid "Images"
 msgstr ""
 
-#: allink_apps/people/models.py:179
+#: allink_apps/people/models.py:166
 msgid "The first image will be used as preview image."
 msgstr ""
 

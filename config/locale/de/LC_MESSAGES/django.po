@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-29 06:03-0500\n"
+"POT-Creation-Date: 2017-05-09 01:03-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,18 +30,51 @@ msgstr ""
 msgid "Config"
 msgstr ""
 
-#: allink_apps/config/models.py:14
-msgid "Architonic User ID"
+#: allink_apps/config/models.py:15
+msgid "og:image"
 msgstr ""
 
-#: allink_apps/config/models.py:18
-msgid "Architonic Katalog Seite"
+#: allink_apps/config/models.py:16
+msgid ""
+"Default preview image when page/post is shared on Facebook. <br>Min. 1200 x "
+"630 for best results."
 msgstr ""
 
 #: allink_apps/config/models.py:21
-msgid "Seite auf der sich das iframe zum Architonic Katalog befindet."
+msgid "Base title"
+msgstr ""
+
+#: allink_apps/config/models.py:23
+msgid ""
+"Default base title, Is also used for default base og:title when page/post is "
+"shared on Facebook. <br>If not supplied the name form Django Sites will be "
+"used instead."
 msgstr ""
 
 #: allink_apps/config/models.py:28
+msgid "Theme Color"
+msgstr ""
+
+#: allink_apps/config/models.py:29
+msgid "Theme color for Android Chrome"
+msgstr ""
+
+#: allink_apps/config/models.py:34
+msgid "Mask icon color"
+msgstr ""
+
+#: allink_apps/config/models.py:35
+msgid "Mask icon color for safari-pinned-tab.svg"
+msgstr ""
+
+#: allink_apps/config/models.py:40
+msgid "msapplication TileColor"
+msgstr ""
+
+#: allink_apps/config/models.py:41
+msgid "MS application TitleColor Field"
+msgstr ""
+
+#: allink_apps/config/models.py:204
 msgid "Configuration"
 msgstr ""

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-29 06:03-0500\n"
+"POT-Creation-Date: 2017-05-09 01:03-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,15 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: allink_apps/locations/admin.py:17
-msgid "Preview Image"
-msgstr ""
-
-#: allink_apps/locations/admin.py:45 allink_apps/locations/models.py:58
+#: allink_apps/locations/admin.py:36 allink_apps/locations/models.py:59
 msgid "Opening hours"
 msgstr ""
 
-#: allink_apps/locations/admin.py:48
+#: allink_apps/locations/admin.py:39
 msgid "Format: \"9:00-12:00  13:00-20:00\""
 msgstr ""
 
@@ -42,124 +38,128 @@ msgstr ""
 msgid "Map Options"
 msgstr ""
 
-#: allink_apps/locations/models.py:39
+#: allink_apps/locations/models.py:40
 msgid "Subtitle"
 msgstr ""
 
-#: allink_apps/locations/models.py:45
+#: allink_apps/locations/models.py:46
 msgid "Lead Text"
 msgstr ""
 
-#: allink_apps/locations/models.py:46
+#: allink_apps/locations/models.py:47
 msgid ""
 "Teaser text that in some cases is used in the list view and/or in the detail "
 "view."
 msgstr ""
 
-#: allink_apps/locations/models.py:51
+#: allink_apps/locations/models.py:52
 msgid "Slug"
 msgstr ""
 
-#: allink_apps/locations/models.py:55
+#: allink_apps/locations/models.py:56
 msgid "Leave blank to auto-generate a unique slug."
 msgstr ""
 
-#: allink_apps/locations/models.py:59
+#: allink_apps/locations/models.py:60
 msgid ""
 "This Text will be used to show the Opening hours on the location detail "
 "page. If provided, the detailed opening hours will be overriden."
 msgstr ""
 
-#: allink_apps/locations/models.py:66
+#: allink_apps/locations/models.py:67
+msgid "Preview Image"
+msgstr ""
+
+#: allink_apps/locations/models.py:75
 msgid "Email Work"
 msgstr ""
 
-#: allink_apps/locations/models.py:67 allink_apps/locations/models.py:74
+#: allink_apps/locations/models.py:76 allink_apps/locations/models.py:83
 msgid "Used as \"to adress\" in form."
 msgstr ""
 
-#: allink_apps/locations/models.py:73
+#: allink_apps/locations/models.py:82
 msgid "Email Home"
 msgstr ""
 
-#: allink_apps/locations/models.py:80
+#: allink_apps/locations/models.py:89
 msgid "Latitude"
 msgstr ""
 
-#: allink_apps/locations/models.py:85
+#: allink_apps/locations/models.py:94
 msgid "Longitude"
 msgstr ""
 
-#: allink_apps/locations/models.py:90 allink_apps/locations/models.py:97
+#: allink_apps/locations/models.py:99 allink_apps/locations/models.py:106
 msgid "Monday morning or whole day"
 msgstr ""
 
-#: allink_apps/locations/models.py:91 allink_apps/locations/models.py:98
+#: allink_apps/locations/models.py:100 allink_apps/locations/models.py:107
 msgid "Tuesday morning or whole day"
 msgstr ""
 
-#: allink_apps/locations/models.py:92 allink_apps/locations/models.py:99
+#: allink_apps/locations/models.py:101 allink_apps/locations/models.py:108
 msgid "Wednesday morning or whole day"
 msgstr ""
 
-#: allink_apps/locations/models.py:93 allink_apps/locations/models.py:100
+#: allink_apps/locations/models.py:102 allink_apps/locations/models.py:109
 msgid "Thursday morning or whole day"
 msgstr ""
 
-#: allink_apps/locations/models.py:94
+#: allink_apps/locations/models.py:103
 msgid "Friday morning or whole day"
 msgstr ""
 
-#: allink_apps/locations/models.py:95
+#: allink_apps/locations/models.py:104
 msgid "Saturday morning or whole day"
 msgstr ""
 
-#: allink_apps/locations/models.py:96
+#: allink_apps/locations/models.py:105
 msgid "Sunday morning or whole day"
 msgstr ""
 
-#: allink_apps/locations/models.py:101
+#: allink_apps/locations/models.py:110
 msgid "Friday mo morning or whole day"
 msgstr ""
 
-#: allink_apps/locations/models.py:102
+#: allink_apps/locations/models.py:111
 msgid "Saturday  morning or whole day"
 msgstr ""
 
-#: allink_apps/locations/models.py:103
+#: allink_apps/locations/models.py:112
 msgid "Sunday mo morning or whole day"
 msgstr ""
 
-#: allink_apps/locations/models.py:112
+#: allink_apps/locations/models.py:121
 msgid "Location"
 msgstr ""
 
-#: allink_apps/locations/models.py:113
+#: allink_apps/locations/models.py:122
 msgid "Locations"
 msgstr ""
 
-#: allink_apps/locations/models.py:175
+#: allink_apps/locations/models.py:163
 msgid "Now open_(u"
 msgstr ""
 
-#: allink_apps/locations/models.py:294
+#: allink_apps/locations/models.py:282
 msgid ""
 "Select and arrange specific entries, or, leave blank to select all. (If "
 "manual entries are selected the category filtering will be ignored.)"
 msgstr ""
 
-#: allink_apps/locations/models.py:299
+#: allink_apps/locations/models.py:287
 msgid "Zoom Level"
 msgstr ""
 
-#: allink_apps/locations/models.py:300
+#: allink_apps/locations/models.py:288
 msgid "The higher the number, the more we zoom in."
 msgstr ""
 
-#: allink_apps/locations/models.py:309
+#: allink_apps/locations/models.py:297
 msgid "Images"
 msgstr ""
 
-#: allink_apps/locations/models.py:310
+#: allink_apps/locations/models.py:298
 msgid "The first image will be used as preview image."
 msgstr ""

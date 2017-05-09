@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-29 06:03-0500\n"
+"POT-Creation-Date: 2017-05-09 01:03-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,8 +18,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: allink_apps/work/admin.py:18
-msgid "Preview Image"
+#: allink_apps/work/admin.py:17
+msgid "Highlight"
+msgstr ""
+
+#: allink_apps/work/admin.py:18 allink_apps/work/models.py:78
+msgid "Highlights"
 msgstr ""
 
 #: allink_apps/work/cms_apps.py:8
@@ -30,55 +34,59 @@ msgstr ""
 msgid "Work menu"
 msgstr ""
 
-#: allink_apps/work/models.py:28
+#: allink_apps/work/models.py:29
 msgid "Slug"
 msgstr ""
 
-#: allink_apps/work/models.py:32
+#: allink_apps/work/models.py:33
 msgid "Leave blank to auto-generate a unique slug."
 msgstr ""
 
-#: allink_apps/work/models.py:35
+#: allink_apps/work/models.py:36
 msgid "Lead Text"
 msgstr ""
 
-#: allink_apps/work/models.py:36
+#: allink_apps/work/models.py:37
 msgid ""
 "Teaser text that in some cases is used in the list view and/or in the detail "
 "view."
 msgstr ""
 
-#: allink_apps/work/models.py:41
+#: allink_apps/work/models.py:42
 msgid "Detailed Text"
 msgstr ""
 
-#: allink_apps/work/models.py:42
+#: allink_apps/work/models.py:43
 msgid "The full text in detail view."
 msgstr ""
 
-#: allink_apps/work/models.py:63
+#: allink_apps/work/models.py:49
+msgid "Preview Image"
+msgstr ""
+
+#: allink_apps/work/models.py:70
 msgid "Projekt/ Referenz"
 msgstr ""
 
-#: allink_apps/work/models.py:64
+#: allink_apps/work/models.py:71
 msgid "Projekte/ Referenzen"
 msgstr ""
 
-#: allink_apps/work/models.py:95
+#: allink_apps/work/models.py:103
 msgid ""
 "Select and arrange specific entries, or, leave blank to select all. (If "
 "manual entries are selected the category filtering will be ignored.)"
 msgstr ""
 
-#: allink_apps/work/models.py:101
+#: allink_apps/work/models.py:109
 msgid "Images"
 msgstr ""
 
-#: allink_apps/work/models.py:101
+#: allink_apps/work/models.py:109
 msgid "The first image will be used as preview image."
 msgstr ""
 
-#: allink_apps/work/templates/work/plugins/grid_static/item.html:39
+#: allink_apps/work/templates/work/plugins/grid_static/item.html:42
 #: allink_apps/work/templates/work/plugins/list/item.html:27
 msgid "More"
 msgstr ""

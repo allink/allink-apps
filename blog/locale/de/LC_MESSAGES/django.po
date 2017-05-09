@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-29 06:03-0500\n"
+"POT-Creation-Date: 2017-05-09 01:03-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: allink_apps/blog/admin.py:27
-msgid "Preview Image"
-msgstr ""
-
-#: allink_apps/blog/admin.py:53 allink_apps/blog/admin.py:93
+#: allink_apps/blog/admin.py:45 allink_apps/blog/admin.py:84
 msgid "Published From/To"
 msgstr ""
 
@@ -32,21 +28,6 @@ msgstr ""
 
 #: allink_apps/blog/cms_toolbars.py:33
 msgid "Forms"
-msgstr ""
-
-#: allink_apps/blog/forms.py:13
-msgid "Terms of Service"
-msgstr ""
-
-#: allink_apps/blog/forms.py:28
-#, python-format
-msgid ""
-"I have read and accept the <a href=\"%s\" target=\"_blank\">terms and "
-"conditions.</a>"
-msgstr ""
-
-#: allink_apps/blog/forms.py:30
-msgid "Please configure Terms. And create the corresponding cms Page."
 msgstr ""
 
 #: allink_apps/blog/models.py:42
@@ -75,75 +56,78 @@ msgstr ""
 msgid "The full text in detail view."
 msgstr ""
 
-#: allink_apps/blog/models.py:69
+#: allink_apps/blog/models.py:63
+msgid "Preview Image"
+msgstr ""
+
+#: allink_apps/blog/models.py:77
 msgid "Blog entry"
 msgstr ""
 
-#: allink_apps/blog/models.py:70
+#: allink_apps/blog/models.py:78
 msgid "Blog entries"
 msgstr ""
 
-#: allink_apps/blog/models.py:102
+#: allink_apps/blog/models.py:89
 msgid "News entry"
 msgstr ""
 
-#: allink_apps/blog/models.py:103
+#: allink_apps/blog/models.py:90
 msgid "News"
 msgstr ""
 
-#: allink_apps/blog/models.py:113
+#: allink_apps/blog/models.py:100
 msgid "Costs"
 msgstr ""
 
-#: allink_apps/blog/models.py:120
+#: allink_apps/blog/models.py:107
 msgid "Event Form enabled"
 msgstr ""
 
-#: allink_apps/blog/models.py:125
+#: allink_apps/blog/models.py:112
 msgid "Event Date"
 msgstr ""
 
-#: allink_apps/blog/models.py:131
+#: allink_apps/blog/models.py:118
 msgid "Event Time"
 msgstr ""
 
-#: allink_apps/blog/models.py:145
+#: allink_apps/blog/models.py:132
 msgid "Event"
 msgstr ""
 
-#: allink_apps/blog/models.py:146
+#: allink_apps/blog/models.py:133
 msgid "Events"
 msgstr ""
 
-#: allink_apps/blog/models.py:170
+#: allink_apps/blog/models.py:157
 msgid ""
 "Select and arrange specific entries, or, leave blank to select all. (If "
 "manual entries are selected the category filtering will be ignored.)"
 msgstr ""
 
-#: allink_apps/blog/models.py:214
+#: allink_apps/blog/models.py:192
 msgid "Images"
 msgstr ""
 
-#: allink_apps/blog/models.py:214
+#: allink_apps/blog/models.py:192
 msgid "The first image will be used as preview image."
 msgstr ""
 
-#: allink_apps/blog/models.py:222
+#: allink_apps/blog/models.py:202
 msgid "Education/ Job"
 msgstr ""
 
-#: allink_apps/blog/models.py:226
-msgid "I have read and accept the terms and conditions."
+#: allink_apps/blog/models.py:206
+msgid "Phone"
 msgstr ""
 
-#: allink_apps/blog/templates/blog/plugins/grid_static/item.html:31
+#: allink_apps/blog/templates/blog/plugins/grid_static/item.html:33
 #: allink_apps/blog/templates/blog/plugins/slider/item.html:40
 msgid "More"
 msgstr ""
 
-#: allink_apps/blog/templates/blog/plugins/grid_static/item.html:41
-#: allink_apps/blog/templates/events/events_detail.html:81
+#: allink_apps/blog/templates/blog/plugins/grid_static/item.html:43
 msgid "Uhr"
 msgstr ""
 
@@ -153,18 +137,6 @@ msgstr ""
 
 #: allink_apps/blog/templates/events/email/registration_subject_internal.txt:2
 msgid "Event Anmeldung"
-msgstr ""
-
-#: allink_apps/blog/templates/events/events_detail.html:79
-msgid "Datum"
-msgstr ""
-
-#: allink_apps/blog/templates/events/events_detail.html:85
-msgid "Ort"
-msgstr ""
-
-#: allink_apps/blog/templates/events/events_detail.html:93
-msgid "Anmelden"
 msgstr ""
 
 #: allink_apps/blog/templates/events/forms/confirmation.html:4
