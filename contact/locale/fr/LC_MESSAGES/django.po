@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-29 06:03-0500\n"
+"POT-Creation-Date: 2017-05-09 09:46-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,18 +27,18 @@ msgid "Forms"
 msgstr ""
 
 #: allink_apps/contact/forms.py:14 allink_apps/contact/models.py:29
-#: allink_apps/contact/templates/contact/forms/request_base.html:35
+#: allink_apps/contact/templates/contact/forms/request_base.html:36
 msgid "Salutation"
-msgstr ""
+msgstr "Salutation"
 
 #: allink_apps/contact/forms.py:18 allink_apps/contact/models.py:26
-#: allink_apps/contact/templates/contact/forms/request_base.html:94
+#: allink_apps/contact/templates/contact/forms/request_base.html:95
 msgid "Email"
-msgstr ""
+msgstr "E-mail"
 
 #: allink_apps/contact/forms.py:22
 msgid "Datum"
-msgstr ""
+msgstr "Date"
 
 #: allink_apps/contact/forms.py:26
 msgid "Please choose a date."
@@ -62,26 +62,26 @@ msgid "-- please choose --"
 msgstr ""
 
 #: allink_apps/contact/models.py:25 allink_apps/contact/models.py:44
-#: allink_apps/contact/templates/contact/forms/request_base.html:86
+#: allink_apps/contact/templates/contact/forms/request_base.html:87
 msgid "Phone"
-msgstr ""
+msgstr "Téléphone"
 
 #: allink_apps/contact/models.py:34
 msgid "Company"
-msgstr ""
+msgstr "Société"
 
 #: allink_apps/contact/models.py:40
-#: allink_apps/contact/templates/contact/forms/request_base.html:53
+#: allink_apps/contact/templates/contact/forms/request_base.html:54
 msgid "Please contact me via"
 msgstr ""
 
 #: allink_apps/contact/models.py:50
 msgid "Date"
-msgstr ""
+msgstr "Date"
 
 #: allink_apps/contact/models.py:55
 msgid "Time"
-msgstr ""
+msgstr "Heure"
 
 #: allink_apps/contact/models.py:96
 #: allink_apps/contact/templates/contact/email/request_subject_internal.txt:2
@@ -95,28 +95,28 @@ msgstr ""
 #: allink_apps/contact/templates/contact/email/request_subject.txt:2
 #: allink_apps/contact/templates/contact/forms/confirmation.html:4
 msgid "Thanks for your request."
-msgstr ""
+msgstr "Merci beaucoup pour votre allocution."
 
 #: allink_apps/contact/templates/contact/forms/confirmation.html:7
 msgid "Close window"
-msgstr ""
+msgstr "Fermer la fenêtre"
 
-#: allink_apps/contact/templates/contact/forms/request_base.html:23
+#: allink_apps/contact/templates/contact/forms/request_base.html:24
 msgid "Contact us"
-msgstr ""
+msgstr "Contactez-nous"
 
-#: allink_apps/contact/templates/contact/forms/request_base.html:61
+#: allink_apps/contact/templates/contact/forms/request_base.html:62
 msgid "Choose date and time"
-msgstr ""
+msgstr "Choisir une date e une heure"
 
-#: allink_apps/contact/templates/contact/forms/request_base.html:66
+#: allink_apps/contact/templates/contact/forms/request_base.html:67
 msgid "Choose a date"
-msgstr ""
+msgstr "Choisir une date"
 
-#: allink_apps/contact/templates/contact/forms/request_base.html:76
+#: allink_apps/contact/templates/contact/forms/request_base.html:77
 msgid "Choose a time"
-msgstr ""
+msgstr "Choisir une heure"
 
-#: allink_apps/contact/templates/contact/forms/request_base.html:136
+#: allink_apps/contact/templates/contact/forms/request_base.html:137
 msgid "Submit"
-msgstr ""
+msgstr "Inscrire"

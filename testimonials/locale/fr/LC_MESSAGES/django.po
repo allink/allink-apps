@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-29 06:03-0500\n"
+"POT-Creation-Date: 2017-05-09 09:46-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,67 +18,71 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: allink_apps/testimonials/admin.py:18
-msgid "Preview Image"
-msgstr ""
-
 #: allink_apps/testimonials/cms_apps.py:8
 msgid "Testimonials Apphook"
 msgstr ""
 
-#: allink_apps/testimonials/models.py:31 allink_apps/testimonials/models.py:44
-msgid "Firstname"
+#: allink_apps/testimonials/models.py:32
+msgid "Name"
 msgstr ""
 
-#: allink_apps/testimonials/models.py:36 allink_apps/testimonials/models.py:50
+#: allink_apps/testimonials/models.py:37 allink_apps/testimonials/models.py:58
 msgid "Lastname"
+msgstr "Nom"
+
+#: allink_apps/testimonials/models.py:42
+msgid "Preview Image"
 msgstr ""
 
-#: allink_apps/testimonials/models.py:55
+#: allink_apps/testimonials/models.py:52
+msgid "Firstname"
+msgstr "Prénom"
+
+#: allink_apps/testimonials/models.py:63
 msgid "Slug"
 msgstr ""
 
-#: allink_apps/testimonials/models.py:59
+#: allink_apps/testimonials/models.py:67
 msgid "Leave blank to auto-generate a unique slug."
 msgstr ""
 
-#: allink_apps/testimonials/models.py:62
-msgid "Testimonial Text"
+#: allink_apps/testimonials/models.py:70
+msgid "Lead text"
 msgstr ""
 
-#: allink_apps/testimonials/models.py:63
+#: allink_apps/testimonials/models.py:71
 msgid ""
 "Teaser text that in some cases is used in the list view and/or in the detail "
 "view."
 msgstr ""
 
-#: allink_apps/testimonials/models.py:68
+#: allink_apps/testimonials/models.py:76
 msgid "Detailed Text"
 msgstr ""
 
-#: allink_apps/testimonials/models.py:69
+#: allink_apps/testimonials/models.py:77
 msgid "The full text in detail view."
 msgstr ""
 
-#: allink_apps/testimonials/models.py:82
+#: allink_apps/testimonials/models.py:90
 msgid "Testimonial"
 msgstr ""
 
-#: allink_apps/testimonials/models.py:83
+#: allink_apps/testimonials/models.py:91
 msgid "Testimonials"
 msgstr ""
 
-#: allink_apps/testimonials/models.py:130
+#: allink_apps/testimonials/models.py:117
 msgid ""
 "Select and arrange specific entries, or, leave blank to select all. (If "
 "manual entries are selected the category filtering will be ignored.)"
 msgstr ""
 
-#: allink_apps/testimonials/models.py:136
+#: allink_apps/testimonials/models.py:123
 msgid "Images"
 msgstr ""
 
-#: allink_apps/testimonials/models.py:136
+#: allink_apps/testimonials/models.py:123
 msgid "The first image will be used as preview image."
 msgstr ""
 
@@ -88,7 +92,7 @@ msgstr ""
 
 #: allink_apps/testimonials/templates/testimonials/testimonial_detail.html:90
 msgid "Phone:"
-msgstr ""
+msgstr "Téléphone"
 
 #: allink_apps/testimonials/templates/testimonials/testimonial_detail.html:96
 msgid "Mobile:"
