@@ -95,8 +95,6 @@ class People(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, Translata
         null=True
     )
 
-    # location = models.ManyToManyField(Locations, blank=True, null=True, related_name='people')
-
     header_placeholder = PlaceholderField(u'people_header', related_name='%(app_label)s_%(class)s_header_placeholder')
     content_placeholder = PlaceholderField(u'people_content', related_name='%(app_label)s_%(class)s_content_placeholder')
 
