@@ -115,6 +115,13 @@ class People(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, Translata
     def title(self):
         return u'{} {}'.format(self.firstname, self.lastname)
 
+    @property
+    def units(self):
+        units = []
+        for unit in self.categories.filter(identifier='units'):
+            units.append(unit.name)
+        return ','.join(units)
+
 
 # APP CONTENT PLUGIN
 class PeopleAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin):
@@ -139,10 +146,10 @@ class PeopleAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugi
             'verbose': _(u'Location'),
             'query_filter': {'tag': 'locations'},
         }),
-        ('job_function', {
-            'verbose': _(u'Job Function'),
-            'query_filter': {},
-        }),
+        # ('job_function', {
+        #     'verbose': _(u'Job Function'),
+        #     'query_filter': {},
+        # }),
         ('job_title', {
             'verbose': _(u'Unit'),
             'query_filter': {},

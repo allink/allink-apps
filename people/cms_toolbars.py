@@ -10,6 +10,5 @@ from allink_apps.people.models import People
 class PeopleToolbar(AllinkBaseModifierMixin, CMSToolbar):
     model = People
 
-
 if AllinkConfig.get_solo().people_toolbar_enabled:
     toolbar_pool.register(PeopleToolbar)
