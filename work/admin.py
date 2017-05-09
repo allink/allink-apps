@@ -3,6 +3,7 @@ from django.contrib import admin
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
+from parler.admin import TranslatableTabularInline
 from adminsortable.admin import SortableTabularInline
 from cms.admin.placeholderadmin import PlaceholderAdminMixin
 from allink_core.allink_base.admin import AllinkBaseAdminSortable
@@ -10,7 +11,7 @@ from allink_core.allink_base.admin import AllinkBaseAdminSortable
 from allink_apps.work.models import Work, Highlights
 
 
-class HighlightsInline(SortableTabularInline):
+class HighlightsInline(TranslatableTabularInline, SortableTabularInline):
     model = Highlights
     extra = 1
     max_num = 10
