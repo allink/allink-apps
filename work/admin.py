@@ -11,7 +11,7 @@ from allink_core.allink_base.admin import AllinkBaseAdminSortable
 from allink_apps.work.models import Work, Highlights
 
 
-class HighlightsInline(TranslatableTabularInline, SortableTabularInline):
+class HighlightsInline(SortableTabularInline, TranslatableTabularInline):
     model = Highlights
     extra = 1
     max_num = 10
