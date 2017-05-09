@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-09 01:03-0500\n"
+"POT-Creation-Date: 2017-05-09 05:07-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,102 +30,106 @@ msgstr ""
 msgid "Forms"
 msgstr ""
 
-#: allink_apps/blog/models.py:42
+#: allink_apps/blog/models.py:43
 msgid "Slug"
 msgstr ""
 
-#: allink_apps/blog/models.py:46
+#: allink_apps/blog/models.py:47
 msgid "Leave blank to auto-generate a unique slug."
 msgstr ""
 
-#: allink_apps/blog/models.py:49
+#: allink_apps/blog/models.py:50
 msgid "Lead Text"
 msgstr ""
 
-#: allink_apps/blog/models.py:50
+#: allink_apps/blog/models.py:51
 msgid ""
 "Teaser text that in some cases is used in the list view and/or in the detail "
 "view."
 msgstr ""
 
-#: allink_apps/blog/models.py:55
+#: allink_apps/blog/models.py:56
 msgid "Detailed Text"
 msgstr ""
 
-#: allink_apps/blog/models.py:56
+#: allink_apps/blog/models.py:57
 msgid "The full text in detail view."
 msgstr ""
 
-#: allink_apps/blog/models.py:63
+#: allink_apps/blog/models.py:64
 msgid "Preview Image"
 msgstr ""
 
-#: allink_apps/blog/models.py:77
+#: allink_apps/blog/models.py:78
 msgid "Blog entry"
 msgstr ""
 
-#: allink_apps/blog/models.py:78
+#: allink_apps/blog/models.py:79
 msgid "Blog entries"
 msgstr ""
 
-#: allink_apps/blog/models.py:89
+#: allink_apps/blog/models.py:90
 msgid "News entry"
 msgstr ""
 
-#: allink_apps/blog/models.py:90
+#: allink_apps/blog/models.py:91
 msgid "News"
 msgstr ""
 
-#: allink_apps/blog/models.py:100
+#: allink_apps/blog/models.py:101
 msgid "Costs"
 msgstr ""
 
-#: allink_apps/blog/models.py:107
+#: allink_apps/blog/models.py:108
 msgid "Event Form enabled"
 msgstr ""
 
-#: allink_apps/blog/models.py:112
+#: allink_apps/blog/models.py:113
 msgid "Event Date"
 msgstr ""
 
-#: allink_apps/blog/models.py:118
+#: allink_apps/blog/models.py:119
 msgid "Event Time"
 msgstr ""
 
-#: allink_apps/blog/models.py:132
+#: allink_apps/blog/models.py:133
 msgid "Event"
 msgstr ""
 
-#: allink_apps/blog/models.py:133
+#: allink_apps/blog/models.py:134
 msgid "Events"
 msgstr ""
 
-#: allink_apps/blog/models.py:157
+#: allink_apps/blog/models.py:158
 msgid ""
 "Select and arrange specific entries, or, leave blank to select all. (If "
 "manual entries are selected the category filtering will be ignored.)"
 msgstr ""
 
-#: allink_apps/blog/models.py:192
+#: allink_apps/blog/models.py:193
 msgid "Images"
 msgstr ""
 
-#: allink_apps/blog/models.py:192
+#: allink_apps/blog/models.py:193
 msgid "The first image will be used as preview image."
 msgstr ""
 
-#: allink_apps/blog/models.py:202
-msgid "Education/ Job"
-msgstr ""
+#: allink_apps/blog/models.py:207
+msgid "Salutation"
+msgstr "Anrede"
 
-#: allink_apps/blog/models.py:206
+#: allink_apps/blog/models.py:212
+msgid "Company"
+msgstr "Firma"
+
+#: allink_apps/blog/models.py:218
 msgid "Phone"
-msgstr ""
+msgstr "Telefon"
 
 #: allink_apps/blog/templates/blog/plugins/grid_static/item.html:33
 #: allink_apps/blog/templates/blog/plugins/slider/item.html:40
 msgid "More"
-msgstr ""
+msgstr "Mehr"
 
 #: allink_apps/blog/templates/blog/plugins/grid_static/item.html:43
 msgid "Uhr"
@@ -141,8 +145,8 @@ msgstr ""
 
 #: allink_apps/blog/templates/events/forms/confirmation.html:4
 msgid "Thanks for your registration."
-msgstr ""
+msgstr "Danke für Ihre Anmeldung."
 
 #: allink_apps/blog/templates/events/forms/registration.html:5
 msgid "Register"
-msgstr ""
+msgstr "Anmelden"

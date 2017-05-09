@@ -13,6 +13,7 @@ from model_utils.models import TimeFramedModel
 from aldryn_translation_tools.models import TranslationHelperMixin
 from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 
+from allink_core.allink_base.models.choices import SALUTATION_CHOICES
 from allink_core.allink_base.models import AllinkManualEntriesMixin, AllinkTranslatedAutoSlugifyMixin
 from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin, AllinkAddressFieldsModel, AllinkSimpleRegistrationFieldsModel
 from allink_core.allink_terms.models import AllinkTerms
@@ -198,10 +199,21 @@ class EventsRegistration(AllinkAddressFieldsModel, AllinkSimpleRegistrationField
 
     event = models.ForeignKey(Events)
 
-    job = models.TextField(
-        _(u'Education/ Job')
-    )
+    # job = models.TextField(
+    #     _(u'Education/ Job')
+    # )
 
+    salutation = models.IntegerField(
+        _(u'Salutation'),
+        choices=SALUTATION_CHOICES,
+        null=True
+    )
+    company_name = models.CharField(
+        _(u'Company'),
+        max_length=255,
+        blank=True,
+        null=True
+    )
     phone = models.CharField(
         _(u'Phone'),
         max_length=30,

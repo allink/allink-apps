@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-09 01:03-0500\n"
+"POT-Creation-Date: 2017-05-09 05:07-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,11 +24,11 @@ msgstr ""
 
 #: allink_apps/people/models.py:31 allink_apps/people/models.py:51
 msgid "Firstname"
-msgstr ""
+msgstr "Vorname"
 
 #: allink_apps/people/models.py:36 allink_apps/people/models.py:57
 msgid "Lastname"
-msgstr ""
+msgstr "Nachname"
 
 #: allink_apps/people/models.py:41
 msgid "Preview Image"
@@ -56,7 +56,7 @@ msgstr ""
 
 #: allink_apps/people/models.py:86
 msgid "Company Name"
-msgstr ""
+msgstr "Firma"
 
 #: allink_apps/people/models.py:93
 msgid "Gender"

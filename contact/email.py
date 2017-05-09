@@ -2,7 +2,6 @@
 from django.template.loader import render_to_string
 
 from allink_core.allink_base.utils import get_display
-from allink_core.allink_base.utils import base_url
 from allink_core.allink_mandrill.config import MandrillConfig
 from allink_core.allink_mandrill.helpers import send_transactional_email
 

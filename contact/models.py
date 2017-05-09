@@ -2,7 +2,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from allink_core.allink_base.models import AllinkAddressFieldsModel, AllinkSimpleRegistrationFieldsModel
+from allink_core.allink_base.models import AllinkSimpleRegistrationFieldsModel
 from allink_core.allink_base.models.choices import SALUTATION_CHOICES
 
 

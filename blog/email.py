@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.template.loader import render_to_string
 
+from allink_core.allink_base.utils import get_display
 from allink_core.allink_base.utils import base_url
 from allink_core.allink_mandrill.config import MandrillConfig
 from allink_core.allink_mandrill.helpers import send_transactional_email
@@ -19,7 +20,10 @@ def send_registration_email(form, event):
             if field == 'event':
                 data.append((form.fields.get(field).label, event.title))
             else:
-                data.append((form.fields.get(field).label, form.data.get(field)))
+                if hasattr(form.fields.get(field), 'choices'):
+                    data.append((form.fields.get(field).label, get_display(form.data.get(field), form.fields.get(field).choices)))
+                else:
+                    data.append((form.fields.get(field).label, form.data.get(field)))
 
     subscriber = render_to_string('events/email/registration_subscriber.txt', {'data': data})
     subscriber = subscriber.replace('\r\n', r).replace('\n\r', r).replace('\r', r).replace('\n', r)

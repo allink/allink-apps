@@ -16,11 +16,11 @@ class EventsRegistrationForm(AllinkBaseModelForm):
         model = EventsRegistration
         widgets = {
             'event': forms.HiddenInput(),
-            'terms': forms.HiddenInput(),
-            'terms_accepted': forms.CheckboxInput()
+            # 'terms': forms.HiddenInput(),
+            # 'terms_accepted': forms.CheckboxInput()
 
         }
-        fields = ('event', 'first_name', 'last_name', 'email', 'phone', 'street', 'zip_code', 'place', 'message',)
+        fields = ('event', 'salutation', 'first_name', 'last_name', 'company_name', 'email', 'phone', 'message',)
         # fields = ('event', 'terms', 'first_name', 'last_name', 'email', 'street', 'zip_code', 'place', 'message', 'terms_accepted')
 
     def __init__(self, *args, **kwargs):
@@ -32,5 +32,5 @@ class EventsRegistrationForm(AllinkBaseModelForm):
 
         #  all fiels should be required
         for key in self.fields:
-            if key != 'message':
+            if key != 'message' and key != 'phone':
                 self.fields[key].required = True
