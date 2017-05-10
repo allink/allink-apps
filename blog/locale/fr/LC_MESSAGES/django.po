@@ -116,7 +116,7 @@ msgstr ""
 
 #: allink_apps/blog/models.py:207
 msgid "Salutation"
-msgstr ""
+msgstr "Salutation"
 
 #: allink_apps/blog/models.py:212
 msgid "Company"

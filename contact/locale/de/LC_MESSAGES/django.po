@@ -51,15 +51,15 @@ msgstr ""
 #: allink_apps/contact/forms.py:42 allink_apps/contact/forms.py:49
 #: allink_apps/contact/forms.py:56 allink_apps/contact/forms.py:63
 msgid "This field is required."
-msgstr ""
+msgstr "Dieses Feld wird benötigt."
 
 #: allink_apps/contact/models.py:12
 msgid "-- between --"
-msgstr ""
+msgstr "-- zwischen --"
 
 #: allink_apps/contact/models.py:24
 msgid "-- please choose --"
-msgstr ""
+msgstr "-- bitte auswählen --"
 
 #: allink_apps/contact/models.py:25 allink_apps/contact/models.py:44
 #: allink_apps/contact/templates/contact/forms/request_base.html:87
@@ -73,50 +73,50 @@ msgstr "Firma"
 #: allink_apps/contact/models.py:40
 #: allink_apps/contact/templates/contact/forms/request_base.html:54
 msgid "Please contact me via"
-msgstr ""
+msgstr "Bitte kontaktieren Sie mich via"
 
 #: allink_apps/contact/models.py:50
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #: allink_apps/contact/models.py:55
 msgid "Time"
-msgstr ""
+msgstr "Zeit"
 
 #: allink_apps/contact/models.py:96
 #: allink_apps/contact/templates/contact/email/request_subject_internal.txt:2
 msgid "Contact Request"
-msgstr ""
+msgstr "Kontaktanfrage"
 
 #: allink_apps/contact/models.py:97
 msgid "Contact Requests"
-msgstr ""
+msgstr "Kontaktanfragen"
 
 #: allink_apps/contact/templates/contact/email/request_subject.txt:2
 #: allink_apps/contact/templates/contact/forms/confirmation.html:4
 msgid "Thanks for your request."
-msgstr ""
+msgstr "Danke für Ihre Anfrage."
 
 #: allink_apps/contact/templates/contact/forms/confirmation.html:7
 msgid "Close window"
-msgstr ""
+msgstr "Fenster schliessen"
 
 #: allink_apps/contact/templates/contact/forms/request_base.html:24
 msgid "Contact us"
-msgstr ""
+msgstr "Kontaktanfrage"
 
 #: allink_apps/contact/templates/contact/forms/request_base.html:62
 msgid "Choose date and time"
-msgstr ""
+msgstr "Wann sollen wir Sie anrufen?"
 
 #: allink_apps/contact/templates/contact/forms/request_base.html:67
 msgid "Choose a date"
-msgstr ""
+msgstr "Bitte ein Datum wählen"
 
 #: allink_apps/contact/templates/contact/forms/request_base.html:77
 msgid "Choose a time"
-msgstr ""
+msgstr "Bitte Zeit wählen"
 
 #: allink_apps/contact/templates/contact/forms/request_base.html:137
 msgid "Submit"
-msgstr ""
+msgstr "Senden"

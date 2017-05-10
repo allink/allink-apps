@@ -51,15 +51,15 @@ msgstr ""
 #: allink_apps/contact/forms.py:42 allink_apps/contact/forms.py:49
 #: allink_apps/contact/forms.py:56 allink_apps/contact/forms.py:63
 msgid "This field is required."
-msgstr ""
+msgstr "Ce champ est obligatoire."
 
 #: allink_apps/contact/models.py:12
 msgid "-- between --"
-msgstr ""
+msgstr "-- entre --"
 
 #: allink_apps/contact/models.py:24
 msgid "-- please choose --"
-msgstr ""
+msgstr "-- S'il vous plaît choisir --"
 
 #: allink_apps/contact/models.py:25 allink_apps/contact/models.py:44
 #: allink_apps/contact/templates/contact/forms/request_base.html:87
@@ -73,7 +73,7 @@ msgstr "Société"
 #: allink_apps/contact/models.py:40
 #: allink_apps/contact/templates/contact/forms/request_base.html:54
 msgid "Please contact me via"
-msgstr ""
+msgstr "S'il vous plaît me contacter par"
 
 #: allink_apps/contact/models.py:50
 msgid "Date"
