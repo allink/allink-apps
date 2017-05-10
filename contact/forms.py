@@ -10,10 +10,6 @@ from allink_apps.contact.models import ContactRequest
 
 class ContactRequestBaseForm(AllinkBaseModelForm):
 
-    salutation = forms.IntegerField(
-        label=_('Salutation'),
-        required=True
-    )
     email = forms.CharField(
         label=_(u'Email'),
         required=False
