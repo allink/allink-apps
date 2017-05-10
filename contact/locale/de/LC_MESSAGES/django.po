@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-09 10:25-0500\n"
+"POT-Creation-Date: 2017-05-10 09:14-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,30 +26,25 @@ msgstr ""
 msgid "Forms"
 msgstr ""
 
-#: allink_apps/contact/forms.py:14 allink_apps/contact/models.py:29
-#: allink_apps/contact/templates/contact/forms/request_base.html:36
-msgid "Salutation"
-msgstr "Anrede"
-
-#: allink_apps/contact/forms.py:18 allink_apps/contact/models.py:26
-#: allink_apps/contact/templates/contact/forms/request_base.html:95
+#: allink_apps/contact/forms.py:14 allink_apps/contact/models.py:26
+#: allink_apps/contact/templates/contact/forms/request_base.html:82
 msgid "Email"
 msgstr "E-Mail"
 
-#: allink_apps/contact/forms.py:22
+#: allink_apps/contact/forms.py:18
 msgid "Datum"
 msgstr ""
 
-#: allink_apps/contact/forms.py:26
+#: allink_apps/contact/forms.py:22
 msgid "Please choose a date."
 msgstr ""
 
-#: allink_apps/contact/forms.py:39
+#: allink_apps/contact/forms.py:35
 msgid "Date has to be in the future."
 msgstr ""
 
-#: allink_apps/contact/forms.py:42 allink_apps/contact/forms.py:49
-#: allink_apps/contact/forms.py:56 allink_apps/contact/forms.py:63
+#: allink_apps/contact/forms.py:38 allink_apps/contact/forms.py:45
+#: allink_apps/contact/forms.py:52 allink_apps/contact/forms.py:59
 msgid "This field is required."
 msgstr "Dieses Feld wird benötigt."
 
@@ -62,16 +57,20 @@ msgid "-- please choose --"
 msgstr "-- bitte auswählen --"
 
 #: allink_apps/contact/models.py:25 allink_apps/contact/models.py:44
-#: allink_apps/contact/templates/contact/forms/request_base.html:87
+#: allink_apps/contact/templates/contact/forms/request_base.html:74
 msgid "Phone"
 msgstr ""
+
+#: allink_apps/contact/models.py:29
+msgid "Salutation"
+msgstr "Anrede"
 
 #: allink_apps/contact/models.py:34
 msgid "Company"
 msgstr "Firma"
 
 #: allink_apps/contact/models.py:40
-#: allink_apps/contact/templates/contact/forms/request_base.html:54
+#: allink_apps/contact/templates/contact/forms/request_base.html:41
 msgid "Please contact me via"
 msgstr "Bitte kontaktieren Sie mich via"
 
@@ -105,18 +104,18 @@ msgstr "Fenster schliessen"
 msgid "Contact us"
 msgstr "Kontaktanfrage"
 
-#: allink_apps/contact/templates/contact/forms/request_base.html:62
+#: allink_apps/contact/templates/contact/forms/request_base.html:49
 msgid "Choose date and time"
 msgstr "Wann sollen wir Sie anrufen?"
 
-#: allink_apps/contact/templates/contact/forms/request_base.html:67
+#: allink_apps/contact/templates/contact/forms/request_base.html:54
 msgid "Choose a date"
 msgstr "Bitte ein Datum wählen"
 
-#: allink_apps/contact/templates/contact/forms/request_base.html:77
+#: allink_apps/contact/templates/contact/forms/request_base.html:64
 msgid "Choose a time"
 msgstr "Bitte Zeit wählen"
 
-#: allink_apps/contact/templates/contact/forms/request_base.html:137
+#: allink_apps/contact/templates/contact/forms/request_base.html:124
 msgid "Submit"
 msgstr "Senden"
