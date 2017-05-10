@@ -30,21 +30,8 @@
         {% block form_fields_before %}
         {% endblock form_fields_before %}
 
-        <div class="form-group {% if form.salutation.errors %}has-error{% endif %}">
-            <label class="control-label required" for="{{ form.salutation.id_for_label }}" aria-required="true">
-                <span class="label-text">
-                    {% trans "Salutation" %}
-                </span>
-                <span class="required-symbol">
-                    (required)
-                </span>
-            </label>
-            {% render_field form.salutation class+="selectpicker form-control" %}
-            {{ form.salutation.errors }}
-        </div>
-
         {% for field in form.visible_fields %}
-            {% if field.name != 'salutation' and field.name != 'contact_type' and field.name != 'email' and field.name != 'date' and field.name != 'time' and field.name != 'phone' and field.name %}
+            {% if field.name != 'contact_type' and field.name != 'email' and field.name != 'date' and field.name != 'time' and field.name != 'phone' and field.name %}
                 {% include "includes/forms/form_field.html" with style='stacked' %}
             {% endif %}
         {% endfor %}
