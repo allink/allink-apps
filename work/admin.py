@@ -32,7 +32,7 @@ class WorkAdmin(PlaceholderAdminMixin, AllinkBaseAdminSortable):
                     'title',
                     'slug',
                     'lead',
-                    'preview_image'
+                    'preview_image',
                 ),
             }),
         )

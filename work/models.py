@@ -16,6 +16,7 @@ from allink_core.allink_base.models import AllinkManualEntriesMixin, AllinkBaseM
 from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin
 from allink_core.allink_base.models.mixins import AllinkTranslatedAutoSlugifyMixin
 
+from apps.services.models import Services
 
 class Work(SortableMixin, TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, TranslatableModel, AllinkBaseModel):
 
