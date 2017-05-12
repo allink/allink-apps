@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
 from django import forms
-from django.utils.translation import ugettext_lazy as _
 
 from parler.admin import TranslatableTabularInline
 from adminsortable.admin import SortableTabularInline
