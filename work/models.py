@@ -71,7 +71,7 @@ class Work(SortableMixin, TranslationHelperMixin, AllinkTranslatedAutoSlugifyMix
         verbose_name = _('Projekt/ Referenz')
         verbose_name_plural = _('Projekte/ Referenzen')
 
-
+# TEST
 class Highlights(SortableMixin, TranslatableModel):
     translations = TranslatedFields(
         text=models.CharField(max_length=80)
