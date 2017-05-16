@@ -139,21 +139,28 @@ class PeopleAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugi
 
     """
 
+
     FILTER_FIELD_CHOICES = (
+        ('categories', {
+            'verbose': _(u'Unit'),
+            'query_filter': {'identifier': 'units'},
+        }),
         ('categories', {
             'verbose': _(u'Location'),
             'query_filter': {'tag': 'locations'},
+            # if locations have not been generated automatically
+            # PROJECT_CATEGORY_IDENTIFIERS has to be set in settings accordingly ()
+            # 'query_filter': {'identifier': 'locations'},
         }),
-        # ('job_function', {
-        #     'verbose': _(u'Job Function'),
-        #     'query_filter': {},
-        # }),
+        ('job_function', {
+            'verbose': _(u'Job Function'),
+            'query_filter': {},
+        }),
         ('job_title', {
-            'verbose': _(u'Unit'),
+            'verbose': _(u'Job Title'),
             'query_filter': {},
         }),
     )
-
     TEMPLATES = (
         (AllinkBaseAppContentPlugin.GRID_STATIC, 'Grid (Static)'),
         (AllinkBaseAppContentPlugin.LIST, 'List'),
