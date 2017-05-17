@@ -72,7 +72,7 @@ msgstr ""
 
 #: allink_apps/locations/models.py:75
 msgid "Email Work"
-msgstr ""
+msgstr "E-Mail Work"
 
 #: allink_apps/locations/models.py:76 allink_apps/locations/models.py:83
 msgid "Used as \"to adress\" in form."
@@ -80,7 +80,7 @@ msgstr ""
 
 #: allink_apps/locations/models.py:82
 msgid "Email Home"
-msgstr ""
+msgstr "E-Mail Home"
 
 #: allink_apps/locations/models.py:89
 msgid "Latitude"

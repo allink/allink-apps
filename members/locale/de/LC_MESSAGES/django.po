@@ -54,7 +54,7 @@ msgstr ""
 
 #: allink_apps/members/models.py:40
 msgid "Email"
-msgstr ""
+msgstr "E-Mail"
 
 #: allink_apps/members/models.py:44
 msgid "Firstname"
