@@ -50,7 +50,8 @@ class EventsRegistrationView(AllinkBaseCreateView):
     def get_context_data(self, **kwargs):
         context = super(AllinkBaseCreateView, self).get_context_data(**kwargs)
         context.update({
-            'slug': self.kwargs.get('slug', None)
+            'slug': self.kwargs.get('slug', None),
+            'event_title': self.item.title
         })
         return context
 
