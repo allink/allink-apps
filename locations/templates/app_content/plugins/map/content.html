@@ -9,13 +9,13 @@
 {# A map only makes sense, when locations are assigned #}
 {% if object_list %}
 
-    <div class="map-container">
+    <div class="locations-plugin map-container">
 
         <div class="locations-map" id="map-{{instance.id}}" data-zoom-level="{{instance.zoom_level}}"></div>
 
         <script type="text/javascript">
 
-            // init map array if hasn't already been set
+            {# init map array if hasn't already been set #}
             if(!window.MAPS) {
                 window.MAPS = [];
             }
@@ -23,9 +23,9 @@
             var map_locations = {
                 id: {{instance.id}},
                 locations: {
-                    // loop through locations
+                    {# loop through locations #}
                     {% for object in object_list %}
-                        // LAT and LNG are required
+                        {# LAT and LNG are required #}
                         {% if object.lat or object.lng %}
                             {{forloop.counter}}: {
                                 lat: '{{object.lat}}',
