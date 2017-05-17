@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-10 09:14-0500\n"
+"POT-Creation-Date: 2017-05-17 09:46-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: allink_apps/blog/admin.py:45 allink_apps/blog/admin.py:84
+#: allink_apps/blog/admin.py:24 allink_apps/blog/models.py:72
+msgid "Template"
+msgstr ""
+
+#: allink_apps/blog/admin.py:54 allink_apps/blog/admin.py:94
 msgid "Published From/To"
 msgstr ""
 
@@ -60,69 +64,73 @@ msgstr ""
 msgid "Preview Image"
 msgstr ""
 
-#: allink_apps/blog/models.py:78
+#: allink_apps/blog/models.py:73
+msgid "Choose a template."
+msgstr ""
+
+#: allink_apps/blog/models.py:86
 msgid "Blog entry"
 msgstr ""
 
-#: allink_apps/blog/models.py:79
+#: allink_apps/blog/models.py:87
 msgid "Blog entries"
 msgstr ""
 
-#: allink_apps/blog/models.py:90
+#: allink_apps/blog/models.py:98
 msgid "News entry"
 msgstr ""
 
-#: allink_apps/blog/models.py:91
+#: allink_apps/blog/models.py:99
 msgid "News"
 msgstr ""
 
-#: allink_apps/blog/models.py:101
+#: allink_apps/blog/models.py:109
 msgid "Costs"
 msgstr ""
 
-#: allink_apps/blog/models.py:108
+#: allink_apps/blog/models.py:116
 msgid "Event Form enabled"
 msgstr ""
 
-#: allink_apps/blog/models.py:113
+#: allink_apps/blog/models.py:121
 msgid "Event Date"
 msgstr ""
 
-#: allink_apps/blog/models.py:119
+#: allink_apps/blog/models.py:127
 msgid "Event Time"
 msgstr ""
 
-#: allink_apps/blog/models.py:133
+#: allink_apps/blog/models.py:141
 msgid "Event"
 msgstr ""
 
-#: allink_apps/blog/models.py:134
+#: allink_apps/blog/models.py:142
 msgid "Events"
 msgstr ""
 
-#: allink_apps/blog/models.py:158
+#: allink_apps/blog/models.py:166
 msgid ""
 "Select and arrange specific entries, or, leave blank to select all. (If "
 "manual entries are selected the category filtering will be ignored.)"
 msgstr ""
 
-#: allink_apps/blog/models.py:193
+#: allink_apps/blog/models.py:201
 msgid "Images"
 msgstr ""
 
-#: allink_apps/blog/models.py:193
+#: allink_apps/blog/models.py:201
 msgid "The first image will be used as preview image."
 msgstr ""
 
-#: allink_apps/blog/models.py:207
+#: allink_apps/blog/models.py:215
 msgid "Salutation"
 msgstr "Anrede"
 
-#: allink_apps/blog/models.py:212
+#: allink_apps/blog/models.py:220
 msgid "Company"
 msgstr "Firma"
 
-#: allink_apps/blog/models.py:218
+#: allink_apps/blog/models.py:226
 msgid "Phone"
 msgstr "Telefon"
 
