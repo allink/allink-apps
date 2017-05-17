@@ -35,8 +35,10 @@ class BlogDetail(AllinkBaseDetailView):
             name = self.object.events._meta.model_name
         except ObjectDoesNotExist:
             name = self.object._meta.model_name
-
-        names.append("%s/%s%s.html" % (name, name, self.template_name_suffix))
+        if self.object.template:
+            names.append("%s/%s_%s.html" % (name, name, self.object.template))
+        else:
+            names.append("%s/%s%s.html" % (name, name, self.template_name_suffix))
         return names
 
 
@@ -48,7 +50,8 @@ class EventsRegistrationView(AllinkBaseCreateView):
     def get_context_data(self, **kwargs):
         context = super(AllinkBaseCreateView, self).get_context_data(**kwargs)
         context.update({
-            'slug': self.kwargs.get('slug', None)
+            'slug': self.kwargs.get('slug', None),
+            'event_title': self.item.title
         })
         return context
 

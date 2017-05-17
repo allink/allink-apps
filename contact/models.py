@@ -23,7 +23,7 @@ class ContactRequestBase(AllinkSimpleRegistrationFieldsModel):
     CONTACT_CHOICES = (
         (None, _(u'-- please choose --')),
         (CONTACT_PHONE, _(u'Phone')),
-        (CONTACT_EMAIL, _(u'Email')),
+        (CONTACT_EMAIL, _(u'E-Mail')),
     )
     salutation = models.IntegerField(
         _(u'Salutation'),
