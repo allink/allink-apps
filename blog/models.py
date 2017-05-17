@@ -68,6 +68,14 @@ class Blog(PolymorphicModel, TranslationHelperMixin, AllinkTranslatedAutoSlugify
         related_name='%(app_label)s_%(class)s_preview_image',
     )
 
+    template = models.CharField(
+        _(u'Template'),
+        help_text=_(u'Choose a template.'),
+        max_length=50,
+        blank=True,
+        null=True,
+    )
+
     header_placeholder = PlaceholderField(u'blog_header', related_name='%(app_label)s_%(class)s_header_placeholder')
     content_placeholder = PlaceholderField(u'blog_content', related_name='%(app_label)s_%(class)s_content_placeholder')
 

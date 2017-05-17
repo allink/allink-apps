@@ -35,8 +35,10 @@ class BlogDetail(AllinkBaseDetailView):
             name = self.object.events._meta.model_name
         except ObjectDoesNotExist:
             name = self.object._meta.model_name
-
-        names.append("%s/%s%s.html" % (name, name, self.template_name_suffix))
+        if self.object.template:
+            names.append("%s/%s_%s.html" % (name, name, self.object.template))
+        else:
+            names.append("%s/%s%s.html" % (name, name, self.template_name_suffix))
         return names
 
 
