@@ -80,13 +80,13 @@ class EventsAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
                     'is_active',
                     'title',
                     'slug',
-                    'created',
                     'template',
                     'preview_image',
+                    ('event_date', 'event_time', 'costs', ),
                     'lead',
                     'location',
                     'form_enabled',
-                    ('event_date', 'event_time', 'costs', )
+                    'created',
                 ),
             }),
         )
