@@ -141,6 +141,9 @@ class Events(Blog):
         verbose_name = _('Event')
         verbose_name_plural = _('Events')
 
+    def __str__(self):
+        return u'%s %s' % (self.title, self.event_date)
+
     def show_registration_form(self):
         if getattr(self, 'event_date'):
             if self.event_date < datetime.now().date():
@@ -149,6 +152,7 @@ class Events(Blog):
             return True
         else:
             return False
+
 
 
 # APP CONTENT PLUGIN
@@ -177,18 +181,29 @@ class BlogAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin)
         -> Is also defined in  AllinkManualEntriesMixin to handel manual entries !!
         """
 
+        def ordered_by_events():
+            if category and getattr(category, 'name') == 'Events':
+                return True
+            elif self.categories.count() == 1 and self.categories.first().name == 'Events':
+                return True
+            else:
+                return False
+
         # apply filters from request
         queryset = self.data_model.objects.active().filter(**filters)
 
         if self.categories.exists() or category:
             if category:
                 #  TODO how can we automatically apply the manager of the subclass?
-                if category.name == 'Events':
+                if ordered_by_events():
                     queryset = Events.objects.active().filter_by_category(category)
                 else:
                     queryset = queryset.filter_by_category(category)
             else:
-                queryset = queryset.filter_by_categories(categories=self.categories.all())
+                if ordered_by_events():
+                    queryset = Events.objects.active().filter_by_categories(categories=self.categories.all())
+                else:
+                    queryset = queryset.filter_by_categories(categories=self.categories.all())
 
             if self.categories_and.exists():
                 queryset = queryset.filter_by_categories(categories=self.categories_and.all())

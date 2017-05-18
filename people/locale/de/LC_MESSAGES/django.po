@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-10 09:14-0500\n"
+"POT-Creation-Date: 2017-05-17 09:46-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,7 +34,7 @@ msgstr "Nachname"
 msgid "Preview Image"
 msgstr ""
 
-#: allink_apps/people/models.py:62 allink_apps/people/models.py:152
+#: allink_apps/people/models.py:62 allink_apps/people/models.py:145
 msgid "Unit"
 msgstr ""
 
@@ -70,21 +70,25 @@ msgstr ""
 msgid "People"
 msgstr ""
 
-#: allink_apps/people/models.py:144
-msgid "Location"
+#: allink_apps/people/models.py:157
+msgid "Job Function"
 msgstr ""
 
-#: allink_apps/people/models.py:165
+#: allink_apps/people/models.py:161
+msgid "Job Title"
+msgstr ""
+
+#: allink_apps/people/models.py:173
 msgid ""
 "Select and arrange specific entries, or, leave blank to select all. (If "
 "manual entries are selected the category filtering will be ignored.)"
 msgstr ""
 
-#: allink_apps/people/models.py:171
+#: allink_apps/people/models.py:179
 msgid "Images"
 msgstr ""
 
-#: allink_apps/people/models.py:171
+#: allink_apps/people/models.py:179
 msgid "The first image will be used as preview image."
 msgstr ""
 

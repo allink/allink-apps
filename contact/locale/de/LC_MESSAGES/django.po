@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-10 09:14-0500\n"
+"POT-Creation-Date: 2017-05-17 09:46-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,9 +27,8 @@ msgid "Forms"
 msgstr ""
 
 #: allink_apps/contact/forms.py:14 allink_apps/contact/models.py:26
-#: allink_apps/contact/templates/contact/forms/request_base.html:82
-msgid "Email"
-msgstr "E-Mail"
+msgid "E-Mail"
+msgstr ""
 
 #: allink_apps/contact/forms.py:18
 msgid "Datum"
@@ -57,7 +56,7 @@ msgid "-- please choose --"
 msgstr "-- bitte auswählen --"
 
 #: allink_apps/contact/models.py:25 allink_apps/contact/models.py:44
-#: allink_apps/contact/templates/contact/forms/request_base.html:74
+#: allink_apps/contact/templates/contact/forms/request_base.html:76
 msgid "Phone"
 msgstr ""
 
@@ -104,18 +103,29 @@ msgstr "Fenster schliessen"
 msgid "Contact us"
 msgstr "Kontaktanfrage"
 
-#: allink_apps/contact/templates/contact/forms/request_base.html:49
+#: allink_apps/contact/templates/contact/forms/request_base.html:42
+#: allink_apps/contact/templates/contact/forms/request_base.html:51
+#: allink_apps/contact/templates/contact/forms/request_base.html:77
+#: allink_apps/contact/templates/contact/forms/request_base.html:86
+msgid "(required)"
+msgstr ""
+
+#: allink_apps/contact/templates/contact/forms/request_base.html:50
 msgid "Choose date and time"
 msgstr "Wann sollen wir Sie anrufen?"
 
-#: allink_apps/contact/templates/contact/forms/request_base.html:54
+#: allink_apps/contact/templates/contact/forms/request_base.html:56
 msgid "Choose a date"
 msgstr "Bitte ein Datum wählen"
 
-#: allink_apps/contact/templates/contact/forms/request_base.html:64
+#: allink_apps/contact/templates/contact/forms/request_base.html:66
 msgid "Choose a time"
 msgstr "Bitte Zeit wählen"
 
-#: allink_apps/contact/templates/contact/forms/request_base.html:124
+#: allink_apps/contact/templates/contact/forms/request_base.html:85
+msgid "Email"
+msgstr "E-Mail"
+
+#: allink_apps/contact/templates/contact/forms/request_base.html:126
 msgid "Submit"
 msgstr "Senden"

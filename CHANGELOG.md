@@ -25,12 +25,16 @@ The version numbers referring to the version in [allink_core](git@github.com/all
 ###### URLS
 
 ###### REQUIREMENTS
+- djangocms-snippet==1.9.2
+- beautifulsoup4==4.6.0
 
 ###### DATA MIGRATIONS
 - update with caution in projects whcih still use inline images to display galleries (hdf, mfgz, ..?) we added a field preview_image (not a property anymore) the galleries are now added as a plugin inside the content_palceholder
  -> and if you update make sure you migrate the images! (see data_migrations/0017_migrate_preview_image.py)
 
 ### NEW
+
+- App Content Template: `app_content.html` added. All plugin templates (grid_static, list, ...) should from now on extend from this template instead of `app_content_base.html` (both work, but `app_content_base.html` can NOT be overwritten on a project basis). Globally modifying block content can now be done by adding a `/templates/app_content/app_content.html` file in your project folder.
 
 ### FIXES
 
