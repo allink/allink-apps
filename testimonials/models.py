@@ -89,6 +89,7 @@ class Testimonial(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, Tran
         app_label = 'testimonials'
         verbose_name = _('Testimonial')
         verbose_name_plural = _('Testimonials')
+        ordering = ('firstname', )
 
     @property
     def full_name(self):
