@@ -18,9 +18,22 @@ The version numbers referring to the version in [allink_core](git@github.com/all
 ### IMPORTANT
 
 ###### SETTINGS
+- Contact Form: `TIME_CHOICES` (in `allink_apps/contact/models.py`) had to be updated for the core development project. If you require the old default, make sure to adjust the time choices after updating allink_apps:
+```python
+TIME_CHOICES = (
+    (None, _(u'-- between --')),
+    (1, u'08:00-10:00'),
+    (2, u'10:00-12:00'),
+    (3, u'12:00-14:00'),
+    (4, u'14:00-16:00'),
+    (5, u'16:00-18:00'),
+    (6, u'18:00-20:00'),
+)
+```
 
 ###### TEMPLATES
 - people job_function (which it was used in teojakob for example) was substituted with property 'units'. You now have to add categories (with identifier='units') and tag th person with it. this allowes us to categories people without having to maintain both fields 'unit' and categories
+- locations app has now also `grid_static` as a default template option
 
 ###### URLS
 
