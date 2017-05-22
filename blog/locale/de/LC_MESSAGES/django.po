@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-17 09:46-0500\n"
+"POT-Creation-Date: 2017-05-22 04:03-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -86,7 +86,7 @@ msgstr ""
 
 #: allink_apps/blog/models.py:109
 msgid "Costs"
-msgstr ""
+msgstr "Kosten"
 
 #: allink_apps/blog/models.py:116
 msgid "Event Form enabled"
@@ -108,29 +108,29 @@ msgstr ""
 msgid "Events"
 msgstr ""
 
-#: allink_apps/blog/models.py:166
+#: allink_apps/blog/models.py:170
 msgid ""
 "Select and arrange specific entries, or, leave blank to select all. (If "
 "manual entries are selected the category filtering will be ignored.)"
 msgstr ""
 
-#: allink_apps/blog/models.py:201
+#: allink_apps/blog/models.py:216
 msgid "Images"
 msgstr ""
 
-#: allink_apps/blog/models.py:201
+#: allink_apps/blog/models.py:216
 msgid "The first image will be used as preview image."
 msgstr ""
 
-#: allink_apps/blog/models.py:215
+#: allink_apps/blog/models.py:230
 msgid "Salutation"
 msgstr "Anrede"
 
-#: allink_apps/blog/models.py:220
+#: allink_apps/blog/models.py:235
 msgid "Company"
 msgstr "Firma"
 
-#: allink_apps/blog/models.py:226
+#: allink_apps/blog/models.py:241
 msgid "Phone"
 msgstr "Telefon"
 

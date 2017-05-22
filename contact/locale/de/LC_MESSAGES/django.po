@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-17 09:46-0500\n"
+"POT-Creation-Date: 2017-05-22 04:03-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,7 +26,7 @@ msgstr ""
 msgid "Forms"
 msgstr ""
 
-#: allink_apps/contact/forms.py:14 allink_apps/contact/models.py:26
+#: allink_apps/contact/forms.py:14 allink_apps/contact/models.py:23
 msgid "E-Mail"
 msgstr ""
 
@@ -51,42 +51,42 @@ msgstr "Dieses Feld wird benötigt."
 msgid "-- between --"
 msgstr "-- zwischen --"
 
-#: allink_apps/contact/models.py:24
+#: allink_apps/contact/models.py:21
 msgid "-- please choose --"
 msgstr "-- bitte auswählen --"
 
-#: allink_apps/contact/models.py:25 allink_apps/contact/models.py:44
+#: allink_apps/contact/models.py:22 allink_apps/contact/models.py:41
 #: allink_apps/contact/templates/contact/forms/request_base.html:76
 msgid "Phone"
 msgstr ""
 
-#: allink_apps/contact/models.py:29
+#: allink_apps/contact/models.py:26
 msgid "Salutation"
 msgstr "Anrede"
 
-#: allink_apps/contact/models.py:34
+#: allink_apps/contact/models.py:31
 msgid "Company"
 msgstr "Firma"
 
-#: allink_apps/contact/models.py:40
+#: allink_apps/contact/models.py:37
 #: allink_apps/contact/templates/contact/forms/request_base.html:41
 msgid "Please contact me via"
 msgstr "Bitte kontaktieren Sie mich via"
 
-#: allink_apps/contact/models.py:50
+#: allink_apps/contact/models.py:47
 msgid "Date"
 msgstr "Datum"
 
-#: allink_apps/contact/models.py:55
+#: allink_apps/contact/models.py:52
 msgid "Time"
 msgstr "Zeit"
 
-#: allink_apps/contact/models.py:96
+#: allink_apps/contact/models.py:93
 #: allink_apps/contact/templates/contact/email/request_subject_internal.txt:2
 msgid "Contact Request"
 msgstr "Kontaktanfrage"
 
-#: allink_apps/contact/models.py:97
+#: allink_apps/contact/models.py:94
 msgid "Contact Requests"
 msgstr "Kontaktanfragen"
 
