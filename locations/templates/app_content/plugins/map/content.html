@@ -33,29 +33,32 @@
                                 infowindow_content: '{% spaceless %}
                                 <div class="map-info-box">
                                     <address>
-                                        <div class="block">'
+                                        <div class="block text-container">'
                                             {% if object.title %}
-                                                + '<strong>{{object.title}}</strong><br>'
+                                                + '<strong>{{object.title}}</strong>'
                                             {% endif %}
                                             {% if object.street %}
-                                                + '{{object.street}} {{object.street_nr}}<br>'
+                                                + '<br>{{object.street}} {{object.street_nr}}'
                                             {% endif %}
                                             {% if object.zip_code or object.place %}
-                                                + '{{object.zip_code}} {{object.place}}<br>'
+                                                + '<br>{{object.zip_code}} {{object.place}}'
                                             {% endif %}
                                         + '</div>'
-                                        + '<div class="block">'
+                                        + '<div class="block text-container">'
                                             {% if object.phone %}
-                                                + 'T <a href="tel:{{object.phone}}">{{object.phone_formatted}}</a><br>'
+                                                + 'T <a class="text" href="tel:{{object.phone}}">{{object.phone_formatted}}</a>'
                                             {% endif %}
                                             {% if object.mobile %}
-                                                + 'M <a href="tel:{{object.mobile}}">{{object.mobile_formatted}}</a><br>'
+                                                + '<br>M <a class="text" href="tel:{{object.mobile}}">{{object.mobile_formatted}}</a>'
                                             {% endif %}
                                             {% if object.fax %}
-                                                + 'F <a href="tel:{{object.fax}}">{{object.fax_formatted}}</a><br>'
+                                                + '<br>F <a class="text" href="tel:{{object.fax}}">{{object.fax_formatted}}</a>'
                                             {% endif %}
                                             {% if object.email %}
-                                                + 'E <a href="mailto:{{object.email}}">{{object.email}}</a><br>'
+                                                + '<br>E <a class="text" href="mailto:{{object.email}}">{{object.email}}</a>'
+                                            {% endif %}
+                                            {% if object.map_link %}
+                                                + '<br><br><a class="text" href="{{object.map_link}}" target="_blank">{% trans "Directions" %}</a>'
                                             {% endif %}
                                         + '</div>'
                                     + '</address>

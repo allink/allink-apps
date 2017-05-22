@@ -96,6 +96,13 @@ class Locations(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, Transl
         null=True
     )
 
+    map_link = models.URLField(
+        _(u'Map Link'),
+        help_text=_(u'This could be a <strong>Google Places</strong> or <strong>Directions</strong> link.'),
+        blank=True,
+        null=True
+    )
+
     mon = models.CharField(_(u'Monday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
     tue = models.CharField(_(u'Tuesday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
     wed = models.CharField(_(u'Wednesday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
@@ -160,7 +167,7 @@ class Locations(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, Transl
         ]
         return self.opening_info(opening_times[datetime.date.today().weekday()])
     is_currently_open.boolean = True
-    is_currently_open.short_description = _(u'Now open_(u')
+    is_currently_open.short_description = _(u'Now open')
 
     def opening_info(self, times):
         """
