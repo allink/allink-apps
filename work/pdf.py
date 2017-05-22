@@ -353,10 +353,9 @@ class PdfWork(object):
 
     def draw_main_image(self, canvas, doc):
         canvas.setFillColor(self.brand_color)
-        # canvas.setFillColorRGB(250, 230, 0)
         canvas.rect(152.25 * mm, self.doc.height - 43.75 * mm, 52.75 * mm, 52.75 * mm, stroke=0, fill=1)
         if self.item.preview_image:
-            canvas.drawImage(ImageReader(read_file_open(self.item.preview_image)), 152.25 * mm, (self.doc.height - self.topMargin - self.first_page_settings['header_height'] - 40.75 * mm), mask ="auto", width = 52.75 * mm, height = 52.75 * mm)
+            canvas.drawImage(ImageReader(read_file_open(self.item.preview_image)), 152.25 * mm, self.doc.height - 43.75 * mm, mask='auto', width = 52.75 * mm, height = 52.75 * mm)
 
     def draw_footer(self, canvas, doc):
         canvas.setFont('MessinaSansRegular', 7.5, 9.5)
