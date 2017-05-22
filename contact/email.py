@@ -8,7 +8,7 @@ from allink_core.allink_mandrill.helpers import send_transactional_email
 config = MandrillConfig()
 
 
-def send_request_email(form):
+def send_request_email(form, plugin):
     subject = render_to_string('contact/email/request_subject_internal.txt')
     template_content = [{}]
 
@@ -29,13 +29,13 @@ def send_request_email(form):
     message = {
         'auto_html': None,
         'auto_text': None,
-        'from_email': config.default_from_email,
+        'from_email': plugin.from_email_address if plugin and plugin.from_email_address else config.default_from_email,
         'from_name': config.get_default_from_name(),
         'global_merge_vars': [
             {'name': 'detail_link', 'content': u'hello'},
             {'name': 'subscriber', 'content': subscriber}
         ],
-        'headers': {'Reply-To': config.default_from_email},
+        'headers': {'Reply-To': plugin.from_email_address if plugin and plugin.from_email_address else config.default_from_email},
         'inline_css': True,
         'merge': True,
         'merge_language': 'mailchimp',
@@ -44,6 +44,10 @@ def send_request_email(form):
         'return_path_domain': None,
         'subject': subject,
         'to': [{
+            'email': email_address,
+            'name': config.get_default_from_name(),
+            'type': 'to'
+        } for email_address in plugin.internal_email_adresses] if plugin and plugin.internal_email_adresses else [{
             'email': config.default_to_email,
             'name': config.get_default_from_name(),
             'type': 'to'
@@ -51,10 +55,11 @@ def send_request_email(form):
         'track_clicks': True,
         'track_opens': True
     }
+    print(message)
     send_transactional_email(message=message, template_name='hdf_registration_internal', template_content=template_content)
 
 
-def send_request_confirmation_email(form):
+def send_request_confirmation_email(form, plugin):
     subject = render_to_string('contact/email/request_subject.txt')
     template_content = [{}]
 
@@ -77,7 +82,7 @@ def send_request_confirmation_email(form):
     message = {
         'auto_html': None,
         'auto_text': None,
-        'from_email': config.default_from_email,
+        'from_email': plugin.from_email_address if plugin and plugin.from_email_address else config.default_from_email,
         'from_name': config.get_default_from_name(),
         'global_merge_vars': [
             {'name': 'first_name', 'content': form.data.get('first_name')},
@@ -87,7 +92,7 @@ def send_request_confirmation_email(form):
         ],
         'google_analytics_campaign': 'Contact Request',
         'google_analytics_domains': [config.get_google_analytics_domains()],
-        'headers': {'Reply-To': config.default_from_email},
+        'headers': {'Reply-To': plugin.from_email_address if plugin and plugin.from_email_address else config.default_from_email},
         'inline_css': True,
         'merge': True,
         'merge_language': 'mailchimp',
@@ -103,4 +108,5 @@ def send_request_confirmation_email(form):
         'track_clicks': True,
         'track_opens': True
     }
+    print(message)
     send_transactional_email(message=message, template_name='hdf_event_confirmation', translated=True, template_content=template_content)
