@@ -56,7 +56,7 @@ def send_request_email(form, plugin):
         'track_clicks': True,
         'track_opens': True
     }
-    send_transactional_email(message=message, template_name='hdf_registration_internal', template_content=template_content)
+    send_transactional_email(message=message, template_name='hrcampus_registration_internal', template_content=template_content)
 
 
 def send_request_confirmation_email(form, plugin):
@@ -108,4 +108,4 @@ def send_request_confirmation_email(form, plugin):
         'track_clicks': True,
         'track_opens': True
     }
-    send_transactional_email(message=message, template_name='hdf_event_confirmation', translated=True, template_content=template_content)
+    send_transactional_email(message=message, template_name='hrcampus_event_confirmation', translated=True, template_content=template_content)
