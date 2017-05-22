@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.template.loader import render_to_string
+from django.conf import settings
 
 from allink_core.allink_base.utils import get_display
 from allink_core.allink_mandrill.config import MandrillConfig
@@ -29,13 +30,13 @@ def send_request_email(form, plugin):
     message = {
         'auto_html': None,
         'auto_text': None,
-        'from_email': plugin.from_email_address if plugin and plugin.from_email_address else config.default_from_email,
+        'from_email': plugin.from_email_address if plugin and plugin.from_email_address else settings.CONTACT_REQUEST_EMAIL,
         'from_name': config.get_default_from_name(),
         'global_merge_vars': [
             {'name': 'detail_link', 'content': u'hello'},
             {'name': 'subscriber', 'content': subscriber}
         ],
-        'headers': {'Reply-To': plugin.from_email_address if plugin and plugin.from_email_address else config.default_from_email},
+        'headers': {'Reply-To': plugin.from_email_address if plugin and plugin.from_email_address else settings.CONTACT_REQUEST_EMAIL},
         'inline_css': True,
         'merge': True,
         'merge_language': 'mailchimp',
@@ -81,7 +82,7 @@ def send_request_confirmation_email(form, plugin):
     message = {
         'auto_html': None,
         'auto_text': None,
-        'from_email': plugin.from_email_address if plugin and plugin.from_email_address else config.default_from_email,
+        'from_email': plugin.from_email_address if plugin and plugin.from_email_address else settings.CONTACT_REQUEST_EMAIL,
         'from_name': config.get_default_from_name(),
         'global_merge_vars': [
             {'name': 'first_name', 'content': form.data.get('first_name')},
