@@ -53,7 +53,7 @@ def send_registration_email(form, event):
         'track_clicks': True,
         'track_opens': True
     }
-    send_transactional_email(message=message, template_name='hrcampus_registration_internal', template_content=template_content)
+    send_transactional_email(message=message, template_name='hrcampus_registration_internal_de', template_content=template_content)
 
 
 def send_registration_confirmation_email(form, event):
