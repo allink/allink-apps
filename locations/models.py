@@ -254,7 +254,7 @@ class LocationsAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPl
     #             + ('map', 'Map')
 
     TEMPLATES = (
-        # (AllinkBaseAppContentPlugin.GRID_STATIC, 'Grid (Static)'),
+        (AllinkBaseAppContentPlugin.GRID_STATIC, 'Grid (Static)'),
         # (AllinkBaseAppContentPlugin.GRID_DYNAMIC, 'Grid (Dynamic)'),
         ('map', 'Map'),
     )
