@@ -48,7 +48,7 @@ def send_request_email(form, plugin):
             'email': email_address,
             'name': config.get_default_from_name(),
             'type': 'to'
-        } for email_address in plugin.internal_email_adresses] if plugin and plugin.internal_email_adresses else [{
+        } for email_address in plugin.internal_email_adresses if email_address] if plugin and plugin.internal_email_adresses else [{
             'email': config.default_to_email,
             'name': config.get_default_from_name(),
             'type': 'to'

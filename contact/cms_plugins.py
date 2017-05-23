@@ -11,6 +11,12 @@ from allink_apps.contact.models import ContactRequestPlugin
 class ContactRequestFormPluginForm(forms.ModelForm):
     internal_email_adresses = SplitArrayField(forms.EmailField(required=False), size=3)
 
+    class Media:
+        js = ('build/djangocms_custom_admin_scripts.js', )
+        css = {
+            'all': ('build/djangocms_custom_admin_style.css', )
+        }
+
     class Meta:
         from allink_apps.contact.models import ContactRequestPlugin
         model = ContactRequestPlugin
