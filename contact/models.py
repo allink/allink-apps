@@ -2,7 +2,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from allink_core.allink_base.models import AllinkSimpleRegistrationFieldsModel
+from allink_core.allink_base.models import AllinkSimpleRegistrationFieldsModel, AllinkBaseFormPlugin
 from allink_core.allink_base.models.choices import SALUTATION_CHOICES
 
 
@@ -23,7 +23,7 @@ class ContactRequestBase(AllinkSimpleRegistrationFieldsModel):
     CONTACT_CHOICES = (
         (None, _(u'-- please choose --')),
         (CONTACT_PHONE, _(u'Phone')),
-        (CONTACT_EMAIL, _(u'Email')),
+        (CONTACT_EMAIL, _(u'E-Mail')),
     )
     salutation = models.IntegerField(
         _(u'Salutation'),
@@ -95,3 +95,12 @@ class ContactRequest(ContactRequestBase):
     class Meta:
         verbose_name = _(u'Contact Request')
         verbose_name_plural = _(u'Contact Requests')
+
+
+class ContactRequestPlugin(AllinkBaseFormPlugin):
+
+    from allink_apps.contact.forms import ContactRequestForm
+    form_class = ContactRequestForm
+
+    def __str__(self):
+        return 'Contact Request Form Plugin'

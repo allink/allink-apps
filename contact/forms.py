@@ -11,7 +11,7 @@ from allink_apps.contact.models import ContactRequest
 class ContactRequestBaseForm(AllinkBaseModelForm):
 
     email = forms.CharField(
-        label=_(u'Email'),
+        label=_(u'E-Mail'),
         required=False
     )
     date = forms.DateField(

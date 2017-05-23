@@ -32,6 +32,7 @@ The version numbers referring to the version in [allink_core](git@github.com/all
  -> and if you update make sure you migrate the images! (see data_migrations/0017_migrate_preview_image.py)
 
 ### NEW
+- Contact Form can be integrated as Plugin
 
 ### FIXES
 
