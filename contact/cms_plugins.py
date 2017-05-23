@@ -34,7 +34,7 @@ class ContactRequestFormPluginForm(forms.ModelForm):
                 required=False,
             )
         else:
-            del self.fields['project_css_classes']
+            self.fields['project_css_classes'].widget = forms.widgets.HiddenInput()
 
 
 @plugin_pool.register_plugin

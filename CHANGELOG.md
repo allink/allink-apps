@@ -47,6 +47,8 @@ TIME_CHOICES = (
 
 - App Content Template: `app_content.html` added. All plugin templates (grid_static, list, ...) should from now on extend from this template instead of `app_content_base.html` (both work, but `app_content_base.html` can NOT be overwritten on a project basis). Globally modifying block content can now be done by adding a `/templates/app_content/app_content.html` file in your project folder.
 
+- Forms can be used as Plugins. For each form we need an app, implementing the base classes as in allink_apps.contact
+
 ### FIXES
 
 ## v0.0.9
