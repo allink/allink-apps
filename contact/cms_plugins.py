@@ -20,7 +20,7 @@ class ContactRequestFormPluginForm(forms.ModelForm):
     class Meta:
         from allink_apps.contact.models import ContactRequestPlugin
         model = ContactRequestPlugin
-        fields = ('send_internal_mail', 'internal_email_adresses', 'from_email_address', 'send_external_mail', 'thank_you_text')
+        fields = ('send_internal_mail', 'internal_email_adresses', 'from_email_address', 'send_external_mail', 'thank_you_text', 'label_layout', 'form_css_classes')
 
 
 @plugin_pool.register_plugin
