@@ -28,12 +28,6 @@ class ContactRequestBaseForm(AllinkBaseModelForm):
         model = None
         fields = ('salutation', 'first_name', 'last_name', 'company_name', 'contact_type', 'email', 'message', 'phone', 'date', 'time')
 
-    def __init__(self, *args, **kwargs):
-        super(ContactRequestBaseForm, self).__init__(*args, **kwargs)
-        for field in self.fields.values():
-            if isinstance(field.widget, forms.widgets.Select):
-                field.choices = [(None, field.label)] + field.choices[1:]
-
     def clean_date(self):
         date = self.cleaned_data['date']
         contact_type = self.cleaned_data.get('contact_type')
