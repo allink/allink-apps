@@ -75,9 +75,10 @@ def set_links(tag):
     cleaned = str(tag)
     links = tag.findAll('cms-plugin')
     for link in links:
-        button = CMSPlugin.objects.get(id=link['id']).get_plugin_instance()[0]
-        btn_reg = re.compile('<cms-plugin alt="Button.*?id="%s".*?</cms-plugin>' % link['id'])
-        cleaned = re.sub(btn_reg.pattern, r'<link href="%s"><u>%s</u></link>' % (base_url() + button.get_link_url(), button.label), str(cleaned), flags=re.DOTALL)
+        if link['alt'].startswith('Button'):
+            button = CMSPlugin.objects.get(id=link['id']).get_plugin_instance()[0]
+            btn_reg = re.compile('<cms-plugin alt="Button.*?id="%s".*?</cms-plugin>' % link['id'])
+            cleaned = re.sub(btn_reg.pattern, r'<link href="%s"><u>%s</u></link>' % (base_url() + button.get_link_url(), button.label), str(cleaned), flags=re.DOTALL)
     return cleaned
 
 
