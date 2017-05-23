@@ -65,6 +65,22 @@ def read_file(image):
         # localhost (read file from local file system)
         return image.path
 
+
+def set_links(tag):
+    import re
+
+    from cms.models.pluginmodel import CMSPlugin
+    from allink_core.allink_base.utils import base_url
+
+    cleaned = str(tag)
+    links = tag.findAll('cms-plugin')
+    for link in links:
+        button = CMSPlugin.objects.get(id=link['id']).get_plugin_instance()[0]
+        btn_reg = re.compile('<cms-plugin alt="Button.*?id="%s".*?</cms-plugin>' % link['id'])
+        cleaned = re.sub(btn_reg.pattern, r'<link href="%s"><u>%s</u></link>' % (base_url() + button.get_link_url(), button.label), str(cleaned), flags=re.DOTALL)
+    return cleaned
+
+
 def extract_content_from_text_plugin(plugin):
     """
     returns a list with tuples
@@ -73,32 +89,37 @@ def extract_content_from_text_plugin(plugin):
     """
     body = plugin.get_plugin_instance()[0].body
     soup = BeautifulSoup(body)
-    # content = (
-    #     ('text-normal', body),
-    # )
     tags = soup.find_all(['p', 'h1', 'h2', 'h3', 'ul'])
     content = ()
     for tag in tags:
         # title
         if tag.name == 'h1':
-            content += ('title-h1', tag.get_text()),
+            tag = set_links(tag)
+            content += ('title-h1', str(tag)),
         elif tag.name == 'h2':
-            content += ('title-h2', tag.get_text()),
+            tag = set_links(tag)
+            content += ('title-h2', str(tag)),
         elif tag.name == 'h3':
-            content += ('title-h3', tag.get_text()),
+            tag = set_links(tag)
+            content += ('title-h3', str(tag)),
         # text
         elif has_class(tag, 'lead'):
-            content += ('text-lead', tag.get_text()),
+            tag = set_links(tag)
+            content += ('text-lead', str(tag)),
         elif has_class(tag, 'medium'):
-            content += ('text-medium', tag.get_text()),
+            tag = set_links(tag)
+            content += ('text-medium', str(tag)),
         elif has_class(tag, 'small'):
-            content += ('text-small', tag.get_text()),
+            tag = set_links(tag)
+            content += ('text-small', str(tag)),
         # lists
         elif tag.name == 'ul':
-            content += ('list-bullet', map(lambda x: x.get_text(), tag.findAll('li'))),
+            tag = set_links(tag)
+            content += ('list-bullet', map(lambda x: str(x), tag.findAll('li'))),
         else:
             # fallback and if no class is defined
-            content += ('text-normal', tag.get_text()),
+            tag = set_links(tag)
+            content += ('text-normal', str(tag)),
     return content
 
 
@@ -143,6 +164,9 @@ class PdfWork(object):
         pdfmetrics.registerFont(TTFont('AerotypeZoojaLight', 'static/fonts/pdf/Aerotype-Zooja-Light.ttf'))
         pdfmetrics.registerFont(TTFont('MessinaSansBold', 'static/fonts/pdf/MessinaSans-Bold.ttf'))
         pdfmetrics.registerFont(TTFont('MessinaSansRegular', 'static/fonts/pdf/MessinaSans-Regular.ttf'))
+
+        pdfmetrics.registerFontFamily('MessinaSans', normal='MessinaSansRegular', bold='MessinaSansBold',)
+        pdfmetrics.registerFontFamily('AerotypeZoojaLight', normal='AerotypeZoojaLight',)
 
         self.output = BytesIO()
         self.item = item
