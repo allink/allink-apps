@@ -7,15 +7,16 @@ from cms.plugin_base import CMSPluginBase
 from allink_core.allink_base.utils import get_additional_choices
 from cms.plugin_pool import plugin_pool
 from allink_apps.contact.models import ContactRequestPlugin
+from webpack_loader.utils import get_files
 
 
 class ContactRequestFormPluginForm(forms.ModelForm):
     internal_email_adresses = SplitArrayField(forms.EmailField(required=False), size=3)
 
     class Media:
-        js = ('build/djangocms_custom_admin_scripts.js', )
+        js = (get_files('djangocms_custom_admin')[0]['publicPath'], )
         css = {
-            'all': ('build/djangocms_custom_admin_style.css', )
+            'all': (get_files('djangocms_custom_admin')[1]['publicPath'], )
         }
 
     class Meta:
