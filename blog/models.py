@@ -87,7 +87,7 @@ class Blog(PolymorphicModel, TranslationHelperMixin, AllinkTranslatedAutoSlugify
         verbose_name_plural = _('Blog entries')
 
     def get_detail_view(self):
-        return 'blog:detail'.format(self._meta.model_name)
+        return 'blog:detail'
 
 # News
 class News(Blog):
@@ -97,6 +97,9 @@ class News(Blog):
         app_label = 'blog'
         verbose_name = _('News entry')
         verbose_name_plural = _('News')
+
+    def get_detail_view(self):
+        return '{}:detail'.format(self._meta.model_name)
 
 # Events
 class Events(Blog):
@@ -153,6 +156,8 @@ class Events(Blog):
         else:
             return False
 
+    def get_detail_view(self):
+        return '{}:detail'.format(self._meta.model_name)
 
 
 # APP CONTENT PLUGIN
