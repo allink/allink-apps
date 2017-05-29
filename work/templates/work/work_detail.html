@@ -27,7 +27,15 @@
 {% endif %}
 {% if object.og_image %}
     {% block og_image %}
-        {{object.og_image.url}}
+        {% if object.preview_image.url %}
+            {{ object.preview_image.url }}
+        {% else object.og_image.url %}
+            {{object.og_image.url}}
+        {% else request.current_page.get_title_obj.allinkmetatagextension.og_image.url %}
+            {{request.current_page.get_title_obj.allinkmetatagextension.og_image.url }}
+        {% else %}
+            {{ allink_config.default_og_image.url }}
+        {% endif %}
     {% endblock og_image %}
 {% endif %}
 
