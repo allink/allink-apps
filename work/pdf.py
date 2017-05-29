@@ -115,8 +115,7 @@ def extract_content_from_text_plugin(plugin):
             content += ('text-small', str(tag)),
         # lists
         elif tag.name == 'ul':
-            tag = set_links(tag)
-            content += ('list-bullet', map(lambda x: str(x), tag.findAll('li'))),
+            content += ('list-bullet', map(lambda x: set_links(x), tag.findAll('li'))),
         else:
             # fallback and if no class is defined
             tag = set_links(tag)
