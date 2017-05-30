@@ -32,7 +32,7 @@ msgstr "Nachname"
 
 #: allink_apps/testimonials/models.py:42
 msgid "Preview Image"
-msgstr ""
+msgstr "Vorschaubild"
 
 #: allink_apps/testimonials/models.py:52
 msgid "Firstname"
@@ -44,7 +44,7 @@ msgstr ""
 
 #: allink_apps/testimonials/models.py:67
 msgid "Leave blank to auto-generate a unique slug."
-msgstr ""
+msgstr "Leer lassen, um den Slug automatisch zu generieren."
 
 #: allink_apps/testimonials/models.py:70
 msgid "Lead text"
@@ -55,14 +55,16 @@ msgid ""
 "Teaser text that in some cases is used in the list view and/or in the detail "
 "view."
 msgstr ""
+"Teaser text, welcher in der Listenansicht und/oder Deteilansicht verwendet "
+"wird."
 
 #: allink_apps/testimonials/models.py:76
 msgid "Detailed Text"
-msgstr ""
+msgstr "Detailtext"
 
 #: allink_apps/testimonials/models.py:77
 msgid "The full text in detail view."
-msgstr ""
+msgstr "Der gesamte Text für die Detailansicht."
 
 #: allink_apps/testimonials/models.py:90
 msgid "Testimonial"
@@ -77,22 +79,24 @@ msgid ""
 "Select and arrange specific entries, or, leave blank to select all. (If "
 "manual entries are selected the category filtering will be ignored.)"
 msgstr ""
+"Wählen und ordnen Sie speziefische Einträge, oder leer lassen, uma alle zu "
+"wählen. (Kategorienfilterung wird bei manuellen Einträgen nicht angewandt.)"
 
 #: allink_apps/testimonials/models.py:124
 msgid "Images"
-msgstr ""
+msgstr "Bilder"
 
 #: allink_apps/testimonials/models.py:124
 msgid "The first image will be used as preview image."
-msgstr ""
+msgstr "Das erst Bild wird als Vorschaubild verwendet."
 
 #: allink_apps/testimonials/templates/testimonials/testimonial_detail.html:80
 msgid "Contact"
-msgstr ""
+msgstr "Kontakt"
 
 #: allink_apps/testimonials/templates/testimonials/testimonial_detail.html:90
 msgid "Phone:"
-msgstr ""
+msgstr "Telefon:"
 
 #: allink_apps/testimonials/templates/testimonials/testimonial_detail.html:96
 msgid "Mobile:"
