@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-30 02:27-0500\n"
+"POT-Creation-Date: 2017-05-30 02:42-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -104,19 +104,19 @@ msgid ""
 "strong> link."
 msgstr ""
 
-#: allink_apps/locations/models.py:106 allink_apps/locations/models.py:113
+#: allink_apps/locations/models.py:106
 msgid "Monday morning or whole day"
 msgstr ""
 
-#: allink_apps/locations/models.py:107 allink_apps/locations/models.py:114
+#: allink_apps/locations/models.py:107
 msgid "Tuesday morning or whole day"
 msgstr ""
 
-#: allink_apps/locations/models.py:108 allink_apps/locations/models.py:115
+#: allink_apps/locations/models.py:108
 msgid "Wednesday morning or whole day"
 msgstr ""
 
-#: allink_apps/locations/models.py:109 allink_apps/locations/models.py:116
+#: allink_apps/locations/models.py:109
 msgid "Thursday morning or whole day"
 msgstr ""
 
@@ -132,16 +132,32 @@ msgstr ""
 msgid "Sunday morning or whole day"
 msgstr ""
 
+#: allink_apps/locations/models.py:113
+msgid "Monday afternoon"
+msgstr ""
+
+#: allink_apps/locations/models.py:114
+msgid "Tuesday afternoon"
+msgstr ""
+
+#: allink_apps/locations/models.py:115
+msgid "Wednesday afternoon"
+msgstr ""
+
+#: allink_apps/locations/models.py:116
+msgid "Thursday afternoon"
+msgstr ""
+
 #: allink_apps/locations/models.py:117
-msgid "Friday mo morning or whole day"
+msgid "Friday afternoon"
 msgstr ""
 
 #: allink_apps/locations/models.py:118
-msgid "Saturday  morning or whole day"
+msgid "Saturday afternoon"
 msgstr ""
 
 #: allink_apps/locations/models.py:119
-msgid "Sunday mo morning or whole day"
+msgid "Sunday afternoon"
 msgstr ""
 
 #: allink_apps/locations/models.py:128
