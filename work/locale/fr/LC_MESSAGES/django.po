@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-30 02:42-0500\n"
+"POT-Creation-Date: 2017-05-30 06:21-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,11 +66,11 @@ msgid "Preview Image"
 msgstr ""
 
 #: allink_apps/work/models.py:71
-msgid "Projekt/ Referenz"
+msgid "Project / Reference"
 msgstr ""
 
 #: allink_apps/work/models.py:72
-msgid "Projekte/ Referenzen"
+msgid "Projects / References"
 msgstr ""
 
 #: allink_apps/work/models.py:107

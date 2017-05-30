@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-30 02:42-0500\n"
+"POT-Creation-Date: 2017-05-30 06:21-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -81,40 +81,31 @@ msgid "Description"
 msgstr ""
 
 #: allink_apps/members/templates/members/email/member_modified_subject.txt:2
-msgid "Mitglied hat E-Mail Adresse mutiert"
+msgid "Member modified email address."
 msgstr ""
 
 #: allink_apps/members/templates/members/email/member_modified_text.txt:2
 #, python-format
 msgid ""
 "\n"
-"Guten Tag,\n"
+"Good Day,\n"
 "\n"
-"Das Mitglied %(member_nr)s hat neu die E-Mail Adresse: %(member_email)s.\n"
-"Bitte aktualisieren Sie die E-Mail Adresse in den anderen Systemen "
-"(Flightnet, FileMaker Datenbank).\n"
+"The Member %(member_nr)s has a new email address: %(member_email)s.\n"
+"Please update the email address in other systems (Flightnet, FileMaker "
+"Database). \n"
 "\n"
 msgstr ""
 
 #: allink_apps/members/templates/members/email/welcome_subject.txt:2
-msgid "Zugang Downloadbereich neue MFGZ Website"
+msgid "subject"
 msgstr ""
 
 #: allink_apps/members/templates/members/email/welcome_text.txt:2
 #, python-format
 msgid ""
 "\n"
-"Die MFGZ Website wurde überarbeitet und auch der Download Bereich wurde neu "
-"gestaltet.\n"
-"\n"
-"Bitte klicken Sie hier, um ein neues Passwort zu setzen:\n"
+"welcome\n"
 "%(set_password_link)s\n"
-"\n"
-"Das Passwort wird verschlüsselt abgelegt, die Kommunikation erfolgt über "
-"eine sichere Verbindung mittels SSL.\n"
-"\n"
-"Freundliche Grüsse\n"
-"MFGZ Team\n"
 msgstr ""
 
 #: allink_apps/members/templates/members/login/confirmation.html:4
