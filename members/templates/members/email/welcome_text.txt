@@ -1,12 +1,5 @@
 {% load i18n %}
 {% blocktrans %}
-Die MFGZ Website wurde überarbeitet und auch der Download Bereich wurde neu gestaltet.
-
-Bitte klicken Sie hier, um ein neues Passwort zu setzen:
+welcome
 {{ set_password_link }}
-
-Das Passwort wird verschlüsselt abgelegt, die Kommunikation erfolgt über eine sichere Verbindung mittels SSL.
-
-Freundliche Grüsse
-MFGZ Team
 {% endblocktrans %}

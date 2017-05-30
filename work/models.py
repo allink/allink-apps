@@ -68,8 +68,8 @@ class Work(SortableMixin, TranslationHelperMixin, AllinkTranslatedAutoSlugifyMix
     class Meta:
         app_label = 'work'
         ordering = ('sort_order',)
-        verbose_name = _('Projekt/ Referenz')
-        verbose_name_plural = _('Projekte/ Referenzen')
+        verbose_name = _('Project / Reference')
+        verbose_name_plural = _('Projects / References')
 
 
 class Highlights(SortableMixin, TranslatableModel):

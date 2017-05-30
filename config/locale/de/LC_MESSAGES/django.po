@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-23 03:45-0500\n"
+"POT-Creation-Date: 2017-05-30 06:21-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: allink_apps/config/cms_toolbars.py:22
 msgid "Project"
-msgstr ""
+msgstr "Projekt"
 
 #: allink_apps/config/cms_toolbars.py:27
 msgid "Config"
@@ -35,6 +35,8 @@ msgid ""
 "Default preview image when page/post is shared on Facebook. <br>Min. 1200 x "
 "630 for best results."
 msgstr ""
+"Standard Vorschaubild für's Sharing einer Seite oder eines Posts auf "
+"Facebook. <br>Min. 1200 x 630 px"
 
 #: allink_apps/config/models.py:21
 msgid "Base title"
@@ -46,6 +48,9 @@ msgid ""
 "shared on Facebook. <br>If not supplied the name form Django Sites will be "
 "used instead."
 msgstr ""
+"Standard Base title. Wird auch als Standard für die Basis vom og:title beim "
+"Sharen auf Facebook gebraucht. <br>Wenn nicht gesetzt wird als Standard der "
+"name von Django Sites verwendet."
 
 #: allink_apps/config/models.py:28
 msgid "Theme Color"
@@ -73,4 +78,4 @@ msgstr ""
 
 #: allink_apps/config/models.py:204
 msgid "Configuration"
-msgstr ""
+msgstr "Konfiguration"

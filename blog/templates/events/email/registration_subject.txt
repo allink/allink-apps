@@ -1,2 +1,2 @@
 {% load i18n %}
-{% blocktrans %}Danke für Ihre Anmeldung{% endblocktrans %}
+{% blocktrans %}Thanks for your registration{% endblocktrans %}

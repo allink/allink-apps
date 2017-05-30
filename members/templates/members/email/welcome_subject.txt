@@ -1,2 +1,2 @@
 {% load i18n %}
-{% blocktrans %}Zugang Downloadbereich neue MFGZ Website{% endblocktrans %}
+{% blocktrans %}subject{% endblocktrans %}
