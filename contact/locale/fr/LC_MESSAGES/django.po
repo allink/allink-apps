@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-30 01:55-0500\n"
+"POT-Creation-Date: 2017-05-30 02:27-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,8 +52,8 @@ msgstr ""
 msgid "E-Mail"
 msgstr ""
 
-#: allink_apps/contact/forms.py:18
-msgid "Datum"
+#: allink_apps/contact/forms.py:18 allink_apps/contact/models.py:47
+msgid "Date"
 msgstr "Date"
 
 #: allink_apps/contact/forms.py:22
@@ -94,10 +94,6 @@ msgstr "Société"
 #: allink_apps/contact/templates/contact/forms/request_base.html:43
 msgid "Please contact me via"
 msgstr "S'il vous plaît me contacter par"
-
-#: allink_apps/contact/models.py:47
-msgid "Date"
-msgstr "Date"
 
 #: allink_apps/contact/models.py:52
 msgid "Time"
@@ -152,3 +148,6 @@ msgstr "E-mail"
 #: allink_apps/contact/templates/contact/forms/request_base.html:128
 msgid "Submit"
 msgstr "Inscrire"
+
+#~ msgid "Datum"
+#~ msgstr "Date"

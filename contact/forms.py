@@ -15,7 +15,7 @@ class ContactRequestBaseForm(AllinkBaseModelForm):
         required=False
     )
     date = forms.DateField(
-            label=_(u'Datum'),
+            label=_(u'Date'),
             widget=forms.TextInput(
                 attrs={
                     'class': 'datepicker',
