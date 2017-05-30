@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-23 01:12-0500\n"
+"POT-Creation-Date: 2017-05-30 01:55-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,13 +22,25 @@ msgstr ""
 msgid "Contact via"
 msgstr ""
 
-#: allink_apps/contact/cms_plugins.py:23
+#: allink_apps/contact/cms_plugins.py:31
+msgid "Predifined css classes"
+msgstr ""
+
+#: allink_apps/contact/cms_plugins.py:32
+msgid ""
+"Instructions: Single selection is made by clicking on an option. Multiple "
+"selections are achieved by pressing and holding down the Command-key (Mac) "
+"or Control-Key (Windows) <strong>and</strong> clicking the options you would "
+"like to apply."
+msgstr ""
+
+#: allink_apps/contact/cms_plugins.py:43
 #, fuzzy
 #| msgid "Contact us"
 msgid "ContactRequest"
 msgstr "Contactez-nous"
 
-#: allink_apps/contact/cms_plugins.py:24
+#: allink_apps/contact/cms_plugins.py:44
 msgid "allink"
 msgstr ""
 

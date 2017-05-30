@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-23 01:12-0500\n"
+"POT-Creation-Date: 2017-05-30 01:55-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,6 +28,14 @@ msgstr ""
 
 #: allink_apps/blog/cms_apps.py:8
 msgid "Blog Apphook"
+msgstr ""
+
+#: allink_apps/blog/cms_apps.py:15
+msgid "News Apphook"
+msgstr ""
+
+#: allink_apps/blog/cms_apps.py:22
+msgid "Events Apphook"
 msgstr ""
 
 #: allink_apps/blog/cms_toolbars.py:33
@@ -84,53 +92,53 @@ msgstr ""
 msgid "News"
 msgstr ""
 
-#: allink_apps/blog/models.py:109
+#: allink_apps/blog/models.py:112
 msgid "Costs"
 msgstr ""
 
-#: allink_apps/blog/models.py:116
+#: allink_apps/blog/models.py:119
 msgid "Event Form enabled"
 msgstr ""
 
-#: allink_apps/blog/models.py:121
+#: allink_apps/blog/models.py:124
 msgid "Event Date"
 msgstr ""
 
-#: allink_apps/blog/models.py:127
+#: allink_apps/blog/models.py:130
 msgid "Event Time"
 msgstr ""
 
-#: allink_apps/blog/models.py:141
+#: allink_apps/blog/models.py:144
 msgid "Event"
 msgstr ""
 
-#: allink_apps/blog/models.py:142
+#: allink_apps/blog/models.py:145
 msgid "Events"
 msgstr ""
 
-#: allink_apps/blog/models.py:170
+#: allink_apps/blog/models.py:175
 msgid ""
 "Select and arrange specific entries, or, leave blank to select all. (If "
 "manual entries are selected the category filtering will be ignored.)"
 msgstr ""
 
-#: allink_apps/blog/models.py:216
+#: allink_apps/blog/models.py:221
 msgid "Images"
 msgstr ""
 
-#: allink_apps/blog/models.py:216
+#: allink_apps/blog/models.py:221
 msgid "The first image will be used as preview image."
 msgstr ""
 
-#: allink_apps/blog/models.py:230
+#: allink_apps/blog/models.py:235
 msgid "Salutation"
 msgstr "Salutation"
 
-#: allink_apps/blog/models.py:235
+#: allink_apps/blog/models.py:240
 msgid "Company"
 msgstr "Société"
 
-#: allink_apps/blog/models.py:241
+#: allink_apps/blog/models.py:246
 msgid "Phone"
 msgstr "Téléphone"
 
@@ -144,15 +152,12 @@ msgid "Uhr"
 msgstr ""
 
 #: allink_apps/blog/templates/events/email/registration_subject.txt:2
-msgid "Danke für Ihre Anmeldung"
+#: allink_apps/blog/templates/events/forms/confirmation.html:4
+msgid "Thanks for your registration"
 msgstr ""
 
 #: allink_apps/blog/templates/events/email/registration_subject_internal.txt:2
-msgid "Event Anmeldung"
-msgstr ""
-
-#: allink_apps/blog/templates/events/forms/confirmation.html:4
-msgid "Thanks for your registration."
+msgid "Event Registration"
 msgstr ""
 
 #: allink_apps/blog/templates/events/forms/registration.html:5
