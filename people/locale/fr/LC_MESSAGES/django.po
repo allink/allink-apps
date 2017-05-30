@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-30 04:49-0500\n"
+"POT-Creation-Date: 2017-05-30 04:57-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -93,6 +93,7 @@ msgid "The first image will be used as preview image."
 msgstr ""
 
 #: allink_apps/people/templates/people/people_detail.html:50
+#: allink_apps/people/templates/people/plugins/table/content.html:12
 msgid "Contact"
 msgstr ""
 
@@ -119,19 +120,17 @@ msgid "Name"
 msgstr ""
 
 #: allink_apps/people/templates/people/plugins/table/content.html:10
-msgid "Firmenname/Beruf"
-msgstr ""
+#, fuzzy
+#| msgid "Company Name"
+msgid "Company/Job"
+msgstr "Société"
 
 #: allink_apps/people/templates/people/plugins/table/content.html:11
-msgid "Ort"
-msgstr ""
-
-#: allink_apps/people/templates/people/plugins/table/content.html:12
-msgid "Kontakt"
+msgid "Place"
 msgstr ""
 
 #: allink_apps/people/templates/people/plugins/table_2/content.html:12
-msgid "Beruf"
+msgid "Job"
 msgstr ""
 
 #: allink_apps/people/templates/people/plugins/table_2/content.html:13
