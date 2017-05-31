@@ -163,11 +163,6 @@ class Events(Blog):
 # APP CONTENT PLUGIN
 class BlogAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin):
 
-    TEMPLATES = (
-        (AllinkBaseAppContentPlugin.GRID_STATIC, 'Grid (Static)'),
-        (AllinkBaseAppContentPlugin.SLIDER, 'Slider'),
-    )
-
     data_model = Blog
 
     manual_entries = SortedM2MModelField(
