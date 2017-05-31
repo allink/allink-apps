@@ -28,7 +28,7 @@ class ContactRequestFormPluginForm(forms.ModelForm):
         super(ContactRequestFormPluginForm, self).__init__(*args, **kwargs)
         if get_additional_choices('FORM_CSS_CLASSES'):
             self.fields['project_css_classes'] = forms.MultipleChoiceField(
-                label=_(u'Predifined css classes'),
+                label=_(u'Predifined variations'),
                 help_text=_(u'Instructions: Single selection is made by clicking on an option. Multiple selections are achieved by pressing and holding down the Command-key (Mac) or Control-Key (Windows) <strong>and</strong> clicking the options you would like to apply.'),
                 choices=get_additional_choices('FORM_CSS_CLASSES'),
                 required=False,

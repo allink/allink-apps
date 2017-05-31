@@ -23,7 +23,7 @@ msgid "Contact via"
 msgstr ""
 
 #: allink_apps/contact/cms_plugins.py:31
-msgid "Predifined css classes"
+msgid "Predifined variations"
 msgstr ""
 
 #: allink_apps/contact/cms_plugins.py:32
