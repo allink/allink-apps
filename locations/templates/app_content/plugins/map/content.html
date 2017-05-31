@@ -9,7 +9,7 @@
 {# A map only makes sense, when locations are assigned #}
 {% if object_list %}
 
-    <div class="locations-plugin map-container">
+    <div class="locations-plugin map-container {{ instance.css_classes }}">
 
         <div class="locations-map" id="map-{{instance.id}}" data-zoom-level="{{instance.zoom_level}}"></div>
 
