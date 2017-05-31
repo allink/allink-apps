@@ -207,7 +207,7 @@ class PdfWork(object):
         self.allowed_content_plugins = [
             'TextPlugin',
             'CMSAllinkImagePlugin',
-            'CMSAllinkPageBreakPlugin'
+            'CMSAllinkPageBreakPlugin',
         ]
 
         self.header_plugins = self.get_relevant_header_plugins()
@@ -309,7 +309,8 @@ class PdfWork(object):
                                       fontName='MessinaSansBold',
                                       fontSize=9,
                                       textColor=self.font_color,
-                                      leading=9.5)
+                                      leading=9.5,
+                                      spaceAfter=2.25 * mm)
                        )
         stylesheet.add(ParagraphStyle(name='title-h2',
                                       fontName='AerotypeZoojaLight',
@@ -431,8 +432,11 @@ class PdfWork(object):
         )
         relevant_plugins = []
 
+
         for plugin in all_plugins:
             if plugin.plugin_type in self.allowed_header_plugins:
+                relevant_plugins.append(plugin)
+            elif plugin.plugin_type == 'CMSAllinkContentPlugin' and not plugin.ignore_in_pdf:
                 relevant_plugins.append(plugin)
         return relevant_plugins
 
@@ -451,9 +455,10 @@ class PdfWork(object):
             if plugin.plugin_type == 'CMSAllinkContentPlugin':
                 # at the moment only templates 'col-1' and 'col-1-1' are supported
                 if not plugin.ignore_in_pdf and (plugin.template == 'col-1' or plugin.template == 'col-1-1'):
+                    relevant_plugins.append(plugin)
                     column_plugins = plugin.get_children()
                     for column in column_plugins:
-                        for child in column.get_children():
+                        for child in reversed(column.get_descendants()):
                             # exlude images which are used as background icons
                             if not getattr(child.get_plugin_instance()[0], 'project_css_classes', False):
                                 # also skip ImagePlugins which are inside a content plugin with template col-1-1
@@ -476,6 +481,9 @@ class PdfWork(object):
                                            bulletFontSize=3,
                                            bulletOffsetY=-4,
                                            spaceAfter=4 * mm))
+
+    def append_pagebreak_plugin(self, plugin):
+        self.floatings.append(PageBreak())
 
     def append_text_plugin(self, plugin):
         content = extract_content_from_text_plugin(plugin)
@@ -501,7 +509,6 @@ class PdfWork(object):
                 if tag[0] == 'title-h3':
                     self.floatings.append(HRFlowable(spaceBefore=0.2 * mm, spaceAfter=5.25 * mm, color=self.transparent, thickness=0.5, width='100%'))
 
-
     def append_image_plugin(self, plugin):
         if hasattr(plugin.djangocms_image_allinkimageplugin, 'picture'):
             picture_plug = plugin.djangocms_image_allinkimageplugin
@@ -520,8 +527,14 @@ class PdfWork(object):
                 self.floatings.append(Image(read_file(image), width=width, height=height, mask='auto', hAlign='LEFT', ))
                 self.floatings.append(Paragraph('', self.styles['main-title']))
 
-    def append_pagebreak_plugin(self, plugin):
-        self.floatings.append(PageBreak())
+    def append_content_plugin(self, plugin):
+        # render the title of the section in the corresponding style
+        # styles: title - h1, title - h2, title - h3
+
+        if plugin.title:
+            self.floatings.append(KeepTogether(Paragraph(clean(plugin.title), self.styles['title-{}'.format(plugin.title_size)])))
+            if plugin.title_size == 'h3':
+                self.floatings.append(HRFlowable(spaceBefore=0.2 * mm, spaceAfter=5.25 * mm, color=self.transparent, thickness=0.5, width='100%'))
 
     def append_plugins(self, plugins):
         for plugin in plugins:
@@ -531,6 +544,8 @@ class PdfWork(object):
                 self.append_text_plugin(plugin)
             elif plugin.plugin_type == 'CMSAllinkImagePlugin':
                 self.append_image_plugin(plugin)
+            elif plugin.plugin_type == 'CMSAllinkContentPlugin':
+                self.append_content_plugin(plugin)
 
     def build(self):
         activate(self.language)
