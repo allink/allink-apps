@@ -106,11 +106,7 @@ class TestimonialAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContent
     There should be no need to extend this Model.
     All the configuration can be done with the funtionallity of Basemodel "AllinkAppContent".
     """
-    TEMPLATES = (
-        (AllinkBaseAppContentPlugin.GRID_STATIC, 'Grid (Static)'),
-        (AllinkBaseAppContentPlugin.GRID_DYNAMIC, 'Grid (Dynamic)'),
-        (AllinkBaseAppContentPlugin.SLIDER, 'Slider'),
-    )
+
     data_model = Testimonial
 
     manual_entries = SortedM2MModelField(

@@ -250,14 +250,6 @@ class Locations(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, Transl
 class LocationsAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin):
     """
     """
-    # TEMPLATES = AllinkBaseAppContentPlugin.TEMPLATES \
-    #             + ('map', 'Map')
-
-    TEMPLATES = (
-        (AllinkBaseAppContentPlugin.GRID_STATIC, 'Grid (Static)'),
-        # (AllinkBaseAppContentPlugin.GRID_DYNAMIC, 'Grid (Dynamic)'),
-        ('map', 'Map'),
-    )
 
     ZOOM_LEVEL_CHOICES = (
         (0, 0),

@@ -126,9 +126,6 @@ class PeopleAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugi
     """
     specify:
 
-    TEMPLATES = (
-        (AllinkBaseAppContentPlugin.GRID_STATIC, 'Grid (Static)'),
-    )
     data_model = People
 
     manual_entries = SortedM2MModelField(
@@ -162,10 +159,7 @@ class PeopleAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugi
             'query_filter': {},
         }),
     )
-    TEMPLATES = (
-        (AllinkBaseAppContentPlugin.GRID_STATIC, 'Grid (Static)'),
-        (AllinkBaseAppContentPlugin.LIST, 'List'),
-    )
+
     data_model = People
 
     manual_entries = SortedM2MModelField(

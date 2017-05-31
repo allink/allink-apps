@@ -19,12 +19,14 @@ class BlogContentAdminForm(AllinkBaseAdminForm):
         super(BlogContentAdminForm, self).__init__(*args, **kwargs)
         self.fields['categories'].initial = AllinkCategory.objects.not_root().filter(translations__name__iexact=self._meta.model._meta.model_name)
 
-        if get_additional_choices('BLOG_DETAIL_TEMPLATES'):
+        if get_additional_choices('ADDITIONAL_BLOG_DETAIL_TEMPLATES'):
             self.fields['template'] = forms.CharField(
                 label=_(u'Template'),
-                widget=forms.Select(choices=get_additional_choices('BLOG_DETAIL_TEMPLATES', blank=True)),
+                widget=forms.Select(choices=get_additional_choices('ADDITIONAL_BLOG_DETAIL_TEMPLATES', blank=True)),
                 required=False,
             )
+        else:
+            self.fields['template'] = forms.CharField(widget=forms.HiddenInput(),)
 
 
 @admin.register(News)
