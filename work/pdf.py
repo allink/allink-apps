@@ -443,12 +443,13 @@ class PdfWork(object):
     def get_relevant_content_plugins(self):
         """
         returns a list with only relevant plugins from a queryset of plugins
-        Plugins are always children of CMSAllinkContentColumnPlugin
+        Plugins are always children of CMSAllinkContentColumnPlugin or CMSAllinkContentPlugin itself 
         """
         all_plugins = get_plugins(
             request=self.request,
             placeholder=self.item.content_placeholder,
             template=None,
+            lang=self.language,
         )
         relevant_plugins = []
         for plugin in all_plugins:
@@ -458,14 +459,14 @@ class PdfWork(object):
                     relevant_plugins.append(plugin)
                     column_plugins = plugin.get_children()
                     for column in column_plugins:
-                        for child in reversed(column.get_descendants()):
+                        for child in column.get_children():
                             # exlude images which are used as background icons
                             if not getattr(child.get_plugin_instance()[0], 'project_css_classes', False):
                                 # also skip ImagePlugins which are inside a content plugin with template col-1-1
                                 if plugin.template == 'col-1-1' and child.plugin_type == 'CMSAllinkImagePlugin':
                                     continue
                                 if child.plugin_type in self.allowed_content_plugins:
-                                        relevant_plugins.append(child)
+                                        relevant_plugins.append(child.get_plugin_instance()[0])
             elif plugin.plugin_type == 'CMSAllinkPageBreakPlugin':
                 relevant_plugins.append(plugin)
         return relevant_plugins
