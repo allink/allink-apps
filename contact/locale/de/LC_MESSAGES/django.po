@@ -95,7 +95,7 @@ msgstr "Firma"
 #: allink_apps/contact/models.py:37
 #: allink_apps/contact/templates/contact/forms/request_base.html:43
 msgid "Please contact me via"
-msgstr "Bitte kontaktieren Sie mich via"
+msgstr "Kontakt erwünscht via"
 
 #: allink_apps/contact/models.py:52
 msgid "Time"
