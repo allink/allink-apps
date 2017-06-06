@@ -55,7 +55,7 @@ class Locations(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, Transl
             blank=True,
             help_text=_(u'Leave blank to auto-generate a unique slug.')
         ),
-        opening_hours_display = HTMLField(
+        opening_hours_display=HTMLField(
             _(u'Opening hours'),
             help_text=_(u'This Text will be used to show the Opening hours on the location detail page. If provided, the detailed opening hours will be overriden.'),
             blank=True,
@@ -103,13 +103,13 @@ class Locations(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, Transl
     fri = models.CharField(_(u'Friday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
     sat = models.CharField(_(u'Saturday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
     sun = models.CharField(_(u'Sunday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm"', blank=True, max_length=100)
-    mon_afternoon = models.CharField(_(u'Monday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break', blank=True, max_length=100)
-    tue_afternoon = models.CharField(_(u'Tuesday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break', blank=True, max_length=100)
-    wed_afternoon = models.CharField(_(u'Wednesday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break', blank=True, max_length=100)
-    thu_afternoon = models.CharField(_(u'Thursday morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break', blank=True, max_length=100)
-    fri_afternoon = models.CharField(_(u'Friday mo morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break', blank=True, max_length=100)
-    sat_afternoon = models.CharField(_(u'Saturday  morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break', blank=True, max_length=100)
-    sun_afternoon = models.CharField(_(u'Sunday mo morning or whole day'), help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break', blank=True, max_length=100)
+    mon_afternoon = models.CharField(_(u'Monday afternoon'), help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break', blank=True, max_length=100)
+    tue_afternoon = models.CharField(_(u'Tuesday afternoon'), help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break', blank=True, max_length=100)
+    wed_afternoon = models.CharField(_(u'Wednesday afternoon'), help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break', blank=True, max_length=100)
+    thu_afternoon = models.CharField(_(u'Thursday afternoon'), help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break', blank=True, max_length=100)
+    fri_afternoon = models.CharField(_(u'Friday afternoon'), help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break', blank=True, max_length=100)
+    sat_afternoon = models.CharField(_(u'Saturday afternoon'), help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break', blank=True, max_length=100)
+    sun_afternoon = models.CharField(_(u'Sunday afternoon'), help_text=u'Format: "(h)h:mm-(h)h:mm", only fill if location has a lunch break', blank=True, max_length=100)
 
     header_placeholder = PlaceholderField(u'locations_header', related_name='%(app_label)s_%(class)s_header_placeholder')
     content_placeholder = PlaceholderField(u'locations_content', related_name='%(app_label)s_%(class)s_content_placeholder')

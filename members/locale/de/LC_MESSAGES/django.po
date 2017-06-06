@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-10 09:14-0500\n"
+"POT-Creation-Date: 2017-05-31 03:43-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,14 +23,16 @@ msgid ""
 "Delete selected Members (and corresponding Users/ also removes member from "
 "mailchimplist)"
 msgstr ""
+"Ausgewählte Mitglieder löschen (und zugehörige Benutzter und Einträge in "
+"Mailchimplisten)"
 
 #: allink_apps/members/admin.py:46
 msgid "Subscribe member to mailchimplist)"
-msgstr ""
+msgstr "Mitglied in Mailchimpliste eintragen)"
 
 #: allink_apps/members/admin.py:54
 msgid "Send welcome email"
-msgstr ""
+msgstr "Willkommens-E-Mail senden"
 
 #: allink_apps/members/cms_apps.py:8
 msgid "Members Apphook"
@@ -46,15 +48,15 @@ msgstr ""
 
 #: allink_apps/members/models.py:28
 msgid "Leave blank to auto-generate a unique slug."
-msgstr ""
+msgstr "Leer lassen, um den Slug automatisch zu generieren."
 
 #: allink_apps/members/models.py:33
 msgid "Member Number"
-msgstr ""
+msgstr "Mitgliedsnummer"
 
 #: allink_apps/members/models.py:40
 msgid "Email"
-msgstr ""
+msgstr "E-Mail"
 
 #: allink_apps/members/models.py:44
 msgid "Firstname"
@@ -66,11 +68,11 @@ msgstr "Nachname"
 
 #: allink_apps/members/models.py:57
 msgid "Language"
-msgstr ""
+msgstr "Sprache"
 
 #: allink_apps/members/models.py:66 allink_apps/members/models.py:67
 msgid "Members"
-msgstr ""
+msgstr "Mitglieder"
 
 #: allink_apps/members/models.py:159
 msgid "Log"
@@ -78,31 +80,40 @@ msgstr ""
 
 #: allink_apps/members/models.py:164
 msgid "Description"
-msgstr ""
+msgstr "Beschreibung"
 
 #: allink_apps/members/templates/members/email/member_modified_subject.txt:2
-msgid "Mitglied hat E-Mail Adresse mutiert"
-msgstr ""
+msgid "Member modified email address."
+msgstr "Mitglied hat E-Mail Adresse mutiert."
 
 #: allink_apps/members/templates/members/email/member_modified_text.txt:2
 #, python-format
 msgid ""
+"Good Day,\n"
 "\n"
+"The Member %(member_nr)s has a new email address: %(member_email)s.\n"
+"Please update the email address in other systems (Flightnet, FileMaker "
+"Database). \n"
+"\n"
+msgstr ""
 "Guten Tag,\n"
 "\n"
 "Das Mitglied %(member_nr)s hat neu die E-Mail Adresse: %(member_email)s.\n"
 "Bitte aktualisieren Sie die E-Mail Adresse in den anderen Systemen "
 "(Flightnet, FileMaker Datenbank).\n"
 "\n"
-msgstr ""
 
 #: allink_apps/members/templates/members/email/welcome_subject.txt:2
-msgid "Zugang Downloadbereich neue MFGZ Website"
-msgstr ""
+msgid "subject"
+msgstr "Zugang Downloadbereich neue MFGZ Website"
 
 #: allink_apps/members/templates/members/email/welcome_text.txt:2
 #, python-format
 msgid ""
+"\n"
+"welcome\n"
+"%(set_password_link)s\n"
+msgstr ""
 "\n"
 "Die MFGZ Website wurde überarbeitet und auch der Download Bereich wurde neu "
 "gestaltet.\n"
@@ -115,20 +126,21 @@ msgid ""
 "\n"
 "Freundliche Grüsse\n"
 "MFGZ Team\n"
-msgstr ""
 
 #: allink_apps/members/templates/members/login/confirmation.html:4
 msgid "Your login was successful."
-msgstr ""
+msgstr "Sie haben sich erflogreich eingeloggt."
 
 #: allink_apps/members/templates/members/profile_edit.html:4
 msgid "Change Password"
-msgstr ""
+msgstr "Passwort ändern"
 
 #: allink_apps/members/templates/members/profile_edit.html:10
 msgid "Save"
-msgstr ""
+msgstr "Speichern"
 
 #: allink_apps/members/views.py:84
 msgid "Something went wrong with your subscription. Please try again later."
 msgstr ""
+"Bei Ihrer Registrierung ist etwas schief gelaufen. Bitte versuchen Sie es "
+"später erneut."
