@@ -2,10 +2,11 @@
 
 {% load cms_tags allink_cms_tags sekizai_tags i18n allink_image_tags thumbnail allink_seo_tags %}
 
-{# META Tag #}
 {% block meta_tags %}
     {% render_meta_og object %}
 {% endblock meta_tags %}
+
+{% block h1_tag %}{% render_h1 object %}{% endblock h1_tag %}
 
 {# Page Title - Required for Softpage (Google Tag Manager) #}
 {% block softpage_title %}{{ object.title }} | {% if allink_config.default_base_title %}{{ allink_config.default_base_title }}{% else %}{{ request.site.name }}{% endif %}{% endblock softpage_title %}
