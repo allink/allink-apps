@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-07 15:00+0200\n"
+"POT-Creation-Date: 2017-06-07 17:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -86,18 +86,18 @@ msgstr ""
 msgid "The first image will be used as preview image."
 msgstr ""
 
-#: allink_apps/testimonials/templates/testimonials/testimonial_detail.html:80
+#: allink_apps/testimonials/templates/testimonials/testimonial_detail.html:56
 msgid "Contact"
 msgstr ""
 
-#: allink_apps/testimonials/templates/testimonials/testimonial_detail.html:90
+#: allink_apps/testimonials/templates/testimonials/testimonial_detail.html:66
 msgid "Phone:"
 msgstr "Téléphone"
 
-#: allink_apps/testimonials/templates/testimonials/testimonial_detail.html:96
+#: allink_apps/testimonials/templates/testimonials/testimonial_detail.html:72
 msgid "Mobile:"
 msgstr ""
 
-#: allink_apps/testimonials/templates/testimonials/testimonial_detail.html:102
+#: allink_apps/testimonials/templates/testimonials/testimonial_detail.html:78
 msgid "Fax:"
 msgstr ""
