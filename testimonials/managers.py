@@ -11,7 +11,7 @@ class AllinkTestimonialQuerySet(AllinkBaseModelQuerySet):
 
     def title_desc(self):
         return self.active_entries()\
-            .order_by('firstname', 'id')\
+            .order_by('-firstname', 'id')\
             .distinct('firstname', 'id')
 
 
