@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-31 03:43-0500\n"
+"POT-Creation-Date: 2017-06-07 15:00+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -178,7 +178,7 @@ msgstr "Standorte"
 msgid "Now open"
 msgstr "Jetzt geöffnet"
 
-#: allink_apps/locations/models.py:289
+#: allink_apps/locations/models.py:281
 msgid ""
 "Select and arrange specific entries, or, leave blank to select all. (If "
 "manual entries are selected the category filtering will be ignored.)"
@@ -186,22 +186,22 @@ msgstr ""
 "Wählen und ordnen Sie speziefische Einträge, oder leer lassen, uma alle zu "
 "wählen. (Kategorienfilterung wird bei manuellen Einträgen nicht angewandt.)"
 
-#: allink_apps/locations/models.py:294
+#: allink_apps/locations/models.py:286
 msgid "Zoom Level"
 msgstr ""
 
-#: allink_apps/locations/models.py:295
+#: allink_apps/locations/models.py:287
 msgid "The higher the number, the more we zoom in."
 msgstr "Je höher die Zahl, desto stärker ist die Vergrösserung."
 
-#: allink_apps/locations/models.py:304
+#: allink_apps/locations/models.py:296
 msgid "Images"
 msgstr "Bilder"
 
-#: allink_apps/locations/models.py:305
+#: allink_apps/locations/models.py:297
 msgid "The first image will be used as preview image."
 msgstr "Das erst Bild wird als Vorschaubild verwendet."
 
-#: allink_apps/locations/templates/app_content/plugins/map/content.html:61
+#: allink_apps/locations/templates/locations/plugins/map/content.html:61
 msgid "Directions"
 msgstr "Routenplaner"
