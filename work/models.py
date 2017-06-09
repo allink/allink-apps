@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
+from django.core.cache import cache
+from django.core.cache.utils import make_template_fragment_key
 
 from cms.models.fields import PlaceholderField
 from adminsortable.fields import SortableForeignKey
@@ -70,6 +72,11 @@ class Work(SortableMixin, TranslationHelperMixin, AllinkTranslatedAutoSlugifyMix
         verbose_name = _('Project / Reference')
         verbose_name_plural = _('Projects / References')
 
+    def save(self, *args, **kwargs):
+        # invalidate cache
+        cache.delete_many([make_template_fragment_key('work_preview_image', [plugin.id, self.id]) for plugin in WorkAppContentPlugin.objects.all()])
+        super(Work, self).save(*args, **kwargs)
+
 
 # APP CONTENT PLUGIN
 class WorkAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin):
@@ -82,6 +89,16 @@ class WorkAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin)
                     'manual entries are selected the category filtering will be ignored.)')
     )
 
+    def save(self, *args, **kwargs):
+        # invalidate cache
+        cache.delete_many([make_template_fragment_key('work_preview_image', [self.id, work.id]) for work in Work.objects.all()])
+        super(WorkAppContentPlugin, self).save(*args, **kwargs)
+
 
 class WorkImage(AllinkBaseImage):
     work = SortableForeignKey(Work, verbose_name=_(u'Images'), help_text=_(u'The first image will be used as preview image.'), blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        # invalidate cache
+        cache.delete_many([make_template_fragment_key('work_preview_image', [plugin.id, self.work.id]) for plugin in WorkAppContentPlugin.objects.all()])
+        super(WorkImage, self).save(*args, **kwargs)
