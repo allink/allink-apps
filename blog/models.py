@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
+import json
 from datetime import datetime
+
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
+from django.core.cache import cache
 
 from filer.fields.image import FilerImageField
 from adminsortable.fields import SortableForeignKey
@@ -16,7 +19,6 @@ from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 from allink_core.allink_base.models.choices import SALUTATION_CHOICES
 from allink_core.allink_base.models import AllinkManualEntriesMixin, AllinkTranslatedAutoSlugifyMixin
 from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin, AllinkAddressFieldsModel, AllinkSimpleRegistrationFieldsModel
-from allink_core.allink_terms.models import AllinkTerms
 from allink_apps.locations.models import Locations
 
 from polymorphic.models import PolymorphicModel
@@ -80,6 +82,7 @@ class Blog(PolymorphicModel, TranslationHelperMixin, AllinkTranslatedAutoSlugify
 
     def get_detail_view(self):
         return 'blog:detail'.format(self._meta.model_name)
+
 
 # News
 class News(Blog):
@@ -169,6 +172,15 @@ class BlogAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin)
         -> Is also defined in  AllinkManualEntriesMixin to handel manual entries !!
         """
 
+        valid_cache_keys = cache.get('render_queryset_for_display_valid_keys_%s' % self.id, [])
+        cache_key = 'render_queryset_for_display_%s_%s_%s' % (self.id, category.id if category else '', json.dumps(filters))
+
+        if cache_key in valid_cache_keys:
+            cached_qs = cache.get(cache_key, None)
+
+            if cached_qs:
+                return cached_qs
+
         # apply filters from request
         queryset = self.data_model.objects.active().filter(**filters)
 
@@ -185,8 +197,13 @@ class BlogAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin)
             if self.categories_and.exists():
                 queryset = queryset.filter_by_categories(categories=self.categories_and.all())
 
-        return self._apply_ordering_to_queryset_for_display(queryset)
+        ordered_qs = self._apply_ordering_to_queryset_for_display(queryset)
 
+        # cache for for a half year and add to valid cache keys
+        cache.set(cache_key, ordered_qs, 60 * 60 * 24 * 180)
+        valid_cache_keys.append(cache_key)
+        cache.set('render_queryset_for_display_valid_keys_%s' % self.id, valid_cache_keys, 60 * 60 * 24 * 360)
+        return ordered_qs
 
 
 class BlogImage(AllinkBaseImage):
