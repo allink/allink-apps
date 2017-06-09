@@ -18,7 +18,6 @@ from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 from allink_core.allink_base.models.choices import SALUTATION_CHOICES
 from allink_core.allink_base.models import AllinkManualEntriesMixin, AllinkTranslatedAutoSlugifyMixin
 from allink_core.allink_base.models import AllinkBaseModel, AllinkBaseImage, AllinkBaseAppContentPlugin, AllinkAddressFieldsModel, AllinkSimpleRegistrationFieldsModel
-from allink_core.allink_terms.models import AllinkTerms
 from allink_apps.locations.models import Locations
 
 from polymorphic.models import PolymorphicModel
