@@ -9,12 +9,15 @@ from allink_core.allink_base.utils import AllinkBaseModifierMixin
 from allink_core.allink_config.models import AllinkConfig
 from allink_apps.blog.models import News, Events, EventsRegistration
 
+config = AllinkConfig.get_solo()
+
 
 class NewsToolbar(AllinkBaseModifierMixin, CMSToolbar):
     model = News
     app_label = News._meta.app_label
 
-if AllinkConfig.get_solo().news_toolbar_enabled:
+
+if config.news_toolbar_enabled:
     toolbar_pool.register(NewsToolbar)
 
 
@@ -22,7 +25,8 @@ class EventsToolbar(AllinkBaseModifierMixin, CMSToolbar):
     model = Events
     app_label = Events._meta.app_label
 
-if AllinkConfig.get_solo().events_toolbar_enabled:
+
+if config.events_toolbar_enabled:
     toolbar_pool.register(EventsToolbar)
 
 
@@ -36,5 +40,5 @@ class EventsRegistrationToolbar(CMSToolbar):
         menu.add_sideframe_item(self.model.get_verbose_name_plural(), url=url)
 
 
-if AllinkConfig.get_solo().events_registration_toolbar_enabled:
+if config.events_registration_toolbar_enabled:
     toolbar_pool.register(EventsRegistrationToolbar)
