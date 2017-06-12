@@ -13,7 +13,17 @@ Each release is divided into the following main categories:
 
 The version numbers referring to the version in [allink_core](git@github.com/allink/allink-core.git).
 
-## v0.0.10 (under development)
+## v0.0.11 (under development)
+
+### IMPORTANT
+###### SETTINGS
+###### TEMPLATES
+###### URLS
+###### REQUIREMENTS
+###### DATA MIGRATIONS
+### NEW
+
+## v0.0.10
 
 ### IMPORTANT
 
