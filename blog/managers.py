@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from datetime import date
+from datetime import datetime
 from django.db.models import Q
 from polymorphic.query import PolymorphicQuerySet
 from polymorphic.manager import PolymorphicManager
@@ -11,7 +11,7 @@ class AllinkBlogQuerySet(AllinkBaseModelQuerySet, PolymorphicQuerySet):
         '''
          entries which are active
         '''
-        today = date.today()
+        today = datetime.today()
         return self.translated()\
             .filter(Q(is_active=True) & (Q(start__isnull=True) & Q(end__isnull=True)) | ((Q(start__lte=today) & Q(end__isnull=True)) | (Q(start__isnull=True) & Q(end__gte=today))) | (Q(start__lte=today) & Q(end__gte=today)))
 
@@ -25,7 +25,7 @@ class AllinkEventsQuerySet(AllinkBaseModelQuerySet, PolymorphicQuerySet):
         '''
          entries which are active
         '''
-        today = date.today()
+        today = datetime.today()
         return self.translated()\
             .filter(Q(is_active=True) & (Q(start__isnull=True) & Q(end__isnull=True)) | ((Q(start__lte=today) & Q(end__isnull=True)) | (Q(start__isnull=True) & Q(end__gte=today))) | (Q(start__lte=today) & Q(end__gte=today)))
 

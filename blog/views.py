@@ -9,7 +9,7 @@ from allink_core.allink_base.views import AllinkBasePluginLoadMoreView, AllinkBa
 from allink_core.allink_mandrill.config import MandrillConfig
 from allink_core.allink_terms.models import AllinkTerms
 
-from allink_apps.blog.models import Blog, BlogAppContentPlugin, EventsRegistration, Events
+from allink_apps.blog.models import Blog, News, Events, BlogAppContentPlugin, EventsRegistration
 from allink_apps.blog.forms import EventsRegistrationForm
 from allink_apps.blog.email import send_registration_confirmation_email, send_registration_email
 
@@ -26,18 +26,31 @@ class BlogDetail(AllinkBaseDetailView):
 
     def get_template_names(self):
         names = []
-        try:
-            name = self.object.events._meta.model_name
-        except ObjectDoesNotExist:
-            pass
+        name = self.object._meta.model_name
 
-        try:
-            name = self.object.events._meta.model_name
-        except ObjectDoesNotExist:
-            name = self.object._meta.model_name
-
-        names.append("%s/%s%s.html" % (name, name, self.template_name_suffix))
+        if self.object.template:
+            names.append("%s/%s_%s.html" % (name, name, self.object.template))
+        else:
+            names.append("%s/%s%s.html" % (name, name, self.template_name_suffix))
         return names
+
+
+class NewsPluginLoadMore(AllinkBasePluginLoadMoreView):
+    model = News
+    plugin_model = BlogAppContentPlugin
+
+
+class NewsDetail(BlogDetail):
+    model = News
+
+
+class EventsPluginLoadMore(AllinkBasePluginLoadMoreView):
+    model = Events
+    plugin_model = BlogAppContentPlugin
+
+
+class EventsDetail(BlogDetail):
+    model = Events
 
 
 class EventsRegistrationView(AllinkBaseCreateView):
@@ -48,7 +61,8 @@ class EventsRegistrationView(AllinkBaseCreateView):
     def get_context_data(self, **kwargs):
         context = super(AllinkBaseCreateView, self).get_context_data(**kwargs)
         context.update({
-            'slug': self.kwargs.get('slug', None)
+            'slug': self.kwargs.get('slug', None),
+            'event_title': self.item.title
         })
         return context
 

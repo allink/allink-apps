@@ -6,13 +6,13 @@ class AllinkTestimonialQuerySet(AllinkBaseModelQuerySet):
 
     def title_asc(self):
         return self.active_entries()\
-            .order_by('lastname', 'id')\
-            .distinct('lastname', 'id')
+            .order_by('firstname', 'id')\
+            .distinct('firstname', 'id')
 
     def title_desc(self):
         return self.active_entries()\
-            .order_by('lastname', 'id')\
-            .distinct('lastname', 'id')
+            .order_by('-firstname', 'id')\
+            .distinct('firstname', 'id')
 
 
 class AllinkTestimonialManager(AllinkBaseModelManager):

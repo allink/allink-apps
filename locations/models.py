@@ -55,7 +55,7 @@ class Locations(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, Transl
             blank=True,
             help_text=_(u'Leave blank to auto-generate a unique slug.')
         ),
-        opening_hours_display=HTMLField(
+        opening_hours_display = HTMLField(
             _(u'Opening hours'),
             help_text=_(u'This Text will be used to show the Opening hours on the location detail page. If provided, the detailed opening hours will be overriden.'),
             blank=True,
@@ -92,6 +92,13 @@ class Locations(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, Transl
     )
     lng = models.FloatField(
         _(u'Longitude'),
+        blank=True,
+        null=True
+    )
+
+    map_link = models.URLField(
+        _(u'Map Link'),
+        help_text=_(u'This could be a <strong>Google Places</strong> or <strong>Directions</strong> link.'),
         blank=True,
         null=True
     )
@@ -160,7 +167,7 @@ class Locations(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, Transl
         ]
         return self.opening_info(opening_times[datetime.date.today().weekday()])
     is_currently_open.boolean = True
-    is_currently_open.short_description = _(u'Now open_(u')
+    is_currently_open.short_description = _(u'Now open')
 
     def opening_info(self, times):
         """
@@ -243,14 +250,6 @@ class Locations(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, Transl
 class LocationsAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin):
     """
     """
-    # TEMPLATES = AllinkBaseAppContentPlugin.TEMPLATES \
-    #             + ('map', 'Map')
-
-    TEMPLATES = (
-        (AllinkBaseAppContentPlugin.GRID_STATIC, 'Grid (Static)'),
-        # (AllinkBaseAppContentPlugin.GRID_DYNAMIC, 'Grid (Dynamic)'),
-        ('map', 'Map'),
-    )
 
     ZOOM_LEVEL_CHOICES = (
         (0, 0),

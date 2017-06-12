@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
 from datetime import datetime
-
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from django.core.cache import cache
@@ -70,6 +69,14 @@ class Blog(PolymorphicModel, TranslationHelperMixin, AllinkTranslatedAutoSlugify
         related_name='%(app_label)s_%(class)s_preview_image',
     )
 
+    template = models.CharField(
+        _(u'Template'),
+        help_text=_(u'Choose a template.'),
+        max_length=50,
+        blank=True,
+        null=True,
+    )
+
     header_placeholder = PlaceholderField(u'blog_header', related_name='%(app_label)s_%(class)s_header_placeholder')
     content_placeholder = PlaceholderField(u'blog_content', related_name='%(app_label)s_%(class)s_content_placeholder')
 
@@ -81,8 +88,7 @@ class Blog(PolymorphicModel, TranslationHelperMixin, AllinkTranslatedAutoSlugify
         verbose_name_plural = _('Blog entries')
 
     def get_detail_view(self):
-        return 'blog:detail'.format(self._meta.model_name)
-
+        return 'blog:detail'
 
 # News
 class News(Blog):
@@ -92,6 +98,9 @@ class News(Blog):
         app_label = 'blog'
         verbose_name = _('News entry')
         verbose_name_plural = _('News')
+
+    def get_detail_view(self):
+        return '{}:detail'.format(self._meta.model_name)
 
 # Events
 class Events(Blog):
@@ -136,6 +145,9 @@ class Events(Blog):
         verbose_name = _('Event')
         verbose_name_plural = _('Events')
 
+    def __str__(self):
+        return u'%s %s' % (self.title, self.event_date)
+
     def show_registration_form(self):
         if getattr(self, 'event_date'):
             if self.event_date < datetime.now().date():
@@ -145,14 +157,12 @@ class Events(Blog):
         else:
             return False
 
+    def get_detail_view(self):
+        return '{}:detail'.format(self._meta.model_name)
+
 
 # APP CONTENT PLUGIN
 class BlogAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin):
-
-    TEMPLATES = (
-        (AllinkBaseAppContentPlugin.GRID_STATIC, 'Grid (Static)'),
-        (AllinkBaseAppContentPlugin.SLIDER, 'Slider'),
-    )
 
     data_model = Blog
 
@@ -172,6 +182,14 @@ class BlogAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin)
         -> Is also defined in  AllinkManualEntriesMixin to handel manual entries !!
         """
 
+        def ordered_by_events():
+            if category and getattr(category, 'name') == 'Events':
+                return True
+            elif self.categories.count() == 1 and self.categories.first().name == 'Events':
+                return True
+            else:
+                return False
+
         valid_cache_keys = cache.get('render_queryset_for_display_valid_keys_%s' % self.id, [])
         cache_key = 'render_queryset_for_display_%s_%s_%s' % (self.id, category.id if category else '', json.dumps(filters))
 
@@ -187,12 +205,15 @@ class BlogAppContentPlugin(AllinkManualEntriesMixin, AllinkBaseAppContentPlugin)
         if self.categories.exists() or category:
             if category:
                 #  TODO how can we automatically apply the manager of the subclass?
-                if category.name == 'Events':
+                if ordered_by_events():
                     queryset = Events.objects.active().filter_by_category(category)
                 else:
                     queryset = queryset.filter_by_category(category)
             else:
-                queryset = queryset.filter_by_categories(categories=self.categories.all())
+                if ordered_by_events():
+                    queryset = Events.objects.active().filter_by_categories(categories=self.categories.all())
+                else:
+                    queryset = queryset.filter_by_categories(categories=self.categories.all())
 
             if self.categories_and.exists():
                 queryset = queryset.filter_by_categories(categories=self.categories_and.all())

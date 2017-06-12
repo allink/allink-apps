@@ -21,22 +21,38 @@ class LocationsAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
                     'title',
                     'slug',
                     'subtitle',
-                    'preview_image',
-                    ('zip_code', 'place',),
+                    ('lat', 'lng',),
                     ('street', 'street_nr',),
+                    ('zip_code', 'place',),
                     'street_additional',
                     ('phone', 'mobile',),
-                    'website',
                     ('email', 'fax',),
+                    'website',
+                    'map_link',
+                    'preview_image',
                     'opening_hours_display',
-                    ('lat', 'lng',),
-                    'is_currently_open',
                 ),
             }),
-            (_(u'Opening hours'), {
+            (_(u'Opening hours (Detailed)'), {
                 'classes': ('collapse',),
-                'fields': ('is_currently_open', 'mon', 'mon_afternoon', 'tue', 'tue_afternoon', 'wed', 'wed_afternoon', 'thu', 'thu_afternoon', 'fri', 'fri_afternoon', 'sat', 'sat_afternoon', 'sun', 'sun_afternoon'),
-                'description': _(u'Format: "9:00-12:00  13:00-20:00"')
+                'fields': (
+                    'is_currently_open',
+                    'mon',
+                    'mon_afternoon',
+                    'tue',
+                    'tue_afternoon',
+                    'wed',
+                    'wed_afternoon',
+                    'thu',
+                    'thu_afternoon',
+                    'fri',
+                    'fri_afternoon',
+                    'sat',
+                    'sat_afternoon',
+                    'sun',
+                    'sun_afternoon'),
+                    'description': _(u'Format: "9:00-12:00  13:00-20:00"'
+                )
             }),
         )
 

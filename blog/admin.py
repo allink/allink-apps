@@ -2,14 +2,15 @@
 from django.contrib import admin
 from django import forms
 from django.utils.translation import ugettext_lazy as _
+from cms.admin.placeholderadmin import PlaceholderAdminMixin
 
-from adminsortable.admin import SortableTabularInline
+
 from allink_core.allink_base.admin import AllinkBaseAdmin
 from allink_core.allink_base.admin.forms import AllinkBaseAdminForm
 from allink_core.allink_categories.models import AllinkCategory
-from cms.admin.placeholderadmin import PlaceholderAdminMixin
 
-from allink_apps.blog.models import BlogImage, Blog, News, Events, EventsRegistration
+from allink_core.allink_base.utils import get_additional_choices
+from allink_apps.blog.models import Blog, News, Events, EventsRegistration
 
 
 class BlogContentAdminForm(AllinkBaseAdminForm):
@@ -17,6 +18,15 @@ class BlogContentAdminForm(AllinkBaseAdminForm):
     def __init__(self, *args, **kwargs):
         super(BlogContentAdminForm, self).__init__(*args, **kwargs)
         self.fields['categories'].initial = AllinkCategory.objects.not_root().filter(translations__name__iexact=self._meta.model._meta.model_name)
+
+        if get_additional_choices('ADDITIONAL_BLOG_DETAIL_TEMPLATES'):
+            self.fields['template'] = forms.CharField(
+                label=_(u'Template'),
+                widget=forms.Select(choices=get_additional_choices('ADDITIONAL_BLOG_DETAIL_TEMPLATES', blank=True)),
+                required=False,
+            )
+        else:
+            self.fields['template'] = forms.CharField(widget=forms.HiddenInput(),)
 
 
 @admin.register(News)
@@ -36,6 +46,7 @@ class NewsAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
                     'title',
                     'slug',
                     'created',
+                    'template',
                     'preview_image',
                     'lead',
                 ),
@@ -71,12 +82,13 @@ class EventsAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
                     'is_active',
                     'title',
                     'slug',
-                    'created',
+                    'template',
                     'preview_image',
+                    ('event_date', 'event_time', 'costs', ),
                     'lead',
                     'location',
                     'form_enabled',
-                    ('event_date', 'event_time', 'costs', )
+                    'created',
                 ),
             }),
         )

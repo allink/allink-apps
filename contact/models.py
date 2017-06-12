@@ -10,12 +10,9 @@ class ContactRequestBase(AllinkSimpleRegistrationFieldsModel):
 
     TIME_CHOICES = (
         (None, _(u'-- between --')),
-        (1, u'08:00-10:00'),
-        (2, u'10:00-12:00'),
-        (3, u'12:00-14:00'),
-        (4, u'14:00-16:00'),
-        (5, u'16:00-18:00'),
-        (6, u'18:00-20:00'),
+        (1, u'09:00-11:00'),
+        (2, u'13:00-15:00'),
+        (3, u'15:00-17:00'),
     )
     CONTACT_PHONE = 10
     CONTACT_EMAIL = 20

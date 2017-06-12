@@ -18,10 +18,23 @@ The version numbers referring to the version in [allink_core](git@github.com/all
 ### IMPORTANT
 
 ###### SETTINGS
+- Contact Form: `TIME_CHOICES` (in `allink_apps/contact/models.py`) had to be updated for the core development project. If you require the old default, make sure to adjust the time choices after updating allink_apps:
+```python
+TIME_CHOICES = (
+    (None, _(u'-- between --')),
+    (1, u'08:00-10:00'),
+    (2, u'10:00-12:00'),
+    (3, u'12:00-14:00'),
+    (4, u'14:00-16:00'),
+    (5, u'16:00-18:00'),
+    (6, u'18:00-20:00'),
+)
+```
 
 ###### TEMPLATES
 - people job_function (which it was used in teojakob for example) was substituted with property 'units'. You now have to add categories (with identifier='units') and tag th person with it. this allowes us to categories people without having to maintain both fields 'unit' and categories
 - locations app has now also `grid_static` as a default template option
+- news and events have now seperate apphooks -> register view moved from urls to events_url (change blog:register -> to events:register in all templates)
 
 ###### URLS
 
@@ -32,7 +45,10 @@ The version numbers referring to the version in [allink_core](git@github.com/all
  -> and if you update make sure you migrate the images! (see data_migrations/0017_migrate_preview_image.py)
 
 ### NEW
-- Contact Form can be integrated as Plugin
+
+- App Content Template: `app_content.html` added. All plugin templates (grid_static, list, ...) should from now on extend from this template instead of `app_content_base.html` (both work, but `app_content_base.html` can NOT be overwritten on a project basis). Globally modifying block content can now be done by adding a `/templates/app_content/app_content.html` file in your project folder.
+
+- Forms can be used as Plugins. For each form we need an app, implementing the base classes as in allink_apps.contact
 
 ### FIXES
 

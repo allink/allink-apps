@@ -13,17 +13,4 @@ require_POST = method_decorator(require_POST)
 
 @admin.register(Config)
 class ConfigAdmin(SingletonModelAdmin):
-
-    def get_fieldsets(self, request, obj=None):
-
-        fieldsets = (_('Architonic Settings'), {
-            'classes': (
-                'collapse',
-            ),
-            'fields': (
-                'architonic_user_id',
-                'architonic_catalog_page',
-            )
-        }),
-
-        return fieldsets
+    pass

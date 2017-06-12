@@ -12,7 +12,7 @@ from allink_apps.testimonials.models import TestimonialImage, Testimonial
 
 @admin.register(Testimonial)
 class TestimonialAdmin(PlaceholderAdminMixin, AllinkBaseAdmin):
-    search_fields = ('translations__firstname', 'translations__lastname',)
+    search_fields = ('firstname', 'lastname',)
     # list_display = ('firstname', 'lastname', 'get_categories', 'is_active', 'created', 'modified')
     list_display = ('firstname', 'get_categories', 'is_active', 'created', 'modified')
 

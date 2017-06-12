@@ -9,12 +9,12 @@
                         <a href="{{object.get_absolute_url}}">
                     {% endif %}
                         {% render_app_content_image icon_disabled=True bg_color="2" %}
-                    {% if instance.detail_link_enabled  %}
+                    {% if instance.detail_link_enabled and object.show_detail_link %}
                         </a>
                     {% endif %}
                 </div>
             {% endif %}
-        {% endcache %}    
+        {% endcache %}
         {% if object.title %}
             <div class="heading-container">
                 <h2 class="heading">

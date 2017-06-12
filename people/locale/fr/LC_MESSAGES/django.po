@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-10 09:14-0500\n"
+"POT-Creation-Date: 2017-06-07 17:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,6 +27,7 @@ msgid "Firstname"
 msgstr "Prénom"
 
 #: allink_apps/people/models.py:36 allink_apps/people/models.py:57
+#: allink_apps/people/models.py:158
 msgid "Lastname"
 msgstr "Nom"
 
@@ -34,7 +35,7 @@ msgstr "Nom"
 msgid "Preview Image"
 msgstr ""
 
-#: allink_apps/people/models.py:62 allink_apps/people/models.py:152
+#: allink_apps/people/models.py:62 allink_apps/people/models.py:142
 msgid "Unit"
 msgstr ""
 
@@ -70,37 +71,42 @@ msgstr ""
 msgid "People"
 msgstr ""
 
-#: allink_apps/people/models.py:144
-msgid "Location"
+#: allink_apps/people/models.py:154
+msgid "Job Function"
 msgstr ""
 
-#: allink_apps/people/models.py:165
+#: allink_apps/people/models.py:162
+msgid "Job Title"
+msgstr ""
+
+#: allink_apps/people/models.py:171
 msgid ""
 "Select and arrange specific entries, or, leave blank to select all. (If "
 "manual entries are selected the category filtering will be ignored.)"
 msgstr ""
 
-#: allink_apps/people/models.py:171
+#: allink_apps/people/models.py:177
 msgid "Images"
 msgstr ""
 
-#: allink_apps/people/models.py:171
+#: allink_apps/people/models.py:177
 msgid "The first image will be used as preview image."
 msgstr ""
 
-#: allink_apps/people/templates/people/people_detail.html:74
+#: allink_apps/people/templates/people/people_detail.html:50
+#: allink_apps/people/templates/people/plugins/table/content.html:12
 msgid "Contact"
 msgstr ""
 
-#: allink_apps/people/templates/people/people_detail.html:84
+#: allink_apps/people/templates/people/people_detail.html:60
 msgid "Phone:"
 msgstr "Téléphone"
 
-#: allink_apps/people/templates/people/people_detail.html:90
+#: allink_apps/people/templates/people/people_detail.html:66
 msgid "Mobile:"
 msgstr ""
 
-#: allink_apps/people/templates/people/people_detail.html:96
+#: allink_apps/people/templates/people/people_detail.html:72
 msgid "Fax:"
 msgstr ""
 
@@ -115,19 +121,15 @@ msgid "Name"
 msgstr ""
 
 #: allink_apps/people/templates/people/plugins/table/content.html:10
-msgid "Firmenname/Beruf"
+msgid "Company/Job"
 msgstr ""
 
 #: allink_apps/people/templates/people/plugins/table/content.html:11
-msgid "Ort"
-msgstr ""
-
-#: allink_apps/people/templates/people/plugins/table/content.html:12
-msgid "Kontakt"
+msgid "Place"
 msgstr ""
 
 #: allink_apps/people/templates/people/plugins/table_2/content.html:12
-msgid "Beruf"
+msgid "Job"
 msgstr ""
 
 #: allink_apps/people/templates/people/plugins/table_2/content.html:13
