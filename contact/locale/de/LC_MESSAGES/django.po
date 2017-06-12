@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-31 03:43-0500\n"
+"POT-Creation-Date: 2017-06-12 09:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,7 +33,7 @@ msgid ""
 "or Control-Key (Windows) <strong>and</strong> clicking the options you would "
 "like to apply."
 msgstr ""
-"Anleitung: Einzelne Selektion durch Klicken auf die gewünschte Option. "
+"Anleitung: Einzelauswahl durch Klicken auf die gewünschte Option. "
 "Mehrfachwahl kann durch Drücken und Halten der Command-Taste (Mac) or "
 "Control-Taste (Windows) <strong>und</strong> Anklicken der gewünschten "
 "Optionen erzielt werden."
@@ -80,7 +80,7 @@ msgid "-- please choose --"
 msgstr "-- bitte auswählen --"
 
 #: allink_apps/contact/models.py:22 allink_apps/contact/models.py:41
-#: allink_apps/contact/templates/contact/forms/request_base.html:78
+#: allink_apps/contact/templates/contact/forms/request_base.html:52
 msgid "Phone"
 msgstr "Telefon"
 
@@ -95,7 +95,7 @@ msgstr "Firma"
 #: allink_apps/contact/models.py:37
 #: allink_apps/contact/templates/contact/forms/request_base.html:43
 msgid "Please contact me via"
-msgstr "Kontakt erwünscht via"
+msgstr "Kontakt erwünscht per"
 
 #: allink_apps/contact/models.py:52
 msgid "Time"
@@ -126,20 +126,20 @@ msgstr "Kontaktanfrage"
 
 #: allink_apps/contact/templates/contact/forms/request_base.html:44
 #: allink_apps/contact/templates/contact/forms/request_base.html:53
-#: allink_apps/contact/templates/contact/forms/request_base.html:79
+#: allink_apps/contact/templates/contact/forms/request_base.html:62
 #: allink_apps/contact/templates/contact/forms/request_base.html:88
 msgid "(required)"
 msgstr "(benötigt)"
 
-#: allink_apps/contact/templates/contact/forms/request_base.html:52
+#: allink_apps/contact/templates/contact/forms/request_base.html:61
 msgid "Choose date and time"
 msgstr "Wann sollen wir Sie anrufen?"
 
-#: allink_apps/contact/templates/contact/forms/request_base.html:58
+#: allink_apps/contact/templates/contact/forms/request_base.html:67
 msgid "Choose a date"
 msgstr "Bitte ein Datum wählen"
 
-#: allink_apps/contact/templates/contact/forms/request_base.html:68
+#: allink_apps/contact/templates/contact/forms/request_base.html:77
 msgid "Choose a time"
 msgstr "Bitte Zeit wählen"
 

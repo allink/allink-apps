@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-31 03:43-0500\n"
+"POT-Creation-Date: 2017-06-12 09:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,8 +22,8 @@ msgstr ""
 msgid "Highlight"
 msgstr ""
 
-#: allink_apps/work/admin.py:19 allink_apps/work/models.py:82
-#: allink_apps/work/pdf.py:554
+#: allink_apps/work/admin.py:19 allink_apps/work/models.py:88
+#: allink_apps/work/pdf.py:555
 msgid "Highlights"
 msgstr ""
 
@@ -35,63 +35,63 @@ msgstr ""
 msgid "Work menu"
 msgstr ""
 
-#: allink_apps/work/models.py:30
+#: allink_apps/work/models.py:31
 msgid "Slug"
 msgstr ""
 
-#: allink_apps/work/models.py:34
+#: allink_apps/work/models.py:35
 msgid "Leave blank to auto-generate a unique slug."
 msgstr "Leer lassen, um den Slug automatisch zu generieren."
 
-#: allink_apps/work/models.py:37
+#: allink_apps/work/models.py:38
 msgid "Lead Text"
 msgstr ""
 
-#: allink_apps/work/models.py:38
+#: allink_apps/work/models.py:39
 msgid ""
 "Teaser text that in some cases is used in the list view and/or in the detail "
 "view."
 msgstr ""
-"Teaser text, welcher in der Listenansicht und/oder Deteilansicht verwendet "
-"wird."
+"Teaser-Text, welcher in der Listenansicht und/oder in der Detailansicht "
+"verwendet wird."
 
-#: allink_apps/work/models.py:43
+#: allink_apps/work/models.py:44
 msgid "Detailed Text"
 msgstr "Detailtext"
 
-#: allink_apps/work/models.py:44
+#: allink_apps/work/models.py:45
 msgid "The full text in detail view."
 msgstr "Der gesamte Text für die Detailansicht."
 
-#: allink_apps/work/models.py:50
+#: allink_apps/work/models.py:51
 msgid "Preview Image"
 msgstr "Vorschaubild"
 
-#: allink_apps/work/models.py:71
+#: allink_apps/work/models.py:72
 msgid "Project / Reference"
 msgstr "Projekt / Referenz"
 
-#: allink_apps/work/models.py:72
+#: allink_apps/work/models.py:73
 msgid "Projects / References"
 msgstr "Projekte / Referenzen"
 
-#: allink_apps/work/models.py:107
+#: allink_apps/work/models.py:113
 msgid ""
 "Select and arrange specific entries, or, leave blank to select all. (If "
 "manual entries are selected the category filtering will be ignored.)"
 msgstr ""
-"Wählen und ordnen Sie speziefische Einträge, oder leer lassen, uma alle zu "
+"Wählen und ordnen Sie spezifische Einträge oder leer lassen, um alle zu "
 "wählen. (Kategorienfilterung wird bei manuellen Einträgen nicht angewandt.)"
 
-#: allink_apps/work/models.py:113
+#: allink_apps/work/models.py:124
 msgid "Images"
 msgstr "Bilder"
 
-#: allink_apps/work/models.py:113
+#: allink_apps/work/models.py:124
 msgid "The first image will be used as preview image."
 msgstr "Das erst Bild wird als Vorschaubild verwendet."
 
-#: allink_apps/work/templates/work/plugins/grid_static/item.html:42
+#: allink_apps/work/templates/work/plugins/grid_static/item.html:44
 #: allink_apps/work/templates/work/plugins/list/item.html:27
 msgid "More"
 msgstr "Mehr"

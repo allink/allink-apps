@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-31 03:43-0500\n"
+"POT-Creation-Date: 2017-06-12 09:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,8 +55,8 @@ msgid ""
 "Teaser text that in some cases is used in the list view and/or in the detail "
 "view."
 msgstr ""
-"Teaser text, welcher in der Listenansicht und/oder Deteilansicht verwendet "
-"wird."
+"Teaser-Text, welcher in der Listenansicht und/oder in der Detailansicht "
+"verwendet wird."
 
 #: allink_apps/testimonials/models.py:76
 msgid "Detailed Text"
@@ -74,34 +74,34 @@ msgstr ""
 msgid "Testimonials"
 msgstr ""
 
-#: allink_apps/testimonials/models.py:118
+#: allink_apps/testimonials/models.py:114
 msgid ""
 "Select and arrange specific entries, or, leave blank to select all. (If "
 "manual entries are selected the category filtering will be ignored.)"
 msgstr ""
-"Wählen und ordnen Sie speziefische Einträge, oder leer lassen, uma alle zu "
+"Wählen und ordnen Sie spezifische Einträge oder leer lassen, um alle zu "
 "wählen. (Kategorienfilterung wird bei manuellen Einträgen nicht angewandt.)"
 
-#: allink_apps/testimonials/models.py:124
+#: allink_apps/testimonials/models.py:120
 msgid "Images"
 msgstr "Bilder"
 
-#: allink_apps/testimonials/models.py:124
+#: allink_apps/testimonials/models.py:120
 msgid "The first image will be used as preview image."
 msgstr "Das erst Bild wird als Vorschaubild verwendet."
 
-#: allink_apps/testimonials/templates/testimonials/testimonial_detail.html:80
+#: allink_apps/testimonials/templates/testimonials/testimonial_detail.html:56
 msgid "Contact"
 msgstr "Kontakt"
 
-#: allink_apps/testimonials/templates/testimonials/testimonial_detail.html:90
+#: allink_apps/testimonials/templates/testimonials/testimonial_detail.html:66
 msgid "Phone:"
 msgstr "Telefon:"
 
-#: allink_apps/testimonials/templates/testimonials/testimonial_detail.html:96
+#: allink_apps/testimonials/templates/testimonials/testimonial_detail.html:72
 msgid "Mobile:"
 msgstr ""
 
-#: allink_apps/testimonials/templates/testimonials/testimonial_detail.html:102
+#: allink_apps/testimonials/templates/testimonials/testimonial_detail.html:78
 msgid "Fax:"
 msgstr ""

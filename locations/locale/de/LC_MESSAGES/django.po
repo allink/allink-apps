@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-31 03:43-0500\n"
+"POT-Creation-Date: 2017-06-12 09:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: allink_apps/locations/admin.py:36
 msgid "Opening hours (Detailed)"
-msgstr "Öffnungszeiten (detailiert)"
+msgstr "Öffnungszeiten (detailliert)"
 
 #: allink_apps/locations/admin.py:54
 msgid "Format: \"9:00-12:00  13:00-20:00\""
@@ -36,7 +36,7 @@ msgstr ""
 
 #: allink_apps/locations/cms_plugins.py:35
 msgid "Map Options"
-msgstr "Karten Optionen"
+msgstr "Karten-Optionen"
 
 #: allink_apps/locations/models.py:40
 msgid "Subtitle"
@@ -51,8 +51,8 @@ msgid ""
 "Teaser text that in some cases is used in the list view and/or in the detail "
 "view."
 msgstr ""
-"Teaser text, welcher in der Listenansicht und/oder Deteilansicht verwendet "
-"wird."
+"Teaser text, welcher in der Listenansicht und/oder in der Detailansicht "
+"verwendet wird."
 
 #: allink_apps/locations/models.py:52
 msgid "Slug"
@@ -71,8 +71,8 @@ msgid ""
 "This Text will be used to show the Opening hours on the location detail "
 "page. If provided, the detailed opening hours will be overriden."
 msgstr ""
-"Dieser Text wird benötigt um die Öffnungszeiten in der Detailansicht "
-"darzustellen. Überschreibt die Öffnungszeiten (detailiert)."
+"Dieser Text wird benötigt, um die Öffnungszeiten in der Detailansicht "
+"darzustellen. Überschreibt die Öffnungszeiten (detailliert)."
 
 #: allink_apps/locations/models.py:67
 msgid "Preview Image"
@@ -136,7 +136,7 @@ msgstr "Samstagmorgen oder ganzer Samstag"
 
 #: allink_apps/locations/models.py:112
 msgid "Sunday morning or whole day"
-msgstr "Sontagmorgen oder ganzer Sonntag"
+msgstr "Sonntagmorgen oder ganzer Sonntag"
 
 #: allink_apps/locations/models.py:113
 msgid "Monday afternoon"
@@ -164,7 +164,7 @@ msgstr "Samstagnachmittag"
 
 #: allink_apps/locations/models.py:119
 msgid "Sunday afternoon"
-msgstr "Sonntagnachmitag"
+msgstr "Sonntagnachmittag"
 
 #: allink_apps/locations/models.py:128
 msgid "Location"
@@ -178,30 +178,30 @@ msgstr "Standorte"
 msgid "Now open"
 msgstr "Jetzt geöffnet"
 
-#: allink_apps/locations/models.py:289
+#: allink_apps/locations/models.py:281
 msgid ""
 "Select and arrange specific entries, or, leave blank to select all. (If "
 "manual entries are selected the category filtering will be ignored.)"
 msgstr ""
-"Wählen und ordnen Sie speziefische Einträge, oder leer lassen, uma alle zu "
+"Wählen und ordnen Sie spezifische Einträge oder leer lassen, um alle zu "
 "wählen. (Kategorienfilterung wird bei manuellen Einträgen nicht angewandt.)"
 
-#: allink_apps/locations/models.py:294
+#: allink_apps/locations/models.py:286
 msgid "Zoom Level"
 msgstr ""
 
-#: allink_apps/locations/models.py:295
+#: allink_apps/locations/models.py:287
 msgid "The higher the number, the more we zoom in."
 msgstr "Je höher die Zahl, desto stärker ist die Vergrösserung."
 
-#: allink_apps/locations/models.py:304
+#: allink_apps/locations/models.py:296
 msgid "Images"
 msgstr "Bilder"
 
-#: allink_apps/locations/models.py:305
+#: allink_apps/locations/models.py:297
 msgid "The first image will be used as preview image."
 msgstr "Das erst Bild wird als Vorschaubild verwendet."
 
-#: allink_apps/locations/templates/app_content/plugins/map/content.html:61
+#: allink_apps/locations/templates/locations/plugins/map/content.html:61
 msgid "Directions"
 msgstr "Routenplaner"
