@@ -87,7 +87,6 @@ msgid "Member modified email address."
 msgstr "Mitglied hat E-Mail Adresse mutiert."
 
 #: allink_apps/members/templates/members/email/member_modified_text.txt:2
-#, python-format
 msgid ""
 "\n"
 "Good Day,\n"
