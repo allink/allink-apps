@@ -3,6 +3,6 @@
 Good Day,
 
 The Member {{ member_nr }} has a new email address: {{member_email}}.
-Please update the email address in other systems (Flightnet, FileMaker Database). 
+Please update the email address in other systems (Flightnet, FileMaker Database).
 
 {% endblocktrans %}
