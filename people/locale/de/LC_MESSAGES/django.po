@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-07 17:41+0200\n"
+"POT-Creation-Date: 2017-06-12 09:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -73,7 +73,7 @@ msgstr "Personen"
 
 #: allink_apps/people/models.py:154
 msgid "Job Function"
-msgstr "Job Funktion"
+msgstr "Job-Funktion"
 
 #: allink_apps/people/models.py:162
 msgid "Job Title"
@@ -84,7 +84,7 @@ msgid ""
 "Select and arrange specific entries, or, leave blank to select all. (If "
 "manual entries are selected the category filtering will be ignored.)"
 msgstr ""
-"Wählen und ordnen Sie speziefische Einträge, oder leer lassen, uma alle zu "
+"Wählen und ordnen Sie spezifische Einträge oder leer lassen, um alle zu "
 "wählen. (Kategorienfilterung wird bei manuellen Einträgen nicht angewandt.)"
 
 #: allink_apps/people/models.py:177

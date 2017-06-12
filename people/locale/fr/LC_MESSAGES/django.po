@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-07 17:41+0200\n"
+"POT-Creation-Date: 2017-06-12 09:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -121,10 +121,8 @@ msgid "Name"
 msgstr ""
 
 #: allink_apps/people/templates/people/plugins/table/content.html:10
-#, fuzzy
-#| msgid "Company Name"
 msgid "Company/Job"
-msgstr "Société"
+msgstr ""
 
 #: allink_apps/people/templates/people/plugins/table/content.html:11
 msgid "Place"
