@@ -35,6 +35,7 @@ TIME_CHOICES = (
 - people job_function (which it was used in teojakob for example) was substituted with property 'units'. You now have to add categories (with identifier='units') and tag th person with it. this allowes us to categories people without having to maintain both fields 'unit' and categories
 - locations app has now also `grid_static` as a default template option
 - news and events have now seperate apphooks -> register view moved from urls to events_url (change blog:register -> to events:register in all templates)
+- meta tags new template tag
 
 ###### URLS
 
