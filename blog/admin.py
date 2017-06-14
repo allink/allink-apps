@@ -26,7 +26,7 @@ class BlogContentAdminForm(AllinkBaseAdminForm):
                 required=False,
             )
         else:
-            self.fields['template'] = forms.CharField(widget=forms.HiddenInput(),)
+            self.fields['template'] = forms.CharField(widget=forms.HiddenInput(), required=False)
 
 
 @admin.register(News)
