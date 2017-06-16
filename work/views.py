@@ -16,13 +16,13 @@ class WorkDetail(AllinkBaseDetailView):
 
 
 def export_pdf(request, id):
-    date = (datetime.date.today().strftime('%d-%m-%Y'))
+    date = (datetime.date.today().strftime('%d_%m_%Y'))
 
     item = Work.objects.get(id=id)
 
     pdf = PdfWork(item, request)
     output = pdf.build()
-    filename = '%s_%s.pdf' % (item.title, date)
+    filename = '%s_%s.pdf' % (item.title.replace(' ', '_'), date)
 
     response = HttpResponse(output.getvalue(), content_type="application/pdf")
     response['Content-Disposition'] = "attachment; filename=%s" % filename

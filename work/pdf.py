@@ -409,7 +409,7 @@ class PdfWork(object):
     def _later_pages(self, canvas, doc):
         canvas.setFont('MessinaSansBold', 7.5, 9.5)
         # break line when title to long
-        title_area = simpleSplit(self.item.title, canvas._fontname, canvas._fontsize, self.first_page_settings['preview_image_width'])
+        title_area = simpleSplit(clean(self.item.title), canvas._fontname, canvas._fontsize, self.first_page_settings['preview_image_width'])
         x = 152.25 * mm
         y = 288 * mm
         for line in title_area:
