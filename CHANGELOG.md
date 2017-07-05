@@ -21,7 +21,11 @@ The version numbers referring to the version in [allink_core](git@github.com/all
 ###### URLS
 ###### REQUIREMENTS
 ###### DATA MIGRATIONS
+- Datamigration for Translatable SEO-Fields on Apps: blog, locations, people, testimonials and work.
+    - Migrations in folder data_migrations (APPNAME_seo_translation.py), ajust dependencies
+    - Make migrations before adding the datamigration
 ### NEW
+-SEO-Fields are now on App-Models, so they are translatable.
 
 ## v0.0.10
 

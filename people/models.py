@@ -80,6 +80,25 @@ class People(TranslationHelperMixin, AllinkTranslatedAutoSlugifyMixin, Translata
             blank=True,
             help_text=_(u'Leave blank to auto-generate a unique slug.')
         ),
+        og_title=models.CharField(
+            verbose_name=_(u'Title Tag and Title when shared on Facebook/ Twitter.'),
+            max_length=255,
+            help_text=_(u'Title when shared on Facebook.'),
+            blank=True,
+            null=True
+        ),
+        og_description=models.CharField(
+            verbose_name=_(u'Meta Description for Search Engines and when shared on Facebook.'),
+            max_length=255,
+            help_text=_(u'Description when shared on Facebook/ Twitter.'),
+            blank=True,
+            null=True
+        ),
+        disable_base_title=models.BooleanField(
+            _(u'Disable base title'),
+            help_text=_(u'If disabled, only the page title will be shown. Everything behind and including the "|" will be removed.'),
+            default=False
+        )
     )
 
     company_name = models.CharField(
